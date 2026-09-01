@@ -1,0 +1,20 @@
+{
+  "objetivo": "Registrar apenas informações críticas que dependem de experiência, julgamento ou testes do grupo.",
+  "prioritarios": [
+    "função única no Equilibrium",
+    "experiência prática e evidências",
+    "sobreposições e combinações perigosas",
+    "impacto real na escassez e na automação",
+    "custo de worldgen e desempenho observado",
+    "valor multiplayer e para as divisões",
+    "alterações necessárias",
+    "parecer e dúvidas ainda não testadas"
+  ],
+  "secundarios_ou_importaveis_por_ia": [
+    "versões disponíveis",
+    "loaders",
+    "dependências públicas",
+    "links oficiais",
+    "descrição geral do projeto"
+  ]
+}

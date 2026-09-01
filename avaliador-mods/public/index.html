@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Ferramenta local para catalogar e avaliar mods e referências do projeto Equilibrium.">
+    <title>Equilibrium — Avaliador de Mods</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand-lockup">
+        <span class="brand-mark" aria-hidden="true">EQ</span>
+        <div>
+          <p class="eyebrow">Equilibrium</p>
+          <h1>Avaliador de mods</h1>
+        </div>
+      </div>
+
+      <div class="topbar-actions">
+        <label class="editor-field" title="Este nome será registrado nas alterações">
+          <span>Avaliador</span>
+          <input id="editorName" type="text" maxlength="80" placeholder="Seu nome">
+        </label>
+        <span id="connectionStatus" class="status-pill status-pill--checking">Conectando…</span>
+        <div class="menu-wrap">
+          <button id="transferButton" class="button button--ghost" type="button" aria-expanded="false">Dados</button>
+          <div id="transferMenu" class="popover-menu" hidden>
+            <button type="button" data-action="import">Importar CSV ou JSON…</button>
+            <hr>
+            <button type="button" data-action="export-json">Exportar coleção em JSON</button>
+            <button type="button" data-action="export-csv">Exportar coleção em CSV</button>
+          </div>
+        </div>
+        <button id="newRecordButton" class="button button--primary" type="button">Nova ficha <kbd>Ctrl N</kbd></button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <aside class="catalog-panel" aria-label="Catálogo">
+        <div class="mode-switch" role="tablist" aria-label="Tipo de registro">
+          <button class="mode-switch__item is-active" type="button" role="tab" aria-selected="true" data-collection="mods">Mods</button>
+          <button class="mode-switch__item" type="button" role="tab" aria-selected="false" data-collection="references">Referências</button>
+        </div>
+
+        <label class="search-field">
+          <span class="sr-only">Pesquisar</span>
+          <input id="searchInput" type="search" placeholder="Pesquisar fichas…" autocomplete="off">
+          <kbd>Ctrl K</kbd>
+        </label>
+
+        <div class="catalog-filters">
+          <select id="statusFilter" aria-label="Filtrar por estado">
+            <option value="">Todos os estados</option>
+          </select>
+          <select id="divisionFilter" aria-label="Filtrar por divisão">
+            <option value="">Todas as divisões</option>
+            <option>Tecnologia</option>
+            <option>Magia</option>
+            <option>Aventura</option>
+            <option>Comerciantes</option>
+          </select>
+        </div>
+
+        <div class="catalog-summary">
+          <span id="recordCount">0 registros</span>
+          <button id="refreshButton" class="link-button" type="button">Atualizar</button>
+        </div>
+        <div id="recordList" class="record-list" aria-live="polite"></div>
+      </aside>
+
+      <section class="record-panel" aria-labelledby="recordTitle">
+        <div id="welcomeState" class="welcome-state">
+          <span class="welcome-state__mark" aria-hidden="true">◇</span>
+          <p class="eyebrow">Base de decisões</p>
+          <h2>Coloque o primeiro candidato na mesa</h2>
+          <p>Crie uma ficha de mod ou alterne para Referências para registrar um modpack, lista ou projeto que valha estudar.</p>
+          <button id="welcomeNewButton" class="button button--primary" type="button">Criar primeira ficha</button>
+        </div>
+
+        <div id="editorState" hidden>
+          <div class="record-header">
+            <div>
+              <p id="recordKindLabel" class="eyebrow">Ficha crítica de mod</p>
+              <h2 id="recordTitle">Nova ficha</h2>
+              <p id="recordMeta" class="record-meta">Ainda não salva</p>
+            </div>
+            <div class="record-actions">
+              <div id="saveIndicator" class="save-indicator" aria-live="polite">
+                <span class="save-dot"></span>
+                Sem alterações
+              </div>
+              <button id="saveButton" class="button button--primary" type="button">Salvar <kbd>Ctrl S</kbd></button>
+            </div>
+          </div>
+
+          <div id="conflictBanner" class="conflict-banner" hidden>
+            <div>
+              <strong>Outra pessoa alterou esta ficha.</strong>
+              <span>Recarregue a versão mais recente ou salve seu conteúdo como uma nova ficha.</span>
+            </div>
+            <button type="button" data-conflict="reload">Recarregar</button>
+            <button type="button" data-conflict="copy">Salvar como cópia</button>
+          </div>
+
+          <form id="recordForm" class="record-form" autocomplete="off"></form>
+        </div>
+      </section>
+
+      <aside class="notes-panel" aria-label="Cola e observações">
+        <div class="notes-panel__header">
+          <div>
+            <p class="eyebrow">Painel lateral</p>
+            <h2>Cola e arquivos</h2>
+          </div>
+          <button id="newDocumentButton" class="icon-button" type="button" title="Novo arquivo Markdown ou JSON" aria-label="Novo arquivo">＋</button>
+        </div>
+
+        <label class="field field--compact">
+          <span>Fonte</span>
+          <select id="noteSource">
+            <option value="record">Notas Markdown desta ficha</option>
+          </select>
+        </label>
+
+        <div class="notes-tabs" role="tablist">
+          <button class="notes-tab is-active" type="button" role="tab" aria-selected="true" data-note-tab="preview">Visualizar</button>
+          <button class="notes-tab" type="button" role="tab" aria-selected="false" data-note-tab="edit">Editar</button>
+          <button class="notes-tab" type="button" role="tab" aria-selected="false" data-note-tab="json">Ficha JSON</button>
+        </div>
+
+        <div id="notePreview" class="markdown-preview prose"></div>
+        <div id="noteEditor" class="note-editor" hidden>
+          <textarea id="noteTextarea" spellcheck="true" aria-label="Editar Markdown ou JSON"></textarea>
+          <div class="note-editor__footer">
+            <span id="noteHint">Markdown salvo junto da ficha.</span>
+            <button id="saveDocumentButton" class="button button--small" type="button">Salvar arquivo</button>
+          </div>
+        </div>
+        <div id="jsonEditor" class="note-editor" hidden>
+          <textarea id="jsonTextarea" class="code-editor" spellcheck="false" aria-label="Editar JSON da ficha"></textarea>
+          <div class="note-editor__footer">
+            <span>Aplicar substitui os campos do formulário; depois salve a ficha.</span>
+            <button id="applyJsonButton" class="button button--small" type="button">Aplicar JSON</button>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="shortcut-bar">
+      <span><kbd>Ctrl S</kbd> salvar</span>
+      <span><kbd>Ctrl N</kbd> nova ficha</span>
+      <span><kbd>Ctrl K</kbd> pesquisar</span>
+      <span><kbd>Ctrl Enter</kbd> salvar e próxima</span>
+      <span><kbd>[</kbd> <kbd>]</kbd> navegar</span>
+      <button id="shortcutsButton" class="link-button" type="button"><kbd>?</kbd> atalhos</button>
+    </footer>
+
+    <input id="importFileInput" type="file" accept=".json,.csv,application/json,text/csv" hidden>
+
+    <dialog id="importDialog" class="dialog">
+      <form method="dialog">
+        <header>
+          <p class="eyebrow">Importação</p>
+          <h2>Como tratar fichas existentes?</h2>
+        </header>
+        <p id="importFileSummary"></p>
+        <label class="choice-card">
+          <input type="radio" name="importMode" value="skip" checked>
+          <span><strong>Ignorar existentes</strong><small>Mais seguro; adiciona somente fichas novas.</small></span>
+        </label>
+        <label class="choice-card">
+          <input type="radio" name="importMode" value="upsert">
+          <span><strong>Atualizar existentes</strong><small>Compara por ID ou nome e substitui os dados.</small></span>
+        </label>
+        <label class="choice-card">
+          <input type="radio" name="importMode" value="copy">
+          <span><strong>Criar cópias</strong><small>Mantém as atuais e cria novos IDs para todas.</small></span>
+        </label>
+        <footer>
+          <button class="button button--ghost" value="cancel">Cancelar</button>
+          <button id="confirmImportButton" class="button button--primary" type="button">Importar</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog id="shortcutsDialog" class="dialog">
+      <form method="dialog">
+        <header>
+          <p class="eyebrow">Produtividade</p>
+          <h2>Atalhos de teclado</h2>
+        </header>
+        <dl class="shortcut-list">
+          <div><dt><kbd>Ctrl N</kbd></dt><dd>Nova ficha</dd></div>
+          <div><dt><kbd>Ctrl S</kbd></dt><dd>Salvar agora</dd></div>
+          <div><dt><kbd>Ctrl Enter</kbd></dt><dd>Salvar e abrir a próxima ficha</dd></div>
+          <div><dt><kbd>Ctrl K</kbd></dt><dd>Focar a pesquisa</dd></div>
+          <div><dt><kbd>[</kbd> <kbd>]</kbd></dt><dd>Ficha anterior ou seguinte</dd></div>
+          <div><dt><kbd>Alt 1…9</kbd></dt><dd>Focar uma seção da ficha</dd></div>
+          <div><dt><kbd>?</kbd></dt><dd>Abrir esta ajuda</dd></div>
+        </dl>
+        <footer><button class="button button--primary" value="close">Fechar</button></footer>
+      </form>
+    </dialog>
+
+    <div id="toastRegion" class="toast-region" aria-live="polite"></div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

@@ -110,3 +110,9 @@ As quatro divisões atualmente estabelecidas são Tecnologia, Magia, Aventura e 
 Não estão definidos, entre outros pontos: nome do pack, lore, versão, loader, modlist, quantidade máxima de maestrias, fórmulas do Equilíbrio, thresholds de ruptura, eventos específicos, receitas e custos, aparência das interfaces, quantidade final de atos, conteúdo das questlines, métodos concretos de restauração e regras quantitativas dos shards.
 
 A lista completa e sem inferências está em [09-decisoes-em-aberto.md](09-decisoes-em-aberto.md).
+
+## Ferramenta operacional de avaliação
+
+O repositório também contém o [Avaliador de Mods](../avaliador-mods/README.md), uma aplicação local para registrar fichas críticas de candidatos e análises de modpacks/listas de referência. Os registros ficam em JSON legível e versionável, com importação/exportação CSV e JSON e uma biblioteca lateral de notas Markdown.
+
+A ferramenta organiza evidências e pareceres; ela não transforma uma ficha ou estado de shortlist em decisão conceitual automática.
