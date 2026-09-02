@@ -88,8 +88,9 @@ Esses estados organizam a análise; não substituem as decisões conceituais reg
 
 - Alterações são salvas automaticamente após uma breve pausa.
 - `Ctrl+S` salva imediatamente.
-- Cada salvamento registra revisão, data e nome do avaliador.
-- Se duas pessoas abrirem a mesma revisão, o segundo salvamento recebe um aviso de conflito em vez de sobrescrever silenciosamente o trabalho da primeira.
+- Cada salvamento registra data e nome do avaliador, mas não aumenta a contagem de revisões.
+- **Marcar revisão +1** é uma ação humana explícita, disponível pelo botão da ficha ou por `Alt+R`.
+- Se duas pessoas abrirem a mesma versão interna da ficha, o segundo salvamento recebe um aviso de conflito em vez de sobrescrever silenciosamente o trabalho da primeira.
 - O usuário pode recarregar a versão mais recente ou salvar seu conteúdo como uma cópia.
 - Cada ficha é um JSON independente, reduzindo conflitos no Git e facilitando recuperação manual.
 
@@ -106,11 +107,13 @@ data/
 
 Os arquivos são formatados e legíveis. É possível editá-los manualmente com qualquer editor de texto.
 
+Em cada ficha, `revision` é a contagem de revisões humanas confirmadas. `storageVersion` é um contador interno de salvamentos usado somente para detectar conflitos; ele não representa revisão editorial.
+
 Cuidados ao editar manualmente:
 
 1. mantenha JSON válido;
 2. não altere o `id` de uma ficha existente;
-3. preserve `revision`, `createdAt`, `updatedAt` e `updatedBy` quando não houver motivo para mudá-los;
+3. preserve `revision`, `storageVersion`, `reviewedAt`, `reviewedBy`, `createdAt`, `updatedAt` e `updatedBy` quando não houver motivo para mudá-los;
 4. evite editar o mesmo arquivo manualmente enquanto outra pessoa estiver com a ficha aberta;
 5. atualize a página depois da edição para reler o arquivo.
 
@@ -145,7 +148,8 @@ Listas em CSV usam ` | ` como separador interno. Textos com vírgulas, aspas ou 
 
 | Atalho | Ação |
 |---|---|
-| `Ctrl+N` | Nova ficha |
+| `Alt+N` | Nova ficha |
+| `Alt+R` | Salvar e marcar uma revisão humana |
 | `Ctrl+S` | Salvar agora |
 | `Ctrl+Enter` | Salvar e navegar para a próxima |
 | `Ctrl+K` | Pesquisar |
@@ -165,4 +169,4 @@ O JSON exportado também pode ser guardado como snapshot externo antes de import
 npm test
 ```
 
-Os testes cobrem CSV, persistência em arquivos, revisão concorrente, edição de documentos, CRUD da API, exportação e importação.
+Os testes cobrem CSV, persistência em arquivos, revisão explícita, concorrência, edição de documentos, CRUD da API, exportação e importação.

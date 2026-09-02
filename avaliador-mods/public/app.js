@@ -134,7 +134,7 @@ const elements = Object.fromEntries([
   "connectionStatus", "editorName", "transferButton", "transferMenu", "newRecordButton",
   "welcomeNewButton", "searchInput", "statusFilter", "divisionFilter", "refreshButton",
   "recordCount", "recordList", "welcomeState", "editorState", "recordKindLabel", "recordTitle",
-  "recordMeta", "saveIndicator", "saveButton", "recordForm", "conflictBanner", "noteSource",
+  "recordMeta", "saveIndicator", "reviewButton", "saveButton", "recordForm", "conflictBanner", "noteSource",
   "notePreview", "noteEditor", "noteTextarea", "noteHint", "saveDocumentButton", "jsonEditor",
   "jsonTextarea", "applyJsonButton", "newDocumentButton", "importFileInput", "importDialog",
   "importFileSummary", "confirmImportButton", "shortcutsButton", "shortcutsDialog", "toastRegion"
@@ -260,14 +260,17 @@ function updateEditorHeader() {
   elements.recordKindLabel.textContent = state.collection === "mods" ? "Ficha crítica de mod" : "Análise de referência";
   elements.recordTitle.textContent = state.current.name || "Nova ficha";
   elements.recordMeta.textContent = state.current.id
-    ? `Revisão ${state.current.revision} · atualizado ${formatDate(state.current.updatedAt)} por ${state.current.updatedBy || "—"}`
+    ? `Revisões confirmadas: ${Number(state.current.revision || 0)} · salvo ${formatDate(state.current.updatedAt)} por ${state.current.updatedBy || "—"}${state.current.reviewedAt ? ` · última revisão ${formatDate(state.current.reviewedAt)} por ${state.current.reviewedBy || "—"}` : ""}`
     : "Ainda não salva";
+  elements.reviewButton.disabled = !state.current.id || state.saving;
   updateSaveIndicator();
 }
 
 function updateSaveIndicator() {
   elements.saveIndicator.classList.toggle("is-dirty", state.dirty);
   elements.saveIndicator.classList.toggle("is-saving", state.saving);
+  elements.saveButton.disabled = state.saving;
+  elements.reviewButton.disabled = !state.current?.id || state.saving;
   elements.saveIndicator.lastChild.textContent = state.saving
     ? " Salvando…"
     : state.dirty
@@ -288,10 +291,18 @@ function readForm() {
   });
   for (const field of [...COMMON_IDENTIFICATION, { key: "divisions", type: "divisions" }, { key: "candidateMods", type: "tags" }]) {
     if (field.type === "tags" && typeof next[field.key] === "string") {
-      next[field.key] = next[field.key].split(",").map((item) => item.trim()).filter(Boolean);
+      const separator = field.key === "supportedVersions" ? /[\s,;|]+/ : /[,;|]+/;
+      next[field.key] = next[field.key].split(separator).map((item) => item.trim()).filter(Boolean);
     }
   }
   state.current = next;
+}
+
+function scheduleAutosave() {
+  clearTimeout(state.autosaveTimer);
+  state.autosaveTimer = setTimeout(() => {
+    if (state.current?.name?.trim()) void saveRecord({ quiet: true });
+  }, 1300);
 }
 
 function markDirty({ autosave = true } = {}) {
@@ -299,12 +310,7 @@ function markDirty({ autosave = true } = {}) {
   state.changeVersion += 1;
   updateEditorHeader();
   syncJsonEditor();
-  clearTimeout(state.autosaveTimer);
-  if (autosave) {
-    state.autosaveTimer = setTimeout(() => {
-      if (state.current?.name?.trim()) void saveRecord({ quiet: true });
-    }, 1300);
-  }
+  if (autosave) scheduleAutosave();
 }
 
 function defaultRecord() {
@@ -392,7 +398,7 @@ async function saveRecord({ quiet = false, navigateNext = false, forceCopy = fal
   try {
     const isNew = !state.current.id || forceCopy;
     const source = forceCopy
-      ? { ...state.current, id: undefined, revision: undefined, createdAt: undefined, updatedAt: undefined, updatedBy: undefined, name: `${state.current.name} — cópia` }
+      ? { ...state.current, id: undefined, revision: undefined, storageVersion: undefined, reviewedAt: undefined, reviewedBy: undefined, createdAt: undefined, updatedAt: undefined, updatedBy: undefined, name: `${state.current.name} — cópia` }
       : state.current;
     const payload = isNew
       ? await api(`/api/records/${state.collection}`, {
@@ -403,20 +409,39 @@ async function saveRecord({ quiet = false, navigateNext = false, forceCopy = fal
           method: "PUT",
           body: JSON.stringify({
             record: state.current,
-            expectedRevision: state.current.revision,
+            expectedStorageVersion: state.current.storageVersion,
             author: getAuthor()
           })
         });
 
-    state.current = payload.record;
+    const hasNewChanges = state.changeVersion !== savedVersion;
+    if (hasNewChanges) {
+      const localDraft = state.current;
+      state.current = {
+        ...payload.record,
+        ...localDraft,
+        id: payload.record.id,
+        kind: payload.record.kind,
+        revision: payload.record.revision,
+        storageVersion: payload.record.storageVersion,
+        reviewedAt: payload.record.reviewedAt,
+        reviewedBy: payload.record.reviewedBy,
+        createdAt: payload.record.createdAt,
+        updatedAt: payload.record.updatedAt,
+        updatedBy: payload.record.updatedBy
+      };
+    } else {
+      state.current = payload.record;
+    }
     upsertLocalRecord(payload.record);
-    state.dirty = state.changeVersion !== savedVersion;
+    state.dirty = hasNewChanges;
     state.conflictCurrent = null;
     elements.conflictBanner.hidden = true;
-    renderForm();
+    updateEditorHeader();
+    syncJsonEditor();
     renderList();
     if (!quiet) toast("Ficha salva.", "success");
-    if (state.dirty) markDirty();
+    if (state.dirty) scheduleAutosave();
     if (navigateNext) navigateRecord(1);
     return true;
   } catch (error) {
@@ -431,6 +456,42 @@ async function saveRecord({ quiet = false, navigateNext = false, forceCopy = fal
   } finally {
     state.saving = false;
     updateSaveIndicator();
+  }
+}
+
+async function reviewRecord() {
+  if (!state.current || state.saving) return;
+  if (state.dirty && !(await saveRecord({ quiet: true }))) return;
+  if (!state.current.id) return;
+
+  state.saving = true;
+  updateEditorHeader();
+  try {
+    const { record } = await api(`/api/records/${state.collection}/${encodeURIComponent(state.current.id)}/review`, {
+      method: "POST",
+      body: JSON.stringify({
+        expectedStorageVersion: state.current.storageVersion,
+        author: getAuthor()
+      })
+    });
+    state.current = record;
+    state.dirty = false;
+    upsertLocalRecord(record);
+    updateEditorHeader();
+    syncJsonEditor();
+    renderList();
+    toast(`Revisão ${record.revision} confirmada.`, "success");
+  } catch (error) {
+    if (error.status === 409) {
+      state.conflictCurrent = error.payload.current;
+      elements.conflictBanner.hidden = false;
+      toast("Conflito detectado: outra pessoa alterou esta ficha.", "warning", 5200);
+    } else {
+      toast(error.message, "error");
+    }
+  } finally {
+    state.saving = false;
+    updateEditorHeader();
   }
 }
 
@@ -765,6 +826,7 @@ document.querySelectorAll("[data-collection]").forEach((button) => button.addEve
 elements.newRecordButton.addEventListener("click", startNewRecord);
 elements.welcomeNewButton.addEventListener("click", startNewRecord);
 elements.saveButton.addEventListener("click", () => void saveRecord());
+elements.reviewButton.addEventListener("click", () => void reviewRecord());
 elements.refreshButton.addEventListener("click", () => void loadCollection({ preserveCurrent: true }));
 elements.searchInput.addEventListener("input", renderList);
 elements.statusFilter.addEventListener("change", renderList);
@@ -814,9 +876,12 @@ document.addEventListener("keydown", (event) => {
   if ((event.ctrlKey || event.metaKey) && event.key.toLocaleLowerCase() === "s") {
     event.preventDefault();
     void saveRecord();
-  } else if ((event.ctrlKey || event.metaKey) && event.key.toLocaleLowerCase() === "n") {
+  } else if (event.altKey && event.key.toLocaleLowerCase() === "n") {
     event.preventDefault();
     startNewRecord();
+  } else if (event.altKey && event.key.toLocaleLowerCase() === "r") {
+    event.preventDefault();
+    void reviewRecord();
   } else if ((event.ctrlKey || event.metaKey) && event.key.toLocaleLowerCase() === "k") {
     event.preventDefault();
     elements.searchInput.focus();

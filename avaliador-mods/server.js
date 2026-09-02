@@ -131,7 +131,7 @@ export function createAppServer({ dataRoot = DEFAULT_DATA_ROOT } = {}) {
           sendJson(response, 200, { records: await store.list(collection) });
           return;
         }
-        if (request.method === "GET" && id) {
+        if (request.method === "GET" && id && !segments[4]) {
           const record = await store.get(collection, id);
           if (!record) sendJson(response, 404, { error: "Ficha não encontrada." });
           else sendJson(response, 200, { record });
@@ -146,8 +146,18 @@ export function createAppServer({ dataRoot = DEFAULT_DATA_ROOT } = {}) {
         if (request.method === "PUT" && id) {
           const body = await readJsonBody(request);
           const record = await store.save(collection, id, body.record || body, {
-            expectedRevision: body.expectedRevision,
+            expectedStorageVersion: body.expectedStorageVersion,
             force: Boolean(body.force),
+            author: body.author
+          });
+          if (!record) sendJson(response, 404, { error: "Ficha não encontrada." });
+          else sendJson(response, 200, { record });
+          return;
+        }
+        if (request.method === "POST" && id && segments[4] === "review") {
+          const body = await readJsonBody(request);
+          const record = await store.review(collection, id, {
+            expectedStorageVersion: body.expectedStorageVersion,
             author: body.author
           });
           if (!record) sendJson(response, 404, { error: "Ficha não encontrada." });

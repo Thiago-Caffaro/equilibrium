@@ -251,7 +251,7 @@ kbd, .file-chip {
 .status-dot--warning { background: var(--amber); }
 
 .record-header { justify-content: space-between; margin-bottom: 24px; }
-.record-actions { display: flex; align-items: center; gap: 12px; }
+.record-actions { display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-end; gap: 12px; }
 .record-meta { margin: 5px 0 0; color: var(--muted); font-size: 11px; }
 .save-indicator { color: var(--muted); font-size: 12px; }
 .save-dot { width: 7px; height: 7px; margin-right: 7px; border-radius: 50%; background: var(--amber); }

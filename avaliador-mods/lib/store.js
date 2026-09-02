@@ -30,6 +30,15 @@ function cleanAuthor(value) {
   return String(value || "Anônimo").trim().slice(0, 80) || "Anônimo";
 }
 
+function storageVersionOf(record) {
+  const storageVersion = Number(record?.storageVersion);
+  if (Number.isInteger(storageVersion) && storageVersion > 0) return storageVersion;
+
+  // Compatibilidade com fichas criadas antes da separação entre salvamento e revisão.
+  const legacyRevision = Number(record?.revision);
+  return Number.isInteger(legacyRevision) && legacyRevision > 0 ? legacyRevision : 1;
+}
+
 function normaliseRecord(input, collection) {
   if (!input || typeof input !== "object" || Array.isArray(input)) {
     throw new ValidationError("A ficha precisa ser um objeto JSON.");
@@ -42,9 +51,10 @@ function normaliseRecord(input, collection) {
 
   for (const key of ["divisions", "tags", "supportedVersions", "loaders", "candidateMods"]) {
     if (output[key] === undefined) continue;
+    const separator = key === "supportedVersions" ? /[\s|;,]+/ : /[|;,]/;
     output[key] = Array.isArray(output[key])
       ? output[key].map((item) => String(item).trim()).filter(Boolean).slice(0, 80)
-      : String(output[key]).split(/[|;,]/).map((item) => item.trim()).filter(Boolean).slice(0, 80);
+      : String(output[key]).split(separator).map((item) => item.trim()).filter(Boolean).slice(0, 80);
   }
 
   delete output.__proto__;
@@ -131,10 +141,12 @@ export function createStore({ dataRoot }) {
     return serialise(key, async () => {
       if (await get(collection, id)) throw new ConflictError(await get(collection, id));
       const now = new Date().toISOString();
+      const importedRevision = Number(normalised.revision);
       const record = {
         ...normalised,
         id,
-        revision: 1,
+        revision: Number.isInteger(importedRevision) && importedRevision > 0 ? importedRevision : 0,
+        storageVersion: 1,
         createdAt: now,
         updatedAt: now,
         updatedBy: cleanAuthor(author)
@@ -150,8 +162,9 @@ export function createStore({ dataRoot }) {
     return serialise(key, async () => {
       const current = await get(collection, id);
       if (!current) return null;
-      const expected = Number(options.expectedRevision);
-      if (!options.force && Number.isFinite(expected) && expected !== Number(current.revision)) {
+      const currentStorageVersion = storageVersionOf(current);
+      const expected = Number(options.expectedStorageVersion);
+      if (!options.force && Number.isFinite(expected) && expected !== currentStorageVersion) {
         throw new ConflictError(current);
       }
       const normalised = normaliseRecord(input, collection);
@@ -160,10 +173,40 @@ export function createStore({ dataRoot }) {
         ...normalised,
         id: current.id,
         kind: current.kind,
-        revision: Number(current.revision || 0) + 1,
+        revision: Number(current.revision || 0),
+        storageVersion: currentStorageVersion + 1,
+        reviewedAt: current.reviewedAt,
+        reviewedBy: current.reviewedBy,
         createdAt: current.createdAt,
         updatedAt: new Date().toISOString(),
         updatedBy: cleanAuthor(options.author)
+      };
+      await atomicWrite(recordPath(collection, id), record);
+      return record;
+    });
+  }
+
+  async function review(collection, id, options = {}) {
+    await initialise();
+    const key = `${collection}:${id}`;
+    return serialise(key, async () => {
+      const current = await get(collection, id);
+      if (!current) return null;
+      const currentStorageVersion = storageVersionOf(current);
+      const expected = Number(options.expectedStorageVersion);
+      if (Number.isFinite(expected) && expected !== currentStorageVersion) {
+        throw new ConflictError(current);
+      }
+      const now = new Date().toISOString();
+      const author = cleanAuthor(options.author);
+      const record = {
+        ...current,
+        revision: Number(current.revision || 0) + 1,
+        storageVersion: currentStorageVersion + 1,
+        reviewedAt: now,
+        reviewedBy: author,
+        updatedAt: now,
+        updatedBy: author
       };
       await atomicWrite(recordPath(collection, id), record);
       return record;
@@ -242,6 +285,7 @@ export function createStore({ dataRoot }) {
     get,
     create,
     save,
+    review,
     importRecords,
     listDocuments,
     getDocument,

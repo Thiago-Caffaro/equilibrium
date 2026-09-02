@@ -27,7 +27,7 @@ test("CSV preserva listas, aspas e observações com várias linhas", () => {
   assert.equal(parsed[0].humanEvidence, records[0].humanEvidence);
 });
 
-test("store cria arquivos legíveis, detecta revisão antiga e aceita edição manual", async (t) => {
+test("store separa salvamentos de revisões humanas e detecta versão interna antiga", async (t) => {
   const dataRoot = await temporaryRoot(t);
   const store = createStore({ dataRoot });
   const created = await store.create("mods", {
@@ -36,21 +36,39 @@ test("store cria arquivos legíveis, detecta revisão antiga e aceita edição m
     primaryFunction: "Validar o armazenamento."
   }, "Avaliador A");
 
-  assert.equal(created.revision, 1);
+  assert.equal(created.revision, 0);
+  assert.equal(created.storageVersion, 1);
   const raw = JSON.parse(await readFile(join(dataRoot, "mods", `${created.id}.json`), "utf8"));
   assert.equal(raw.name, "Candidato de teste");
 
   const updated = await store.save("mods", created.id, { ...created, status: "Em análise" }, {
-    expectedRevision: 1,
+    expectedStorageVersion: 1,
     author: "Avaliador B"
   });
-  assert.equal(updated.revision, 2);
+  assert.equal(updated.revision, 0);
+  assert.equal(updated.storageVersion, 2);
   assert.equal(updated.updatedBy, "Avaliador B");
 
+  const attemptedReviewEdit = await store.save("mods", created.id, {
+    ...updated,
+    revision: 99,
+    reviewedBy: "Não deveria valer"
+  }, { expectedStorageVersion: 2, author: "Avaliador B" });
+  assert.equal(attemptedReviewEdit.revision, 0);
+  assert.equal(attemptedReviewEdit.reviewedBy, undefined);
+
   await assert.rejects(
-    () => store.save("mods", created.id, { ...created, status: "Rejeitado" }, { expectedRevision: 1 }),
+    () => store.save("mods", created.id, { ...created, status: "Rejeitado" }, { expectedStorageVersion: 2 }),
     ConflictError
   );
+
+  const reviewed = await store.review("mods", created.id, {
+    expectedStorageVersion: 3,
+    author: "Revisor"
+  });
+  assert.equal(reviewed.revision, 1);
+  assert.equal(reviewed.storageVersion, 4);
+  assert.equal(reviewed.reviewedBy, "Revisor");
 
   await store.saveDocument("observacoes.md", "# Observações\n");
   assert.equal(await store.getDocument("observacoes.md"), "# Observações\n");
@@ -79,16 +97,27 @@ test("API executa criação, atualização, conflito, exportação e importaçã
   const updateResponse = await fetch(`${base}/api/records/mods/${created.id}`, {
     method: "PUT",
     headers: { "content-type": "application/json" },
-    body: JSON.stringify({ record: { ...created, status: "Shortlist" }, expectedRevision: 1, author: "Amigo" })
+    body: JSON.stringify({ record: { ...created, status: "Shortlist" }, expectedStorageVersion: 1, author: "Amigo" })
   });
   assert.equal(updateResponse.status, 200);
   const updated = (await updateResponse.json()).record;
-  assert.equal(updated.revision, 2);
+  assert.equal(updated.revision, 0);
+  assert.equal(updated.storageVersion, 2);
+
+  const reviewResponse = await fetch(`${base}/api/records/mods/${created.id}/review`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ expectedStorageVersion: 2, author: "Revisor" })
+  });
+  assert.equal(reviewResponse.status, 200);
+  const reviewed = (await reviewResponse.json()).record;
+  assert.equal(reviewed.revision, 1);
+  assert.equal(reviewed.storageVersion, 3);
 
   const conflictResponse = await fetch(`${base}/api/records/mods/${created.id}`, {
     method: "PUT",
     headers: { "content-type": "application/json" },
-    body: JSON.stringify({ record: { ...created, status: "Rejeitado" }, expectedRevision: 1 })
+    body: JSON.stringify({ record: { ...created, status: "Rejeitado" }, expectedStorageVersion: 1 })
   });
   assert.equal(conflictResponse.status, 409);
 

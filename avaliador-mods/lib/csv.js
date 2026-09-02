@@ -40,6 +40,8 @@ export const MOD_CSV_FIELDS = [
   "notesMarkdown",
   "tags",
   "revision",
+  "reviewedAt",
+  "reviewedBy",
   "createdAt",
   "updatedAt",
   "updatedBy"
@@ -66,6 +68,8 @@ export const REFERENCE_CSV_FIELDS = [
   "notesMarkdown",
   "tags",
   "revision",
+  "reviewedAt",
+  "reviewedBy",
   "createdAt",
   "updatedAt",
   "updatedBy"

@@ -32,7 +32,7 @@
             <button type="button" data-action="export-csv">Exportar coleção em CSV</button>
           </div>
         </div>
-        <button id="newRecordButton" class="button button--primary" type="button">Nova ficha <kbd>Ctrl N</kbd></button>
+        <button id="newRecordButton" class="button button--primary" type="button">Nova ficha <kbd>Alt N</kbd></button>
       </div>
     </header>
 
@@ -90,6 +90,7 @@
                 <span class="save-dot"></span>
                 Sem alterações
               </div>
+              <button id="reviewButton" class="button button--ghost" type="button">Marcar revisão +1 <kbd>Alt R</kbd></button>
               <button id="saveButton" class="button button--primary" type="button">Salvar <kbd>Ctrl S</kbd></button>
             </div>
           </div>
@@ -149,7 +150,8 @@
 
     <footer class="shortcut-bar">
       <span><kbd>Ctrl S</kbd> salvar</span>
-      <span><kbd>Ctrl N</kbd> nova ficha</span>
+      <span><kbd>Alt N</kbd> nova ficha</span>
+      <span><kbd>Alt R</kbd> marcar revisão</span>
       <span><kbd>Ctrl K</kbd> pesquisar</span>
       <span><kbd>Ctrl Enter</kbd> salvar e próxima</span>
       <span><kbd>[</kbd> <kbd>]</kbd> navegar</span>
@@ -191,7 +193,8 @@
           <h2>Atalhos de teclado</h2>
         </header>
         <dl class="shortcut-list">
-          <div><dt><kbd>Ctrl N</kbd></dt><dd>Nova ficha</dd></div>
+          <div><dt><kbd>Alt N</kbd></dt><dd>Nova ficha</dd></div>
+          <div><dt><kbd>Alt R</kbd></dt><dd>Salvar e marcar uma revisão humana</dd></div>
           <div><dt><kbd>Ctrl S</kbd></dt><dd>Salvar agora</dd></div>
           <div><dt><kbd>Ctrl Enter</kbd></dt><dd>Salvar e abrir a próxima ficha</dd></div>
           <div><dt><kbd>Ctrl K</kbd></dt><dd>Focar a pesquisa</dd></div>
