@@ -32,6 +32,22 @@ Não se deve presumir que a existência de um repositório público autoriza cop
 
 ## 3. Papel de cada referência discutida
 
+### Seleção inicial de fontes para a primeira rodada
+
+Esta é uma decisão de pesquisa, não uma seleção de mods, versão ou loader. A primeira rodada terá sete fontes, cada uma estudada por um papel diferente:
+
+| Referência | Papel na rodada |
+|---|---|
+| Enigmatica 9: Expert | Referência principal para integração expert, gates e pacing. |
+| Enigmatica 6: Expert | Contraste histórico de integração expert clássica. |
+| Enigmatica 10 | Catálogo contemporâneo e ecossistema moderno em NeoForge. |
+| FTB Evolution | Comparação com uma composição moderna e ampla de sistemas. |
+| All the Mods 10 | Anti-referência para amplitude, redundâncias e rotas sobrepostas. |
+| Cisco's Fantasy Medieval RPG [Ultimate] | Referência especializada para aventura, bosses, dimensões e cooperação de combate. |
+| Modpack anterior do grupo | Evidência prática de rotas que escalaram cedo, redundâncias e conteúdo realmente usado. |
+
+O avaliador de mods contém uma ficha de referência para cada uma delas. Nenhum mod presente nesses packs passa a integrar o Equilibrium por constar nessa seleção.
+
 ### Enigmatica 9: Expert
 
 Referência principal para:
