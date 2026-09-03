@@ -4,11 +4,13 @@ Repositório de planejamento e ferramentas do modpack multiplayer Equilibrium.
 
 ## Publicação com Portainer
 
-O repositório contém um `docker-compose.yml` na raiz. No Portainer, crie ou atualize uma Stack baseada neste Git e faça o deploy usando a branch `main`.
+O repositório contém um `docker-compose.yml` na raiz. No Portainer, crie ou atualize uma Stack baseada neste Git e faça o deploy usando a branch `main`. A imagem é construída pelo GitHub Actions e publicada no GitHub Container Registry (GHCR); o Portainer não precisa executar build local.
+
+Como a imagem acompanha este repositório privado, configure no Portainer uma credencial de registro para `ghcr.io` com o usuário `Thiago-Caffaro` e um token do GitHub com permissão `read:packages`. Associe essa credencial à Stack antes do deploy.
 
 O avaliador ficará disponível na porta `8787` do host, ou na porta definida pela variável de ambiente `EQUILIBRIUM_PORT`. Os dados ficam no volume nomeado `equilibrium-data`, portanto alterações nas fichas sobrevivem a recriações e atualizações do container.
 
-Ao publicar uma versão nova pelo Git, use **Pull and redeploy**. Não exclua o volume `equilibrium-data` a menos que queira apagar todas as fichas e documentos armazenados pela aplicação.
+Ao publicar uma versão nova pelo Git, aguarde o workflow **Publicar imagem do avaliador** concluir e então use **Pull and redeploy**. Não exclua o volume `equilibrium-data` a menos que queira apagar todas as fichas e documentos armazenados pela aplicação.
 
 ## Conteúdo
 

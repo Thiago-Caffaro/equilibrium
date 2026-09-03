@@ -1,9 +1,7 @@
 services:
   avaliador-mods:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: equilibrium-mod-rater:latest
+    image: ghcr.io/thiago-caffaro/equilibrium-mod-rater:latest
+    pull_policy: always
     restart: unless-stopped
     ports:
       - "${EQUILIBRIUM_PORT:-8787}:8787"
