@@ -71,6 +71,7 @@ As quatro divisões atualmente estabelecidas são Tecnologia, Magia, Aventura e 
 8. [Experiência multiplayer](08-experiencia-multiplayer.md) — dinâmica social, catch-up, campanhas estáveis e caóticas.
 9. [Decisões em aberto](09-decisoes-em-aberto.md) — lista canônica do que não deve ser presumido.
 10. [Registro de decisões](10-registro-de-decisoes.md) — alterações, substituições, exceções e origem do estado atual.
+11. [Protocolo de análise de modpacks](11-protocolo-de-analise-de-modpacks.md) — auditoria de referências sem exigir campanhas completas.
 
 ## Decisões estruturais já estabelecidas
 

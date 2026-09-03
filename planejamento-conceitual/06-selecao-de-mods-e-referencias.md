@@ -123,6 +123,8 @@ Essa classificação ajuda a separar design intencional de grind pelo grind.
 
 ## 5. Processo de seleção
 
+O processo operacional para estudar os packs selecionados sem precisar completá-los está em [11-protocolo-de-analise-de-modpacks.md](11-protocolo-de-analise-de-modpacks.md).
+
 Não existe modlist final. Cada candidato deve receber uma ficha que responda, no mínimo:
 
 | Campo | Pergunta |
