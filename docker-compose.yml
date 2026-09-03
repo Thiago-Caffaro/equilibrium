@@ -1,0 +1,19 @@
+services:
+  avaliador-mods:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: equilibrium-mod-rater:latest
+    restart: unless-stopped
+    ports:
+      - "${EQUILIBRIUM_PORT:-8787}:8787"
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8787
+      NODE_ENV: production
+    volumes:
+      - equilibrium-data:/app/data
+
+volumes:
+  equilibrium-data:
+    name: equilibrium-data
