@@ -49,7 +49,7 @@ function normaliseRecord(input, collection) {
   output.name = String(output.name || "").trim().slice(0, 180);
   if (!output.name) throw new ValidationError("O nome é obrigatório.");
 
-  for (const key of ["divisions", "tags", "supportedVersions", "loaders", "candidateMods"]) {
+  for (const key of ["divisions", "tags", "supportedVersions", "loaders", "candidateMods", "notApplicableFields", "officialAuthors", "officialCategories", "officialEnvironment"]) {
     if (output[key] === undefined) continue;
     const separator = key === "supportedVersions" ? /[\s|;,]+/ : /[|;,]/;
     output[key] = Array.isArray(output[key])

@@ -319,6 +319,43 @@ kbd, .file-chip {
 .field--full { grid-column: 1 / -1; }
 .field--compact { margin-top: 18px; }
 .field > span { color: #cbd5cf; font-size: 12px; font-weight: 650; }
+.field__header { min-height: 26px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.field__header > label,
+.field__header > span { color: #cbd5cf; font-size: 12px; font-weight: 650; }
+.field-na-toggle {
+  width: auto;
+  min-height: 24px;
+  padding: 3px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 10px;
+  cursor: pointer;
+}
+.field-na-toggle:hover { border-color: var(--line-strong); color: var(--text); }
+.field-na-toggle.is-active { border-color: #98784b; background: rgb(190 145 76 / 11%); color: #e3bd82; }
+.field--not-applicable > input,
+.field--not-applicable > select,
+.field--not-applicable > textarea,
+.field--not-applicable .division-options { opacity: .38; }
+input:disabled, select:disabled, textarea:disabled { cursor: not-allowed; }
+.field-control-row { display: flex; align-items: stretch; gap: 7px; }
+.field-control-row > input { min-width: 0; }
+.metadata-lookup-button {
+  flex: 0 0 auto;
+  padding: 0 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 7px;
+  background: rgb(131 212 165 / 9%);
+  color: var(--accent-strong);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.metadata-lookup-button:hover { background: rgb(131 212 165 / 15%); }
+.metadata-lookup-button:disabled { opacity: .55; cursor: wait; }
+.field-note { color: var(--muted); font-size: 10px; line-height: 1.4; }
 input, select, textarea {
   width: 100%;
   border: 1px solid var(--line);
@@ -338,6 +375,7 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent); box-sha
   border: 0;
 }
 .division-field > legend { margin-bottom: 7px; padding: 0; color: #cbd5cf; font-size: 12px; font-weight: 650; }
+.division-field > .field__header { margin-bottom: 7px; }
 .division-options { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; }
 .division-options label { cursor: pointer; }
 .division-options input { position: absolute; opacity: 0; pointer-events: none; }

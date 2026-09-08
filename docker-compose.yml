@@ -9,6 +9,7 @@ services:
       HOST: 0.0.0.0
       PORT: 8787
       NODE_ENV: production
+      CURSEFORGE_API_KEY: ${CURSEFORGE_API_KEY:-}
     volumes:
       - equilibrium-data:/app/data
 

@@ -96,6 +96,19 @@ Esses estados organizam a análise; não substituem as decisões conceituais reg
 
 O nome do avaliador fica apenas como preferência local do navegador; os dados oficiais permanecem no servidor.
 
+## Metadados oficiais por link
+
+Ao informar o link de um mod no Modrinth ou CurseForge, a ficha tenta importar somente dados factuais: nome, resumo oficial, autores, versões, loaders, categorias, ambiente declarado, licença, links e datas. Campos de julgamento — divisões, função no Equilibrium, riscos, gates, desempenho e parecer — nunca são preenchidos automaticamente.
+
+O Modrinth permite leitura pública sem credencial. A API oficial do CurseForge exige uma chave. No terminal local, configure-a somente no ambiente que inicia o servidor:
+
+```powershell
+$env:CURSEFORGE_API_KEY = "SUA_CHAVE"
+npm start
+```
+
+No Portainer, adicione `CURSEFORGE_API_KEY` como variável de ambiente da stack. Não grave a chave no repositório, no `docker-compose.yml` ou em uma ficha. Sem ela, o sistema informa que a consulta ao CurseForge não está configurada; as fichas continuam funcionando normalmente e o Modrinth permanece disponível.
+
 ## Estrutura dos dados
 
 ```text

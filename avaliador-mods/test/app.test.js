@@ -18,12 +18,14 @@ test("CSV preserva listas, aspas e observações com várias linhas", () => {
     id: "mod-12345678",
     name: "Mod, com vírgula",
     divisions: ["Magia", "Aventura"],
+    notApplicableFields: ["automationImpact", "masteryGate"],
     humanEvidence: "Linha 1\nLinha \"2\""
   }];
   const csv = stringifyCsv(records, MOD_CSV_FIELDS);
   const parsed = parseCsv(csv);
   assert.equal(parsed[0].name, records[0].name);
   assert.deepEqual(parsed[0].divisions, records[0].divisions);
+  assert.deepEqual(parsed[0].notApplicableFields, records[0].notApplicableFields);
   assert.equal(parsed[0].humanEvidence, records[0].humanEvidence);
 });
 
@@ -33,6 +35,7 @@ test("store separa salvamentos de revisões humanas e detecta versão interna an
   const created = await store.create("mods", {
     name: "Candidato de teste",
     divisions: ["Tecnologia"],
+    notApplicableFields: ["worldgenNotes"],
     primaryFunction: "Validar o armazenamento."
   }, "Avaliador A");
 
@@ -40,6 +43,7 @@ test("store separa salvamentos de revisões humanas e detecta versão interna an
   assert.equal(created.storageVersion, 1);
   const raw = JSON.parse(await readFile(join(dataRoot, "mods", `${created.id}.json`), "utf8"));
   assert.equal(raw.name, "Candidato de teste");
+  assert.deepEqual(raw.notApplicableFields, ["worldgenNotes"]);
 
   const updated = await store.save("mods", created.id, { ...created, status: "Em análise" }, {
     expectedStorageVersion: 1,

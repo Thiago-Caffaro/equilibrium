@@ -3,7 +3,11 @@ const ARRAY_FIELDS = new Set([
   "tags",
   "supportedVersions",
   "loaders",
-  "candidateMods"
+  "candidateMods",
+  "notApplicableFields",
+  "officialAuthors",
+  "officialCategories",
+  "officialEnvironment"
 ]);
 
 export const MOD_CSV_FIELDS = [
@@ -16,6 +20,19 @@ export const MOD_CSV_FIELDS = [
   "supportedVersions",
   "loaders",
   "divisions",
+  "officialSummary",
+  "officialAuthors",
+  "officialProjectId",
+  "officialCategories",
+  "officialEnvironment",
+  "officialLicense",
+  "officialProvider",
+  "officialPublishedAt",
+  "officialUpdatedAt",
+  "officialDownloads",
+  "officialIconUrl",
+  "metadataSourceUrl",
+  "metadataFetchedAt",
   "primaryFunction",
   "humanEvidence",
   "uniqueSystems",
@@ -39,6 +56,7 @@ export const MOD_CSV_FIELDS = [
   "openQuestions",
   "notesMarkdown",
   "tags",
+  "notApplicableFields",
   "revision",
   "reviewedAt",
   "reviewedBy",
@@ -67,6 +85,7 @@ export const REFERENCE_CSV_FIELDS = [
   "openQuestions",
   "notesMarkdown",
   "tags",
+  "notApplicableFields",
   "revision",
   "reviewedAt",
   "reviewedBy",

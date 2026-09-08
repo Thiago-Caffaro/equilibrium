@@ -3,6 +3,7 @@ import { readFile } from "node:fs/promises";
 import { extname, join, normalize, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { MOD_CSV_FIELDS, REFERENCE_CSV_FIELDS, parseCsv, stringifyCsv } from "./lib/csv.js";
+import { MetadataLookupError, resolveProjectMetadata } from "./lib/project-metadata.js";
 import { ConflictError, ValidationError, createStore } from "./lib/store.js";
 
 const APP_ROOT = fileURLToPath(new URL(".", import.meta.url));
@@ -104,7 +105,7 @@ async function serveStatic(pathname, method, response) {
   }
 }
 
-export function createAppServer({ dataRoot = DEFAULT_DATA_ROOT } = {}) {
+export function createAppServer({ dataRoot = DEFAULT_DATA_ROOT, metadataResolver = resolveProjectMetadata } = {}) {
   const store = createStore({ dataRoot });
   void store.initialise();
 
@@ -186,6 +187,13 @@ export function createAppServer({ dataRoot = DEFAULT_DATA_ROOT } = {}) {
         }
       }
 
+      if (segments[0] === "api" && segments[1] === "metadata" && request.method === "POST") {
+        const body = await readJsonBody(request);
+        const metadata = await metadataResolver(body.url);
+        sendJson(response, 200, { metadata });
+        return;
+      }
+
       if (segments[0] === "api" && segments[1] === "export" && request.method === "GET") {
         const match = segments[2]?.match(/^(mods|references)\.(json|csv)$/);
         if (!match) throw new ValidationError("Formato de exportação inválido.");
@@ -227,6 +235,8 @@ export function createAppServer({ dataRoot = DEFAULT_DATA_ROOT } = {}) {
     } catch (error) {
       if (error instanceof ConflictError) {
         sendJson(response, 409, { error: error.message, current: error.current });
+      } else if (error instanceof MetadataLookupError) {
+        sendJson(response, error.statusCode, { error: error.message, code: error.code });
       } else if (error instanceof ValidationError || error instanceof SyntaxError) {
         sendJson(response, 400, { error: error.message });
       } else {

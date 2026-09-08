@@ -14,6 +14,27 @@ const COMMON_IDENTIFICATION = [
   { key: "tags", label: "Etiquetas", type: "tags", placeholder: "Ex.: automação, boss, worldgen" }
 ];
 
+const sourceUrlField = COMMON_IDENTIFICATION.find((field) => field.key === "sourceUrl");
+sourceUrlField.metadataLookup = true;
+
+const OFFICIAL_METADATA_SECTION = {
+  title: "Metadados oficiais",
+  description: "Fatos importados da fonte indicada. Estes campos não substituem a avaliação humana.",
+  fields: [
+    { key: "officialSummary", label: "Resumo oficial", type: "textarea", rows: 3, full: true },
+    { key: "officialAuthors", label: "Autores", type: "tags", placeholder: "Importado da fonte" },
+    { key: "officialProjectId", label: "ID do projeto", type: "text" },
+    { key: "officialCategories", label: "Categorias oficiais", type: "tags", placeholder: "Categorias declaradas na plataforma" },
+    { key: "officialEnvironment", label: "Ambiente declarado", type: "tags", placeholder: "Cliente, servidor ou ambos" },
+    { key: "officialLicense", label: "Licença", type: "text" },
+    { key: "officialProvider", label: "Fonte dos metadados", type: "text" },
+    { key: "officialPublishedAt", label: "Publicado em", type: "text" },
+    { key: "officialUpdatedAt", label: "Atualizado em", type: "text" },
+    { key: "officialDownloads", label: "Downloads informados", type: "text" },
+    { key: "officialIconUrl", label: "Ícone oficial", type: "url", full: true }
+  ]
+};
+
 const MOD_SECTIONS = [
   {
     title: "Identificação essencial",
@@ -77,6 +98,8 @@ const MOD_SECTIONS = [
   }
 ];
 
+MOD_SECTIONS.splice(1, 0, OFFICIAL_METADATA_SECTION);
+
 const REFERENCE_SECTIONS = [
   {
     title: "Identificação da referência",
@@ -127,7 +150,8 @@ const state = {
   documents: [],
   noteSource: "record",
   libraryContent: "",
-  pendingImport: null
+  pendingImport: null,
+  metadataLoading: false
 };
 
 const elements = Object.fromEntries([
@@ -206,38 +230,72 @@ function fieldValue(record, field) {
   return value ?? "";
 }
 
+function canLookupMetadata(value) {
+  return /(?:https?:\/\/)?(?:www\.)?(?:modrinth\.com|curseforge\.com)\//i.test(String(value || ""));
+}
+
+function fieldAcceptsNotApplicable(field) {
+  return !field.required && field.key !== "status";
+}
+
+function fieldIsNotApplicable(record, field) {
+  return Array.isArray(record?.notApplicableFields) && record.notApplicableFields.includes(field.key);
+}
+
+function renderNotApplicableToggle(field, record) {
+  if (!fieldAcceptsNotApplicable(field)) return "";
+  const active = fieldIsNotApplicable(record, field);
+  return `<button class="field-na-toggle${active ? " is-active" : ""}" type="button" data-na-field="${field.key}" aria-pressed="${active}" title="${active ? "Voltar a preencher este campo" : "Marcar este campo como não aplicável"}">
+    ${active ? "Não aplicável ✓" : "Não aplicável"}
+  </button>`;
+}
+
 function renderField(field, record) {
   const value = fieldValue(record, field);
   const required = field.required ? "required" : "";
   const span = field.full ? " field--full" : "";
   const id = `field-${field.key}`;
+  const notApplicable = fieldIsNotApplicable(record, field);
+  const disabled = notApplicable ? "disabled" : "";
+  const naClass = notApplicable ? " field--not-applicable" : "";
+  const toggle = renderNotApplicableToggle(field, record);
 
   if (field.type === "divisions") {
-    return `<fieldset class="field division-field${span}" data-field-wrap="${field.key}">
-      <legend>${escapeHtml(field.label)}</legend>
+    return `<fieldset class="field division-field${span}${naClass}" data-field-wrap="${field.key}" aria-labelledby="${id}-label">
+      <div class="field__header"><span id="${id}-label">${escapeHtml(field.label)}</span>${toggle}</div>
       <div class="division-options">
-        ${DIVISIONS.map((division) => `<label><input type="checkbox" data-field="${field.key}" value="${division}" ${Array.isArray(value) && value.includes(division) ? "checked" : ""}><span>${division}</span></label>`).join("")}
+        ${DIVISIONS.map((division) => `<label><input type="checkbox" data-field="${field.key}" value="${division}" ${Array.isArray(value) && value.includes(division) ? "checked" : ""} ${disabled}><span>${division}</span></label>`).join("")}
       </div>
     </fieldset>`;
   }
 
   if (field.type === "textarea") {
-    return `<label class="field${span}" for="${id}"><span>${escapeHtml(field.label)}</span>
-      <textarea id="${id}" data-field="${field.key}" rows="${field.rows || 3}" placeholder="${escapeHtml(field.placeholder || "")}" ${required}>${escapeHtml(value)}</textarea>
-    </label>`;
+    return `<div class="field${span}${naClass}" data-field-wrap="${field.key}">
+      <div class="field__header"><label for="${id}">${escapeHtml(field.label)}</label>${toggle}</div>
+      <textarea id="${id}" data-field="${field.key}" rows="${field.rows || 3}" placeholder="${escapeHtml(field.placeholder || "")}" ${required} ${disabled}>${escapeHtml(value)}</textarea>
+    </div>`;
   }
 
   if (field.type === "select" || field.type === "status") {
     const options = field.type === "status" ? STATUS[state.collection] : field.options;
     const selected = value || options[0];
-    return `<label class="field${span}" for="${id}"><span>${escapeHtml(field.label)}</span>
-      <select id="${id}" data-field="${field.key}">${options.map((option) => `<option ${option === selected ? "selected" : ""}>${escapeHtml(option)}</option>`).join("")}</select>
-    </label>`;
+    return `<div class="field${span}${naClass}" data-field-wrap="${field.key}">
+      <div class="field__header"><label for="${id}">${escapeHtml(field.label)}</label>${toggle}</div>
+      <select id="${id}" data-field="${field.key}" ${disabled}>${options.map((option) => `<option ${option === selected ? "selected" : ""}>${escapeHtml(option)}</option>`).join("")}</select>
+    </div>`;
   }
 
-  return `<label class="field${span}" for="${id}"><span>${escapeHtml(field.label)}</span>
-    <input id="${id}" data-field="${field.key}" type="${field.type === "url" ? "url" : "text"}" value="${escapeHtml(value)}" placeholder="${escapeHtml(field.placeholder || "")}" ${required}>
-  </label>`;
+  const metadataAction = field.metadataLookup && state.collection === "mods"
+    ? `<button class="metadata-lookup-button" type="button" data-metadata-lookup ${state.metadataLoading || notApplicable ? "disabled" : ""}>${state.metadataLoading ? "Buscandoâ€¦" : "Buscar dados"}</button>`
+    : "";
+  const metadataNote = field.metadataLookup && state.collection === "mods" && record.metadataFetchedAt
+    ? `<small class="field-note">Sincronizado com ${escapeHtml(record.officialProvider || "a fonte")} em ${escapeHtml(formatDate(record.metadataFetchedAt))}.</small>`
+    : "";
+  return `<div class="field${span}${naClass}" data-field-wrap="${field.key}">
+    <div class="field__header"><label for="${id}">${escapeHtml(field.label)}</label>${toggle}</div>
+    <div class="field-control-row"><input id="${id}" data-field="${field.key}" type="${field.type === "url" ? "url" : "text"}" value="${escapeHtml(value)}" placeholder="${escapeHtml(field.placeholder || "")}" ${required} ${disabled}>${metadataAction}</div>
+    ${metadataNote}
+  </div>`;
 }
 
 function renderForm() {
@@ -289,7 +347,8 @@ function readForm() {
       next[key] = control.value;
     }
   });
-  for (const field of [...COMMON_IDENTIFICATION, { key: "divisions", type: "divisions" }, { key: "candidateMods", type: "tags" }]) {
+  const sections = state.collection === "mods" ? MOD_SECTIONS : REFERENCE_SECTIONS;
+  for (const field of sections.flatMap((section) => section.fields)) {
     if (field.type === "tags" && typeof next[field.key] === "string") {
       const separator = field.key === "supportedVersions" ? /[\s,;|]+/ : /[,;|]+/;
       next[field.key] = next[field.key].split(separator).map((item) => item.trim()).filter(Boolean);
@@ -313,6 +372,68 @@ function markDirty({ autosave = true } = {}) {
   if (autosave) scheduleAutosave();
 }
 
+function mergeUnique(left, right) {
+  return [...new Set([...(Array.isArray(left) ? left : []), ...(Array.isArray(right) ? right : [])].filter(Boolean))];
+}
+
+async function lookupOfficialMetadata({ force = false } = {}) {
+  if (!state.current || state.collection !== "mods" || state.metadataLoading) return;
+  readForm();
+  const sourceUrl = String(state.current.sourceUrl || "").trim();
+  if (!canLookupMetadata(sourceUrl)) {
+    if (force) toast("Use um link de mod do Modrinth ou CurseForge.", "warning");
+    return;
+  }
+  if (!force && state.current.metadataSourceUrl === sourceUrl) return;
+
+  state.metadataLoading = true;
+  const button = elements.recordForm.querySelector("[data-metadata-lookup]");
+  if (button) {
+    button.disabled = true;
+    button.textContent = "Buscandoâ€¦";
+  }
+
+  try {
+    const { metadata } = await api("/api/metadata", {
+      method: "POST",
+      body: JSON.stringify({ url: sourceUrl })
+    });
+    state.current = {
+      ...state.current,
+      name: metadata.name || state.current.name,
+      sourceUrl: metadata.sourceUrl || sourceUrl,
+      projectUrl: state.current.projectUrl || metadata.projectUrl || "",
+      supportedVersions: mergeUnique(state.current.supportedVersions, metadata.supportedVersions),
+      loaders: mergeUnique(state.current.loaders, metadata.loaders),
+      officialSummary: metadata.summary || "",
+      officialAuthors: metadata.authors || [],
+      officialProjectId: metadata.projectId || "",
+      officialCategories: metadata.categories || [],
+      officialEnvironment: metadata.environment || [],
+      officialLicense: metadata.license || "",
+      officialProvider: metadata.provider || "",
+      officialPublishedAt: metadata.publishedAt || "",
+      officialUpdatedAt: metadata.updatedAt || "",
+      officialDownloads: metadata.downloads ?? "",
+      officialIconUrl: metadata.iconUrl || "",
+      metadataSourceUrl: metadata.sourceUrl || sourceUrl,
+      metadataFetchedAt: metadata.fetchedAt || new Date().toISOString()
+    };
+    renderForm();
+    markDirty();
+    toast(`Metadados importados do ${metadata.provider}. Revise antes de marcar a ficha como avaliada.`, "success", 5200);
+  } catch (error) {
+    toast(error.message, "error", 6200);
+  } finally {
+    state.metadataLoading = false;
+    const currentButton = elements.recordForm.querySelector("[data-metadata-lookup]");
+    if (currentButton) {
+      currentButton.disabled = false;
+      currentButton.textContent = "Buscar dados";
+    }
+  }
+}
+
 function defaultRecord() {
   const author = getAuthor();
   if (state.collection === "mods") {
@@ -325,6 +446,10 @@ function defaultRecord() {
       supportedVersions: [],
       loaders: [],
       tags: [],
+      notApplicableFields: [],
+      officialAuthors: [],
+      officialCategories: [],
+      officialEnvironment: [],
       scarcityImpact: "A avaliar",
       integrationEffort: "Desconhecido",
       worldgenImpact: "Desconhecido",
@@ -341,6 +466,7 @@ function defaultRecord() {
     supportedVersions: [],
     loaders: [],
     tags: [],
+    notApplicableFields: [],
     candidateMods: [],
     notesMarkdown: ""
   };
@@ -816,6 +942,23 @@ elements.recordForm.addEventListener("input", (event) => {
 elements.recordForm.addEventListener("change", (event) => {
   if (!event.target.matches("[data-field]")) return;
   readForm();
+  markDirty();
+  if (event.target.dataset.field === "sourceUrl") void lookupOfficialMetadata();
+});
+elements.recordForm.addEventListener("click", (event) => {
+  if (event.target.closest("[data-metadata-lookup]")) {
+    void lookupOfficialMetadata({ force: true });
+    return;
+  }
+  const button = event.target.closest("[data-na-field]");
+  if (!button || !state.current) return;
+  readForm();
+  const key = button.dataset.naField;
+  const fields = new Set(Array.isArray(state.current.notApplicableFields) ? state.current.notApplicableFields : []);
+  if (fields.has(key)) fields.delete(key);
+  else fields.add(key);
+  state.current.notApplicableFields = [...fields];
+  renderForm();
   markDirty();
 });
 elements.recordList.addEventListener("click", (event) => {
