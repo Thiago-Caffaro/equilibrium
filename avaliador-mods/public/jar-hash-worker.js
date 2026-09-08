@@ -1,4 +1,5 @@
 import { curseForgeFingerprint } from "./jar-fingerprint.js";
+import { extractJarMetadata } from "./jar-metadata.js";
 import { sha1 } from "./sha1.js";
 
 self.onmessage = async ({ data }) => {
@@ -12,7 +13,8 @@ self.onmessage = async ({ data }) => {
         relativePath: data.relativePath || data.file.name,
         size: data.file.size,
         sha1: await sha1(bytes),
-        curseFingerprint: curseForgeFingerprint(bytes)
+        curseFingerprint: curseForgeFingerprint(bytes),
+        jarMetadata: await extractJarMetadata(bytes)
       }
     });
   } catch (error) {

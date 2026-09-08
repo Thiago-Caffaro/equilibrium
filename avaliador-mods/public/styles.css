@@ -417,6 +417,9 @@ input:disabled, select:disabled, textarea:disabled { cursor: not-allowed; }
   background: linear-gradient(125deg, rgb(131 212 165 / 10%), rgb(20 26 24 / 86%));
 }
 .staging-panel h3 { margin-bottom: 7px; }
+.jar-metadata { display: grid; gap: 4px; padding: 10px 12px; border-left: 3px solid var(--accent); background: rgb(131 212 165 / 8%); color: var(--muted); font-size: 12px; }
+.jar-metadata strong { color: var(--text); }
+.jar-metadata code { color: var(--accent-strong); }
 .source-indicators { display: flex; flex-wrap: wrap; gap: 9px; }
 .source-indicator-wrap { display: grid; grid-template-columns: 1fr auto; align-items: stretch; min-width: 198px; }
 .source-indicator { display: grid; grid-template-columns: auto 1fr; gap: 1px 7px; min-width: 152px; padding: 9px; border: 1px solid var(--line); border-radius: 8px; background: #101513; color: var(--text); text-align: left; }

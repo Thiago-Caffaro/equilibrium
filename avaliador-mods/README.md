@@ -81,15 +81,18 @@ Esse conteúdo é somente leitura e é servido diretamente de `analises-modpacks
 
 ### Staging de JARs
 
-A aba **Staging** serve para conferir uma pasta de mods antes de criar fichas definitivas. Use **Ler JARs** para selecionar uma pasta inteira em Chromium/Edge ou arquivos `.jar` individualmente como alternativa. Cada arquivo é lido no navegador, um por vez, para calcular SHA-1 e o fingerprint do CurseForge. O servidor recebe apenas:
+A aba **Staging** serve para conferir uma pasta de mods antes de criar fichas definitivas. Use **Ler JARs** para selecionar uma pasta inteira em Chromium/Edge ou arquivos `.jar` individualmente como alternativa. Cada arquivo é lido no navegador, um por vez, para calcular SHA-1, o fingerprint do CurseForge e sua identidade interna. Quando presentes, são lidos localmente `fabric.mod.json`, `quilt.mod.json`, `META-INF/mods.toml`, `META-INF/neoforge.mods.toml`, `mcmod.info` e o manifesto do JAR. O servidor recebe apenas:
 
 - nome e caminho relativo escolhido;
 - tamanho;
-- hashes e identificadores calculados.
+- hashes e identificadores calculados;
+- `modId`, nome, versão, loader e dependências que o próprio JAR declarar.
 
-Os JARs e caminhos absolutos nunca são enviados ou armazenados. O CurseForge é a confirmação principal por fingerprint e preenche dados factuais quando houver correspondência. O Modrinth aparece inicialmente apenas como indicador de disponibilidade por SHA-1. Um indicador verde carrega os detalhes da plataforma sob demanda; esses detalhes ficam em cache local do navegador por 30 dias. **Atualizar** ignora o cache.
+Os JARs e caminhos absolutos nunca são enviados ou armazenados. O CurseForge é a confirmação principal por fingerprint e preenche dados factuais quando houver correspondência. O Modrinth aparece inicialmente apenas como indicador de disponibilidade por SHA-1. Se o hash não confirmar o arquivo, as duas plataformas podem procurar candidatos a partir da identidade interna do JAR; resultados só aparecem quando o título também corresponde, e continuam exigindo confirmação humana. Um indicador verde carrega os detalhes da plataforma sob demanda; esses detalhes ficam em cache local do navegador por 30 dias. **Atualizar** ignora o cache.
 
 Resultados ambíguos, ausentes ou com erro continuam editáveis no staging. A promoção para **Mods** verifica URL canônica e ID externo para impedir duplicatas; se já houver ficha equivalente, ela é aberta em vez de criar outra.
+
+O desenho da importação futura de modpacks reais — versões escolhidas de CurseForge/Modrinth, comparação de presença e seleção múltipla para Staging — está registrado em [`data/library/plano-importacao-modpacks.md`](data/library/plano-importacao-modpacks.md).
 
 ### Estados sugeridos
 

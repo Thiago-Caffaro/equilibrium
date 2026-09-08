@@ -59,6 +59,7 @@ test("fallback por nome mantém candidatos ambíguos no staging e tolera falha p
       assert.match(target, /classId=6/);
       return new Response(JSON.stringify({ data: [
         { id: 99, classId: 4471, name: "Modpack que não deve aparecer", links: { websiteUrl: "https://example.test/pack" } },
+        { id: 98, classId: 6, name: "Mod sem relação", links: { websiteUrl: "https://example.test/unrelated" } },
         { id: 100, classId: 6, name: "Candidato A", links: { websiteUrl: "https://example.test/a" } },
         { id: 101, classId: 6, name: "Candidato B", links: { websiteUrl: "https://example.test/b" } }
       ] }), { status: 200 });
@@ -67,8 +68,8 @@ test("fallback por nome mantém candidatos ambíguos no staging e tolera falha p
     throw new Error(`URL inesperada: ${target}`);
   };
   const [record] = await resolveJarDescriptors([{
-    fileName: "nome-incerto-2.1.jar",
-    relativePath: "mods/nome-incerto-2.1.jar",
+    fileName: "candidato-2.1.jar",
+    relativePath: "mods/candidato-2.1.jar",
     size: 10,
     sha1: "c".repeat(40),
     curseFingerprint: 999
@@ -76,7 +77,51 @@ test("fallback por nome mantém candidatos ambíguos no staging e tolera falha p
   assert.equal(record.stagingResolution, "ambiguous");
   assert.equal(record.stagingSources.curseforge.candidates.length, 2);
   assert.ok(record.stagingSources.curseforge.candidates.every((candidate) => candidate.name !== "Modpack que não deve aparecer"));
+  assert.ok(record.stagingSources.curseforge.candidates.every((candidate) => candidate.name !== "Mod sem relação"));
   assert.equal(record.stagingSources.modrinth.state, "error");
+});
+
+test("fallback por nome não sugere mods que apenas citam o nome procurado", async () => {
+  const fetchImpl = async (url) => {
+    const target = String(url);
+    if (target.includes("curseforge.com/v1/fingerprints/432")) return new Response(JSON.stringify({ data: { exactMatches: [] } }), { status: 200 });
+    if (target.includes("curseforge.com/v1/mods/search")) {
+      return new Response(JSON.stringify({ data: [
+        { id: 1, classId: 6, name: "Relentless World", links: {} },
+        { id: 2, classId: 6, name: "SpartanApothicCompat", links: {} }
+      ] }), { status: 200 });
+    }
+    if (target.endsWith("modrinth.com/v2/version_files")) return new Response(JSON.stringify({}), { status: 200 });
+    throw new Error(`URL inesperada: ${target}`);
+  };
+  const [record] = await resolveJarDescriptors([{
+    fileName: "Apotheosis-1.19.2-6.5.2.jar",
+    sha1: "e".repeat(40),
+    curseFingerprint: 42
+  }], { fetchImpl, curseForgeApiKey: "chave" });
+  assert.equal(record.stagingResolution, "unresolved");
+  assert.deepEqual(record.stagingSources.curseforge.candidates, []);
+});
+
+test("usa a identidade interna do JAR antes do nome do arquivo ao buscar no Modrinth", async () => {
+  const fetchImpl = async (url) => {
+    const target = String(url);
+    if (target.endsWith("modrinth.com/v2/version_files")) return new Response(JSON.stringify({}), { status: 200 });
+    if (target.includes("modrinth.com/v2/search")) {
+      assert.match(target, /query=Nome\+Interno/);
+      return new Response(JSON.stringify({ hits: [{ project_id: "projeto", title: "Nome Interno", slug: "nome-interno" }] }), { status: 200 });
+    }
+    throw new Error(`URL inesperada: ${target}`);
+  };
+  const [record] = await resolveJarDescriptors([{
+    fileName: "arquivo-com-nome-inutil.jar",
+    sha1: "f".repeat(40),
+    curseFingerprint: 7,
+    jarMetadata: { format: "fabric.mod.json", mods: [{ modId: "nome_interno", name: "Nome Interno", version: "1.0", loader: "Fabric" }] }
+  }], { fetchImpl });
+  assert.equal(record.name, "Nome Interno");
+  assert.equal(record.stagingResolution, "candidate");
+  assert.equal(record.stagingSources.modrinth.candidates[0].projectId, "projeto");
 });
 
 test("promoção preserva staging até detectar duplicata e move ficha única para mods", async (t) => {

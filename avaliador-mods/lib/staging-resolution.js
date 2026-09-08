@@ -22,6 +22,51 @@ function fallbackName(fileName) {
     .trim() || plainFileName(fileName).replace(/\.jar$/i, "");
 }
 
+function cleanMetadataText(value, limit = 240) {
+  return String(value || "").replace(/[\u0000-\u001f]+/g, " ").trim().slice(0, limit);
+}
+
+function metadataStrings(value, limit = 40) {
+  const values = Array.isArray(value) ? value : [value];
+  return [...new Set(values.map((item) => cleanMetadataText(item, 120)).filter(Boolean))].slice(0, limit);
+}
+
+function normaliseJarMetadata(input) {
+  const source = input && typeof input === "object" ? input : {};
+  return {
+    format: cleanMetadataText(source.format, 120) || "Não identificado",
+    mods: (Array.isArray(source.mods) ? source.mods : []).slice(0, 24).map((mod) => ({
+      modId: cleanMetadataText(mod?.modId, 160),
+      name: cleanMetadataText(mod?.name, 180),
+      version: cleanMetadataText(mod?.version, 100),
+      loader: cleanMetadataText(mod?.loader, 60),
+      authors: metadataStrings(mod?.authors),
+      dependencies: metadataStrings(mod?.dependencies, 80)
+    })).filter((mod) => mod.modId || mod.name),
+    warnings: metadataStrings(source.warnings, 10)
+  };
+}
+
+function identityTerms(descriptor) {
+  const internal = descriptor.jarMetadata?.mods?.[0] || {};
+  return unique([internal.name, internal.modId, fallbackName(descriptor.fileName)]).slice(0, 3);
+}
+
+function comparableProjectName(value) {
+  return String(value || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, "");
+}
+
+function isRelevantCandidate(candidate, searchedName) {
+  const expected = comparableProjectName(searchedName);
+  const received = comparableProjectName(candidate?.name);
+  if (expected.length < 3 || !received) return false;
+  return received === expected || received.startsWith(expected) || expected.startsWith(received);
+}
+
 function normaliseDescriptor(input) {
   const fileName = plainFileName(input?.fileName);
   const sha1 = String(input?.sha1 || "").trim().toLowerCase();
@@ -41,7 +86,8 @@ function normaliseDescriptor(input) {
       .slice(0, 500) || fileName,
     size: Math.max(0, Number(input?.size) || 0),
     sha1,
-    curseFingerprint
+    curseFingerprint,
+    jarMetadata: normaliseJarMetadata(input?.jarMetadata)
   };
 }
 
@@ -160,19 +206,24 @@ async function resolveCurseForge(descriptors, { fetchImpl, curseForgeApiKey }) {
     const unresolved = descriptors.filter((descriptor) => state.get(descriptor.sha1).state === "unavailable");
     await mapLimited(unresolved, 3, async (descriptor) => {
       try {
-        // No CurseForge, a classe 6 corresponde a Minecraft Mods. Sem esse
-        // filtro a busca também devolve modpacks com nomes semelhantes.
-        const query = new URLSearchParams({ gameId: String(MINECRAFT_GAME_ID), classId: "6", searchFilter: fallbackName(descriptor.fileName), pageSize: "5" });
-        const search = await requestJson(`${CURSEFORGE_API}/mods/search?${query}`, { fetchImpl, headers });
-        const candidates = (search?.data || [])
-          .filter((candidate) => !Number.isFinite(Number(candidate.classId)) || Number(candidate.classId) === 6)
-          .slice(0, 5)
-          .map((candidate) => ({
-          provider: "CurseForge",
-          projectId: String(candidate.id || ""),
-          name: candidate.name || "",
-          sourceUrl: candidate.links?.websiteUrl || ""
-          })).filter((candidate) => candidate.projectId);
+        let candidates = [];
+        for (const searchedName of identityTerms(descriptor)) {
+          const query = new URLSearchParams({ gameId: String(MINECRAFT_GAME_ID), classId: "6", searchFilter: searchedName, pageSize: "50" });
+          const search = await requestJson(`${CURSEFORGE_API}/mods/search?${query}`, { fetchImpl, headers });
+          candidates = (search?.data || [])
+            .filter((candidate) => !Number.isFinite(Number(candidate.classId)) || Number(candidate.classId) === 6)
+            .filter((candidate) => isRelevantCandidate(candidate, searchedName))
+            .map((candidate) => ({
+              provider: "CurseForge",
+              projectId: String(candidate.id || ""),
+              name: candidate.name || "",
+              sourceUrl: candidate.links?.websiteUrl || ""
+            }))
+            .filter((candidate) => candidate.projectId)
+            .filter((candidate, index, list) => list.findIndex((other) => other.projectId === candidate.projectId) === index)
+            .slice(0, 5);
+          if (candidates.length > 0) break;
+        }
         const result = state.get(descriptor.sha1);
         result.candidates = candidates;
         result.state = candidates.length === 1 ? "candidate" : candidates.length > 1 ? "ambiguous" : "missing";
@@ -192,7 +243,8 @@ async function resolveModrinth(descriptors, { fetchImpl }) {
     provider: "Modrinth",
     state: "missing",
     projectId: "",
-    sourceUrl: ""
+    sourceUrl: "",
+    candidates: []
   }]));
   try {
     for (let index = 0; index < descriptors.length; index += 100) {
@@ -212,6 +264,35 @@ async function resolveModrinth(descriptors, { fetchImpl }) {
         result.sourceUrl = `https://modrinth.com/mod/${encodeURIComponent(result.projectId)}`;
       }
     }
+
+    const unresolved = descriptors.filter((descriptor) => state.get(descriptor.sha1).state === "missing");
+    await mapLimited(unresolved, 3, async (descriptor) => {
+      try {
+        let candidates = [];
+        for (const searchedName of identityTerms(descriptor)) {
+          const query = new URLSearchParams({ query: searchedName, limit: "50", facets: '[["project_type:mod"]]' });
+          const search = await requestJson(`${MODRINTH_API}/search?${query}`, { fetchImpl });
+          candidates = (search?.hits || [])
+            .filter((candidate) => isRelevantCandidate({ name: candidate.title || candidate.slug }, searchedName))
+            .map((candidate) => ({
+              provider: "Modrinth",
+              projectId: String(candidate.project_id || ""),
+              name: candidate.title || candidate.slug || "",
+              sourceUrl: candidate.slug ? `https://modrinth.com/mod/${encodeURIComponent(candidate.slug)}` : ""
+            }))
+            .filter((candidate) => candidate.projectId)
+            .filter((candidate, index, list) => list.findIndex((other) => other.projectId === candidate.projectId) === index)
+            .slice(0, 5);
+          if (candidates.length > 0) break;
+        }
+        const result = state.get(descriptor.sha1);
+        result.candidates = candidates;
+        result.state = candidates.length === 1 ? "candidate" : candidates.length > 1 ? "ambiguous" : "missing";
+      } catch {
+        // A ausência de busca complementar não invalida uma consulta de hash
+        // que já respondeu; apenas preservamos o estado "missing".
+      }
+    });
   } catch {
     for (const result of state.values()) result.state = "error";
   }
@@ -253,10 +334,14 @@ export async function resolveJarDescriptors(inputs, {
     const modrinthResult = modrinth.get(first.sha1);
     const metadata = curse?.state === "exact" ? curseForge.metadata.get(curse.projectId) : null;
     const factual = metadata && !metadata.error ? fieldsFromMetadata(metadata) : {};
-    const resolution = curse?.state === "exact" ? "confirmed" : curse?.state === "ambiguous" ? "ambiguous" : curse?.state === "candidate" ? "candidate" : "unresolved";
+    const sources = [curse, modrinthResult];
+    const candidateCount = sources.reduce((total, source) => total + (source?.candidates?.length || 0), 0);
+    const hasExact = sources.some((source) => source?.state === "exact");
+    const resolution = hasExact ? "confirmed" : candidateCount > 1 ? "ambiguous" : candidateCount === 1 ? "candidate" : "unresolved";
+    const internal = first.jarMetadata?.mods?.[0] || {};
     return {
       kind: "staging",
-      name: factual.name || fallbackName(first.fileName),
+      name: factual.name || internal.name || internal.modId || fallbackName(first.fileName),
       status: "Não avaliado",
       evaluator: author,
       divisions: [],
@@ -264,6 +349,7 @@ export async function resolveJarDescriptors(inputs, {
       notApplicableFields: [],
       ...factual,
       stagingResolution: resolution,
+      jarMetadata: first.jarMetadata,
       stagingFiles: files,
       stagingSources: {
         curseforge: curse,
@@ -272,7 +358,9 @@ export async function resolveJarDescriptors(inputs, {
       stagingMessage: resolution === "confirmed"
         ? "Confirmado pelo arquivo instalado."
         : resolution === "ambiguous"
-          ? "Há mais de um candidato no CurseForge; escolha manualmente antes de promover."
+          ? "Há mais de um candidato compatível; escolha manualmente antes de promover."
+          : resolution === "candidate"
+            ? "Há um candidato compatível; confira os metadados internos antes de promover."
           : "Sem confirmação exata; complete ou pesquise a ficha antes de promover."
     };
   });
