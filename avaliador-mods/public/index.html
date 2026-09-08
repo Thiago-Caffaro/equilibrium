@@ -32,15 +32,17 @@
             <button type="button" data-action="export-csv">Exportar coleção em CSV</button>
           </div>
         </div>
+        <button id="analysesButton" class="button button--ghost" type="button">Análises</button>
         <button id="newRecordButton" class="button button--primary" type="button">Nova ficha <kbd>Alt N</kbd></button>
       </div>
     </header>
 
     <main class="workspace">
       <aside class="catalog-panel" aria-label="Catálogo">
-        <div class="mode-switch" role="tablist" aria-label="Tipo de registro">
+        <div class="mode-switch mode-switch--three" role="tablist" aria-label="Tipo de registro">
           <button class="mode-switch__item is-active" type="button" role="tab" aria-selected="true" data-collection="mods">Mods</button>
           <button class="mode-switch__item" type="button" role="tab" aria-selected="false" data-collection="references">Referências</button>
+          <button class="mode-switch__item" type="button" role="tab" aria-selected="false" data-collection="staging">Staging</button>
         </div>
 
         <label class="search-field">
@@ -64,7 +66,7 @@
 
         <div class="catalog-summary">
           <span id="recordCount">0 registros</span>
-          <button id="refreshButton" class="link-button" type="button">Atualizar</button>
+          <span class="catalog-summary__actions"><button id="scanFolderButton" class="link-button" type="button" hidden>Ler JARs</button><button id="refreshButton" class="link-button" type="button">Atualizar</button></span>
         </div>
         <div id="recordList" class="record-list" aria-live="polite"></div>
       </aside>
@@ -92,6 +94,8 @@
               </div>
               <button id="reviewButton" class="button button--ghost" type="button">Marcar revisão +1 <kbd>Alt R</kbd></button>
               <button id="saveButton" class="button button--primary" type="button">Salvar <kbd>Ctrl S</kbd></button>
+              <button id="promoteButton" class="button button--primary" type="button" hidden>Promover para Mods</button>
+              <button id="deleteButton" class="button button--danger" type="button">Excluir ficha</button>
             </div>
           </div>
 
@@ -105,6 +109,17 @@
           </div>
 
           <form id="recordForm" class="record-form" autocomplete="off"></form>
+        </div>
+
+        <div id="analysisState" class="analysis-state" hidden>
+          <div class="analysis-state__header">
+            <div><p class="eyebrow">Auditorias locais</p><h2>Análises de modpacks</h2><p>O catálogo abaixo é lido automaticamente de <code>analises-modpacks</code>.</p></div>
+            <a class="button button--ghost" href="/analises-modpacks/comparador-apoio-qol-secundarios.html" target="_blank" rel="noreferrer">Abrir comparador independente</a>
+          </div>
+          <div class="analysis-controls"><input id="analysisSearch" type="search" placeholder="Buscar mod, modId ou arquivo…"><select id="analysisCategory"><option value="all">Todas as categorias</option><option value="suporte">Suporte</option><option value="qol">Quality of Life</option><option value="secundario">Secundários / revisar</option></select><select id="analysisPresence"><option value="all">Qualquer presença</option><option value="shared">Em 2+ modpacks</option><option value="unique">Em 1 modpack</option></select><button id="copyAnalysisButton" class="button button--small" type="button">Copiar tabela</button></div>
+          <div id="analysisStats" class="analysis-stats"></div>
+          <div class="analysis-table-wrap"><table class="analysis-table"><thead id="analysisHead"></thead><tbody id="analysisRows"></tbody></table></div>
+          <section class="analysis-documents"><h3>Relatórios e observações</h3><div id="analysisDocumentLinks" class="analysis-document-links"></div><article id="analysisDocumentPreview" class="markdown-preview prose"></article></section>
         </div>
       </section>
 
@@ -159,6 +174,8 @@
     </footer>
 
     <input id="importFileInput" type="file" accept=".json,.csv,application/json,text/csv" hidden>
+    <input id="jarDirectoryInput" type="file" accept=".jar,application/java-archive" webkitdirectory directory multiple hidden>
+    <input id="jarFilesInput" type="file" accept=".jar,application/java-archive" multiple hidden>
 
     <dialog id="importDialog" class="dialog">
       <form method="dialog">
@@ -208,6 +225,6 @@
 
     <div id="toastRegion" class="toast-region" aria-live="polite"></div>
 
-    <script type="module" src="/app.js"></script>
+    <script type="module" src="/app.js?v=staging-0.1"></script>
   </body>
 </html>

@@ -73,6 +73,24 @@ Cada ficha concentra informações que dependem de julgamento ou experiência do
 
 A aba **Referências** registra modpacks, listas, repositórios e documentos usados como inspiração. Ela separa padrões úteis daquilo que não deve ser reproduzido e permite listar mods que merecem uma ficha própria.
 
+### Análises de modpacks
+
+O botão **Análises** abre, dentro do avaliador, o catálogo comparativo de mods de suporte, QoL e secundários extraído das instâncias locais analisadas. A tela preserva busca, filtros por categoria e presença, cópia da tabela filtrada e os relatórios Markdown como material de consulta. O comparador original também continua disponível em nova guia.
+
+Esse conteúdo é somente leitura e é servido diretamente de `analises-modpacks/`; não existe uma segunda cópia do catálogo para manter sincronizada.
+
+### Staging de JARs
+
+A aba **Staging** serve para conferir uma pasta de mods antes de criar fichas definitivas. Use **Ler JARs** para selecionar uma pasta inteira em Chromium/Edge ou arquivos `.jar` individualmente como alternativa. Cada arquivo é lido no navegador, um por vez, para calcular SHA-1 e o fingerprint do CurseForge. O servidor recebe apenas:
+
+- nome e caminho relativo escolhido;
+- tamanho;
+- hashes e identificadores calculados.
+
+Os JARs e caminhos absolutos nunca são enviados ou armazenados. O CurseForge é a confirmação principal por fingerprint e preenche dados factuais quando houver correspondência. O Modrinth aparece inicialmente apenas como indicador de disponibilidade por SHA-1. Um indicador verde carrega os detalhes da plataforma sob demanda; esses detalhes ficam em cache local do navegador por 30 dias. **Atualizar** ignora o cache.
+
+Resultados ambíguos, ausentes ou com erro continuam editáveis no staging. A promoção para **Mods** verifica URL canônica e ID externo para impedir duplicatas; se já houver ficha equivalente, ela é aberta em vez de criar outra.
+
 ### Estados sugeridos
 
 As fichas de mods podem passar por:
@@ -90,6 +108,7 @@ Esses estados organizam a análise; não substituem as decisões conceituais reg
 - `Ctrl+S` salva imediatamente.
 - Cada salvamento registra data e nome do avaliador, mas não aumenta a contagem de revisões.
 - **Marcar revisão +1** é uma ação humana explícita, disponível pelo botão da ficha ou por `Alt+R`.
+- `Alt+Q` alterna **Não aplicável** no campo opcional focado ou sob o cursor. Campos não aplicáveis ficam desativados e listrados; campos preenchidos recebem um indicador verde discreto. Valores-base como “A avaliar” permanecem neutros.
 - Se duas pessoas abrirem a mesma versão interna da ficha, o segundo salvamento recebe um aviso de conflito em vez de sobrescrever silenciosamente o trabalho da primeira.
 - O usuário pode recarregar a versão mais recente ou salvar seu conteúdo como uma cópia.
 - Cada ficha é um JSON independente, reduzindo conflitos no Git e facilitando recuperação manual.
@@ -115,6 +134,7 @@ No Portainer, adicione `CURSEFORGE_API_KEY` como variável de ambiente da stack.
 data/
 ├── mods/             # uma ficha JSON por mod
 ├── references/       # uma ficha JSON por modpack/lista de referência
+├── staging/          # JARs identificados antes da promoção para mods
 └── library/          # colas e documentos Markdown/JSON compartilhados
 ```
 
@@ -163,6 +183,7 @@ Listas em CSV usam ` | ` como separador interno. Textos com vírgulas, aspas ou 
 |---|---|
 | `Alt+N` | Nova ficha |
 | `Alt+R` | Salvar e marcar uma revisão humana |
+| `Alt+Q` | Alternar “Não aplicável” no campo opcional focado/sob o cursor |
 | `Ctrl+S` | Salvar agora |
 | `Ctrl+Enter` | Salvar e navegar para a próxima |
 | `Ctrl+K` | Pesquisar |
@@ -182,4 +203,4 @@ O JSON exportado também pode ser guardado como snapshot externo antes de import
 npm test
 ```
 
-Os testes cobrem CSV, persistência em arquivos, revisão explícita, concorrência, edição de documentos, CRUD da API, exportação e importação.
+Os testes cobrem CSV, persistência em arquivos, revisão explícita, concorrência, edição de documentos, CRUD da API, exportação/importação, hashes de JAR, resolução por plataformas, staging, promoção e prevenção de duplicatas.

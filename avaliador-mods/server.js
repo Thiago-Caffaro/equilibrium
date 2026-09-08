@@ -1,13 +1,18 @@
 import { createServer } from "node:http";
-import { readFile } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
 import { extname, join, normalize, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { MOD_CSV_FIELDS, REFERENCE_CSV_FIELDS, parseCsv, stringifyCsv } from "./lib/csv.js";
 import { MetadataLookupError, resolveProjectMetadata } from "./lib/project-metadata.js";
+import { resolveJarDescriptors } from "./lib/staging-resolution.js";
 import { ConflictError, ValidationError, createStore } from "./lib/store.js";
 
 const APP_ROOT = fileURLToPath(new URL(".", import.meta.url));
 const PUBLIC_ROOT = join(APP_ROOT, "public");
+const ANALYSES_ROOT = existsSync(join(APP_ROOT, "analises-modpacks"))
+  ? join(APP_ROOT, "analises-modpacks")
+  : resolve(APP_ROOT, "..", "analises-modpacks");
 const DEFAULT_DATA_ROOT = join(APP_ROOT, "data");
 const DEFAULT_PORT = Number(process.env.PORT || 8787);
 const DEFAULT_HOST = process.env.HOST || "0.0.0.0";
@@ -63,7 +68,7 @@ async function readJsonBody(request) {
 }
 
 function collectionFromKind(kind) {
-  if (kind === "mods" || kind === "references") return kind;
+  if (kind === "mods" || kind === "references" || kind === "staging") return kind;
   throw new ValidationError("Coleção inválida.");
 }
 
@@ -97,7 +102,9 @@ async function serveStatic(pathname, method, response) {
     const content = await readFile(absolutePath);
     response.writeHead(200, {
       "content-type": MIME_TYPES[extname(absolutePath)] || "application/octet-stream",
-      "cache-control": extname(absolutePath) === ".html" ? "no-cache" : "public, max-age=60"
+      // A interface é servida como um único artefato local. Evitar cache de JS/CSS
+      // impede que um navegador continue com uma versão anterior após redeploy.
+      "cache-control": "no-cache"
     });
     response.end(method === "HEAD" ? undefined : content);
   } catch {
@@ -105,7 +112,41 @@ async function serveStatic(pathname, method, response) {
   }
 }
 
-export function createAppServer({ dataRoot = DEFAULT_DATA_ROOT, metadataResolver = resolveProjectMetadata } = {}) {
+function analysisFile(name) {
+  const safeName = String(name || "");
+  if (!/^[a-z0-9][a-z0-9._-]*\.(?:md|json|html)$/i.test(safeName)) {
+    throw new ValidationError("Nome de arquivo de análise inválido.");
+  }
+  return join(ANALYSES_ROOT, safeName);
+}
+
+async function listAnalysisDocuments() {
+  try {
+    const entries = await readdir(ANALYSES_ROOT, { withFileTypes: true });
+    return entries
+      .filter((entry) => entry.isFile() && entry.name.endsWith(".md"))
+      .map((entry) => ({ name: entry.name, title: entry.name.replace(/^\d+-/, "").replace(/\.md$/, "").replaceAll("-", " ") }))
+      .sort((left, right) => left.name.localeCompare(right.name, "pt-BR"));
+  } catch {
+    return [];
+  }
+}
+
+async function serveAnalysisStatic(name, method, response) {
+  const path = analysisFile(name);
+  try {
+    const content = await readFile(path);
+    response.writeHead(200, {
+      "content-type": MIME_TYPES[extname(path)] || "application/octet-stream",
+      "cache-control": "no-cache"
+    });
+    response.end(method === "HEAD" ? undefined : content);
+  } catch {
+    sendJson(response, 404, { error: "Arquivo de análise não encontrado." });
+  }
+}
+
+export function createAppServer({ dataRoot = DEFAULT_DATA_ROOT, metadataResolver = resolveProjectMetadata, jarResolver = resolveJarDescriptors } = {}) {
   const store = createStore({ dataRoot });
   void store.initialise();
 
@@ -165,6 +206,39 @@ export function createAppServer({ dataRoot = DEFAULT_DATA_ROOT, metadataResolver
           else sendJson(response, 200, { record });
           return;
         }
+        if (request.method === "DELETE" && id && !segments[4]) {
+          const body = await readJsonBody(request);
+          const record = await store.remove(collection, id, {
+            expectedStorageVersion: body.expectedStorageVersion,
+            force: Boolean(body.force)
+          });
+          if (!record) sendJson(response, 404, { error: "Ficha não encontrada." });
+          else sendJson(response, 200, { deleted: { id: record.id, name: record.name } });
+          return;
+        }
+      }
+
+      if (segments[0] === "api" && segments[1] === "staging") {
+        const id = segments[2];
+        if (request.method === "POST" && !id && segments[2] === undefined) {
+          const body = await readJsonBody(request);
+          const records = await jarResolver(body.descriptors, { author: body.author });
+          const created = [];
+          for (const record of records) created.push(await store.create("staging", record, body.author));
+          sendJson(response, 201, { records: created });
+          return;
+        }
+        if (request.method === "POST" && id && segments[3] === "promote") {
+          const body = await readJsonBody(request);
+          const result = await store.promoteStage(id, {
+            expectedStorageVersion: body.expectedStorageVersion,
+            author: body.author
+          });
+          if (!result.stage) sendJson(response, 404, { error: "Item de staging não encontrado." });
+          else if (result.duplicate) sendJson(response, 409, { error: "Já existe uma ficha equivalente no catálogo.", duplicate: result.duplicate });
+          else sendJson(response, 200, { record: result.record });
+          return;
+        }
       }
 
       if (segments[0] === "api" && segments[1] === "library") {
@@ -189,9 +263,26 @@ export function createAppServer({ dataRoot = DEFAULT_DATA_ROOT, metadataResolver
 
       if (segments[0] === "api" && segments[1] === "metadata" && request.method === "POST") {
         const body = await readJsonBody(request);
-        const metadata = await metadataResolver(body.url);
+        const metadata = await metadataResolver(body.url || { provider: body.provider, projectId: body.projectId });
         sendJson(response, 200, { metadata });
         return;
+      }
+
+      if (segments[0] === "api" && segments[1] === "analyses") {
+        if (request.method === "GET" && segments[2] === "catalog") {
+          const content = await readFile(analysisFile("catalogo-apoio-qol-secundarios.json"), "utf8");
+          sendText(response, 200, content, MIME_TYPES[".json"]);
+          return;
+        }
+        if (request.method === "GET" && segments[2] === "documents" && !segments[3]) {
+          sendJson(response, 200, { documents: await listAnalysisDocuments() });
+          return;
+        }
+        if (request.method === "GET" && segments[2] === "documents" && segments[3]) {
+          const content = await readFile(analysisFile(segments[3]), "utf8");
+          sendJson(response, 200, { name: segments[3], content });
+          return;
+        }
       }
 
       if (segments[0] === "api" && segments[1] === "export" && request.method === "GET") {
@@ -209,6 +300,11 @@ export function createAppServer({ dataRoot = DEFAULT_DATA_ROOT, metadataResolver
             "content-disposition": `attachment; filename="equilibrium-${collection}-${timestamp}.json"`
           });
         }
+        return;
+      }
+
+      if (segments[0] === "analises-modpacks" && (request.method === "GET" || request.method === "HEAD")) {
+        await serveAnalysisStatic(segments[1] || "comparador-apoio-qol-secundarios.html", request.method, response);
         return;
       }
 

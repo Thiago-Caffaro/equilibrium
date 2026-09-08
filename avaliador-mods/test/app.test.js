@@ -118,10 +118,28 @@ test("API executa criação, atualização, conflito, exportação e importaçã
   assert.equal(reviewed.revision, 1);
   assert.equal(reviewed.storageVersion, 3);
 
-  const conflictResponse = await fetch(`${base}/api/records/mods/${created.id}`, {
+  const deleteResponse = await fetch(`${base}/api/records/mods/${created.id}`, {
+    method: "DELETE",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ expectedStorageVersion: 3 })
+  });
+  assert.equal(deleteResponse.status, 200);
+  assert.equal((await deleteResponse.json()).deleted.id, created.id);
+
+  const deletedRecord = await fetch(`${base}/api/records/mods/${created.id}`);
+  assert.equal(deletedRecord.status, 404);
+
+  const replacementResponse = await fetch(`${base}/api/records/mods`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ record: { name: "Mod de API", divisions: ["Magia"] }, author: "Thiago" })
+  });
+  const replacement = (await replacementResponse.json()).record;
+
+  const conflictResponse = await fetch(`${base}/api/records/mods/${replacement.id}`, {
     method: "PUT",
     headers: { "content-type": "application/json" },
-    body: JSON.stringify({ record: { ...created, status: "Rejeitado" }, expectedStorageVersion: 1 })
+    body: JSON.stringify({ record: { ...replacement, status: "Rejeitado" }, expectedStorageVersion: 0 })
   });
   assert.equal(conflictResponse.status, 409);
 

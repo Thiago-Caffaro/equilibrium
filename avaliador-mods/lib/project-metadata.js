@@ -83,13 +83,15 @@ export function parseProjectUrl(value) {
   });
 }
 
-async function requestJson(url, { fetchImpl, headers = {} }) {
+async function requestJson(url, { fetchImpl, headers = {}, method = "GET", body } = {}) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
   let response;
   try {
     response = await fetchImpl(url, {
+      method,
       headers: { accept: "application/json", "user-agent": USER_AGENT, ...headers },
+      body: body === undefined ? undefined : JSON.stringify(body),
       signal: controller.signal
     });
   } catch (error) {
@@ -125,8 +127,8 @@ function modrinthEnvironment(project) {
   return unique(values);
 }
 
-async function lookupModrinth(parsed, fetchImpl) {
-  const project = await requestJson(`${MODRINTH_API}/project/${encodeURIComponent(parsed.slug)}`, { fetchImpl });
+async function lookupModrinthProject(projectId, fetchImpl) {
+  const project = await requestJson(`${MODRINTH_API}/project/${encodeURIComponent(projectId)}`, { fetchImpl });
   let authors = [];
   if (project.team) {
     try {
@@ -139,7 +141,7 @@ async function lookupModrinth(parsed, fetchImpl) {
 
   return {
     provider: "Modrinth",
-    sourceUrl: `https://modrinth.com/mod/${encodeURIComponent(project.slug || parsed.slug)}`,
+    sourceUrl: `https://modrinth.com/mod/${encodeURIComponent(project.slug || projectId)}`,
     projectId: String(project.id || ""),
     name: project.title || "",
     summary: project.description || "",
@@ -158,11 +160,15 @@ async function lookupModrinth(parsed, fetchImpl) {
   };
 }
 
+async function lookupModrinth(parsed, fetchImpl) {
+  return lookupModrinthProject(parsed.slug, fetchImpl);
+}
+
 function isGameVersion(value) {
   return /^\d+(?:\.\d+){1,3}(?:[.-][0-9A-Za-z]+)*$/.test(String(value || "").trim());
 }
 
-async function lookupCurseForge(parsed, fetchImpl, apiKey) {
+async function lookupCurseForgeProject(projectId, fetchImpl, apiKey) {
   if (!apiKey) {
     throw new MetadataLookupError(
       "O Modrinth funciona sem credencial. Para consultar o CurseForge, configure CURSEFORGE_API_KEY no servidor.",
@@ -171,21 +177,17 @@ async function lookupCurseForge(parsed, fetchImpl, apiKey) {
   }
 
   const headers = { "x-api-key": apiKey };
-  const query = new URLSearchParams({ gameId: String(MINECRAFT_GAME_ID), slug: parsed.slug, pageSize: "10" });
-  const search = await requestJson(`${CURSEFORGE_API}/mods/search?${query}`, { fetchImpl, headers });
-  const match = (search?.data || []).find((candidate) => candidate.slug === parsed.slug) || search?.data?.[0];
-  if (!match?.id) {
+  const [detailsResponse, filesResponse] = await Promise.all([
+    requestJson(`${CURSEFORGE_API}/mods/${encodeURIComponent(projectId)}`, { fetchImpl, headers }),
+    requestJson(`${CURSEFORGE_API}/mods/${encodeURIComponent(projectId)}/files?pageSize=50`, { fetchImpl, headers })
+  ]);
+  const project = detailsResponse?.data;
+  if (!project?.id) {
     throw new MetadataLookupError("O projeto não foi encontrado no CurseForge.", {
       code: "PROJECT_NOT_FOUND",
       statusCode: 404
     });
   }
-
-  const [detailsResponse, filesResponse] = await Promise.all([
-    requestJson(`${CURSEFORGE_API}/mods/${match.id}`, { fetchImpl, headers }),
-    requestJson(`${CURSEFORGE_API}/mods/${match.id}/files?pageSize=50`, { fetchImpl, headers })
-  ]);
-  const project = detailsResponse?.data || match;
   const files = [...(project.latestFiles || []), ...(filesResponse?.data || [])];
   const tokens = files.flatMap((file) => file.gameVersions || []);
   const loaderTokens = tokens.map(normalizeLoader).filter((value) => [...LOADER_NAMES.values()].includes(value));
@@ -194,9 +196,9 @@ async function lookupCurseForge(parsed, fetchImpl, apiKey) {
 
   return {
     provider: "CurseForge",
-    sourceUrl: project.links?.websiteUrl || parsed.canonicalUrl,
-    projectId: String(project.id || match.id),
-    name: project.name || match.name || "",
+    sourceUrl: project.links?.websiteUrl || `https://www.curseforge.com/minecraft/mc-mods/${encodeURIComponent(project.slug || projectId)}`,
+    projectId: String(project.id),
+    name: project.name || "",
     summary: project.summary || "",
     authors: unique((project.authors || []).map((author) => author.name)),
     supportedVersions: unique([...tokens.filter(isGameVersion), ...indexedVersions.filter(isGameVersion)]),
@@ -213,6 +215,43 @@ async function lookupCurseForge(parsed, fetchImpl, apiKey) {
   };
 }
 
+async function lookupCurseForge(parsed, fetchImpl, apiKey) {
+  if (!apiKey) {
+    throw new MetadataLookupError(
+      "O Modrinth funciona sem credencial. Para consultar o CurseForge, configure CURSEFORGE_API_KEY no servidor.",
+      { code: "CURSEFORGE_API_KEY_REQUIRED", statusCode: 424 }
+    );
+  }
+  const headers = { "x-api-key": apiKey };
+  const query = new URLSearchParams({ gameId: String(MINECRAFT_GAME_ID), slug: parsed.slug, pageSize: "10" });
+  const search = await requestJson(`${CURSEFORGE_API}/mods/search?${query}`, { fetchImpl, headers });
+  const match = (search?.data || []).find((candidate) => candidate.slug === parsed.slug) || search?.data?.[0];
+  if (!match?.id) {
+    throw new MetadataLookupError("O projeto não foi encontrado no CurseForge.", {
+      code: "PROJECT_NOT_FOUND",
+      statusCode: 404
+    });
+  }
+  return lookupCurseForgeProject(match.id, fetchImpl, apiKey);
+}
+
+export async function resolveProjectMetadataById({ provider, projectId }, {
+  fetchImpl = globalThis.fetch,
+  curseForgeApiKey = process.env.CURSEFORGE_API_KEY
+} = {}) {
+  const normalizedProvider = String(provider || "").trim().toLowerCase();
+  const normalizedId = String(projectId || "").trim();
+  if (!normalizedId || !["modrinth", "curseforge"].includes(normalizedProvider)) {
+    throw new MetadataLookupError("Informe uma plataforma e um ID de projeto válidos.", {
+      code: "INVALID_PROJECT_REFERENCE",
+      statusCode: 400
+    });
+  }
+  return normalizedProvider === "modrinth"
+    ? lookupModrinthProject(normalizedId, fetchImpl)
+    : lookupCurseForgeProject(normalizedId, fetchImpl, curseForgeApiKey);
+}
+
 export async function resolveProjectMetadata(value, {
   fetchImpl = globalThis.fetch,
   curseForgeApiKey = process.env.CURSEFORGE_API_KEY
@@ -220,6 +259,7 @@ export async function resolveProjectMetadata(value, {
   if (typeof fetchImpl !== "function") {
     throw new MetadataLookupError("Este servidor não possui suporte a consultas HTTP.");
   }
+  if (value && typeof value === "object") return resolveProjectMetadataById(value, { fetchImpl, curseForgeApiKey });
   const parsed = parseProjectUrl(value);
   return parsed.provider === "modrinth"
     ? lookupModrinth(parsed, fetchImpl)

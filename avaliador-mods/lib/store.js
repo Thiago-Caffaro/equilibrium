@@ -1,8 +1,8 @@
 import { randomUUID } from "node:crypto";
-import { mkdir, readFile, readdir, rename, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, rename, unlink, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 
-const COLLECTIONS = new Set(["mods", "references"]);
+const COLLECTIONS = new Set(["mods", "references", "staging"]);
 const DOCUMENT_NAME = /^[a-z0-9][a-z0-9._-]*\.(md|json)$/i;
 const RECORD_ID = /^[a-z0-9][a-z0-9-]{7,80}$/i;
 
@@ -45,7 +45,7 @@ function normaliseRecord(input, collection) {
   }
 
   const output = structuredClone(input);
-  output.kind = collection === "mods" ? "mod" : "reference";
+  output.kind = collection === "mods" ? "mod" : collection === "staging" ? "staging" : "reference";
   output.name = String(output.name || "").trim().slice(0, 180);
   if (!output.name) throw new ValidationError("O nome é obrigatório.");
 
@@ -82,6 +82,7 @@ export function createStore({ dataRoot }) {
     await Promise.all([
       mkdir(collectionPath("mods"), { recursive: true }),
       mkdir(collectionPath("references"), { recursive: true }),
+      mkdir(collectionPath("staging"), { recursive: true }),
       mkdir(join(dataRoot, "library"), { recursive: true })
     ]);
   }
@@ -213,12 +214,96 @@ export function createStore({ dataRoot }) {
     });
   }
 
+  async function remove(collection, id, options = {}) {
+    await initialise();
+    const key = `${collection}:${id}`;
+    return serialise(key, async () => {
+      const current = await get(collection, id);
+      if (!current) return null;
+      const expected = Number(options.expectedStorageVersion);
+      if (!options.force && Number.isFinite(expected) && expected !== storageVersionOf(current)) {
+        throw new ConflictError(current);
+      }
+      await unlink(recordPath(collection, id));
+      return current;
+    });
+  }
+
   async function findByName(collection, name) {
     const target = String(name || "").trim().toLocaleLowerCase("pt-BR");
     if (!target) return null;
     return (await list(collection)).find((record) =>
       String(record.name || "").trim().toLocaleLowerCase("pt-BR") === target
     ) || null;
+  }
+
+  function normalisedUrl(value) {
+    try {
+      const url = new URL(String(value || "").trim());
+      url.hash = "";
+      url.search = "";
+      return url.toString().replace(/\/$/, "").toLocaleLowerCase("pt-BR");
+    } catch {
+      return "";
+    }
+  }
+
+  function externalKeys(record) {
+    const keys = new Set();
+    for (const value of [record?.sourceUrl, record?.metadataSourceUrl]) {
+      const url = normalisedUrl(value);
+      if (url) keys.add(`url:${url}`);
+    }
+    const provider = String(record?.officialProvider || "").trim().toLocaleLowerCase("pt-BR");
+    const projectId = String(record?.officialProjectId || "").trim();
+    if (provider && projectId) keys.add(`project:${provider}:${projectId}`);
+    for (const source of Object.values(record?.stagingSources || {})) {
+      if (!source || typeof source !== "object") continue;
+      const sourceProvider = String(source.provider || "").trim().toLocaleLowerCase("pt-BR");
+      const sourceProject = String(source.projectId || "").trim();
+      if (sourceProvider && sourceProject) keys.add(`project:${sourceProvider}:${sourceProject}`);
+      const sourceUrl = normalisedUrl(source.sourceUrl);
+      if (sourceUrl) keys.add(`url:${sourceUrl}`);
+    }
+    return keys;
+  }
+
+  async function findEquivalentMod(record) {
+    const target = externalKeys(record);
+    if (target.size === 0) return null;
+    return (await list("mods")).find((candidate) => [...externalKeys(candidate)].some((key) => target.has(key))) || null;
+  }
+
+  async function promoteStage(id, options = {}) {
+    await initialise();
+    return serialise("promotion:mods", () => serialise(`staging:${id}`, async () => {
+      const stage = await get("staging", id);
+      if (!stage) return { stage: null, record: null, duplicate: null };
+      const expected = Number(options.expectedStorageVersion);
+      if (!options.force && Number.isFinite(expected) && expected !== storageVersionOf(stage)) {
+        throw new ConflictError(stage);
+      }
+      const duplicate = await findEquivalentMod(stage);
+      if (duplicate) return { stage, record: null, duplicate };
+
+      const source = structuredClone(stage);
+      delete source.id;
+      delete source.storageVersion;
+      delete source.createdAt;
+      delete source.updatedAt;
+      delete source.updatedBy;
+      delete source.reviewedAt;
+      delete source.reviewedBy;
+      delete source.revision;
+      source.kind = "mod";
+      source.status = source.status || "Não avaliado";
+      source.stagedAt = stage.createdAt;
+      source.stagedFiles = source.stagingFiles || [];
+      delete source.stagingFiles;
+      const record = await create("mods", source, options.author);
+      await unlink(recordPath("staging", id));
+      return { stage, record, duplicate: null };
+    }));
   }
 
   async function importRecords(collection, records, { mode = "skip", author = "Importação" } = {}) {
@@ -286,6 +371,8 @@ export function createStore({ dataRoot }) {
     create,
     save,
     review,
+    remove,
+    promoteStage,
     importRecords,
     listDocuments,
     getDocument,
