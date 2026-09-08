@@ -56,9 +56,11 @@ test("fallback por nome mantém candidatos ambíguos no staging e tolera falha p
     const target = String(url);
     if (target.includes("curseforge.com/v1/fingerprints/432")) return new Response(JSON.stringify({ data: { exactMatches: [] } }), { status: 200 });
     if (target.includes("curseforge.com/v1/mods/search")) {
+      assert.match(target, /classId=6/);
       return new Response(JSON.stringify({ data: [
-        { id: 100, name: "Candidato A", links: { websiteUrl: "https://example.test/a" } },
-        { id: 101, name: "Candidato B", links: { websiteUrl: "https://example.test/b" } }
+        { id: 99, classId: 4471, name: "Modpack que não deve aparecer", links: { websiteUrl: "https://example.test/pack" } },
+        { id: 100, classId: 6, name: "Candidato A", links: { websiteUrl: "https://example.test/a" } },
+        { id: 101, classId: 6, name: "Candidato B", links: { websiteUrl: "https://example.test/b" } }
       ] }), { status: 200 });
     }
     if (target.endsWith("modrinth.com/v2/version_files")) throw new Error("rede indisponível");
@@ -73,6 +75,7 @@ test("fallback por nome mantém candidatos ambíguos no staging e tolera falha p
   }], { fetchImpl, curseForgeApiKey: "chave" });
   assert.equal(record.stagingResolution, "ambiguous");
   assert.equal(record.stagingSources.curseforge.candidates.length, 2);
+  assert.ok(record.stagingSources.curseforge.candidates.every((candidate) => candidate.name !== "Modpack que não deve aparecer"));
   assert.equal(record.stagingSources.modrinth.state, "error");
 });
 
@@ -113,7 +116,7 @@ test("promoção concorrente não cria dois mods", async (t) => {
   assert.equal((await store.list("mods")).length, 1);
 });
 
-test("API cria staging, promove e expõe as análises somente para leitura", async (t) => {
+test("API cria staging, reavalia, promove e expõe as análises somente para leitura", async (t) => {
   const server = createAppServer({
     dataRoot: await temporaryRoot(t),
     jarResolver: async () => [{ name: "Do staging", stagingFiles: [{ fileName: "teste.jar", sha1: "d".repeat(40), curseFingerprint: 4 }] }]
@@ -131,10 +134,19 @@ test("API cria staging, promove e expõe as análises somente para leitura", asy
   assert.equal(created.status, 201);
   const stage = (await created.json()).records[0];
 
-  const promoted = await fetch(`${base}/api/staging/${stage.id}/promote`, {
+  const refreshed = await fetch(`${base}/api/staging/${stage.id}/resolve`, {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({ expectedStorageVersion: stage.storageVersion, author: "Teste" })
+  });
+  assert.equal(refreshed.status, 200);
+  const refreshedStage = (await refreshed.json()).record;
+  assert.equal(refreshedStage.storageVersion, stage.storageVersion + 1);
+
+  const promoted = await fetch(`${base}/api/staging/${stage.id}/promote`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ expectedStorageVersion: refreshedStage.storageVersion, author: "Teste" })
   });
   assert.equal(promoted.status, 200);
   assert.equal((await promoted.json()).record.kind, "mod");

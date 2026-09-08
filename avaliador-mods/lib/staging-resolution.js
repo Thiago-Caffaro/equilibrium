@@ -160,14 +160,19 @@ async function resolveCurseForge(descriptors, { fetchImpl, curseForgeApiKey }) {
     const unresolved = descriptors.filter((descriptor) => state.get(descriptor.sha1).state === "unavailable");
     await mapLimited(unresolved, 3, async (descriptor) => {
       try {
-        const query = new URLSearchParams({ gameId: String(MINECRAFT_GAME_ID), searchFilter: fallbackName(descriptor.fileName), pageSize: "5" });
+        // No CurseForge, a classe 6 corresponde a Minecraft Mods. Sem esse
+        // filtro a busca também devolve modpacks com nomes semelhantes.
+        const query = new URLSearchParams({ gameId: String(MINECRAFT_GAME_ID), classId: "6", searchFilter: fallbackName(descriptor.fileName), pageSize: "5" });
         const search = await requestJson(`${CURSEFORGE_API}/mods/search?${query}`, { fetchImpl, headers });
-        const candidates = (search?.data || []).slice(0, 5).map((candidate) => ({
+        const candidates = (search?.data || [])
+          .filter((candidate) => !Number.isFinite(Number(candidate.classId)) || Number(candidate.classId) === 6)
+          .slice(0, 5)
+          .map((candidate) => ({
           provider: "CurseForge",
           projectId: String(candidate.id || ""),
           name: candidate.name || "",
           sourceUrl: candidate.links?.websiteUrl || ""
-        })).filter((candidate) => candidate.projectId);
+          })).filter((candidate) => candidate.projectId);
         const result = state.get(descriptor.sha1);
         result.candidates = candidates;
         result.state = candidates.length === 1 ? "candidate" : candidates.length > 1 ? "ambiguous" : "missing";

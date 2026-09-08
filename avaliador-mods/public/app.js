@@ -558,7 +558,7 @@ function renderStagingPanel(record) {
     return `<div class="source-indicator-wrap"><button class="source-indicator source-indicator--${escapeHtml(source.state)}" type="button" data-source-provider="${key}" ${clickable ? "" : "disabled"} title="${clickable ? `Carregar dados do ${label}` : sourceStateLabel(source)}"><span></span><strong>${label}</strong><small>${escapeHtml(sourceStateLabel(source))}</small></button>${clickable ? `<button class="source-refresh" type="button" data-source-refresh="${key}" title="Ignorar o cache local e consultar ${label} novamente">Atualizar</button>` : ""}</div>`;
   };
   const candidates = sources.curseforge?.candidates || [];
-  return `<section class="staging-panel"><div><p class="eyebrow">Identificação do arquivo</p><h3>${escapeHtml(record.stagingMessage || "Revise a identificação antes de promover.")}</h3><p class="muted-copy">${(record.stagingFiles || []).map((file) => escapeHtml(file.relativePath || file.fileName)).join("<br>") || "Sem arquivo associado"}</p></div><div class="source-indicators">${card("curseforge", "CurseForge")}${card("modrinth", "Modrinth")}</div>${candidates.length ? `<div class="staging-candidates"><strong>Possíveis candidatos do CurseForge</strong>${candidates.map((candidate) => `<button type="button" data-stage-candidate="${escapeHtml(candidate.projectId)}">Usar ${escapeHtml(candidate.name || candidate.projectId)}</button>`).join("")}</div>` : ""}</section>`;
+  return `<section class="staging-panel"><div><p class="eyebrow">Identificação do arquivo</p><h3>${escapeHtml(record.stagingMessage || "Revise a identificação antes de promover.")}</h3><p class="muted-copy">${(record.stagingFiles || []).map((file) => escapeHtml(file.relativePath || file.fileName)).join("<br>") || "Sem arquivo associado"}</p></div><div class="source-indicators">${card("curseforge", "CurseForge")}${card("modrinth", "Modrinth")}</div><button class="button button--small" type="button" data-stage-resolve>Reavaliar identificação</button>${candidates.length ? `<div class="staging-candidates"><strong>Possíveis candidatos do CurseForge</strong>${candidates.map((candidate) => `<button type="button" data-stage-candidate="${escapeHtml(candidate.projectId)}">Usar ${escapeHtml(candidate.name || candidate.projectId)}</button>`).join("")}</div>` : ""}</section>`;
 }
 
 function defaultRecord() {
@@ -821,6 +821,36 @@ async function loadStageProvider(provider, { projectId, force = false } = {}) {
     toast(error.message, "error", 5200);
   } finally {
     state.metadataLoading = false;
+  }
+}
+
+async function resolveStage() {
+  if (state.collection !== "staging" || !state.current?.id || state.saving) return;
+  if (state.dirty && !(await saveRecord({ quiet: true }))) return;
+  state.saving = true;
+  updateEditorHeader();
+  try {
+    const { record } = await api(`/api/staging/${encodeURIComponent(state.current.id)}/resolve`, {
+      method: "POST",
+      body: JSON.stringify({ expectedStorageVersion: state.current.storageVersion, author: getAuthor() })
+    });
+    state.current = record;
+    state.dirty = false;
+    upsertLocalRecord(record);
+    renderForm();
+    renderList();
+    toast("Identificação atualizada com os filtros de mods.", "success");
+  } catch (error) {
+    if (error.status === 409) {
+      state.conflictCurrent = error.payload.current;
+      elements.conflictBanner.hidden = false;
+      toast("O item mudou antes da reavaliação.", "warning");
+    } else {
+      toast(error.message, "error");
+    }
+  } finally {
+    state.saving = false;
+    updateEditorHeader();
   }
 }
 
@@ -1369,6 +1399,10 @@ elements.recordForm.addEventListener("click", (event) => {
   const button = event.target.closest("[data-na-field]");
   if (button) {
     toggleNotApplicable(button.dataset.naField);
+    return;
+  }
+  if (event.target.closest("[data-stage-resolve]")) {
+    void resolveStage();
     return;
   }
   const providerButton = event.target.closest("[data-source-provider]");

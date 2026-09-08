@@ -17,6 +17,13 @@ const DEFAULT_DATA_ROOT = join(APP_ROOT, "data");
 const DEFAULT_PORT = Number(process.env.PORT || 8787);
 const DEFAULT_HOST = process.env.HOST || "0.0.0.0";
 const MAX_BODY_SIZE = 6 * 1024 * 1024;
+const STAGING_RESOLUTION_FIELDS = new Set([
+  "name", "sourceUrl", "projectUrl", "supportedVersions", "loaders",
+  "officialSummary", "officialAuthors", "officialProjectId", "officialCategories",
+  "officialEnvironment", "officialLicense", "officialProvider", "officialPublishedAt",
+  "officialUpdatedAt", "officialDownloads", "officialIconUrl", "metadataSourceUrl",
+  "metadataFetchedAt", "stagingResolution", "stagingFiles", "stagingSources", "stagingMessage"
+]);
 
 const MIME_TYPES = {
   ".html": "text/html; charset=utf-8",
@@ -88,6 +95,13 @@ function parseImportedJson(content, collection) {
   if (Array.isArray(parsed?.records)) return parsed.records;
   if (Array.isArray(parsed?.[collection])) return parsed[collection];
   throw new ValidationError("O JSON deve conter uma lista ou uma propriedade records.");
+}
+
+function applyStagingResolution(stage, resolved) {
+  const factualResolution = Object.fromEntries(
+    Object.entries(resolved).filter(([key]) => STAGING_RESOLUTION_FIELDS.has(key))
+  );
+  return { ...stage, ...factualResolution };
 }
 
 async function serveStatic(pathname, method, response) {
@@ -226,6 +240,22 @@ export function createAppServer({ dataRoot = DEFAULT_DATA_ROOT, metadataResolver
           const created = [];
           for (const record of records) created.push(await store.create("staging", record, body.author));
           sendJson(response, 201, { records: created });
+          return;
+        }
+        if (request.method === "POST" && id && segments[3] === "resolve") {
+          const body = await readJsonBody(request);
+          const stage = await store.get("staging", id);
+          if (!stage) {
+            sendJson(response, 404, { error: "Item de staging não encontrado." });
+            return;
+          }
+          const records = await jarResolver(stage.stagingFiles || [], { author: body.author });
+          if (records.length !== 1) throw new ValidationError("Não foi possível reavaliar este item de staging.");
+          const record = await store.save("staging", id, applyStagingResolution(stage, records[0]), {
+            expectedStorageVersion: body.expectedStorageVersion,
+            author: body.author
+          });
+          sendJson(response, 200, { record });
           return;
         }
         if (request.method === "POST" && id && segments[3] === "promote") {
