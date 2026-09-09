@@ -4,6 +4,44 @@ const MODRINTH_API = "https://api.modrinth.com/v2";
 const CURSEFORGE_API = "https://api.curseforge.com/v1";
 const MINECRAFT_GAME_ID = 432;
 const USER_AGENT = "Equilibrium-Mod-Evaluator/0.1 (https://github.com/Thiago-Caffaro/equilibrium)";
+const CURSEFORGE_MIN_INTERVAL_MS = 350;
+const UPSTREAM_MAX_ATTEMPTS = 3;
+
+let curseForgeQueue = Promise.resolve();
+let nextCurseForgeRequestAt = 0;
+
+function wait(milliseconds) {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+}
+
+function queueCurseForge(operation) {
+  const scheduled = curseForgeQueue.then(async () => {
+    const delay = Math.max(0, nextCurseForgeRequestAt - Date.now());
+    if (delay > 0) await wait(delay);
+    try {
+      return await operation();
+    } finally {
+      nextCurseForgeRequestAt = Date.now() + CURSEFORGE_MIN_INTERVAL_MS;
+    }
+  });
+  curseForgeQueue = scheduled.catch(() => undefined);
+  return scheduled;
+}
+
+function retryAfterSeconds(response) {
+  const value = response.headers?.get("retry-after");
+  if (!value) return null;
+  const seconds = Number(value);
+  if (Number.isFinite(seconds) && seconds >= 0) return seconds;
+  const timestamp = Date.parse(value);
+  return Number.isFinite(timestamp) ? Math.max(0, Math.ceil((timestamp - Date.now()) / 1000)) : null;
+}
+
+function retryDelayMilliseconds(response, attempt) {
+  const serverDelay = retryAfterSeconds(response);
+  if (serverDelay !== null) return serverDelay * 1000;
+  return 400 * (2 ** attempt);
+}
 
 function unique(values) {
   return [...new Set(values.filter(Boolean).map((value) => String(value).trim()).filter(Boolean))];
@@ -91,33 +129,54 @@ function normaliseDescriptor(input) {
   };
 }
 
-async function requestJson(url, { fetchImpl, headers = {}, method = "GET", body } = {}) {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 20000);
-  try {
-    const response = await fetchImpl(url, {
-      method,
-      headers: { accept: "application/json", "user-agent": USER_AGENT, ...headers },
-      body: body === undefined ? undefined : JSON.stringify(body),
-      signal: controller.signal
-    });
-    const payload = await response.json().catch(() => null);
-    if (!response.ok) {
-      throw new MetadataLookupError(`A plataforma respondeu com erro ${response.status}.`, {
-        code: "STAGING_UPSTREAM_ERROR",
-        statusCode: 502
-      });
+async function requestJson(url, { fetchImpl, headers = {}, method = "GET", body, rateLimit = "none" } = {}) {
+  const execute = async () => {
+    let lastError;
+    for (let attempt = 0; attempt < UPSTREAM_MAX_ATTEMPTS; attempt += 1) {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 20000);
+      try {
+        const response = await fetchImpl(url, {
+          method,
+          headers: { accept: "application/json", "user-agent": USER_AGENT, ...headers },
+          body: body === undefined ? undefined : JSON.stringify(body),
+          signal: controller.signal
+        });
+        const payload = await response.json().catch(() => null);
+        if (response.ok) return payload;
+        const transient = response.status === 429 || response.status >= 500;
+        lastError = new MetadataLookupError(
+          response.status === 429 ? "A plataforma limitou temporariamente as consultas." : `A plataforma respondeu com erro ${response.status}.`,
+          {
+            code: response.status === 429 ? "STAGING_RATE_LIMITED" : "STAGING_UPSTREAM_ERROR",
+            statusCode: 502,
+            upstreamStatus: response.status,
+            retryAfterSeconds: retryAfterSeconds(response)
+          }
+        );
+        if (!transient || attempt === UPSTREAM_MAX_ATTEMPTS - 1) throw lastError;
+        await wait(retryDelayMilliseconds(response, attempt));
+      } catch (error) {
+        if (error instanceof MetadataLookupError) {
+          if (attempt === UPSTREAM_MAX_ATTEMPTS - 1 || !["STAGING_RATE_LIMITED", "STAGING_UPSTREAM_ERROR"].includes(error.code)) throw error;
+          lastError = error;
+          await wait(400 * (2 ** attempt));
+        } else if (error.name === "AbortError") {
+          lastError = new MetadataLookupError("A plataforma demorou demais para responder.", { code: "STAGING_TIMEOUT" });
+          if (attempt === UPSTREAM_MAX_ATTEMPTS - 1) throw lastError;
+          await wait(400 * (2 ** attempt));
+        } else {
+          lastError = new MetadataLookupError("Não foi possível consultar a plataforma.", { code: "STAGING_NETWORK_ERROR" });
+          if (attempt === UPSTREAM_MAX_ATTEMPTS - 1) throw lastError;
+          await wait(400 * (2 ** attempt));
+        }
+      } finally {
+        clearTimeout(timeout);
+      }
     }
-    return payload;
-  } catch (error) {
-    if (error instanceof MetadataLookupError) throw error;
-    if (error.name === "AbortError") {
-      throw new MetadataLookupError("A plataforma demorou demais para responder.", { code: "STAGING_TIMEOUT" });
-    }
-    throw new MetadataLookupError("Não foi possível consultar a plataforma.", { code: "STAGING_NETWORK_ERROR" });
-  } finally {
-    clearTimeout(timeout);
-  }
+    throw lastError;
+  };
+  return rateLimit === "curseforge" ? queueCurseForge(execute) : execute();
 }
 
 async function mapLimited(items, limit, operation) {
@@ -156,6 +215,17 @@ function fieldsFromMetadata(metadata) {
   };
 }
 
+function markSourceError(result, error) {
+  result.state = "error";
+  result.errorCode = error?.code || "STAGING_UPSTREAM_ERROR";
+  result.upstreamStatus = Number.isInteger(error?.upstreamStatus) ? error.upstreamStatus : null;
+  result.retryAfterSeconds = Number.isFinite(Number(error?.retryAfterSeconds)) ? Number(error.retryAfterSeconds) : null;
+}
+
+function curseForgeFetch(fetchImpl) {
+  return (...args) => queueCurseForge(() => fetchImpl(...args));
+}
+
 async function resolveCurseForge(descriptors, { fetchImpl, curseForgeApiKey }) {
   const state = new Map(descriptors.map((descriptor) => [descriptor.sha1, {
     provider: "CurseForge",
@@ -175,7 +245,8 @@ async function resolveCurseForge(descriptors, { fetchImpl, curseForgeApiKey }) {
       fetchImpl,
       headers,
       method: "POST",
-      body: { fingerprints: descriptors.map((descriptor) => descriptor.curseFingerprint) }
+      body: { fingerprints: descriptors.map((descriptor) => descriptor.curseFingerprint) },
+      rateLimit: "curseforge"
     });
     const byFingerprint = new Map(descriptors.map((descriptor) => [String(descriptor.curseFingerprint), descriptor]));
     const projectIds = new Set();
@@ -188,9 +259,9 @@ async function resolveCurseForge(descriptors, { fetchImpl, curseForgeApiKey }) {
       projectIds.add(result.projectId);
     }
 
-    const entries = await mapLimited([...projectIds], 4, async (projectId) => {
+    const entries = await mapLimited([...projectIds], 1, async (projectId) => {
       try {
-        const metadata = await resolveProjectMetadataById({ provider: "curseforge", projectId }, { fetchImpl, curseForgeApiKey });
+        const metadata = await resolveProjectMetadataById({ provider: "curseforge", projectId }, { fetchImpl: curseForgeFetch(fetchImpl), curseForgeApiKey });
         return [projectId, metadata];
       } catch (error) {
         return [projectId, { error }];
@@ -200,16 +271,16 @@ async function resolveCurseForge(descriptors, { fetchImpl, curseForgeApiKey }) {
     for (const result of state.values()) {
       const entry = metadata.get(result.projectId);
       if (entry && !entry.error) result.sourceUrl = entry.sourceUrl;
-      if (entry?.error) result.state = "error";
+      if (entry?.error) markSourceError(result, entry.error);
     }
 
     const unresolved = descriptors.filter((descriptor) => state.get(descriptor.sha1).state === "unavailable");
-    await mapLimited(unresolved, 3, async (descriptor) => {
+    await mapLimited(unresolved, 1, async (descriptor) => {
       try {
         let candidates = [];
         for (const searchedName of identityTerms(descriptor)) {
           const query = new URLSearchParams({ gameId: String(MINECRAFT_GAME_ID), classId: "6", searchFilter: searchedName, pageSize: "50" });
-          const search = await requestJson(`${CURSEFORGE_API}/mods/search?${query}`, { fetchImpl, headers });
+          const search = await requestJson(`${CURSEFORGE_API}/mods/search?${query}`, { fetchImpl, headers, rateLimit: "curseforge" });
           candidates = (search?.data || [])
             .filter((candidate) => !Number.isFinite(Number(candidate.classId)) || Number(candidate.classId) === 6)
             .filter((candidate) => isRelevantCandidate(candidate, searchedName))
@@ -227,13 +298,13 @@ async function resolveCurseForge(descriptors, { fetchImpl, curseForgeApiKey }) {
         const result = state.get(descriptor.sha1);
         result.candidates = candidates;
         result.state = candidates.length === 1 ? "candidate" : candidates.length > 1 ? "ambiguous" : "missing";
-      } catch {
-        state.get(descriptor.sha1).state = "error";
+      } catch (error) {
+        markSourceError(state.get(descriptor.sha1), error);
       }
     });
     return { state, metadata };
-  } catch {
-    for (const result of state.values()) result.state = "error";
+  } catch (error) {
+    for (const result of state.values()) markSourceError(result, error);
     return { state, metadata: new Map() };
   }
 }

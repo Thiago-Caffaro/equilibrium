@@ -537,14 +537,20 @@ async function lookupOfficialMetadata({ force = false } = {}) {
 }
 
 function sourceStateLabel(source) {
+  if (source?.state === "error") {
+    if (source.upstreamStatus === 429) {
+      return source.retryAfterSeconds ? `Limite temporário · tente em ${source.retryAfterSeconds}s` : "Limite temporário · tente novamente";
+    }
+    if (source.upstreamStatus) return `Erro temporário da fonte (${source.upstreamStatus})`;
+    return "Erro temporário na consulta";
+  }
   const labels = {
     exact: "Disponível",
     candidate: "1 candidato",
     ambiguous: "Ambíguo",
     missing: "Indisponível",
     unavailable: "Não verificado",
-    "not-configured": "Chave ausente",
-    error: "Erro na consulta"
+    "not-configured": "Chave ausente"
   };
   return labels[source?.state] || "Não verificado";
 }

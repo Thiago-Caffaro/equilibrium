@@ -23,11 +23,13 @@ const CURSEFORGE_LOADER_IDS = new Map([
 ]);
 
 export class MetadataLookupError extends Error {
-  constructor(message, { code = "METADATA_LOOKUP_FAILED", statusCode = 502 } = {}) {
+  constructor(message, { code = "METADATA_LOOKUP_FAILED", statusCode = 502, upstreamStatus = null, retryAfterSeconds = null } = {}) {
     super(message);
     this.name = "MetadataLookupError";
     this.code = code;
     this.statusCode = statusCode;
+    this.upstreamStatus = Number.isInteger(upstreamStatus) ? upstreamStatus : null;
+    this.retryAfterSeconds = Number.isFinite(Number(retryAfterSeconds)) ? Number(retryAfterSeconds) : null;
   }
 }
 

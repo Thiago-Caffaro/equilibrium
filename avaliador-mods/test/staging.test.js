@@ -57,6 +57,32 @@ test("resolução de JAR confirma CurseForge e consulta disponibilidade leve do 
   assert.equal(records[0].stagingSources.modrinth.state, "missing");
 });
 
+test("repete uma limitação temporária do CurseForge antes de marcar erro", async () => {
+  let fingerprintAttempts = 0;
+  const fetchImpl = async (url) => {
+    const target = String(url);
+    if (target.includes("curseforge.com/v1/fingerprints/432")) {
+      fingerprintAttempts += 1;
+      if (fingerprintAttempts === 1) return new Response("", { status: 429, headers: { "retry-after": "0" } });
+      return new Response(JSON.stringify({ data: { exactMatches: [{ file: { fileFingerprint: 321, modId: 654 } }] } }), { status: 200 });
+    }
+    if (target.endsWith("curseforge.com/v1/mods/654")) {
+      return new Response(JSON.stringify({ data: { id: 654, name: "Recuperado", latestFilesIndexes: [] } }), { status: 200 });
+    }
+    if (target.includes("curseforge.com/v1/mods/654/files")) return new Response(JSON.stringify({ data: [] }), { status: 200 });
+    if (target.endsWith("modrinth.com/v2/version_files")) return new Response(JSON.stringify({}), { status: 200 });
+    throw new Error(`URL inesperada: ${target}`);
+  };
+  const [record] = await resolveJarDescriptors([{
+    fileName: "recuperado.jar",
+    sha1: "1".repeat(40),
+    curseFingerprint: 321
+  }], { fetchImpl, curseForgeApiKey: "chave" });
+  assert.equal(fingerprintAttempts, 2);
+  assert.equal(record.stagingSources.curseforge.state, "exact");
+  assert.equal(record.name, "Recuperado");
+});
+
 test("fallback por nome mantém candidatos ambíguos no staging e tolera falha parcial", async () => {
   const fetchImpl = async (url) => {
     const target = String(url);

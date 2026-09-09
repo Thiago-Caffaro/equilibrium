@@ -429,6 +429,7 @@ input:disabled, select:disabled, textarea:disabled { cursor: not-allowed; }
 .source-indicator--exact { border-color: rgb(131 212 165 / 55%); cursor: pointer; }
 .source-indicator--exact > span { background: var(--accent); box-shadow: 0 0 0 3px rgb(131 212 165 / 12%); }
 .source-indicator--missing > span { background: var(--danger); }
+.source-indicator--error > span { background: var(--danger); }
 .source-indicator--ambiguous > span, .source-indicator--candidate > span { background: var(--amber); }
 .source-indicator:disabled { opacity: .78; cursor: default; }
 .source-refresh { padding: 0 8px; border: 1px solid var(--line); border-left: 0; border-radius: 0 8px 8px 0; background: #141a17; color: var(--muted); font: 700 9px/1 var(--font-mono); cursor: pointer; }
