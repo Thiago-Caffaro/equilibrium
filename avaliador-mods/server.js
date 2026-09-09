@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 import { MOD_CSV_FIELDS, REFERENCE_CSV_FIELDS, parseCsv, stringifyCsv } from "./lib/csv.js";
 import { MetadataLookupError, resolveProjectMetadata } from "./lib/project-metadata.js";
 import { resolveJarDescriptors } from "./lib/staging-resolution.js";
+import { createRemoteModSearch } from "./lib/mod-search.js";
 import { ConflictError, ValidationError, createStore } from "./lib/store.js";
 
 const APP_ROOT = fileURLToPath(new URL(".", import.meta.url));
@@ -104,6 +105,81 @@ function applyStagingResolution(stage, resolved) {
   return { ...stage, ...factualResolution };
 }
 
+function sourceLabel(provider) {
+  return provider === "curseforge" ? "CurseForge" : "Modrinth";
+}
+
+function remoteStageRecord(input, author) {
+  const sources = Array.isArray(input?.sources) ? input.sources : [];
+  const uniqueSources = new Map();
+  for (const source of sources.slice(0, 2)) {
+    const provider = String(source?.provider || "").trim().toLowerCase();
+    const projectId = String(source?.projectId || "").trim().slice(0, 160);
+    if (!["curseforge", "modrinth"].includes(provider) || !projectId || uniqueSources.has(provider)) continue;
+    uniqueSources.set(provider, {
+      provider,
+      projectId,
+      name: String(source?.name || "").trim().slice(0, 180),
+      slug: String(source?.slug || "").trim().slice(0, 180),
+      sourceUrl: String(source?.sourceUrl || "").trim().slice(0, 1000),
+      summary: String(source?.summary || "").trim().slice(0, 3000),
+      authors: Array.isArray(source?.authors) ? source.authors.map(String).map((value) => value.trim()).filter(Boolean).slice(0, 40) : [],
+      supportedVersions: Array.isArray(source?.supportedVersions) ? source.supportedVersions.map(String).map((value) => value.trim()).filter(Boolean).slice(0, 80) : [],
+      loaders: Array.isArray(source?.loaders) ? source.loaders.map(String).map((value) => value.trim()).filter(Boolean).slice(0, 20) : [],
+      categories: Array.isArray(source?.categories) ? source.categories.map(String).map((value) => value.trim()).filter(Boolean).slice(0, 80) : [],
+      iconUrl: String(source?.iconUrl || "").trim().slice(0, 1000),
+      downloads: Number.isFinite(Number(source?.downloads)) ? Number(source.downloads) : null
+    });
+  }
+  if (uniqueSources.size === 0) throw new ValidationError("Cada resultado precisa conter uma referência válida do Modrinth ou CurseForge.");
+
+  const primary = uniqueSources.get("curseforge") || uniqueSources.get("modrinth");
+  const stagingSources = Object.fromEntries([...uniqueSources.entries()].map(([provider, source]) => [provider, {
+    provider: sourceLabel(provider),
+    state: "exact",
+    projectId: source.projectId,
+    sourceUrl: source.sourceUrl,
+    name: source.name
+  }]));
+
+  return {
+    kind: "staging",
+    name: primary.name || String(input?.name || "").trim().slice(0, 180),
+    status: "Não avaliado",
+    evaluator: String(author || "Anônimo"),
+    divisions: [],
+    supportedVersions: primary.supportedVersions,
+    loaders: primary.loaders,
+    tags: [],
+    notApplicableFields: [],
+    officialSummary: primary.summary,
+    officialAuthors: primary.authors,
+    officialProjectId: primary.projectId,
+    officialCategories: primary.categories,
+    officialEnvironment: [],
+    officialLicense: "",
+    officialProvider: sourceLabel(primary.provider),
+    officialDownloads: primary.downloads ?? "",
+    officialIconUrl: primary.iconUrl,
+    sourceUrl: primary.sourceUrl,
+    metadataSourceUrl: primary.sourceUrl,
+    metadataFetchedAt: "",
+    metadataState: "preview",
+    officialSources: [...uniqueSources.values()].map((source) => ({
+      provider: source.provider,
+      projectId: source.projectId,
+      sourceUrl: source.sourceUrl,
+      name: source.name
+    })),
+    stagingOrigin: "remote-search",
+    stagingResolution: "confirmed",
+    stagingFiles: [],
+    stagingSources,
+    stagingMessage: "Importado pela busca remota. Metadados básicos prontos; carregue dados completos quando precisar.",
+    notesMarkdown: ""
+  };
+}
+
 async function serveStatic(pathname, method, response) {
   const requested = pathname === "/" ? "index.html" : pathname.replace(/^[/\\]+/, "");
   const absolutePath = resolve(PUBLIC_ROOT, normalize(requested));
@@ -160,7 +236,7 @@ async function serveAnalysisStatic(name, method, response) {
   }
 }
 
-export function createAppServer({ dataRoot = DEFAULT_DATA_ROOT, metadataResolver = resolveProjectMetadata, jarResolver = resolveJarDescriptors } = {}) {
+export function createAppServer({ dataRoot = DEFAULT_DATA_ROOT, metadataResolver = resolveProjectMetadata, jarResolver = resolveJarDescriptors, remoteSearch = createRemoteModSearch() } = {}) {
   const store = createStore({ dataRoot });
   void store.initialise();
 
@@ -176,6 +252,29 @@ export function createAppServer({ dataRoot = DEFAULT_DATA_ROOT, metadataResolver
           storage: "json-files",
           now: new Date().toISOString()
         });
+        return;
+      }
+
+      if (request.method === "GET" && url.pathname === "/api/search/mods") {
+        if (String(url.searchParams.get("query") || "").trim().length < 3) {
+          throw new ValidationError("Digite ao menos três caracteres para buscar mods.");
+        }
+        const result = await remoteSearch.search({
+          query: url.searchParams.get("query"),
+          source: url.searchParams.get("source") || "both",
+          version: url.searchParams.get("version") || "",
+          loader: url.searchParams.get("loader") || "",
+          refresh: url.searchParams.get("refresh") === "1"
+        });
+        for (const group of result.groups) {
+          const equivalent = await store.findEquivalentRecord({ officialSources: group.sources });
+          group.existing = equivalent ? {
+            collection: equivalent.collection,
+            id: equivalent.record.id,
+            name: equivalent.record.name
+          } : null;
+        }
+        sendJson(response, 200, result);
         return;
       }
 
@@ -245,6 +344,28 @@ export function createAppServer({ dataRoot = DEFAULT_DATA_ROOT, metadataResolver
 
       if (segments[0] === "api" && segments[1] === "staging") {
         const id = segments[2];
+        if (request.method === "POST" && id === "from-search" && !segments[3]) {
+          const body = await readJsonBody(request);
+          const records = (Array.isArray(body.selections) ? body.selections : []).map((selection) => remoteStageRecord(selection, body.author));
+          const result = await store.createRemoteStages(records, body.author);
+          sendJson(response, 201, result);
+          return;
+        }
+        if (request.method === "POST" && id === "promote-many" && !segments[3]) {
+          const body = await readJsonBody(request);
+          const result = await store.promoteMany(body.records, { author: body.author });
+          if (result.conflicts.length > 0 || result.duplicates.length > 0) {
+            sendJson(response, 409, {
+              error: result.conflicts.length > 0
+                ? "Uma ou mais fichas de staging mudaram antes da promoção."
+                : "Uma ou mais fichas equivalentes já existem no catálogo.",
+              ...result
+            });
+          } else {
+            sendJson(response, 200, result);
+          }
+          return;
+        }
         if (request.method === "POST" && !id && segments[2] === undefined) {
           const body = await readJsonBody(request);
           const records = await jarResolver(body.descriptors, { author: body.author });

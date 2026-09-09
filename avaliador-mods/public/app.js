@@ -160,11 +160,21 @@ const state = {
   analysisVisible: false,
   scanCancelled: false,
   scanWorker: null,
-  selectedRecordIds: new Set()
+  selectedRecordIds: new Set(),
+  remoteSearch: {
+    controller: null,
+    timer: null,
+    requestId: 0,
+    loading: false,
+    groups: [],
+    sources: {},
+    selectedIds: new Set(),
+    activeIndex: 0
+  }
 };
 
 const elements = Object.fromEntries([
-  "connectionStatus", "editorName", "transferButton", "transferMenu", "newRecordButton",
+  "connectionStatus", "editorName", "transferButton", "transferMenu", "newRecordButton", "remoteSearchButton",
   "welcomeNewButton", "searchInput", "statusFilter", "divisionFilter", "refreshButton",
   "recordCount", "recordList", "welcomeState", "editorState", "recordKindLabel", "recordTitle",
   "recordMeta", "saveIndicator", "reviewButton", "saveButton", "deleteButton", "promoteButton", "recordForm", "conflictBanner", "noteSource",
@@ -172,7 +182,8 @@ const elements = Object.fromEntries([
   "jsonTextarea", "applyJsonButton", "newDocumentButton", "importFileInput", "importDialog",
   "importFileSummary", "confirmImportButton", "shortcutsButton", "shortcutsDialog", "toastRegion", "analysesButton",
   "analysisState", "analysisSearch", "analysisCategory", "analysisPresence", "copyAnalysisButton", "analysisStats", "analysisHead", "analysisRows", "analysisDocumentLinks", "analysisDocumentPreview",
-  "scanFolderButton", "jarDirectoryInput", "jarFilesInput", "selectVisibleButton", "bulkDeleteButton"
+  "scanFolderButton", "jarDirectoryInput", "jarFilesInput", "selectVisibleButton", "bulkPromoteButton", "bulkDeleteButton",
+  "remoteSearchDialog", "remoteSearchClose", "remoteSearchInput", "remoteSearchSource", "remoteSearchVersion", "remoteSearchLoader", "remoteSearchRefresh", "remoteSearchSourceState", "remoteSearchHint", "remoteSearchResults", "remoteSearchSelection", "remoteSearchAdd"
 ].map((id) => [id, document.getElementById(id)]));
 
 function escapeHtml(value) {
@@ -227,6 +238,176 @@ function toast(message, tone = "info", duration = 3200) {
     item.classList.remove("is-visible");
     setTimeout(() => item.remove(), 180);
   }, duration);
+}
+
+function compactNumber(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number) || number <= 0) return "";
+  return new Intl.NumberFormat("pt-BR", { notation: "compact", maximumFractionDigits: 1 }).format(number);
+}
+
+function remoteSearchOptions() {
+  return {
+    query: elements.remoteSearchInput.value.trim(),
+    source: elements.remoteSearchSource.value,
+    version: elements.remoteSearchVersion.value.trim(),
+    loader: elements.remoteSearchLoader.value
+  };
+}
+
+function remoteSourceStateLabel(source) {
+  if (source?.state === "ready") return "Disponível";
+  if (source?.state === "skipped") return "Não consultado";
+  if (source?.upstreamStatus === 401) return "Credencial rejeitada (401)";
+  if (source?.upstreamStatus === 403) return "Sem acesso (403)";
+  if (source?.upstreamStatus === 429) return "Limite temporário (429)";
+  return source?.message || "Erro temporário";
+}
+
+function renderRemoteSearch() {
+  const remote = state.remoteSearch;
+  const selected = remote.groups.filter((group) => remote.selectedIds.has(group.id));
+  elements.remoteSearchAdd.disabled = remote.loading || selected.length === 0;
+  elements.remoteSearchAdd.textContent = selected.length ? `Adicionar ${selected.length} ao Staging` : "Adicionar ao Staging";
+  elements.remoteSearchSelection.textContent = remote.loading
+    ? "Buscando nas fontes oficiais…"
+    : selected.length
+      ? `${selected.length} resultado${selected.length === 1 ? "" : "s"} selecionado${selected.length === 1 ? "" : "s"}`
+      : "Nenhum resultado selecionado";
+
+  const sources = Object.entries(remote.sources || {});
+  elements.remoteSearchSourceState.innerHTML = sources.map(([key, source]) => `<span class="remote-source-state remote-source-state--${escapeHtml(source.state || "error")}"><strong>${escapeHtml(source.provider || (key === "curseforge" ? "CurseForge" : "Modrinth"))}</strong> · ${escapeHtml(remoteSourceStateLabel(source))}</span>`).join("");
+  const query = remoteSearchOptions().query;
+  if (remote.loading) {
+    elements.remoteSearchHint.textContent = "Consultando Modrinth e CurseForge…";
+    elements.remoteSearchResults.innerHTML = "";
+    return;
+  }
+  if (query.length < 3) {
+    elements.remoteSearchHint.textContent = "Digite ao menos três caracteres para buscar por nome.";
+    elements.remoteSearchResults.innerHTML = "";
+    return;
+  }
+  if (remote.groups.length === 0) {
+    elements.remoteSearchHint.textContent = "Nenhum mod foi encontrado com estes filtros. Uma fonte pode ter falhado sem impedir a outra.";
+    elements.remoteSearchResults.innerHTML = "";
+    return;
+  }
+  elements.remoteSearchHint.textContent = `${remote.groups.length} resultado${remote.groups.length === 1 ? "" : "s"}; cartões reúnem apenas nomes ou slugs exatamente iguais.`;
+  elements.remoteSearchResults.innerHTML = remote.groups.map((group, index) => {
+    const existing = group.existing;
+    const isSelected = remote.selectedIds.has(group.id);
+    const versions = group.supportedVersions?.slice(0, 4).join(", ");
+    const loaders = group.loaders?.slice(0, 4).join(", ");
+    const sourceChips = group.sources.map((source) => `<span>${escapeHtml(source.provider === "curseforge" ? "CurseForge" : "Modrinth")}</span>`).join("");
+    return `<article class="remote-result${isSelected ? " is-selected" : ""}${index === remote.activeIndex ? " is-active" : ""}" data-remote-result="${escapeHtml(group.id)}" role="option" aria-selected="${isSelected}">
+      <label class="remote-result__select"><input type="checkbox" data-remote-select="${escapeHtml(group.id)}" ${isSelected ? "checked" : ""} ${existing ? "disabled" : ""}><span class="sr-only">Selecionar ${escapeHtml(group.name)}</span></label>
+      <span class="remote-result__icon">${group.iconUrl ? `<img src="${escapeHtml(group.iconUrl)}" alt="">` : "◇"}</span>
+      <div class="remote-result__content"><div class="remote-result__title"><strong>${escapeHtml(group.name)}</strong>${existing ? `<span class="remote-result__existing">Já em ${existing.collection === "mods" ? "Mods" : "Staging"}</span>` : ""}</div><p class="remote-result__summary">${escapeHtml(group.summary || "Sem resumo oficial disponível.")}</p><div class="remote-result__meta">${group.authors?.length ? `<span>${escapeHtml(group.authors.slice(0, 3).join(", "))}</span>` : ""}${versions ? `<span>${escapeHtml(versions)}</span>` : ""}${loaders ? `<span>${escapeHtml(loaders)}</span>` : ""}${compactNumber(group.downloads) ? `<span>${compactNumber(group.downloads)} downloads</span>` : ""}</div><div class="remote-result__sources">${sourceChips}</div></div>
+      ${existing ? `<button class="remote-result__open-existing" type="button" data-remote-open-existing="${escapeHtml(group.id)}">Abrir ficha</button>` : ""}
+    </article>`;
+  }).join("");
+}
+
+function clearRemoteSearchResults() {
+  state.remoteSearch.groups = [];
+  state.remoteSearch.sources = {};
+  state.remoteSearch.selectedIds.clear();
+  state.remoteSearch.activeIndex = 0;
+}
+
+function scheduleRemoteSearch({ immediate = false, refresh = false } = {}) {
+  clearTimeout(state.remoteSearch.timer);
+  const query = remoteSearchOptions().query;
+  if (query.length < 3) {
+    state.remoteSearch.controller?.abort();
+    state.remoteSearch.loading = false;
+    clearRemoteSearchResults();
+    renderRemoteSearch();
+    return;
+  }
+  state.remoteSearch.timer = setTimeout(() => void searchRemoteMods({ refresh }), immediate ? 0 : 300);
+}
+
+async function searchRemoteMods({ refresh = false } = {}) {
+  const remote = state.remoteSearch;
+  const options = remoteSearchOptions();
+  if (options.query.length < 3) return;
+  remote.controller?.abort();
+  const controller = new AbortController();
+  const requestId = ++remote.requestId;
+  remote.controller = controller;
+  remote.loading = true;
+  renderRemoteSearch();
+  const query = new URLSearchParams({ ...options, ...(refresh ? { refresh: "1" } : {}) });
+  try {
+    const result = await api(`/api/search/mods?${query}`, { signal: controller.signal });
+    if (requestId !== remote.requestId) return;
+    remote.groups = result.groups || [];
+    remote.sources = result.sources || {};
+    remote.selectedIds = new Set();
+    remote.activeIndex = 0;
+  } catch (error) {
+    if (error.name === "AbortError") return;
+    if (requestId !== remote.requestId) return;
+    remote.groups = [];
+    remote.sources = {};
+    toast(error.message, "error", 5200);
+  } finally {
+    if (requestId === remote.requestId) {
+      remote.loading = false;
+      renderRemoteSearch();
+    }
+  }
+}
+
+function toggleRemoteSelection(id) {
+  const group = state.remoteSearch.groups.find((candidate) => candidate.id === id);
+  if (!group || group.existing) return;
+  if (state.remoteSearch.selectedIds.has(id)) state.remoteSearch.selectedIds.delete(id);
+  else state.remoteSearch.selectedIds.add(id);
+  renderRemoteSearch();
+}
+
+function openRemoteSearch() {
+  if (!elements.remoteSearchDialog.open) elements.remoteSearchDialog.showModal();
+  requestAnimationFrame(() => elements.remoteSearchInput.focus());
+  renderRemoteSearch();
+}
+
+async function openExistingRemoteResult(id) {
+  const group = state.remoteSearch.groups.find((candidate) => candidate.id === id);
+  if (!group?.existing) return;
+  elements.remoteSearchDialog.close();
+  await switchCollection(group.existing.collection);
+  if (state.collection === group.existing.collection) await openRecord(group.existing.id);
+}
+
+async function addRemoteResultsToStaging() {
+  const selections = state.remoteSearch.groups
+    .filter((group) => state.remoteSearch.selectedIds.has(group.id) && !group.existing)
+    .map((group) => ({ name: group.name, sources: group.sources }));
+  if (selections.length === 0 || state.remoteSearch.loading) return;
+  elements.remoteSearchAdd.disabled = true;
+  try {
+    const result = await api("/api/staging/from-search", {
+      method: "POST",
+      body: JSON.stringify({ selections, author: getAuthor() })
+    });
+    const created = result.created || [];
+    const duplicates = result.duplicates || [];
+    if (created.length) {
+      elements.remoteSearchDialog.close();
+      await switchCollection("staging");
+      if (state.collection === "staging") await openRecord(created[0].id);
+    }
+    toast(`${created.length} adicionada${created.length === 1 ? "" : "s"} ao Staging${duplicates.length ? `; ${duplicates.length} já existente${duplicates.length === 1 ? "" : "s"}.` : "."}`, created.length ? "success" : "warning", 5200);
+    clearRemoteSearchResults();
+  } catch (error) {
+    toast(error.message, "error", 5200);
+  } finally {
+    renderRemoteSearch();
+  }
 }
 
 function setConnection(online) {
@@ -562,6 +743,7 @@ function sourceStateLabel(source) {
 function renderStagingPanel(record) {
   if (state.collection !== "staging") return "";
   const sources = record.stagingSources || {};
+  const remoteOrigin = record.stagingOrigin === "remote-search";
   const card = (key, label) => {
     const source = sources[key] || { state: "unavailable" };
     const clickable = source.state === "exact" && source.projectId;
@@ -571,7 +753,7 @@ function renderStagingPanel(record) {
   const jarMetadata = record.jarMetadata || record.stagingFiles?.[0]?.jarMetadata;
   const internalMods = jarMetadata?.mods || [];
   const metadataPanel = internalMods.length ? `<div class="jar-metadata"><strong>Identidade lida do JAR · ${escapeHtml(jarMetadata.format || "arquivo interno")}</strong>${internalMods.map((mod) => `<span><code>${escapeHtml(mod.modId || "sem modId")}</code>${mod.name ? ` · ${escapeHtml(mod.name)}` : ""}${mod.version ? ` · v${escapeHtml(mod.version)}` : ""}${mod.loader ? ` · ${escapeHtml(mod.loader)}` : ""}</span>`).join("")}</div>` : "";
-  return `<section class="staging-panel"><div><p class="eyebrow">Identificação do arquivo</p><h3>${escapeHtml(record.stagingMessage || "Revise a identificação antes de promover.")}</h3><p class="muted-copy">${(record.stagingFiles || []).map((file) => escapeHtml(file.relativePath || file.fileName)).join("<br>") || "Sem arquivo associado"}</p></div>${metadataPanel}<div class="source-indicators">${card("curseforge", "CurseForge")}${card("modrinth", "Modrinth")}</div><button class="button button--small" type="button" data-stage-resolve>Reavaliar identificação</button>${candidates.length ? `<div class="staging-candidates"><strong>Possíveis candidatos compatíveis</strong>${candidates.map((candidate) => `<button type="button" data-stage-candidate="${escapeHtml(candidate.projectId)}" data-stage-provider="${escapeHtml(candidate.provider)}">Usar ${escapeHtml(candidate.name || candidate.projectId)} · ${escapeHtml(candidate.provider === "modrinth" ? "Modrinth" : "CurseForge")}</button>`).join("")}</div>` : ""}</section>`;
+  return `<section class="staging-panel"><div><p class="eyebrow">${remoteOrigin ? "Busca remota" : "Identificação do arquivo"}</p><h3>${escapeHtml(record.stagingMessage || "Revise a identificação antes de promover.")}</h3><p class="muted-copy">${remoteOrigin ? "Sem JAR associado · fontes oficiais preservadas abaixo." : (record.stagingFiles || []).map((file) => escapeHtml(file.relativePath || file.fileName)).join("<br>") || "Sem arquivo associado"}</p></div>${metadataPanel}<div class="source-indicators">${card("curseforge", "CurseForge")}${card("modrinth", "Modrinth")}</div>${remoteOrigin ? "" : `<button class="button button--small" type="button" data-stage-resolve>Reavaliar identificação</button>`}${candidates.length ? `<div class="staging-candidates"><strong>Possíveis candidatos compatíveis</strong>${candidates.map((candidate) => `<button type="button" data-stage-candidate="${escapeHtml(candidate.projectId)}" data-stage-provider="${escapeHtml(candidate.provider)}">Usar ${escapeHtml(candidate.name || candidate.projectId)} · ${escapeHtml(candidate.provider === "modrinth" ? "Modrinth" : "CurseForge")}</button>`).join("")}</div>` : ""}</section>`;
 }
 
 function defaultRecord() {
@@ -855,6 +1037,54 @@ async function deleteSelectedRecords() {
   }
 }
 
+async function promoteSelectedStages() {
+  if (state.collection !== "staging" || state.saving || state.selectedRecordIds.size === 0) return;
+  if (state.dirty) {
+    toast("Salve ou descarte a edição atual antes de promover fichas em lote.", "warning", 5200);
+    return;
+  }
+  const selected = state.records.filter((record) => state.selectedRecordIds.has(record.id));
+  if (selected.length === 0) return;
+  if (selected.some((record) => record.stagingResolution === "ambiguous")) {
+    toast("Resolva as fichas ambíguas antes de promovê-las em lote.", "warning", 5200);
+    return;
+  }
+  const confirmed = confirm(`Promover ${selected.length} ficha${selected.length === 1 ? "" : "s"} selecionada${selected.length === 1 ? "" : "s"} para Mods?\n\nA promoção será cancelada por inteiro se alguma ficha tiver mudado ou já possuir equivalente no catálogo.`);
+  if (!confirmed) return;
+
+  state.saving = true;
+  updateEditorHeader();
+  renderList();
+  try {
+    const { promoted } = await api("/api/staging/promote-many", {
+      method: "POST",
+      body: JSON.stringify({
+        records: selected.map((record) => ({ id: record.id, expectedStorageVersion: record.storageVersion })),
+        author: getAuthor()
+      })
+    });
+    state.selectedRecordIds.clear();
+    state.current = null;
+    state.dirty = false;
+    await switchCollection("mods");
+    if (promoted[0]) await openRecord(promoted[0].id);
+    toast(`${promoted.length} ficha${promoted.length === 1 ? "" : "s"} promovida${promoted.length === 1 ? "" : "s"} para o catálogo principal.`, "success", 5200);
+  } catch (error) {
+    if (error.status === 409 && error.payload?.duplicates?.length) {
+      toast("Nenhuma ficha foi promovida: existe uma equivalente no catálogo. Revise a seleção.", "warning", 5600);
+    } else if (error.status === 409) {
+      toast("Nenhuma ficha foi promovida: uma delas mudou. Atualize e confirme novamente.", "warning", 5600);
+    } else {
+      toast(error.message, "error", 5200);
+    }
+    await loadCollection({ preserveCurrent: true });
+  } finally {
+    state.saving = false;
+    updateSaveIndicator();
+    renderList();
+  }
+}
+
 async function loadStageProvider(provider, { projectId, force = false } = {}) {
   if (state.collection !== "staging" || !state.current || state.metadataLoading) return;
   const source = state.current.stagingSources?.[provider];
@@ -1059,6 +1289,7 @@ function renderList() {
   const availableIds = new Set(state.records.map((record) => record.id));
   state.selectedRecordIds = new Set([...state.selectedRecordIds].filter((id) => availableIds.has(id)));
   const selectedVisible = records.filter((record) => state.selectedRecordIds.has(record.id));
+  const selectedRecords = state.records.filter((record) => state.selectedRecordIds.has(record.id));
   elements.recordCount.textContent = `${records.length} ${records.length === 1 ? "registro" : "registros"}${state.selectedRecordIds.size ? ` · ${state.selectedRecordIds.size} selecionada${state.selectedRecordIds.size === 1 ? "" : "s"}` : ""}`;
   elements.selectVisibleButton.hidden = records.length === 0;
   elements.selectVisibleButton.textContent = records.length > 0 && selectedVisible.length === records.length ? "Limpar seleção visível" : "Selecionar visíveis";
@@ -1066,6 +1297,12 @@ function renderList() {
   elements.bulkDeleteButton.hidden = state.selectedRecordIds.size === 0;
   elements.bulkDeleteButton.textContent = `Excluir ${state.selectedRecordIds.size} selecionada${state.selectedRecordIds.size === 1 ? "" : "s"}`;
   elements.bulkDeleteButton.disabled = state.saving;
+  const hasAmbiguousSelection = selectedRecords.some((record) => record.stagingResolution === "ambiguous");
+  elements.bulkPromoteButton.hidden = state.collection !== "staging" || state.selectedRecordIds.size === 0;
+  elements.bulkPromoteButton.textContent = hasAmbiguousSelection
+    ? "Resolver ambíguas para promover"
+    : `Promover ${state.selectedRecordIds.size} selecionada${state.selectedRecordIds.size === 1 ? "" : "s"}`;
+  elements.bulkPromoteButton.disabled = state.saving || hasAmbiguousSelection;
   if (records.length === 0) {
     elements.recordList.innerHTML = `<div class="empty-list"><span class="empty-list__icon">◇</span><strong>Nenhuma ficha encontrada</strong><p>Altere os filtros ou crie um novo registro.</p></div>`;
     return;
@@ -1536,10 +1773,64 @@ elements.analysisDocumentLinks.addEventListener("click", (event) => {
 });
 elements.newRecordButton.addEventListener("click", startNewRecord);
 elements.welcomeNewButton.addEventListener("click", startNewRecord);
+elements.remoteSearchButton.addEventListener("click", openRemoteSearch);
+elements.remoteSearchClose.addEventListener("click", () => elements.remoteSearchDialog.close());
+elements.remoteSearchInput.addEventListener("input", () => scheduleRemoteSearch());
+elements.remoteSearchSource.addEventListener("change", () => scheduleRemoteSearch({ immediate: true }));
+elements.remoteSearchVersion.addEventListener("input", () => scheduleRemoteSearch());
+elements.remoteSearchLoader.addEventListener("change", () => scheduleRemoteSearch({ immediate: true }));
+elements.remoteSearchRefresh.addEventListener("click", () => scheduleRemoteSearch({ immediate: true, refresh: true }));
+elements.remoteSearchAdd.addEventListener("click", () => void addRemoteResultsToStaging());
+elements.remoteSearchResults.addEventListener("change", (event) => {
+  const input = event.target.closest("[data-remote-select]");
+  if (input) toggleRemoteSelection(input.dataset.remoteSelect);
+});
+elements.remoteSearchResults.addEventListener("click", (event) => {
+  const existing = event.target.closest("[data-remote-open-existing]");
+  if (existing) {
+    void openExistingRemoteResult(existing.dataset.remoteOpenExisting);
+    return;
+  }
+  if (event.target.closest(".remote-result__select")) return;
+  const result = event.target.closest("[data-remote-result]");
+  if (result) {
+    state.remoteSearch.activeIndex = state.remoteSearch.groups.findIndex((group) => group.id === result.dataset.remoteResult);
+    toggleRemoteSelection(result.dataset.remoteResult);
+  }
+});
+elements.remoteSearchDialog.addEventListener("close", () => {
+  state.remoteSearch.controller?.abort();
+  state.remoteSearch.loading = false;
+});
+elements.remoteSearchDialog.addEventListener("keydown", (event) => {
+  const remote = state.remoteSearch;
+  if (event.key === "Escape") return;
+  if (event.altKey && event.key === "Enter") {
+    event.preventDefault();
+    event.stopPropagation();
+    void addRemoteResultsToStaging();
+    return;
+  }
+  if ((event.key === "ArrowDown" || event.key === "ArrowUp") && remote.groups.length) {
+    event.preventDefault();
+    event.stopPropagation();
+    const direction = event.key === "ArrowDown" ? 1 : -1;
+    remote.activeIndex = (remote.activeIndex + direction + remote.groups.length) % remote.groups.length;
+    renderRemoteSearch();
+    elements.remoteSearchResults.querySelector(`[data-remote-result="${CSS.escape(remote.groups[remote.activeIndex].id)}"]`)?.scrollIntoView({ block: "nearest" });
+    return;
+  }
+  if (event.key === " " && remote.groups.length && !["INPUT", "TEXTAREA", "SELECT"].includes(event.target.tagName)) {
+    event.preventDefault();
+    event.stopPropagation();
+    toggleRemoteSelection(remote.groups[remote.activeIndex]?.id);
+  }
+});
 elements.saveButton.addEventListener("click", () => void saveRecord());
 elements.reviewButton.addEventListener("click", () => void reviewRecord());
 elements.deleteButton.addEventListener("click", () => void deleteRecord());
 elements.selectVisibleButton.addEventListener("click", toggleVisibleSelection);
+elements.bulkPromoteButton.addEventListener("click", () => void promoteSelectedStages());
 elements.bulkDeleteButton.addEventListener("click", () => void deleteSelectedRecords());
 elements.promoteButton.addEventListener("click", () => void promoteStage());
 elements.refreshButton.addEventListener("click", () => void loadCollection({ preserveCurrent: true }));
@@ -1605,7 +1896,10 @@ document.addEventListener("click", closeMenus);
 
 document.addEventListener("keydown", (event) => {
   const typing = ["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement?.tagName);
-  if ((event.ctrlKey || event.metaKey) && event.key.toLocaleLowerCase() === "s") {
+  if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.key.toLocaleLowerCase() === "k") {
+    event.preventDefault();
+    openRemoteSearch();
+  } else if ((event.ctrlKey || event.metaKey) && event.key.toLocaleLowerCase() === "s") {
     event.preventDefault();
     void saveRecord();
   } else if (event.altKey && event.key.toLocaleLowerCase() === "n") {

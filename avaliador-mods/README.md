@@ -92,7 +92,15 @@ Os JARs e caminhos absolutos nunca são enviados ou armazenados. O CurseForge é
 
 Resultados ambíguos, ausentes ou com erro continuam editáveis no staging. A promoção para **Mods** verifica URL canônica e ID externo para impedir duplicatas; se já houver ficha equivalente, ela é aberta em vez de criar outra.
 
+Na aba **Staging**, a seleção múltipla também permite promover várias fichas para **Mods** de uma vez. A operação é atômica: se uma ficha selecionada estiver ambígua, tiver sido alterada ou já possuir equivalente no catálogo, nenhuma das selecionadas será movida.
+
 O desenho da importação futura de modpacks reais — versões escolhidas de CurseForge/Modrinth, comparação de presença e seleção múltipla para Staging — está registrado em [`data/library/plano-importacao-modpacks.md`](data/library/plano-importacao-modpacks.md).
+
+### Busca remota de mods
+
+Use **Buscar mods** ou `Ctrl+Shift+K` para pesquisar Modrinth e CurseForge dentro do avaliador. A busca começa com três caracteres, aceita filtros opcionais de versão e loader, mantém resultados de uma fonte caso a outra falhe e usa um cache compartilhado de cinco minutos; **Atualizar** ignora esse cache.
+
+Cartões só agrupam projetos cujo nome ou slug normalizado seja exatamente igual. Mesmo agrupados, preservam as duas fontes, IDs e links. Marque vários cartões com `Espaço` e use `Alt+Enter` para enviá-los ao **Staging**. O CurseForge fornece a prévia factual preferida quando estiver presente; Modrinth é o fallback. A ficha criada não recebe um JAR e continua exigindo avaliação humana antes da promoção.
 
 ### Estados sugeridos
 
@@ -131,7 +139,7 @@ npm start
 
 No Portainer, adicione `CURSEFORGE_API_KEY` como variável de ambiente da stack. Não grave a chave no repositório, no `docker-compose.yml` ou em uma ficha. Sem ela, o sistema informa que a consulta ao CurseForge não está configurada; as fichas continuam funcionando normalmente e o Modrinth permanece disponível.
 
-Algumas chaves do CurseForge contêm `$`, caractere que ferramentas de deploy podem interpretar como interpolação. Se a assinatura/quantidade de caracteres da chave dentro do container não corresponder à original, use `CURSEFORGE_API_KEY_BASE64` no Portainer e deixe `CURSEFORGE_API_KEY` vazia. O avaliador decodifica essa variável apenas em memória. Para gerar o valor, em um terminal seguro, use `printf '%s' 'SUA_CHAVE' | base64 -w0`.
+Algumas chaves do CurseForge contêm `$`, caractere que ferramentas de deploy podem interpretar como interpolação. Se a assinatura/quantidade de caracteres da chave dentro do container não corresponder à original, use `CURSEFORGE_API_KEY_BASE64` no Portainer e deixe `CURSEFORGE_API_KEY` vazia. O avaliador decodifica essa variável apenas em memória. No PowerShell, gere o valor em um terminal seguro com `[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("SUA_CHAVE"))`.
 
 ## Estrutura dos dados
 
@@ -192,6 +200,7 @@ Listas em CSV usam ` | ` como separador interno. Textos com vírgulas, aspas ou 
 | `Ctrl+S` | Salvar agora |
 | `Ctrl+Enter` | Salvar e navegar para a próxima |
 | `Ctrl+K` | Pesquisar |
+| `Ctrl+Shift+K` | Buscar mods no Modrinth e CurseForge |
 | `[` e `]` | Ficha anterior ou seguinte |
 | `Alt+1…9` | Focar uma seção da ficha |
 | `?` | Mostrar atalhos |

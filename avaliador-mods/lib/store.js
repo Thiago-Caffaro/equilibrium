@@ -298,6 +298,17 @@ export function createStore({ dataRoot }) {
       const sourceUrl = normalisedUrl(source.sourceUrl);
       if (sourceUrl) keys.add(`url:${sourceUrl}`);
     }
+    const officialSources = Array.isArray(record?.officialSources)
+      ? record.officialSources
+      : Object.values(record?.officialSources || {});
+    for (const source of officialSources) {
+      if (!source || typeof source !== "object") continue;
+      const sourceProvider = String(source.provider || "").trim().toLocaleLowerCase("pt-BR");
+      const sourceProject = String(source.projectId || "").trim();
+      if (sourceProvider && sourceProject) keys.add(`project:${sourceProvider}:${sourceProject}`);
+      const sourceUrl = normalisedUrl(source.sourceUrl);
+      if (sourceUrl) keys.add(`url:${sourceUrl}`);
+    }
     return keys;
   }
 
@@ -305,6 +316,108 @@ export function createStore({ dataRoot }) {
     const target = externalKeys(record);
     if (target.size === 0) return null;
     return (await list("mods")).find((candidate) => [...externalKeys(candidate)].some((key) => target.has(key))) || null;
+  }
+
+  function promotionSource(stage) {
+    const source = structuredClone(stage);
+    delete source.id;
+    delete source.storageVersion;
+    delete source.createdAt;
+    delete source.updatedAt;
+    delete source.updatedBy;
+    delete source.reviewedAt;
+    delete source.reviewedBy;
+    delete source.revision;
+    source.kind = "mod";
+    source.status = source.status || "Não avaliado";
+    source.stagedAt = stage.createdAt;
+    source.stagedFiles = source.stagingFiles || [];
+    delete source.stagingFiles;
+    return source;
+  }
+
+  async function promoteMany(stagesRequested = [], options = {}) {
+    if (!Array.isArray(stagesRequested) || stagesRequested.length === 0 || stagesRequested.length > 500) {
+      throw new ValidationError("Selecione entre 1 e 500 fichas de staging para promover.");
+    }
+    const requested = [];
+    const ids = new Set();
+    for (const input of stagesRequested) {
+      const id = String(input?.id || "");
+      if (!RECORD_ID.test(id)) throw new ValidationError("Identificador inválido na seleção.");
+      if (ids.has(id)) continue;
+      ids.add(id);
+      requested.push({ id, expectedStorageVersion: Number(input?.expectedStorageVersion) });
+    }
+
+    return serialise("promotion:mods", async () => {
+      const stages = await Promise.all(requested.map(({ id }) => get("staging", id)));
+      const conflicts = stages.flatMap((stage, index) => {
+        if (!stage) return [{ id: requested[index].id, reason: "missing" }];
+        const expected = requested[index].expectedStorageVersion;
+        if (!options.force && Number.isFinite(expected) && expected !== storageVersionOf(stage)) {
+          return [{ id: stage.id, name: stage.name, reason: "changed", record: stage }];
+        }
+        return [];
+      });
+      if (conflicts.length > 0) return { promoted: [], conflicts, duplicates: [] };
+
+      const existingMods = await list("mods");
+      const reservedKeys = new Map();
+      for (const mod of existingMods) {
+        for (const key of externalKeys(mod)) reservedKeys.set(key, mod);
+      }
+      const duplicates = [];
+      for (const stage of stages) {
+        const targetKeys = externalKeys(stage);
+        const duplicate = [...targetKeys].map((key) => reservedKeys.get(key)).find(Boolean);
+        if (duplicate) {
+          duplicates.push({ id: stage.id, name: stage.name, duplicate });
+          continue;
+        }
+        for (const key of targetKeys) reservedKeys.set(key, stage);
+      }
+      // Promotion is intentionally all-or-nothing, just like bulk deletion.
+      // A duplicate must never leave the rest of a user selection half-moved.
+      if (duplicates.length > 0) return { promoted: [], conflicts: [], duplicates };
+
+      const promoted = [];
+      for (const stage of stages) {
+        const record = await create("mods", promotionSource(stage), options.author);
+        await unlink(recordPath("staging", stage.id));
+        promoted.push(record);
+      }
+      return { promoted, conflicts: [], duplicates: [] };
+    });
+  }
+
+  async function findEquivalentRecord(record, collections = ["mods", "staging"]) {
+    const target = externalKeys(record);
+    if (target.size === 0) return null;
+    for (const collection of collections) {
+      const match = (await list(collection)).find((candidate) => [...externalKeys(candidate)].some((key) => target.has(key)));
+      if (match) return { collection, record: match };
+    }
+    return null;
+  }
+
+  async function createRemoteStages(records, author = "Anônimo") {
+    if (!Array.isArray(records) || records.length === 0 || records.length > 50) {
+      throw new ValidationError("Selecione entre 1 e 50 resultados para adicionar ao staging.");
+    }
+    return serialise("remote-search:staging", async () => {
+      const created = [];
+      const duplicates = [];
+      for (const input of records) {
+        const equivalent = await findEquivalentRecord(input);
+        if (equivalent) {
+          duplicates.push({ collection: equivalent.collection, record: equivalent.record });
+          continue;
+        }
+        created.push(await create("staging", input, author));
+      }
+      return { created, duplicates };
+    });
   }
 
   async function promoteStage(id, options = {}) {
@@ -319,21 +432,7 @@ export function createStore({ dataRoot }) {
       const duplicate = await findEquivalentMod(stage);
       if (duplicate) return { stage, record: null, duplicate };
 
-      const source = structuredClone(stage);
-      delete source.id;
-      delete source.storageVersion;
-      delete source.createdAt;
-      delete source.updatedAt;
-      delete source.updatedBy;
-      delete source.reviewedAt;
-      delete source.reviewedBy;
-      delete source.revision;
-      source.kind = "mod";
-      source.status = source.status || "Não avaliado";
-      source.stagedAt = stage.createdAt;
-      source.stagedFiles = source.stagingFiles || [];
-      delete source.stagingFiles;
-      const record = await create("mods", source, options.author);
+      const record = await create("mods", promotionSource(stage), options.author);
       await unlink(recordPath("staging", id));
       return { stage, record, duplicate: null };
     }));
@@ -406,6 +505,9 @@ export function createStore({ dataRoot }) {
     review,
     remove,
     removeMany,
+    findEquivalentRecord,
+    createRemoteStages,
+    promoteMany,
     promoteStage,
     importRecords,
     listDocuments,

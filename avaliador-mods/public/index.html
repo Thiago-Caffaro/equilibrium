@@ -33,6 +33,7 @@
           </div>
         </div>
         <button id="analysesButton" class="button button--ghost" type="button">Análises</button>
+        <button id="remoteSearchButton" class="button button--ghost" type="button">Buscar mods <kbd>Ctrl Shift K</kbd></button>
         <button id="newRecordButton" class="button button--primary" type="button">Nova ficha <kbd>Alt N</kbd></button>
       </div>
     </header>
@@ -66,7 +67,7 @@
 
         <div class="catalog-summary">
           <span id="recordCount">0 registros</span>
-          <span class="catalog-summary__actions"><button id="selectVisibleButton" class="link-button" type="button" hidden>Selecionar visíveis</button><button id="bulkDeleteButton" class="link-button link-button--danger" type="button" hidden>Excluir selecionadas</button><button id="scanFolderButton" class="link-button" type="button" hidden>Ler JARs</button><button id="refreshButton" class="link-button" type="button">Atualizar</button></span>
+          <span class="catalog-summary__actions"><button id="selectVisibleButton" class="link-button" type="button" hidden>Selecionar visíveis</button><button id="bulkPromoteButton" class="link-button" type="button" hidden>Promover selecionadas</button><button id="bulkDeleteButton" class="link-button link-button--danger" type="button" hidden>Excluir selecionadas</button><button id="scanFolderButton" class="link-button" type="button" hidden>Ler JARs</button><button id="refreshButton" class="link-button" type="button">Atualizar</button></span>
         </div>
         <div id="recordList" class="record-list" aria-live="polite"></div>
       </aside>
@@ -168,6 +169,7 @@
       <span><kbd>Alt N</kbd> nova ficha</span>
       <span><kbd>Alt R</kbd> marcar revisão</span>
       <span><kbd>Ctrl K</kbd> pesquisar</span>
+      <span><kbd>Ctrl Shift K</kbd> buscar mods</span>
       <span><kbd>Ctrl Enter</kbd> salvar e próxima</span>
       <span><kbd>[</kbd> <kbd>]</kbd> navegar</span>
       <button id="shortcutsButton" class="link-button" type="button"><kbd>?</kbd> atalhos</button>
@@ -215,6 +217,7 @@
           <div><dt><kbd>Ctrl S</kbd></dt><dd>Salvar agora</dd></div>
           <div><dt><kbd>Ctrl Enter</kbd></dt><dd>Salvar e abrir a próxima ficha</dd></div>
           <div><dt><kbd>Ctrl K</kbd></dt><dd>Focar a pesquisa</dd></div>
+          <div><dt><kbd>Ctrl Shift K</kbd></dt><dd>Buscar em Modrinth e CurseForge</dd></div>
           <div><dt><kbd>[</kbd> <kbd>]</kbd></dt><dd>Ficha anterior ou seguinte</dd></div>
           <div><dt><kbd>Alt 1…9</kbd></dt><dd>Focar uma seção da ficha</dd></div>
           <div><dt><kbd>?</kbd></dt><dd>Abrir esta ajuda</dd></div>
@@ -223,8 +226,29 @@
       </form>
     </dialog>
 
+    <dialog id="remoteSearchDialog" class="dialog remote-search-dialog">
+      <div class="remote-search-dialog__header">
+        <div><p class="eyebrow">Catálogos oficiais</p><h2>Buscar mods sem sair do avaliador</h2></div>
+        <button id="remoteSearchClose" class="icon-button" type="button" aria-label="Fechar busca">×</button>
+      </div>
+      <div class="remote-search-controls">
+        <label class="remote-search-query"><span class="sr-only">Nome do mod</span><input id="remoteSearchInput" type="search" autocomplete="off" placeholder="Digite ao menos 3 caracteres…"></label>
+        <select id="remoteSearchSource" aria-label="Fonte"><option value="both">Modrinth + CurseForge</option><option value="curseforge">Somente CurseForge</option><option value="modrinth">Somente Modrinth</option></select>
+        <input id="remoteSearchVersion" type="text" maxlength="40" placeholder="Versão (opcional)">
+        <select id="remoteSearchLoader" aria-label="Loader"><option value="">Qualquer loader</option><option value="forge">Forge</option><option value="neoforge">NeoForge</option><option value="fabric">Fabric</option><option value="quilt">Quilt</option></select>
+        <button id="remoteSearchRefresh" class="button button--small" type="button">Atualizar</button>
+      </div>
+      <div id="remoteSearchSourceState" class="remote-search-source-state" aria-live="polite"></div>
+      <p id="remoteSearchHint" class="muted-copy remote-search-hint">Pesquise para comparar fontes e adicionar candidatos ao Staging.</p>
+      <div id="remoteSearchResults" class="remote-search-results" role="listbox" aria-label="Resultados da busca"></div>
+      <footer class="remote-search-footer">
+        <span id="remoteSearchSelection" class="muted-copy">Nenhum resultado selecionado</span>
+        <span class="remote-search-footer__actions"><span class="muted-copy"><kbd>↑</kbd><kbd>↓</kbd> navegar · <kbd>Espaço</kbd> selecionar · <kbd>Alt Enter</kbd> adicionar</span><button id="remoteSearchAdd" class="button button--primary" type="button" disabled>Adicionar ao Staging</button></span>
+      </footer>
+    </dialog>
+
     <div id="toastRegion" class="toast-region" aria-live="polite"></div>
 
-    <script type="module" src="/app.js?v=staging-0.1"></script>
+    <script type="module" src="/app.js?v=remote-search-0.1"></script>
   </body>
 </html>

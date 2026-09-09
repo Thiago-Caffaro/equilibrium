@@ -1,32 +1,15 @@
 import { MetadataLookupError, resolveProjectMetadataById } from "./project-metadata.js";
 import { curseForgeApiKeyFromEnvironment } from "./curseforge-config.js";
+import { queueCurseForgeRequest } from "./curseforge-queue.js";
 
 const MODRINTH_API = "https://api.modrinth.com/v2";
 const CURSEFORGE_API = "https://api.curseforge.com/v1";
 const MINECRAFT_GAME_ID = 432;
 const USER_AGENT = "Equilibrium-Mod-Evaluator/0.1 (https://github.com/Thiago-Caffaro/equilibrium)";
-const CURSEFORGE_MIN_INTERVAL_MS = 350;
 const UPSTREAM_MAX_ATTEMPTS = 3;
-
-let curseForgeQueue = Promise.resolve();
-let nextCurseForgeRequestAt = 0;
 
 function wait(milliseconds) {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
-}
-
-function queueCurseForge(operation) {
-  const scheduled = curseForgeQueue.then(async () => {
-    const delay = Math.max(0, nextCurseForgeRequestAt - Date.now());
-    if (delay > 0) await wait(delay);
-    try {
-      return await operation();
-    } finally {
-      nextCurseForgeRequestAt = Date.now() + CURSEFORGE_MIN_INTERVAL_MS;
-    }
-  });
-  curseForgeQueue = scheduled.catch(() => undefined);
-  return scheduled;
 }
 
 function retryAfterSeconds(response) {
@@ -181,7 +164,7 @@ async function requestJson(url, { fetchImpl, headers = {}, method = "GET", body,
     }
     throw lastError;
   };
-  return rateLimit === "curseforge" ? queueCurseForge(execute) : execute();
+  return rateLimit === "curseforge" ? queueCurseForgeRequest(execute) : execute();
 }
 
 async function mapLimited(items, limit, operation) {
@@ -228,7 +211,7 @@ function markSourceError(result, error) {
 }
 
 function curseForgeFetch(fetchImpl) {
-  return (...args) => queueCurseForge(() => fetchImpl(...args));
+  return (...args) => queueCurseForgeRequest(() => fetchImpl(...args));
 }
 
 async function resolveCurseForge(descriptors, { fetchImpl, curseForgeApiKey }) {

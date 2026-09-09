@@ -234,6 +234,30 @@ test("promoção concorrente não cria dois mods", async (t) => {
   assert.equal((await store.list("mods")).length, 1);
 });
 
+test("promoção em lote move a seleção inteira ou preserva tudo diante de duplicata", async (t) => {
+  const store = createStore({ dataRoot: await temporaryRoot(t) });
+  const first = await store.create("staging", { name: "Primeiro", officialProvider: "CurseForge", officialProjectId: "100" }, "Teste");
+  const second = await store.create("staging", { name: "Segundo", officialProvider: "Modrinth", officialProjectId: "mr-200" }, "Teste");
+  const promoted = await store.promoteMany([
+    { id: first.id, expectedStorageVersion: first.storageVersion },
+    { id: second.id, expectedStorageVersion: second.storageVersion }
+  ], { author: "Teste" });
+  assert.equal(promoted.promoted.length, 2);
+  assert.equal((await store.list("staging")).length, 0);
+  assert.equal((await store.list("mods")).length, 2);
+
+  const duplicate = await store.create("staging", { name: "Duplicado", officialProvider: "CurseForge", officialProjectId: "100" }, "Teste");
+  const unique = await store.create("staging", { name: "Único", officialProvider: "CurseForge", officialProjectId: "300" }, "Teste");
+  const rejected = await store.promoteMany([
+    { id: duplicate.id, expectedStorageVersion: duplicate.storageVersion },
+    { id: unique.id, expectedStorageVersion: unique.storageVersion }
+  ], { author: "Teste" });
+  assert.equal(rejected.promoted.length, 0);
+  assert.equal(rejected.duplicates.length, 1);
+  assert.ok(await store.get("staging", duplicate.id));
+  assert.ok(await store.get("staging", unique.id));
+});
+
 test("exclusão em lote remove toda a seleção ou não remove nada quando há conflito", async (t) => {
   const store = createStore({ dataRoot: await temporaryRoot(t) });
   const first = await store.create("mods", { name: "Primeira" }, "Teste");
