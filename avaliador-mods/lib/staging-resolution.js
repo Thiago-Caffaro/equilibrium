@@ -108,13 +108,16 @@ function isRelevantCandidate(candidate, searchedName) {
 function normaliseDescriptor(input) {
   const fileName = plainFileName(input?.fileName);
   const sha1 = String(input?.sha1 || "").trim().toLowerCase();
-  const curseFingerprint = Number(input?.curseFingerprint);
+  const suppliedFingerprint = Number(input?.curseFingerprint);
   if (!/^[a-f0-9]{40}$/.test(sha1)) {
     throw new MetadataLookupError(`Hash SHA-1 inválido para ${fileName}.`, { code: "INVALID_JAR_DESCRIPTOR", statusCode: 400 });
   }
-  if (!Number.isInteger(curseFingerprint)) {
+  if (!Number.isInteger(suppliedFingerprint) || suppliedFingerprint < -0x80000000 || suppliedFingerprint > 0xffffffff) {
     throw new MetadataLookupError(`Fingerprint CurseForge inválido para ${fileName}.`, { code: "INVALID_JAR_DESCRIPTOR", statusCode: 400 });
   }
+  // Compatibilidade com fichas gravadas pela versão que serializava Murmur2
+  // como int32 assinado. O padrão de bits é o mesmo; a API exige uint32.
+  const curseFingerprint = suppliedFingerprint >>> 0;
   return {
     fileName,
     relativePath: String(input?.relativePath || fileName)

@@ -541,6 +541,7 @@ function sourceStateLabel(source) {
     if (source.upstreamStatus === 429) {
       return source.retryAfterSeconds ? `Limite temporário · tente em ${source.retryAfterSeconds}s` : "Limite temporário · tente novamente";
     }
+    if (source.upstreamStatus === 400) return "Requisição inválida à fonte (400)";
     if (source.upstreamStatus) return `Erro temporário da fonte (${source.upstreamStatus})`;
     return "Erro temporário na consulta";
   }

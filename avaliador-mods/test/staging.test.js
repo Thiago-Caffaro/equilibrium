@@ -16,13 +16,13 @@ async function temporaryRoot(t) {
 }
 
 test("fingerprint CurseForge é estável para vetor conhecido", () => {
-  assert.equal(curseForgeFingerprint(new TextEncoder().encode("hello")), -1506700914);
+  assert.equal(curseForgeFingerprint(new TextEncoder().encode("hello")), 2788266382);
 });
 
 test("fingerprint CurseForge ignora bytes de whitespace antes do Murmur2", () => {
   const input = new TextEncoder().encode("a b\nc\td\r");
   assert.deepEqual([...normaliseCurseForgeBytes(input)], [...new TextEncoder().encode("abcd")]);
-  assert.equal(curseForgeFingerprint(input), -918586858);
+  assert.equal(curseForgeFingerprint(input), 3376380438);
 });
 
 test("SHA-1 local confere com vetor conhecido", () => {
@@ -81,6 +81,25 @@ test("repete uma limitação temporária do CurseForge antes de marcar erro", as
   assert.equal(fingerprintAttempts, 2);
   assert.equal(record.stagingSources.curseforge.state, "exact");
   assert.equal(record.name, "Recuperado");
+});
+
+test("normaliza fingerprint assinado já salvo para o uint32 exigido pelo CurseForge", async () => {
+  const fetchImpl = async (url, options = {}) => {
+    const target = String(url);
+    if (target.includes("curseforge.com/v1/fingerprints/432")) {
+      assert.deepEqual(JSON.parse(options.body).fingerprints, [2196477307]);
+      return new Response(JSON.stringify({ data: { exactMatches: [] } }), { status: 200 });
+    }
+    if (target.includes("curseforge.com/v1/mods/search")) return new Response(JSON.stringify({ data: [] }), { status: 200 });
+    if (target.endsWith("modrinth.com/v2/version_files")) return new Response(JSON.stringify({}), { status: 200 });
+    if (target.includes("modrinth.com/v2/search")) return new Response(JSON.stringify({ hits: [] }), { status: 200 });
+    throw new Error(`URL inesperada: ${target}`);
+  };
+  await resolveJarDescriptors([{
+    fileName: "apotheosis.jar",
+    sha1: "2".repeat(40),
+    curseFingerprint: -2098489989
+  }], { fetchImpl, curseForgeApiKey: "chave" });
 });
 
 test("fallback por nome mantém candidatos ambíguos no staging e tolera falha parcial", async () => {

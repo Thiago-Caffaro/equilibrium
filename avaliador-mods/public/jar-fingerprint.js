@@ -46,5 +46,7 @@ export function curseForgeFingerprint(input) {
   hash ^= hash >>> 13;
   hash = Math.imul(hash, multiplier) >>> 0;
   hash ^= hash >>> 15;
-  return hash | 0;
+  // O endpoint do CurseForge declara os fingerprints como int32 sem sinal.
+  // Manter o valor em JavaScript como uint32 evita enviar números negativos.
+  return hash >>> 0;
 }
