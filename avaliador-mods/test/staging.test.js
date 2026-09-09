@@ -3,7 +3,7 @@ import { mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
-import { curseForgeFingerprint } from "../public/jar-fingerprint.js";
+import { curseForgeFingerprint, normaliseCurseForgeBytes } from "../public/jar-fingerprint.js";
 import { sha1Fallback } from "../public/sha1.js";
 import { resolveJarDescriptors } from "../lib/staging-resolution.js";
 import { createStore } from "../lib/store.js";
@@ -17,6 +17,12 @@ async function temporaryRoot(t) {
 
 test("fingerprint CurseForge é estável para vetor conhecido", () => {
   assert.equal(curseForgeFingerprint(new TextEncoder().encode("hello")), -1506700914);
+});
+
+test("fingerprint CurseForge ignora bytes de whitespace antes do Murmur2", () => {
+  const input = new TextEncoder().encode("a b\nc\td\r");
+  assert.deepEqual([...normaliseCurseForgeBytes(input)], [...new TextEncoder().encode("abcd")]);
+  assert.equal(curseForgeFingerprint(input), -918586858);
 });
 
 test("SHA-1 local confere com vetor conhecido", () => {
