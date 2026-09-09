@@ -1,3 +1,5 @@
+import { curseForgeApiKeyFromEnvironment } from "./curseforge-config.js";
+
 const MODRINTH_API = "https://api.modrinth.com/v2";
 const CURSEFORGE_API = "https://api.curseforge.com/v1";
 const MINECRAFT_GAME_ID = 432;
@@ -240,7 +242,7 @@ async function lookupCurseForge(parsed, fetchImpl, apiKey) {
 
 export async function resolveProjectMetadataById({ provider, projectId }, {
   fetchImpl = globalThis.fetch,
-  curseForgeApiKey = process.env.CURSEFORGE_API_KEY
+  curseForgeApiKey = curseForgeApiKeyFromEnvironment()
 } = {}) {
   const normalizedProvider = String(provider || "").trim().toLowerCase();
   const normalizedId = String(projectId || "").trim();
@@ -257,7 +259,7 @@ export async function resolveProjectMetadataById({ provider, projectId }, {
 
 export async function resolveProjectMetadata(value, {
   fetchImpl = globalThis.fetch,
-  curseForgeApiKey = process.env.CURSEFORGE_API_KEY
+  curseForgeApiKey = curseForgeApiKeyFromEnvironment()
 } = {}) {
   if (typeof fetchImpl !== "function") {
     throw new MetadataLookupError("Este servidor não possui suporte a consultas HTTP.");

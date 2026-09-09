@@ -131,6 +131,8 @@ npm start
 
 No Portainer, adicione `CURSEFORGE_API_KEY` como variável de ambiente da stack. Não grave a chave no repositório, no `docker-compose.yml` ou em uma ficha. Sem ela, o sistema informa que a consulta ao CurseForge não está configurada; as fichas continuam funcionando normalmente e o Modrinth permanece disponível.
 
+Algumas chaves do CurseForge contêm `$`, caractere que ferramentas de deploy podem interpretar como interpolação. Se a assinatura/quantidade de caracteres da chave dentro do container não corresponder à original, use `CURSEFORGE_API_KEY_BASE64` no Portainer e deixe `CURSEFORGE_API_KEY` vazia. O avaliador decodifica essa variável apenas em memória. Para gerar o valor, em um terminal seguro, use `printf '%s' 'SUA_CHAVE' | base64 -w0`.
+
 ## Estrutura dos dados
 
 ```text
