@@ -154,14 +154,15 @@ async function requestJson(url, { fetchImpl, headers = {}, method = "GET", body,
             code: response.status === 429 ? "STAGING_RATE_LIMITED" : "STAGING_UPSTREAM_ERROR",
             statusCode: 502,
             upstreamStatus: response.status,
-            retryAfterSeconds: retryAfterSeconds(response)
+            retryAfterSeconds: retryAfterSeconds(response),
+            retryable: transient
           }
         );
         if (!transient || attempt === UPSTREAM_MAX_ATTEMPTS - 1) throw lastError;
         await wait(retryDelayMilliseconds(response, attempt));
       } catch (error) {
         if (error instanceof MetadataLookupError) {
-          if (attempt === UPSTREAM_MAX_ATTEMPTS - 1 || !["STAGING_RATE_LIMITED", "STAGING_UPSTREAM_ERROR"].includes(error.code)) throw error;
+          if (attempt === UPSTREAM_MAX_ATTEMPTS - 1 || !error.retryable) throw error;
           lastError = error;
           await wait(400 * (2 ** attempt));
         } else if (error.name === "AbortError") {

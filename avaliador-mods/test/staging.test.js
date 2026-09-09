@@ -83,6 +83,28 @@ test("repete uma limitação temporária do CurseForge antes de marcar erro", as
   assert.equal(record.name, "Recuperado");
 });
 
+test("não repete credencial CurseForge rejeitada", async () => {
+  let attempts = 0;
+  const fetchImpl = async (url) => {
+    const target = String(url);
+    if (target.includes("curseforge.com/v1/fingerprints/432")) {
+      attempts += 1;
+      return new Response("", { status: 401 });
+    }
+    if (target.endsWith("modrinth.com/v2/version_files")) return new Response(JSON.stringify({}), { status: 200 });
+    if (target.includes("modrinth.com/v2/search")) return new Response(JSON.stringify({ hits: [] }), { status: 200 });
+    throw new Error(`URL inesperada: ${target}`);
+  };
+  const [record] = await resolveJarDescriptors([{
+    fileName: "chave-rejeitada.jar",
+    sha1: "3".repeat(40),
+    curseFingerprint: 123
+  }], { fetchImpl, curseForgeApiKey: "chave-rejeitada" });
+  assert.equal(attempts, 1);
+  assert.equal(record.stagingSources.curseforge.state, "error");
+  assert.equal(record.stagingSources.curseforge.upstreamStatus, 401);
+});
+
 test("normaliza fingerprint assinado já salvo para o uint32 exigido pelo CurseForge", async () => {
   const fetchImpl = async (url, options = {}) => {
     const target = String(url);
@@ -212,6 +234,27 @@ test("promoção concorrente não cria dois mods", async (t) => {
   assert.equal((await store.list("mods")).length, 1);
 });
 
+test("exclusão em lote remove toda a seleção ou não remove nada quando há conflito", async (t) => {
+  const store = createStore({ dataRoot: await temporaryRoot(t) });
+  const first = await store.create("mods", { name: "Primeira" }, "Teste");
+  const second = await store.create("mods", { name: "Segunda" }, "Teste");
+  const rejected = await store.removeMany("mods", [
+    { id: first.id, expectedStorageVersion: first.storageVersion },
+    { id: second.id, expectedStorageVersion: second.storageVersion + 1 }
+  ]);
+  assert.equal(rejected.deleted.length, 0);
+  assert.equal(rejected.conflicts.length, 1);
+  assert.ok(await store.get("mods", first.id));
+  assert.ok(await store.get("mods", second.id));
+
+  const deleted = await store.removeMany("mods", [
+    { id: first.id, expectedStorageVersion: first.storageVersion },
+    { id: second.id, expectedStorageVersion: second.storageVersion }
+  ]);
+  assert.equal(deleted.deleted.length, 2);
+  assert.equal((await store.list("mods")).length, 0);
+});
+
 test("API cria staging, reavalia, promove e expõe as análises somente para leitura", async (t) => {
   const server = createAppServer({
     dataRoot: await temporaryRoot(t),
@@ -252,4 +295,24 @@ test("API cria staging, reavalia, promove e expõe as análises somente para lei
   assert.ok(Array.isArray((await catalog.json()).mods));
   const documents = await fetch(`${base}/api/analyses/documents`).then((response) => response.json());
   assert.ok(documents.documents.length > 0);
+});
+
+test("API exclui várias fichas com versões verificadas", async (t) => {
+  const server = createAppServer({ dataRoot: await temporaryRoot(t) });
+  await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
+  t.after(() => new Promise((resolve) => server.close(resolve)));
+  const base = `http://127.0.0.1:${server.address().port}`;
+  const create = async (name) => fetch(`${base}/api/records/mods`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ record: { name } })
+  }).then((response) => response.json());
+  const [one, two] = await Promise.all([create("Um"), create("Dois")]);
+  const response = await fetch(`${base}/api/records/mods/bulk-delete`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ records: [one.record, two.record].map((record) => ({ id: record.id, expectedStorageVersion: record.storageVersion })) })
+  });
+  assert.equal(response.status, 200);
+  assert.equal((await response.json()).deleted.length, 2);
 });

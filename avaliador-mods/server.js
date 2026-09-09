@@ -183,6 +183,17 @@ export function createAppServer({ dataRoot = DEFAULT_DATA_ROOT, metadataResolver
         const collection = collectionFromKind(segments[2]);
         const id = segments[3];
 
+        if (request.method === "POST" && id === "bulk-delete" && !segments[4]) {
+          const body = await readJsonBody(request);
+          const result = await store.removeMany(collection, body.records);
+          if (result.conflicts.length > 0) {
+            sendJson(response, 409, { error: "Uma ou mais fichas mudaram antes da exclusão. Atualize a lista e confirme novamente.", conflicts: result.conflicts });
+          } else {
+            sendJson(response, 200, result);
+          }
+          return;
+        }
+
         if (request.method === "GET" && !id) {
           sendJson(response, 200, { records: await store.list(collection) });
           return;

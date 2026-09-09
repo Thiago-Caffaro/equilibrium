@@ -229,6 +229,39 @@ export function createStore({ dataRoot }) {
     });
   }
 
+  async function removeMany(collection, requested = []) {
+    await initialise();
+    ensureCollection(collection);
+    if (!Array.isArray(requested) || requested.length === 0 || requested.length > 1500) {
+      throw new ValidationError("Selecione entre 1 e 1500 fichas para excluir.");
+    }
+    const items = [];
+    const ids = new Set();
+    for (const input of requested) {
+      const id = String(input?.id || "");
+      if (!RECORD_ID.test(id)) throw new ValidationError("Identificador inválido na seleção.");
+      if (ids.has(id)) continue;
+      ids.add(id);
+      items.push({ id, expectedStorageVersion: Number(input?.expectedStorageVersion) });
+    }
+    return serialise(`bulk-remove:${collection}`, async () => {
+      const current = await Promise.all(items.map(({ id }) => get(collection, id)));
+      const conflicts = current.flatMap((record, index) => {
+        if (!record) return [{ id: items[index].id, reason: "missing" }];
+        const expected = items[index].expectedStorageVersion;
+        if (Number.isFinite(expected) && expected !== storageVersionOf(record)) {
+          return [{ id: record.id, name: record.name, reason: "changed", record }];
+        }
+        return [];
+      });
+      // The batch is intentionally all-or-nothing: a changed record must not
+      // cause the other selected records to disappear without reconfirmation.
+      if (conflicts.length > 0) return { deleted: [], conflicts };
+      await Promise.all(items.map(({ id }) => unlink(recordPath(collection, id))));
+      return { deleted: current.map((record) => ({ id: record.id, name: record.name })), conflicts: [] };
+    });
+  }
+
   async function findByName(collection, name) {
     const target = String(name || "").trim().toLocaleLowerCase("pt-BR");
     if (!target) return null;
@@ -372,6 +405,7 @@ export function createStore({ dataRoot }) {
     save,
     review,
     remove,
+    removeMany,
     promoteStage,
     importRecords,
     listDocuments,

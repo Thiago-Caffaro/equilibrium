@@ -159,7 +159,8 @@ const state = {
   analysisDocuments: [],
   analysisVisible: false,
   scanCancelled: false,
-  scanWorker: null
+  scanWorker: null,
+  selectedRecordIds: new Set()
 };
 
 const elements = Object.fromEntries([
@@ -171,7 +172,7 @@ const elements = Object.fromEntries([
   "jsonTextarea", "applyJsonButton", "newDocumentButton", "importFileInput", "importDialog",
   "importFileSummary", "confirmImportButton", "shortcutsButton", "shortcutsDialog", "toastRegion", "analysesButton",
   "analysisState", "analysisSearch", "analysisCategory", "analysisPresence", "copyAnalysisButton", "analysisStats", "analysisHead", "analysisRows", "analysisDocumentLinks", "analysisDocumentPreview",
-  "scanFolderButton", "jarDirectoryInput", "jarFilesInput"
+  "scanFolderButton", "jarDirectoryInput", "jarFilesInput", "selectVisibleButton", "bulkDeleteButton"
 ].map((id) => [id, document.getElementById(id)]));
 
 function escapeHtml(value) {
@@ -542,7 +543,9 @@ function sourceStateLabel(source) {
       return source.retryAfterSeconds ? `Limite temporário · tente em ${source.retryAfterSeconds}s` : "Limite temporário · tente novamente";
     }
     if (source.upstreamStatus === 400) return "Requisição inválida à fonte (400)";
-    if (source.upstreamStatus) return `Erro temporário da fonte (${source.upstreamStatus})`;
+    if (source.upstreamStatus === 401) return "Credencial da fonte rejeitada (401)";
+    if (source.upstreamStatus === 403) return "Credencial sem acesso à fonte (403)";
+    if (source.upstreamStatus) return `Erro da fonte (${source.upstreamStatus})`;
     return "Erro temporário na consulta";
   }
   const labels = {
@@ -777,6 +780,7 @@ async function deleteRecord() {
       body: JSON.stringify({ expectedStorageVersion: state.current.storageVersion })
     });
     state.records = state.records.filter((record) => record.id !== deleted.id);
+    state.selectedRecordIds.delete(deleted.id);
     state.current = null;
     state.dirty = false;
     state.conflictCurrent = null;
@@ -796,6 +800,58 @@ async function deleteRecord() {
   } finally {
     state.saving = false;
     updateSaveIndicator();
+  }
+}
+
+function toggleVisibleSelection() {
+  const visible = filteredRecords();
+  const everyVisibleIsSelected = visible.length > 0 && visible.every((record) => state.selectedRecordIds.has(record.id));
+  for (const record of visible) {
+    if (everyVisibleIsSelected) state.selectedRecordIds.delete(record.id);
+    else state.selectedRecordIds.add(record.id);
+  }
+  renderList();
+}
+
+async function deleteSelectedRecords() {
+  if (state.saving || state.selectedRecordIds.size === 0) return;
+  if (state.dirty) {
+    toast("Salve ou descarte a edição atual antes de excluir fichas em lote.", "warning", 5200);
+    return;
+  }
+  const selected = state.records.filter((record) => state.selectedRecordIds.has(record.id));
+  if (selected.length === 0) return;
+  const confirmed = confirm(`Excluir permanentemente ${selected.length} ficha${selected.length === 1 ? "" : "s"} selecionada${selected.length === 1 ? "" : "s"}?\n\nEssa ação não pode ser desfeita pelo avaliador.`);
+  if (!confirmed) return;
+
+  state.saving = true;
+  updateEditorHeader();
+  renderList();
+  try {
+    const { deleted } = await api(`/api/records/${state.collection}/bulk-delete`, {
+      method: "POST",
+      body: JSON.stringify({ records: selected.map((record) => ({ id: record.id, expectedStorageVersion: record.storageVersion })) })
+    });
+    const deletedIds = new Set(deleted.map((record) => record.id));
+    state.records = state.records.filter((record) => !deletedIds.has(record.id));
+    state.selectedRecordIds.clear();
+    if (state.current && deletedIds.has(state.current.id)) {
+      state.current = null;
+      elements.editorState.hidden = true;
+      elements.welcomeState.hidden = false;
+    }
+    toast(`${deleted.length} ficha${deleted.length === 1 ? "" : "s"} excluída${deleted.length === 1 ? "" : "s"}.`, "success");
+  } catch (error) {
+    if (error.status === 409) {
+      toast("Nenhuma ficha foi excluída: uma delas mudou. Atualize e confirme novamente.", "warning", 5600);
+      await loadCollection({ preserveCurrent: true });
+    } else {
+      toast(error.message, "error");
+    }
+  } finally {
+    state.saving = false;
+    updateSaveIndicator();
+    renderList();
   }
 }
 
@@ -1000,17 +1056,30 @@ function statusClass(status) {
 
 function renderList() {
   const records = filteredRecords();
-  elements.recordCount.textContent = `${records.length} ${records.length === 1 ? "registro" : "registros"}`;
+  const availableIds = new Set(state.records.map((record) => record.id));
+  state.selectedRecordIds = new Set([...state.selectedRecordIds].filter((id) => availableIds.has(id)));
+  const selectedVisible = records.filter((record) => state.selectedRecordIds.has(record.id));
+  elements.recordCount.textContent = `${records.length} ${records.length === 1 ? "registro" : "registros"}${state.selectedRecordIds.size ? ` · ${state.selectedRecordIds.size} selecionada${state.selectedRecordIds.size === 1 ? "" : "s"}` : ""}`;
+  elements.selectVisibleButton.hidden = records.length === 0;
+  elements.selectVisibleButton.textContent = records.length > 0 && selectedVisible.length === records.length ? "Limpar seleção visível" : "Selecionar visíveis";
+  elements.selectVisibleButton.disabled = state.saving;
+  elements.bulkDeleteButton.hidden = state.selectedRecordIds.size === 0;
+  elements.bulkDeleteButton.textContent = `Excluir ${state.selectedRecordIds.size} selecionada${state.selectedRecordIds.size === 1 ? "" : "s"}`;
+  elements.bulkDeleteButton.disabled = state.saving;
   if (records.length === 0) {
     elements.recordList.innerHTML = `<div class="empty-list"><span class="empty-list__icon">◇</span><strong>Nenhuma ficha encontrada</strong><p>Altere os filtros ou crie um novo registro.</p></div>`;
     return;
   }
   elements.recordList.innerHTML = records.map((record) => `
-    <button class="record-list-item ${state.current?.id === record.id ? "is-active" : ""}" type="button" data-record-id="${escapeHtml(record.id)}">
-      <span class="record-list-item__top"><strong>${escapeHtml(record.name)}</strong><span class="status-dot status-dot--${statusClass(record.status)}"></span></span>
-      <span class="record-list-item__meta">${escapeHtml(record.status || "Sem estado")}${record.divisions?.length ? ` · ${escapeHtml(record.divisions.join(" / "))}` : ""}</span>
-      <span class="record-list-item__date">${escapeHtml(formatDate(record.updatedAt))}</span>
-    </button>
+    <article class="record-list-item ${state.current?.id === record.id ? "is-active" : ""}">
+      <label class="record-list-item__select" title="Selecionar ${escapeHtml(record.name)} para exclusão em lote"><input type="checkbox" data-record-select="${escapeHtml(record.id)}" ${state.selectedRecordIds.has(record.id) ? "checked" : ""}><span class="sr-only">Selecionar ${escapeHtml(record.name)}</span></label>
+      <button class="record-list-item__open" type="button" data-record-id="${escapeHtml(record.id)}">
+        <span class="record-list-item__icon${record.officialIconUrl ? "" : " is-fallback"}" data-record-icon><img src="${escapeHtml(record.officialIconUrl || "")}" alt="" loading="lazy" data-record-icon-image><span aria-hidden="true">◇</span></span>
+        <span class="record-list-item__content"><span class="record-list-item__top"><strong>${escapeHtml(record.name)}</strong><span class="status-dot status-dot--${statusClass(record.status)}"></span></span>
+        <span class="record-list-item__meta">${escapeHtml(record.status || "Sem estado")}${record.divisions?.length ? ` · ${escapeHtml(record.divisions.join(" / "))}` : ""}</span>
+        <span class="record-list-item__date">${escapeHtml(formatDate(record.updatedAt))}</span></span>
+      </button>
+    </article>
   `).join("");
 }
 
@@ -1049,6 +1118,7 @@ async function switchCollection(collection) {
   state.analysisVisible = false;
   state.current = null;
   state.dirty = false;
+  state.selectedRecordIds.clear();
   document.querySelectorAll("[data-collection]").forEach((button) => {
     const active = button.dataset.collection === collection;
     button.classList.toggle("is-active", active);
@@ -1432,6 +1502,19 @@ elements.recordList.addEventListener("click", (event) => {
   const button = event.target.closest("[data-record-id]");
   if (button) void openRecord(button.dataset.recordId);
 });
+elements.recordList.addEventListener("change", (event) => {
+  const input = event.target.closest("[data-record-select]");
+  if (!input) return;
+  if (input.checked) state.selectedRecordIds.add(input.dataset.recordSelect);
+  else state.selectedRecordIds.delete(input.dataset.recordSelect);
+  renderList();
+});
+elements.recordList.addEventListener("error", (event) => {
+  const image = event.target.closest?.("[data-record-icon-image]");
+  if (!image) return;
+  image.closest("[data-record-icon]")?.classList.add("is-fallback");
+  image.remove();
+}, true);
 document.querySelectorAll("[data-collection]").forEach((button) => button.addEventListener("click", () => void switchCollection(button.dataset.collection)));
 elements.analysesButton.addEventListener("click", () => void showAnalyses());
 elements.analysisSearch.addEventListener("input", renderAnalyses);
@@ -1456,6 +1539,8 @@ elements.welcomeNewButton.addEventListener("click", startNewRecord);
 elements.saveButton.addEventListener("click", () => void saveRecord());
 elements.reviewButton.addEventListener("click", () => void reviewRecord());
 elements.deleteButton.addEventListener("click", () => void deleteRecord());
+elements.selectVisibleButton.addEventListener("click", toggleVisibleSelection);
+elements.bulkDeleteButton.addEventListener("click", () => void deleteSelectedRecords());
 elements.promoteButton.addEventListener("click", () => void promoteStage());
 elements.refreshButton.addEventListener("click", () => void loadCollection({ preserveCurrent: true }));
 elements.scanFolderButton.addEventListener("click", () => {
