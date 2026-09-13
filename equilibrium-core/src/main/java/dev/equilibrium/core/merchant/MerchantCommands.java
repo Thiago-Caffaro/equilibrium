@@ -36,7 +36,6 @@ public final class MerchantCommands {
     private static final Logger AUDIT = LogUtils.getLogger();
     private static final String ACCESS_TAG = "equilibrium_merchant_experimental";
     private static final String MASTERY_TAG_PREFIX = "equilibrium_merchant_mastery_";
-    private static final int MAX_BATCH = 64;
     private static final Map<UUID, String> LAST_REQUEST = new HashMap<>();
 
     @SubscribeEvent
@@ -57,7 +56,7 @@ public final class MerchantCommands {
                 .then(Commands.argument("player", EntityArgument.player()).executes(MerchantCommands::revoke)))
             .then(Commands.literal("execute")
                 .then(Commands.argument("offer", ResourceLocationArgument.id())
-                    .then(Commands.argument("amount", IntegerArgumentType.integer(1, MAX_BATCH))
+                    .then(Commands.argument("amount", IntegerArgumentType.integer(1, MerchantTransaction.MAX_BATCH))
                         .executes(MerchantCommands::execute)))));
         d.register(merchant);
     }
@@ -102,8 +101,8 @@ public final class MerchantCommands {
         if (!authorised(player)) return denied(player, "EXECUTE_DENIED");
         if (offer == null || !offer.enabled()) return reject(player, "UNKNOWN_OR_DISABLED");
         if (!hasExperimentalMastery(player, offer.requiredMastery())) return reject(player, "MASTERY_REQUIREMENT");
-        if (amount < 1 || amount > MAX_BATCH) return reject(player, "INVALID_AMOUNT");
-        if (offer.inputCount() > Integer.MAX_VALUE / amount || offer.outputCount() > Integer.MAX_VALUE / amount) return reject(player, "OVERFLOW");
+        MerchantTransaction.Plan plan = MerchantTransaction.preflight(offer, amount);
+        if (!plan.accepted()) return reject(player, plan.rejection());
         String nonce = id + ":" + amount + ":" + player.level().getGameTime();
         synchronized (LAST_REQUEST) {
             if (nonce.equals(LAST_REQUEST.put(player.getUUID(), nonce))) return reject(player, "DUPLICATE_REQUEST");
@@ -111,12 +110,12 @@ public final class MerchantCommands {
         Item input = BuiltInRegistries.ITEM.get(offer.input());
         Item output = BuiltInRegistries.ITEM.get(offer.output());
         if (input == null || output == null || input == net.minecraft.world.item.Items.AIR || output == net.minecraft.world.item.Items.AIR) return reject(player, "MISSING_REGISTERED_ITEM");
-        int requestedInput = offer.inputCount() * amount;
+        int requestedInput = plan.inputToConsume();
         if (count(player, input) < requestedInput) return reject(player, "INSUFFICIENT_INPUT");
         remove(player, input, requestedInput); // exactly once, after every validation above.
         boolean success = player.getRandom().nextDouble() < offer.chance();
         if (success) {
-            deliver(player, output, offer.outputCount() * amount);
+            deliver(player, output, plan.outputToDeliver());
             player.sendSystemMessage(Component.literal("Experimental offer succeeded.").withStyle(ChatFormatting.GREEN));
         } else player.sendSystemMessage(Component.literal("Experimental offer failed; inputs were consumed by this declared test rule.").withStyle(ChatFormatting.RED));
         audit(player, success ? "SUCCESS" : "FAILURE", "offer=" + id + " amount=" + amount + " input=" + requestedInput);

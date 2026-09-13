@@ -18,8 +18,9 @@ real contract. `MerchantCommandsTest` locks down the namespaced offer-ID
 grammar emitted by a clickable Merchant card; it must consume the complete
 command rather than leave text after `equilibrium:`. `MerchantOfferParserTest`
 ensures the datapack schema cannot declare a failure policy or mastery level
-that the temporary Merchant runtime cannot honor. There are no placeholder
-tests.
+that the temporary Merchant runtime cannot honor. `MerchantTransactionTest`
+proves that batch quantities are calculated before inventory mutation and that
+an overflowing request is rejected. There are no placeholder tests.
 
 ## Dedicated development server
 
