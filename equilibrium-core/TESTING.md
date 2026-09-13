@@ -44,6 +44,11 @@ The current ModDevGradle development target does not generate an `eula.txt`;
 if a future runtime does, accept its EULA before starting it. Do not reuse the
 generated configuration as a public-server configuration.
 
+The dedicated smoke passes when the log reports both `Equilibrium Merchant
+loaded … positive experimental offers` and `Done (...)`. It verifies mod
+loading and datapack reload only; it does not replace the focused manual
+interaction check.
+
 ## GameTests and manual checks
 
 `runGameTestServer` is available but is intentionally not run until at least
