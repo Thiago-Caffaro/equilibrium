@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "equilibrium:experimental_copper_to_zinc",
+  "enabled": true,
+  "input": { "item": "minecraft:copper_ingot", "count": 8 },
+  "output": { "item": "create:zinc_ingot", "count": 4 },
+  "chance": 0.65,
+  "required_mastery": 1,
+  "experimental": true,
+  "failure": { "consume_inputs": true }
+}

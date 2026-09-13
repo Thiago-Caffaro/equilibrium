@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "equilibrium:experimental_crop_exchange",
+  "enabled": true,
+  "input": { "item": "minecraft:hay_block", "count": 16 },
+  "output": { "item": "minecraft:emerald", "count": 2 },
+  "chance": 0.55,
+  "required_mastery": 1,
+  "experimental": true,
+  "failure": { "consume_inputs": true }
+}

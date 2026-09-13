@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "equilibrium:experimental_bread_to_gold",
+  "enabled": true,
+  "input": { "item": "minecraft:bread", "count": 16 },
+  "output": { "item": "minecraft:gold_ingot", "count": 3 },
+  "chance": 0.40,
+  "required_mastery": 1,
+  "experimental": true,
+  "failure": { "consume_inputs": true }
+}
