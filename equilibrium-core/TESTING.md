@@ -16,7 +16,9 @@ Run from `equilibrium-core`:
 `test` is JUnit 5 through ModDevGradle. Add a test only when it can falsify a
 real contract. `MerchantCommandsTest` locks down the namespaced offer-ID
 grammar emitted by a clickable Merchant card; it must consume the complete
-command rather than leave text after `equilibrium:`. There are no placeholder
+command rather than leave text after `equilibrium:`. `MerchantOfferParserTest`
+ensures the datapack schema cannot declare a failure policy or mastery level
+that the temporary Merchant runtime cannot honor. There are no placeholder
 tests.
 
 ## Dedicated development server
