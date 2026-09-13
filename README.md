@@ -17,6 +17,9 @@ Ao publicar uma versão nova pelo Git, aguarde o workflow **Publicar imagem do a
 - [Baseline conceitual](planejamento-conceitual/README.md): decisões, diretrizes, propostas, pendências e histórico do projeto.
 - [Avaliador de Mods](avaliador-mods/README.md): aplicação local para fichas críticas de mods e análises de modpacks/listas de referência.
 
+- [Equilibrium Core](equilibrium-core/README.md): mod NeoForge experimental, server-authoritative.
+- [Laboratorio de balanceamento](balance-lab/README.md): staging reversivel para KubeJS, datapacks/tags e configs locais.
+
 ## Abrir o avaliador
 
 No Windows, abra `avaliador-mods/iniciar-avaliador.cmd` ou execute:

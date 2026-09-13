@@ -1,0 +1,14 @@
+# Balance-change inventory
+
+Every non-baseline experiment gets one row before it is copied into a test
+instance. Keep related changes on one balance axis in the same row; do not use
+this file as a task list.
+
+| ID | Owner mod | Intent and affected data | Source file | Reload or restart | Test profile | Rollback | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| BASELINE-CM-001 | None | Untouched Create/Merchant candidate baseline | No copied data | Not applicable | [2026-09-13-create-merchant-baseline](test-profiles/2026-09-13-create-merchant-baseline.md) | Not applicable | Recorded |
+
+`Owner mod` is the mod whose gameplay data/configuration is changed. `Rollback`
+must name the exact copied file or config key to remove or restore. Record the
+installed mod version and observed outcome in the referenced test-profile note,
+not in Core data.
