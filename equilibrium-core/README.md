@@ -10,4 +10,5 @@ grant command deliberately assigns only the temporary Merchant identity and
 mastery-1 entity tags; neither tag is a final division or mastery system.
 Offers are positive-only data in `data/equilibrium/merchant_offers`.
 
-Use Java 21 and run `gradlew.bat build`.
+Use Java 21 and, from this directory, run
+`.\tools\Invoke-EquilibriumGradle.ps1 build --console=plain --no-daemon`.

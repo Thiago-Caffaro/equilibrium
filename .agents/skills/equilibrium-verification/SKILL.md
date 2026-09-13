@@ -21,11 +21,12 @@ Do not run the expensive layers by habit. Choose the lowest layer that can falsi
 
 ## Environment setup and operation
 
-1. Confirm Java 21 and the pinned NeoForge/ModDevGradle versions before debugging a build failure.
-2. Bootstrap the development dedicated server with `gradlew runServer`. Accept its EULA in the generated run directory, set `online-mode=false` for the development player, and restart it. Never apply this development-only setting to a public server without an explicit security decision.
-3. Enable JUnit through ModDevGradle only after adding the official `unitTest` configuration and JUnit Platform dependencies. Keep tests small and deterministic.
-4. Add `@GameTest` only when a world/server seam is essential. Register it under the `equilibrium` namespace and run `gradlew runGameTestServer`; avoid committing a configuration that only fails because no tests exist.
-5. For a click, command, or inventory defect, first make a minimal regression signal. The signal must fail for the reported symptom and pass after the correction; a compile success cannot serve as that signal.
+1. Confirm Java 21 and the pinned NeoForge/ModDevGradle versions before debugging a build failure. On this Windows workspace, run every Gradle task from `equilibrium-core` through `./tools/Invoke-EquilibriumGradle.ps1`; it resolves Java 21 for that process instead of trusting the shell-wide `JAVA_HOME`.
+2. Use `./tools/Invoke-EquilibriumGradle.ps1 build --console=plain --no-daemon` for the final automated build, `test` for the full JUnit suite, and `test --tests <fully-qualified-test>` only while iterating on one regression. Do not substitute an IDE build or raw `gradlew` as evidence.
+3. Bootstrap the isolated development dedicated server with `./tools/Initialize-EquilibriumDevServer.ps1`, then start it with `./tools/Invoke-EquilibriumGradle.ps1 runServer --console=plain --no-daemon`. The script sets `online-mode=false` only under `runs/server`; never apply that development-only setting to a public server without an explicit security decision. A smoke passes after the Merchant reload message and the server `Done (...)` message, then the temporary server must be stopped.
+4. Enable JUnit through ModDevGradle only after adding the official `unitTest` configuration and JUnit Platform dependencies. Keep tests small and deterministic.
+5. Add `@GameTest` only when a world/server seam is essential. Register it under the `equilibrium` namespace and run `./tools/Invoke-EquilibriumGradle.ps1 runGameTestServer --console=plain --no-daemon`; avoid committing a configuration that only fails because no tests exist.
+6. For a click, command, or inventory defect, first make a minimal regression signal. The signal must fail for the reported symptom and pass after the correction; a compile success cannot serve as that signal.
 
 ## Evidence record
 

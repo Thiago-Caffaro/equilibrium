@@ -39,3 +39,6 @@ runs/
 **/src/generated/**/.cache/
 repo/
 !**/src/**/repo/
+
+# Local manual evidence can include instance paths and log excerpts.
+verification-evidence/manual-*.md
