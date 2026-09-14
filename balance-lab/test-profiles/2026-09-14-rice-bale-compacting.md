@@ -49,4 +49,5 @@ Delight recipe is untouched throughout.
 
 ## Result
 
-Staged for the test instance. No in-game result has been recorded yet.
+The script was copied to `Equilibrium - Test grounds` on 2026-09-14. No
+`/reload` or in-game result has been recorded yet.
