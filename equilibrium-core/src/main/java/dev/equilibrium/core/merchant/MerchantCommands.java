@@ -27,6 +27,7 @@ import org.slf4j.Logger;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.function.DoubleSupplier;
 
 import static dev.equilibrium.core.EquilibriumCore.MOD_ID;
 
@@ -97,23 +98,31 @@ public final class MerchantCommands {
         if (player == null) return 0;
         ResourceLocation id = ResourceLocationArgument.getId(context, "offer");
         int amount = IntegerArgumentType.getInteger(context, "amount");
+        return execute(player, id, amount, player.getRandom()::nextDouble);
+    }
+
+    /**
+     * Server-side transaction entry point. The command resolves its arguments before delegating here;
+     * GameTests use the same path with a deterministic chance source.
+     */
+    static int execute(ServerPlayer player, ResourceLocation id, int amount, DoubleSupplier nextRandomDouble) {
         MerchantOffer offer = MerchantOffers.INSTANCE.get(id);
         if (!authorised(player)) return denied(player, "EXECUTE_DENIED");
         if (offer == null || !offer.enabled()) return reject(player, "UNKNOWN_OR_DISABLED");
         if (!hasExperimentalMastery(player, offer.requiredMastery())) return reject(player, "MASTERY_REQUIREMENT");
         MerchantTransaction.Plan plan = MerchantTransaction.preflight(offer, amount);
         if (!plan.accepted()) return reject(player, plan.rejection());
-        String nonce = id + ":" + amount + ":" + player.level().getGameTime();
-        synchronized (LAST_REQUEST) {
-            if (nonce.equals(LAST_REQUEST.put(player.getUUID(), nonce))) return reject(player, "DUPLICATE_REQUEST");
-        }
         Item input = BuiltInRegistries.ITEM.get(offer.input());
         Item output = BuiltInRegistries.ITEM.get(offer.output());
         if (input == null || output == null || input == net.minecraft.world.item.Items.AIR || output == net.minecraft.world.item.Items.AIR) return reject(player, "MISSING_REGISTERED_ITEM");
         int requestedInput = plan.inputToConsume();
         if (count(player, input) < requestedInput) return reject(player, "INSUFFICIENT_INPUT");
+        String nonce = id + ":" + amount + ":" + player.level().getGameTime();
+        synchronized (LAST_REQUEST) {
+            if (nonce.equals(LAST_REQUEST.put(player.getUUID(), nonce))) return reject(player, "DUPLICATE_REQUEST");
+        }
         remove(player, input, requestedInput); // exactly once, after every validation above.
-        boolean success = player.getRandom().nextDouble() < offer.chance();
+        boolean success = nextRandomDouble.getAsDouble() < offer.chance();
         if (success) {
             deliver(player, output, plan.outputToDeliver());
             player.sendSystemMessage(Component.literal("Experimental offer succeeded.").withStyle(ChatFormatting.GREEN));

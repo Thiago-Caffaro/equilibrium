@@ -87,14 +87,19 @@ SHA-256 together with the manual result using
 
 ## GameTests and manual checks
 
-`runGameTestServer` is available but is intentionally not run until at least
-one required `@GameTest` exists; NeoForge's game-test server fails when no
-tests are supplied. Use it for registry, command, inventory, and server-world
+Run the GameTest server for registry, command, inventory, and server-world
 behavior that cannot be covered by JUnit:
 
 ```powershell
 .\tools\Invoke-EquilibriumGradle.ps1 runGameTestServer
 ```
+
+`MerchantGameTests` registers an explicit server-world transaction scenario.
+It proves an authorised success and same-tick duplicate rejection, declared
+failure consumption, insufficient and unknown-offer rejection without output,
+and safe world-drop delivery when a survival player's inventory is full. The
+runner enables `equilibrium` and `minecraft` because the test uses the
+existing vanilla empty-bastion fixture; it does not register vanilla tests.
 
 Manual testing remains narrowly focused on visible behavior and modpack
 compatibility. For the current merchant-click defect, record the full command

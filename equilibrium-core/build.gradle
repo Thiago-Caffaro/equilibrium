@@ -72,7 +72,8 @@ neoForge {
         gameTestServer {
             type = "gameTestServer"
             gameDirectory = project.file('runs/gametest')
-            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+            // Merchant GameTests use Minecraft's empty bastion template, so its fixture namespace is enabled too.
+            systemProperty 'neoforge.enabledGameTestNamespaces', "${project.mod_id},minecraft"
         }
 
         data {
