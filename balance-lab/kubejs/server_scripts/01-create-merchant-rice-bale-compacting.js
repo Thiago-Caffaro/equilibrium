@@ -4,18 +4,24 @@
 // This is intentionally additive: it does not remove or replace the vanilla
 // crafting recipe. Delete this file and run /reload to roll the experiment back.
 ServerEvents.recipes(event => {
-  event.recipes.create.compacting(
-    'farmersdelight:rice_bale',
-    [
-      'farmersdelight:rice_panicle',
-      'farmersdelight:rice_panicle',
-      'farmersdelight:rice_panicle',
-      'farmersdelight:rice_panicle',
-      'farmersdelight:rice_panicle',
-      'farmersdelight:rice_panicle',
-      'farmersdelight:rice_panicle',
-      'farmersdelight:rice_panicle',
-      'farmersdelight:rice_panicle'
+  // The KubeJS Create recipe-helper addon is not installed in the test
+  // profile. Use Create 6's native recipe schema instead of its unavailable
+  // event.recipes.create.compacting(...) helper.
+  event.custom({
+    type: 'create:compacting',
+    ingredients: [
+      { item: 'farmersdelight:rice_panicle' },
+      { item: 'farmersdelight:rice_panicle' },
+      { item: 'farmersdelight:rice_panicle' },
+      { item: 'farmersdelight:rice_panicle' },
+      { item: 'farmersdelight:rice_panicle' },
+      { item: 'farmersdelight:rice_panicle' },
+      { item: 'farmersdelight:rice_panicle' },
+      { item: 'farmersdelight:rice_panicle' },
+      { item: 'farmersdelight:rice_panicle' }
+    ],
+    results: [
+      { id: 'farmersdelight:rice_bale' }
     ]
-  ).id('equilibrium:merchant_rice_bale_compacting')
+  }).id('equilibrium:merchant_rice_bale_compacting')
 })

@@ -29,6 +29,21 @@ does not establish a final economy value or Merchant price.
 The original Farmer's Delight shaped recipe remains available. No recipe is
 removed and no Core data is changed.
 
+## API compatibility correction
+
+The first `/reload` loaded both KubeJS scripts but failed to register the
+recipe: `event.recipes.create.compacting(...)` reported that no two-argument
+constructor existed. The loaded-plugin list contained no KubeJS Create helper
+integration, so the experiment now uses `event.custom(...)` with the native
+Create 6 compacting schema. This changes serialization only; inputs, output,
+and balance hypothesis are unchanged.
+
+Run the following static regression contract before each manual reload:
+
+```powershell
+.\tools\Assert-CreateCompactingExperiment.ps1 -CreateJarPath 'C:\Users\thiag\curseforge\minecraft\Instances\Equilibrium - Test grounds\mods\create-1.21.1-6.0.10.jar'
+```
+
 ## Deployment and verification procedure
 
 1. Copy the script to the instance's `kubejs/server_scripts` folder.
@@ -49,5 +64,6 @@ Delight recipe is untouched throughout.
 
 ## Result
 
-The script was copied to `Equilibrium - Test grounds` on 2026-09-14. No
-`/reload` or in-game result has been recorded yet.
+The first deployment produced one failed recipe during `/reload`; no in-game
+test was attempted. The corrected script is awaiting deployment and a fresh
+`/reload`.
