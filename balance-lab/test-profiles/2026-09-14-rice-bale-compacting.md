@@ -65,5 +65,8 @@ Delight recipe is untouched throughout.
 ## Result
 
 The first deployment produced one failed recipe during `/reload`; no in-game
-test was attempted. The corrected script is awaiting deployment and a fresh
-`/reload`.
+test was attempted. The corrected script was copied to `Equilibrium - Test
+grounds` on 2026-09-14 and its SHA-256 was verified against the tracked source.
+
+The next `/reload` must report two KubeJS server scripts with zero errors and
+one added recipe with zero failed recipes before the mechanical test is run.
