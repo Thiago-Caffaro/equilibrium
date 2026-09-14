@@ -12,3 +12,7 @@ Offers are positive-only data in `data/equilibrium/merchant_offers`.
 
 Use Java 21 and, from this directory, run
 `.\tools\Invoke-EquilibriumGradle.ps1 build --console=plain --no-daemon`.
+
+Future division, authority, persistence, and client-sync seams are documented
+in [FUTURE-INTEGRATION-SEAMS.md](FUTURE-INTEGRATION-SEAMS.md). They are inert
+until their linked conceptual decisions are closed.
