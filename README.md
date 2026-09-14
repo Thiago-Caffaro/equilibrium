@@ -14,7 +14,6 @@ Ao publicar uma versão nova pelo Git, aguarde o workflow **Publicar imagem do a
 
 ## Conteúdo
 
-- [Baseline conceitual](planejamento-conceitual/README.md): decisões, diretrizes, propostas, pendências e histórico do projeto.
 - [Avaliador de Mods](avaliador-mods/README.md): aplicação local para fichas críticas de mods e análises de modpacks/listas de referência.
 
 ## Abrir o avaliador
