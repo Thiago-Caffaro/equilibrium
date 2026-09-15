@@ -77,6 +77,17 @@ try {
     $cookedRice = Read-ArchiveJson $fdArchive 'data/farmersdelight/recipe/cooking/cooked_rice.json'
     Assert-Equal $cookedRice.ingredients[0].tag 'c:crops/rice' 'Cooked-rice input must remain the shared rice tag.'
 
+    $friedRice = Read-ArchiveJson $fdArchive 'data/farmersdelight/recipe/cooking/fried_rice.json'
+    Assert-Equal $friedRice.type 'farmersdelight:cooking' 'Fried rice must remain a Farmer''s Delight cooking recipe.'
+    Assert-Equal $friedRice.result.id 'farmersdelight:fried_rice' 'Fried-rice output changed.'
+    $expectedFriedRiceInputs = @('c:crops/rice', 'c:eggs', 'c:crops/carrot', 'c:crops/onion')
+    if (@($friedRice.ingredients).Count -ne $expectedFriedRiceInputs.Count) {
+        throw 'Fried-rice ingredient count changed.'
+    }
+    for ($index = 0; $index -lt $expectedFriedRiceInputs.Count; $index++) {
+        Assert-Equal $friedRice.ingredients[$index].tag $expectedFriedRiceInputs[$index] "Fried-rice ingredient $index changed."
+    }
+
     $breadCutting = Read-ArchiveJson $sarArchive 'data/someassemblyrequired/recipe/cutting/create/bread_slice.json'
     Assert-Equal $breadCutting.type 'create:cutting' 'Bread-slice integration must use Create cutting.'
     Assert-Equal $breadCutting.ingredients[0].item 'minecraft:bread' 'Bread-slice input changed.'
@@ -92,6 +103,14 @@ try {
     $baconSandwich = Read-ArchiveJson $sarArchive 'data/someassemblyrequired/recipe/pressing/bacon_sandwich.json'
     Assert-Equal $baconSandwich.type 'create:pressing' 'Bacon-sandwich integration must use Create pressing.'
     Assert-Equal $baconSandwich.results[0].id 'farmersdelight:bacon_sandwich' 'Bacon-sandwich output changed.'
+    $baconSandwichContents = $baconSandwich.ingredients[0].components.'someassemblyrequired:sandwich_contents'
+    $expectedBaconSandwichContents = @('someassemblyrequired:bread_slice', 'someassemblyrequired:tomato_slices', 'farmersdelight:cabbage_leaf', 'farmersdelight:cooked_bacon', 'someassemblyrequired:bread_slice')
+    if (@($baconSandwichContents).Count -ne $expectedBaconSandwichContents.Count) {
+        throw 'Bacon-sandwich component count changed.'
+    }
+    for ($index = 0; $index -lt $expectedBaconSandwichContents.Count; $index++) {
+        Assert-Equal $baconSandwichContents[$index].id $expectedBaconSandwichContents[$index] "Bacon-sandwich component $index changed."
+    }
     foreach ($modId in @('create', 'farmersdelight')) {
         if (@($baconSandwich.'neoforge:conditions' | Where-Object { $_.type -eq 'neoforge:mod_loaded' -and $_.modid -eq $modId }).Count -ne 1) {
             throw "Bacon-sandwich integration no longer declares the required $modId-loaded condition."
@@ -102,6 +121,10 @@ try {
     $cuttingRecipeCount = @($sarArchive.Entries | Where-Object { $_.FullName -match '^data/someassemblyrequired/recipe/cutting/create/.+\.json$' }).Count
     Assert-Equal $pressingRecipeCount 4 'Some Assembly Required pressing fixture count changed.'
     Assert-Equal $cuttingRecipeCount 28 'Some Assembly Required Create-cutting fixture count changed.'
+
+    $sandwichingStation = Read-ArchiveJson $sarArchive 'data/someassemblyrequired/recipe/crafting_shaped/sandwiching_station.json'
+    Assert-Equal $sandwichingStation.type 'minecraft:crafting_shaped' 'Sandwiching-station recipe type changed.'
+    Assert-Equal $sandwichingStation.result.id 'someassemblyrequired:sandwiching_station' 'Sandwiching-station output changed.'
 
     foreach ($classEntry in @('com/possible_triangle/sliceanddice/RecipeInjection.class', 'com/possible_triangle/sliceanddice/compat/FarmersDelightCompat.class')) {
         if ($null -eq $sliceAndDiceArchive.GetEntry($classEntry)) {
