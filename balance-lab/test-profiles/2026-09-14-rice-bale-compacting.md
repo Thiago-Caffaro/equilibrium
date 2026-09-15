@@ -68,5 +68,14 @@ The first deployment produced one failed recipe during `/reload`; no in-game
 test was attempted. The corrected script was copied to `Equilibrium - Test
 grounds` on 2026-09-14 and its SHA-256 was verified against the tracked source.
 
-The next `/reload` must report two KubeJS server scripts with zero errors and
-one added recipe with zero failed recipes before the mechanical test is run.
+The corrected script was then verified in the same profile:
+
+- `/reload` completed with no KubeJS errors;
+- a powered mechanical press above a basin consumed nine rice panicles and
+  produced one rice bale;
+- the ordinary 3×3 Farmer's Delight crafting-table recipe also continued to
+  produce one rice bale from nine panicles.
+
+Conclusion: the automation route is technically compatible with the recorded
+mod versions and preserves the original material cost. It remains a reversible
+laboratory experiment, not a final economy or Merchant-balance decision.
