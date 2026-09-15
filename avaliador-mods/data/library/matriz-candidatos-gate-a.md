@@ -59,9 +59,13 @@ Esta fila ordena **evidência a aprofundar**, não concede aprovação à modlis
 | 5 | AE2, Immersive Engineering e Mekanism | **Comparar por slot de Tecnologia.** | Storage, indústria e química só devem avançar depois que a política de escala e a linha inicial de Create estiverem claras. |
 | 6 | Addons de Ars, Slice & Dice/SAR como expansão, Productive Bees, mineradores de Occultism e When Dungeons Arise | **Adiar ou manter bloqueado.** | Os addons não demonstram função única; as demais linhas carregam risco de escala ou ambiguidade de plataforma. |
 
+### Proposta de pré-requisito de política
+
+`proposta-politica-renovacao-e-recompensas-gate-a.md` agora oferece uma classificação não vinculante entre autoridade de progresso, recurso escasso, commodity e recompensa excepcional. Ela ainda exige ratificação humana; portanto, Productive Bees, mineradores/soul gems de Occultism, trades especiais e Gateways **continuam bloqueados por política**. Depois de ratificada, ela servirá para converter esse bloqueio em investigação delimitada por saída, sem aprovar os mods.
+
 ### Critério de saída deste Gate A
 
-O cartão permanece em andamento até uma revisão humana confirmar a ordem acima e nomear as comparações a aprofundar. O Gate A estará pronto para encerrar — sem selecionar a modlist final — quando cada divisão tiver uma função candidata, no máximo duas famílias em pesquisa profunda e uma política explícita para rotas renováveis/repetíveis. AB-130, AB-133, AB-135 e AB-140–AB-148 continuam abertos até essa revisão.
+O cartão permanece em andamento até uma revisão humana ratificar ou revisar a proposta de política acima, confirmar a ordem da fila e nomear as comparações a aprofundar. O Gate A estará pronto para encerrar — sem selecionar a modlist final — quando cada divisão tiver uma função candidata, no máximo duas famílias em pesquisa profunda e uma política explícita para rotas renováveis/repetíveis. AB-130, AB-133, AB-135 e AB-140–AB-148 continuam abertos até essa revisão.
 
 ## Lacunas que não podem ser escondidas por “mais conteúdo”
 
