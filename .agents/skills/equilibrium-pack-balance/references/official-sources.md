@@ -12,6 +12,7 @@ This index covers integrations explicitly named in the current Core handoff. Add
 | Create through KubeJS | [KubeJS Create addon guide](https://kubejs.com/wiki/addons/create) | Recipe integration when the installed addon/version supports it. |
 | Farmer's Delight | [FarmersDelight source repository](https://github.com/vectorwing/FarmersDelight) | Canonical data and version branch before changing its recipes/tags/configuration. |
 | Some Assembly Required | [Some Assembly Required source repository](https://github.com/ochotonida/some-assembly-required) | Its version-specific datapack format and Create/Farmer's Delight interaction. |
+| Slice & Dice | [Slice & Dice source repository](https://github.com/PssbleTrngle/SliceAndDice) | Its runtime conversion of Farmer's Delight cutting/cooking recipes and Slicer configuration before treating a direct Create recipe as active. |
 | Cross-mod tag semantics | [NeoForge tags — 1.21.1](https://docs.neoforged.net/docs/1.21.1/resources/server/tags/) | `c:` conventions, optional entries, and additive tag data. |
 
 ## Local configuration source of truth
