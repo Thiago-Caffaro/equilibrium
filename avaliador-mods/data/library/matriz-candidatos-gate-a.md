@@ -1,0 +1,63 @@
+# Matriz de candidatos — Gate A
+
+> Estado: primeira matriz comparativa; ainda **não é uma modlist** nem autoriza alterações de receitas, configs ou do Equilibrium Core.
+> Base técnica de trabalho: Minecraft 1.21.1, NeoForge 21.1.249 e Java 21. A disponibilidade de um JAR nessa base precisa ser confirmada para cada candidato antes de qualquer shortlist.
+> Cartão do Project: **Build candidate mod × function × division matrix (Gate A)**, mapeado à issue #4 e ao milestone *Future Core integrations*.
+
+## Como ler esta matriz
+
+| Marca | Significado |
+| --- | --- |
+| **Fato local** | Encontrado em arquivo, JAR ou registro humano já preservado no repositório. |
+| **Hipótese** | Papel que o mod poderia cumprir no Equilibrium; não é uma decisão. |
+| **Próxima evidência** | Menor leitura ou teste capaz de reduzir uma incerteza concreta. |
+| **Estado** | `Pesquisa` não aprova; `Conflito` exige reconciliação; `Lacuna` quer dizer que não há candidato suficiente. |
+
+O objetivo é comparar uma solução por função antes de acumular mods que resolvem o mesmo problema. Uma linha não confere prioridade automática: o requisito eliminatório continua sendo explicar por que ela precisa existir no Equilibrium.
+
+## Evidência que sustenta a rodada
+
+- A auditoria estática preservada já identificou em E9E gates expert cruzando Create, Immersive Engineering, Mekanism, Ars Nouveau, Occultism, AE2, Twilight Forest e outros sistemas; o pack anterior do grupo reúne muitas rotas paralelas de escala, energia, armazenamento, recursos e mobs. Isso é evidência de **padrões e riscos**, não de seleção.
+- E10 e FTB Evolution são referências locais modernas em 1.21.1/NeoForge; E10 contém curadoria de receitas e FTB Evolution é especialmente útil para detectar amplitude e soluções concorrentes.
+- A bancada atual confirmou somente uma cadeia pequena de produção: Farmer's Delight, Create, Slice & Dice e Some Assembly Required interagem no perfil de teste. Isso apoia a investigação de função Comerciantes, mas não fecha economia, cidade, mercado ou outputs exclusivos.
+- A única ficha individual existente, Aquamirae, contém evidência humana positiva. Ela também está marcada como `Selecionado`, o que entra em conflito com a Baseline, que mantém a modlist final em aberto. A ficha não deve ser promovida nem apagada: é necessária reconciliação humana explícita.
+
+Fontes locais: `analises-modpacks/01-inventario-inicial-e9e-e-desempregagos.md`, `analises-modpacks/02-panorama-das-demais-referencias.md`, `balance-lab/merchant-supply-chain-map.md`, a ficha `Aquamirae` no Avaliador e a Baseline conceitual. Nenhum script, config ou dado de terceiros é copiado para este projeto.
+
+## Matriz inicial de candidatos
+
+| Candidato / função | Divisão principal e janela | Fato local e hipótese de valor | Sobreposição ou risco a comparar | Próxima evidência mínima | Estado |
+| --- | --- | --- | --- | --- | --- |
+| **Create** — processamento mecânico, logística física e automação inicial | Tecnologia; início → intermediário. Também pode processar insumos de Comerciantes sem assumir sua autoridade. | Fato: recorrente nas referências e na bancada 1.21.1; a cadeia de arroz demonstra uma integração concreta com alimentos. Hipótese: dar escala física após domínio manual. | Compete por processamento, transporte e automação com IE, Mekanism, Thermal e outros. Risco de automatizar colheita/alimento antes da janela da divisão. | Extrair de E10 um gate de primeira máquina de escala e compará-lo com uma rota manual de produção. | Pesquisa |
+| **Immersive Engineering** — indústria e energia visual/física | Tecnologia; intermediário → avançado. | Fato: recorrente em referências expert e listado como candidato conceitual. Hipótese: alternativa de indústria com identidade própria. | Forte concorrência com Create, Mekanism, PneumaticCraft e Thermal em processamento/energia. | Inventariar JAR, dependências e configs da variante 1.21.1 disponível; depois comparar apenas a primeira cadeia industrial com Create. | Pesquisa |
+| **Applied Energistics 2** — armazenamento, rede e autocrafting | Tecnologia; intermediário → fim. | Fato: aparece na auditoria como sistema de armazenamento e consta entre candidatos conceituais. Hipótese: uma única solução de rede pode servir como teto de logística. | Pode tornar itens, receita e transporte triviais; concorre com Refined Storage e logísticas físicas. | Mapear no pack anterior a rota que liberava armazenamento/autocrafting e identificar se havia alternativa que a contornava. | Pesquisa |
+| **Mekanism** — processamento/química em alta escala | Tecnologia; avançado → fim. | Fato: presente nos gates E9E e no pack anterior; candidato conceitual de alto alcance. | Pode sobrepor quase todo processamento e multiplicar recursos cedo; risco alto de centralizar o progresso tecnológico. | Ler uma amostra curta de gates E9E de primeira máquina e teto de processamento, classificando dependências externas. | Pesquisa |
+| **Ars Nouveau** — magia geral, utilidade e possível automação arcana | Magia; início → avançado, se a própria progressão resistir a atalhos. | Fato: recorrente em referências e listado como candidato conceitual. Hipótese: linguagem mágica ampla, com contribuição material para outras divisões. | Generalidade pode competir com combate, mobilidade e automação de Tecnologia/Aventura. | Confirmar disponibilidade NeoForge 1.21.1 e extrair de E10/E9E um gate que envolva outro sistema. | Pesquisa |
+| **Occultism** — rituais, invocação e armazenamento/automação ritual | Magia; intermediário → avançado. | Fato: recorrente em referências e listado como candidato conceitual. Hipótese: fornecer uma via ritual distinta, não uma segunda logística genérica. | Sobrepõe armazenamento, mobilidade de itens e automação; pode substituir o papel de AE2 ou de sistemas de recursos. | Identificar um item de teto e sua dependência externa em uma referência expert; sem abrir jogo. | Pesquisa |
+| **Aquamirae** — exploração, bosses e ambiente próprio | Aventura; descoberta → intermediário. | Fato: ficha local registra experiência humana, worldgen leve e potencial de evento. | A ficha diz `Selecionado`, mas AB-130 mantém a modlist final aberta; é preciso reconciliar esse estado antes de usá-lo como premissa. | Verificar versão/licença/dependências da variante 1.21.1 NeoForge e registrar se a experiência de boss permanece boa em grupo. | Conflito de decisão |
+| **Twilight Forest** — dimensão, bosses e materiais de aventura | Aventura; intermediário → avançado. | Fato: consta como candidato forte conceitual e a auditoria E9E encontrou conteúdo/loot específico do mod. Hipótese: progressão de dimensão legível e coletiva. | Pode competir com outras dimensões, bosses, chaves e materiais de gate; risco de worldgen e de teleporte prematuro. | Selecionar uma cadeia de boss/portal em E9E e registrar os gates, loot e dependências cruzadas. | Pesquisa |
+| **Farmer's Delight** — agricultura e culinária com cadeia de produção | Comerciantes; início → intermediário. | Fato: instalado e observado na bancada; arroz, moagem e comida dão uma cadeia real de transformação. Hipótese: base alimentar, não economia completa. | Produção de alimento pode ser trivializada por automação tecnológica; não cobre pesca, criação, vilas ou comércio. | Manter a evidência atual e comparar o primeiro output desejado por outra divisão antes de medir custos. | Pesquisa |
+| **Slice & Dice** — ponte de automação de receitas Farmer's Delight | Suporte à fronteira Comerciantes ↔ Tecnologia; intermediário. | Fato: instalado e a documentação/observação local mostram conversão de receitas de corte e Cooking Pot para Create. | Não é candidato autônomo de divisão; pode antecipar automação alimentar quando Create estiver acessível. | Decidir somente após comparar a janela de automação de alimento com o primeiro gate de Tecnologia. | Pesquisa dependente |
+| **Some Assembly Required** — sanduíches e estação de montagem | Comerciantes; início → intermediário. | Fato: instalado; a análise estática confirmou receitas condicionais e uma rota de prensa de componentes. | Complementa comida, mas pode ser conteúdo lateral se não houver output comercial ou urbano desejado. | Preservar como integração opcional; testar valor de grupo apenas depois de definir quais outputs de Comerciantes serão exclusivos. | Pesquisa dependente |
+
+## Lacunas que não podem ser escondidas por “mais conteúdo”
+
+| Divisão / função necessária | Lacuna atual | Consequência de decidir cedo | Próxima coleta |
+| --- | --- | --- | --- |
+| **Magia** — papel exclusivo, materiais e interação com outras divisões | Há dois candidatos amplos, mas nenhum mapa de função, gate ou limite comparado. | Magia pode virar só combate/utilidade ou substituir a automação de Tecnologia. | E9E primeiro; depois E10 para disponibilidade moderna. Extrair no máximo dois gates por candidato. |
+| **Aventura** — bosses, estruturas, dimensões e prova coletiva | Existe uma ficha humana e um candidato de dimensão, mas não há matriz de bosses, loot e estruturas. | Aventura perde sua identidade ou recebe worldgen redundante. | Cisco para experiência e E9E para exemplos de gates; jogo ativo só para crédito multiplayer/loot ambíguo. |
+| **Comerciantes** — pesca, criação, cidades, comércio e prosperidade | A evidência atual é essencialmente alimento. Não há candidato ou função comprovada para cidades/mercado. | Um mod de comida seria forçado a representar toda a divisão. | Auditar o pack anterior e as referências modernas por funções de cidade/comércio antes de instalar qualquer novo mod. |
+| **Tecnologia** — política de energia, rede e escala | Vários candidatos resolvem processamento/logística; não há “uma solução por função” definida. | Repetição do excesso de rotas paralelas do pack anterior. | Mapa de concorrência do pack anterior seguido por comparativo focal Create × IE e AE2 × alternativas. |
+| **Quests e orientação** — ferramenta e escopo | AB-136 permanece aberto; referências possuem FTB Quests, mas nenhuma ferramenta foi escolhida. | A estrutura de atos e guias poderia ser codificada antes de a modlist existir. | Inventariar somente compatibilidade 1.21.1 e requisitos de autoria; deixar conteúdo para depois do Gate A. |
+
+## Sequência deliberada — sem microtickets
+
+1. **Inventário comparativo:** completar os mapas funcionais do pack anterior e do E9E. Cada um produz no máximo 10–20 candidatos/fatos encaminhados, não uma ficha para cada JAR.
+2. **Comparar por slot:** investigar somente concorrentes do mesmo papel (por exemplo, processamento/energia ou armazenamento), preservando a pergunta “qual limitação eles removem e quando?”.
+3. **Confirmar plataforma:** antes de uma shortlist, conferir versão 1.21.1, NeoForge, licença, dependências e impactos de worldgen na fonte oficial e no JAR exato. Não inferir isso de versões Forge antigas.
+4. **Encaminhar ao Avaliador:** criar/atualizar fichas apenas para candidatos que passem na triagem do protocolo: função única, gate útil, risco de escala, conteúdo de Aventura ou evidência prática insubstituível.
+5. **Testar apenas incógnitas:** abrir uma instância isolada somente para crédito/loot multiplayer, automação antecipada, conflito entre dois candidatos ou custo de worldgen/desempenho. Um teste sem pergunta não consome tempo de desenvolvimento.
+
+## Saída esperada do Gate A
+
+O cartão pode ser considerado pronto para revisão humana quando houver uma pequena comparação por função nas quatro divisões, as lacunas acima estiverem tratadas como lacunas (e não mascaradas por mods instalados), e cada candidato relevante tiver uma recomendação limitada a **investigar**, **shortlist**, **adiar** ou **rejeitar** com sua evidência. Só então faz sentido discutir AB-130/AB-133, gates de progressão, configs ou novos experimentos de balanceamento.
