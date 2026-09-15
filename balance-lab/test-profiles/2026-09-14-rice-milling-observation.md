@@ -40,4 +40,7 @@ before the manual observation.
 Expected: the Millstone completes using the installed owner-mod recipe. No
 instance file changes, so no rollback exists.
 
-**Result:** pending focused in-game observation.
+**Result:** validated on 2026-09-14. The user confirmed the powered
+Millstone route in the recorded test profile and supplied in-game evidence of
+the rice-panicle processing path with rice and straw outputs. No script,
+datapack, config, reload, or restart was needed for this owner-mod recipe.
