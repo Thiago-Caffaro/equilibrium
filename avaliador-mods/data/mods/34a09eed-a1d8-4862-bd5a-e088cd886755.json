@@ -1,0 +1,152 @@
+{
+  "kind": "mod",
+  "name": "EMI Extra Integrations",
+  "status": "Selecionado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "interface"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/extra-mod-integrations",
+  "projectUrl": "https://github.com/Kneelawk/extra-mod-integrations",
+  "supportedVersions": [
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20.1",
+    "1.21.1"
+  ],
+  "loaders": [
+    "Fabric",
+    "NeoForge",
+    "Quilt"
+  ],
+  "officialSummary": "EMI addon adding support for as many mods as possible",
+  "officialAuthors": [
+    "Kneelawk"
+  ],
+  "officialProjectId": "739970",
+  "officialCategories": [
+    "Map and Information",
+    "Utility & QoL"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2023-01-03T08:20:33.38Z",
+  "officialUpdatedAt": "2025-08-29T02:48:00.453Z",
+  "officialDownloads": "10097922",
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/678/970/256/256/638068701635121372.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/extra-mod-integrations",
+  "metadataFetchedAt": "2026-09-09T19:52:53.112Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "extra_mod_integrations",
+        "name": "Extra Mod Integrations",
+        "version": "1.0.3+1.21.1",
+        "loader": "NeoForge",
+        "authors": [
+          "Kneelawk, abbie, KirboEatsFood"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "739970",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/extra-mod-integrations",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "bpRHnWUb",
+      "sourceUrl": "https://modrinth.com/mod/bpRHnWUb",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.632Z",
+  "stagedFiles": [
+    {
+      "fileName": "extra-mod-integrations-all-neoforge-1.0.3+1.21.1.jar",
+      "relativePath": "mods/extra-mod-integrations-all-neoforge-1.0.3+1.21.1.jar",
+      "size": 316330,
+      "sha1": "70429571ccf7faa4c1811092739fb7d645829eef",
+      "curseFingerprint": 1358887740,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "extra_mod_integrations",
+            "name": "Extra Mod Integrations",
+            "version": "1.0.3+1.21.1",
+            "loader": "NeoForge",
+            "authors": [
+              "Kneelawk, abbie, KirboEatsFood"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "34a09eed-a1d8-4862-bd5a-e088cd886755",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:25.213Z",
+  "updatedAt": "2026-09-16T21:53:25.213Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Interface de consulta, receitas, loot ou orientação; reduz atrito de informação sem criar conteúdo de progressão.",
+  "uniqueSystems": "",
+  "humanEvidence": "",
+  "overlaps": "",
+  "dangerousCombinations": "",
+  "scarcityImpact": "Preserva",
+  "integrationEffort": "Desconhecido",
+  "scarcityNotes": "",
+  "automationImpact": "",
+  "masteryGate": "",
+  "progressionWindow": "",
+  "worldgenImpact": "Nenhum",
+  "worldgenNotes": "",
+  "multiplayerNotes": "",
+  "performanceNotes": "",
+  "rupturePotential": "",
+  "requiredChanges": "",
+  "testNeeds": "",
+  "verdict": "Sem parecer",
+  "verdictReason": "",
+  "openQuestions": "",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

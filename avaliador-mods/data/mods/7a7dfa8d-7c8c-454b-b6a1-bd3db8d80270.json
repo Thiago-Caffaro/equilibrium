@@ -1,0 +1,135 @@
+{
+  "kind": "mod",
+  "name": "Noisiumed",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "supportedVersions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge"
+  ],
+  "tags": [
+    "desempenho"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "officialSummary": "A performance-focused fork of Noisium that accelerates Minecraft's terrain generation through targeted optimizations. Generates chunks faster without altering world output.",
+  "officialAuthors": [
+    "imbavirus"
+  ],
+  "officialProjectId": "M8MasaZG",
+  "officialCategories": [
+    "management",
+    "optimization",
+    "utility"
+  ],
+  "officialEnvironment": [
+    "server_only"
+  ],
+  "officialLicense": "GNU General Public License v3.0 only",
+  "officialProvider": "Modrinth",
+  "officialDownloads": "135377",
+  "officialIconUrl": "https://cdn.modrinth.com/data/M8MasaZG/31ba609800872b19dc004210e923b5f83a7ef9ef_96.webp",
+  "sourceUrl": "https://modrinth.com/mod/noisiumed",
+  "metadataSourceUrl": "https://modrinth.com/mod/noisiumed",
+  "metadataFetchedAt": "2026-09-10T20:54:10.012Z",
+  "metadataState": "preview",
+  "officialSources": [
+    {
+      "provider": "curseforge",
+      "projectId": "1430156",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/noisiumed",
+      "name": "Noisiumed"
+    },
+    {
+      "provider": "modrinth",
+      "projectId": "M8MasaZG",
+      "sourceUrl": "https://modrinth.com/mod/noisiumed",
+      "name": "Noisiumed"
+    }
+  ],
+  "stagingOrigin": "remote-search",
+  "stagingResolution": "confirmed",
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "1430156",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/noisiumed",
+      "name": "Noisiumed"
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "M8MasaZG",
+      "sourceUrl": "https://modrinth.com/mod/noisiumed",
+      "name": "Noisiumed"
+    }
+  },
+  "stagingMessage": "Dados factuais carregados do Modrinth.",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist.",
+  "projectUrl": "https://github.com/imbavirus/noisiumed",
+  "officialPublishedAt": "2026-01-22T07:05:59.171923Z",
+  "officialUpdatedAt": "2026-07-21T08:51:38.468598Z",
+  "primaryFunction": "Otimização, diagnóstico ou estabilidade técnica; não cria conteúdo nem autoridade de progressão.",
+  "uniqueSystems": "",
+  "humanEvidence": "",
+  "overlaps": "",
+  "dangerousCombinations": "",
+  "scarcityImpact": "Preserva",
+  "integrationEffort": "Desconhecido",
+  "scarcityNotes": "",
+  "automationImpact": "",
+  "masteryGate": "",
+  "progressionWindow": "",
+  "worldgenImpact": "Nenhum",
+  "worldgenNotes": "",
+  "multiplayerNotes": "",
+  "performanceNotes": "",
+  "rupturePotential": "",
+  "requiredChanges": "",
+  "testNeeds": "Medir no perfil representativo antes de combinar: inicialização, TPS/MSPT, heap, geração de chunks, salvamento e desligamento.",
+  "verdict": "Sem parecer",
+  "verdictReason": "",
+  "openQuestions": "",
+  "stagedAt": "2026-09-10T20:28:39.530Z",
+  "stagedFiles": [],
+  "id": "7a7dfa8d-7c8c-454b-b6a1-bd3db8d80270",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:25.091Z",
+  "updatedAt": "2026-09-16T21:53:25.091Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16"
+}

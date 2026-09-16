@@ -1,0 +1,133 @@
+{
+  "kind": "mod",
+  "name": "Xaero's Minimap & World Map - Waystones Compatibility [Forge & NeoForge]",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "cliente"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/xaeros-minimap-world-map-waystones-compability",
+  "projectUrl": "https://github.com/PreciseModpacker/Xaeros-Waystones-Compatibility",
+  "supportedVersions": [
+    "1.18.2",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.21.1",
+    "26.1.2"
+  ],
+  "loaders": [
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "Creates a Waypoint in Xaero's Minimap & World Map when activate a Waystone",
+  "officialAuthors": [
+    "ArcaneAlloy",
+    "shoqapik_h"
+  ],
+  "officialProjectId": "887484",
+  "officialCategories": [
+    "Map and Information"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2023-07-12T12:51:39.847Z",
+  "officialUpdatedAt": "2026-04-24T07:03:57.733Z",
+  "officialDownloads": 14794663,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/847/598/256/256/638247062895610203.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/xaeros-minimap-world-map-waystones-compability",
+  "metadataFetchedAt": "2026-09-09T19:53:32.572Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "w2w2",
+        "name": "Waystones2Waypoints2",
+        "version": "2.1.0",
+        "loader": "NeoForge",
+        "authors": [
+          "Love, Cheese and small house plants"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "887484",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/xaeros-minimap-world-map-waystones-compability",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "7mLhyqIY",
+      "sourceUrl": "https://modrinth.com/mod/7mLhyqIY",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.653Z",
+  "stagedFiles": [
+    {
+      "fileName": "xaeros_waystones_compatibility-NeoForge-1.21.1-2.1.0.jar",
+      "relativePath": "mods/xaeros_waystones_compatibility-NeoForge-1.21.1-2.1.0.jar",
+      "size": 7308,
+      "sha1": "88abd70fae3e78dc6c2fdfc726bc453f97494c19",
+      "curseFingerprint": 1437945741,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "w2w2",
+            "name": "Waystones2Waypoints2",
+            "version": "2.1.0",
+            "loader": "NeoForge",
+            "authors": [
+              "Love, Cheese and small house plants"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "bea949b0-dd29-4be2-b9ff-11476fb3667c",
+  "revision": 0,
+  "storageVersion": 2,
+  "createdAt": "2026-09-16T21:53:27.187Z",
+  "updatedAt": "2026-09-16T21:56:44.302Z",
+  "updatedBy": "Codex ? preenchimento documental 2026-09-16",
+  "primaryFunction": "Qualidade de vida, apresentação ou acessibilidade de cliente; não cria um pilar de progressão.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

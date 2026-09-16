@@ -1,0 +1,83 @@
+{
+  "kind": "mod",
+  "name": "spark",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "supportedVersions": [
+    "1.21.1"
+  ],
+  "loaders": [
+    "NeoForge"
+  ],
+  "tags": [
+    "desempenho"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "officialSummary": "",
+  "officialAuthors": [
+    "Iucko"
+  ],
+  "officialProjectId": "361579",
+  "officialCategories": [],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialDownloads": "",
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/495/151/256/256/637808085409071880.png",
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/spark",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/spark",
+  "metadataFetchedAt": "",
+  "metadataState": "preview",
+  "officialSources": [
+    {
+      "provider": "curseforge",
+      "projectId": "361579",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/spark",
+      "name": "spark"
+    }
+  ],
+  "stagingOrigin": "local-instance-sync",
+  "stagingResolution": "confirmed",
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "361579",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/spark",
+      "name": "spark"
+    }
+  },
+  "stagingMessage": "Registro criado pela sincronização da pasta local do modpack. Carregue os metadados oficiais no programa quando necessário.",
+  "notesMarkdown": "Arquivo encontrado na instância de teste: `spark-1.10.124-neoforge.jar`. Estado local durante a sincronização: **habilitado**.\n\nPreenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist.",
+  "stagedAt": "2026-09-16T21:17:59.473Z",
+  "stagedFiles": [],
+  "localFileName": "spark-1.10.124-neoforge.jar",
+  "localEnabled": true,
+  "id": "e293427c-919c-4fa9-9a5a-20d52ca3c159",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:29.020Z",
+  "updatedAt": "2026-09-16T21:53:29.020Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Otimização, diagnóstico ou estabilidade técnica; não cria conteúdo nem autoridade de progressão.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "testNeeds": "Medir no perfil representativo antes de combinar: inicialização, TPS/MSPT, heap, geração de chunks, salvamento e desligamento."
+}

@@ -1,0 +1,141 @@
+{
+  "kind": "mod",
+  "name": "EMI Loot",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "interface"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/emi-loot",
+  "projectUrl": "https://github.com/fzzyhmstrs/EMI_loot",
+  "supportedVersions": [
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge",
+    "Quilt"
+  ],
+  "officialSummary": "A loot drop (chest, block, entity) plugin for the EMI Recipe and Item viewer.",
+  "officialAuthors": [
+    "fzzyhmstrs"
+  ],
+  "officialProjectId": "681783",
+  "officialCategories": [
+    "API and Library",
+    "Map and Information"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2022-09-26T08:13:57.91Z",
+  "officialUpdatedAt": "2026-01-04T16:44:59.437Z",
+  "officialDownloads": 25920571,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/614/234/256/256/637997400365146063.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/emi-loot",
+  "metadataFetchedAt": "2026-09-09T19:52:52.105Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "emi_loot",
+        "name": "EMI Loot",
+        "version": "0.7.9+1.21+neoforge",
+        "loader": "NeoForge",
+        "authors": [
+          "fzzyhmstrs, lxly9 (art), unilock (ports)"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "681783",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/emi-loot",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "qbbO7Jns",
+      "sourceUrl": "https://modrinth.com/mod/qbbO7Jns",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.632Z",
+  "stagedFiles": [
+    {
+      "fileName": "emi_loot-0.7.9+1.21+neoforge.jar",
+      "relativePath": "mods/emi_loot-0.7.9+1.21+neoforge.jar",
+      "size": 465870,
+      "sha1": "bd0326eeda721c87a29efd78f9a52f46d572392c",
+      "curseFingerprint": 2390371856,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "emi_loot",
+            "name": "EMI Loot",
+            "version": "0.7.9+1.21+neoforge",
+            "loader": "NeoForge",
+            "authors": [
+              "fzzyhmstrs, lxly9 (art), unilock (ports)"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "f8d60d8c-a141-41d8-9197-1ea8adf2693b",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:25.615Z",
+  "updatedAt": "2026-09-16T21:53:25.615Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Interface de consulta, receitas, loot ou orientação; reduz atrito de informação sem criar conteúdo de progressão.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

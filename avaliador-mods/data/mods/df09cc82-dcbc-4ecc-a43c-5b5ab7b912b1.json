@@ -1,0 +1,155 @@
+{
+  "kind": "mod",
+  "name": "Sodium",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "desempenho"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/sodium",
+  "projectUrl": "https://github.com/CaffeineMC/sodium",
+  "supportedVersions": [
+    "1.16.5",
+    "1.17.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "loaders": [
+    "Fabric",
+    "NeoForge",
+    "Quilt"
+  ],
+  "officialSummary": "The fastest and most compatible rendering optimization mod for Minecraft. Now available for both NeoForge and Fabric!",
+  "officialAuthors": [
+    "JellySquid"
+  ],
+  "officialProjectId": "394468",
+  "officialCategories": [
+    "Performance"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2020-07-12T22:45:26.14Z",
+  "officialUpdatedAt": "2026-09-02T16:15:55.88Z",
+  "officialDownloads": 148384025,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/284/773/256/256/637298471098686391.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/sodium",
+  "metadataFetchedAt": "2026-09-09T19:53:25.515Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "sodium",
+        "name": "Sodium",
+        "version": "0.8.13+mc1.21.1",
+        "loader": "NeoForge",
+        "authors": [
+          "JellySquid (jellysquid3), IMS212"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "394468",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/sodium",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "AANobbMI",
+      "sourceUrl": "https://modrinth.com/mod/AANobbMI",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.650Z",
+  "stagedFiles": [
+    {
+      "fileName": "sodium-neoforge-0.8.13+mc1.21.1.jar",
+      "relativePath": "mods/sodium-neoforge-0.8.13+mc1.21.1.jar",
+      "size": 1292934,
+      "sha1": "1757289be21ed18db5b0d90703fa3db1b2de5693",
+      "curseFingerprint": 1375682531,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "sodium",
+            "name": "Sodium",
+            "version": "0.8.13+mc1.21.1",
+            "loader": "NeoForge",
+            "authors": [
+              "JellySquid (jellysquid3), IMS212"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "df09cc82-dcbc-4ecc-a43c-5b5ab7b912b1",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:26.815Z",
+  "updatedAt": "2026-09-16T21:53:26.815Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Otimização, diagnóstico ou estabilidade técnica; não cria conteúdo nem autoridade de progressão.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "testNeeds": "Medir no perfil representativo antes de combinar: inicialização, TPS/MSPT, heap, geração de chunks, salvamento e desligamento.",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

@@ -1,0 +1,145 @@
+{
+  "kind": "mod",
+  "name": "Cupboard",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "biblioteca"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/cupboard",
+  "projectUrl": "https://github.com/someaddons/cupboard",
+  "supportedVersions": [
+    "1.18.2",
+    "1.19.2",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "Cupboard provides code, frameworks, and utilities for minecraft mods",
+  "officialAuthors": [
+    "someaddon"
+  ],
+  "officialProjectId": "326652",
+  "officialCategories": [
+    "Utility & QoL"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2019-07-08T18:32:51.213Z",
+  "officialUpdatedAt": "2026-08-28T09:47:59.09Z",
+  "officialDownloads": 201720245,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/852/567/256/256/638255508280634753.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/cupboard",
+  "metadataFetchedAt": "2026-09-09T19:52:48.889Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "cupboard",
+        "name": "Cupboard mod",
+        "version": "4.1",
+        "loader": "NeoForge",
+        "authors": [
+          "Someaddon"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "326652",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/cupboard",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "missing",
+      "projectId": "",
+      "sourceUrl": "",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.629Z",
+  "stagedFiles": [
+    {
+      "fileName": "cupboard-1.21.1-4.1.jar",
+      "relativePath": "mods/cupboard-1.21.1-4.1.jar",
+      "size": 30206,
+      "sha1": "13b3bc42d2514f53acea0c52c91e7800a297f408",
+      "curseFingerprint": 2140536480,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "cupboard",
+            "name": "Cupboard mod",
+            "version": "4.1",
+            "loader": "NeoForge",
+            "authors": [
+              "Someaddon"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "0055f836-2a33-4bb8-9e89-93e1ffd10679",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:25.588Z",
+  "updatedAt": "2026-09-16T21:53:25.588Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Biblioteca ou API de suporte; só deve entrar como dependência explícita de um candidato aprovado.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

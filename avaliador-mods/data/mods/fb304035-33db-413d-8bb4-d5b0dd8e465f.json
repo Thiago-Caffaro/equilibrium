@@ -1,0 +1,98 @@
+{
+  "kind": "mod",
+  "name": "Aquaculture 2",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [
+    "Comerciantes"
+  ],
+  "supportedVersions": [
+    "1.20.1",
+    "1.20.4",
+    "1.21.1",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "loaders": [
+    "Forge",
+    "NeoForge"
+  ],
+  "tags": [
+    "pesca",
+    "alimentação",
+    "biomas",
+    "candidato secundário"
+  ],
+  "notApplicableFields": [],
+  "officialSummary": "Spices up fishing with a number of new biome-specific fish, recipes, and more!",
+  "officialAuthors": [
+    "Shadowclaimr"
+  ],
+  "officialProjectId": "Vl1uNAuy",
+  "officialCategories": [
+    "decoration",
+    "equipment",
+    "food",
+    "forge",
+    "mobs",
+    "neoforge"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "Modrinth",
+  "officialDownloads": 1021173,
+  "officialIconUrl": "https://cdn.modrinth.com/data/Vl1uNAuy/87cba3f170e925af5e1f1af22c27dfc891409ae7.png",
+  "sourceUrl": "https://modrinth.com/mod/aquaculture",
+  "metadataSourceUrl": "https://modrinth.com/mod/aquaculture",
+  "metadataFetchedAt": "",
+  "metadataState": "preview",
+  "officialSources": [
+    {
+      "provider": "modrinth",
+      "projectId": "Vl1uNAuy",
+      "sourceUrl": "https://modrinth.com/mod/aquaculture",
+      "name": "Aquaculture 2"
+    }
+  ],
+  "stagingOrigin": "remote-search",
+  "stagingResolution": "confirmed",
+  "stagingSources": {
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "Vl1uNAuy",
+      "sourceUrl": "https://modrinth.com/mod/aquaculture",
+      "name": "Aquaculture 2"
+    }
+  },
+  "stagingMessage": "Importado pela busca remota. Metadados básicos prontos; carregue dados completos quando precisar.",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist.",
+  "stagedAt": "2026-09-16T21:10:15.035Z",
+  "stagedFiles": [],
+  "id": "fb304035-33db-413d-8bb4-d5b0dd8e465f",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:24.912Z",
+  "updatedAt": "2026-09-16T21:53:24.912Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Pesca com peixes de bioma, receitas e equipamentos; possível complemento de Comerciantes, não economia completa.",
+  "overlaps": "Farmer's Delight, outros mods de comida e qualquer sistema de pesca automatizada.",
+  "dangerousCombinations": "Farms ou conversões automáticas podem retirar o valor de pesca/exploração de biomas antes do domínio manual.",
+  "scarcityImpact": "Controlável",
+  "integrationEffort": "Médio",
+  "scarcityNotes": "Produtos de pesca podem ser commodities após a atividade manual e a descoberta dos biomas correspondentes.",
+  "automationImpact": "Amplia fontes de alimento e recursos de pesca; a automação precisa ser avaliada separadamente.",
+  "masteryGate": "Domínio de pesca e descoberta convencional dos recursos de bioma.",
+  "progressionWindow": "Início a intermediário, como ramo complementar de Comerciantes.",
+  "worldgenImpact": "Nenhum",
+  "testNeeds": "MER-2: verificar valor da pesca, sementes/recursos, comida e compatibilidade com a automação alimentar.",
+  "verdict": "Manter na mesa",
+  "verdictReason": "A função de pesca complementa a lacuna de Comerciantes, mas a relevância de grupo ainda não foi demonstrada."
+}

@@ -1,0 +1,109 @@
+{
+  "kind": "mod",
+  "name": "Chunky Offline",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "supportedVersions": [
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge",
+    "Quilt"
+  ],
+  "tags": [
+    "desempenho"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "officialSummary": "An add-on/extension of Chunky to generate chunks when no players are online.",
+  "officialAuthors": [
+    "lullaby"
+  ],
+  "officialProjectId": "VfHc5JEX",
+  "officialCategories": [
+    "datapack",
+    "fabric",
+    "forge",
+    "management",
+    "neoforge",
+    "optimization",
+    "quilt",
+    "utility",
+    "worldgen"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "Modrinth",
+  "officialDownloads": 83507,
+  "officialIconUrl": "https://cdn.modrinth.com/data/VfHc5JEX/f9a1f1d144892597794b3ffd89c06a09e397117a_96.webp",
+  "sourceUrl": "https://modrinth.com/mod/chunky-offline",
+  "metadataSourceUrl": "https://modrinth.com/mod/chunky-offline",
+  "metadataFetchedAt": "",
+  "metadataState": "preview",
+  "officialSources": [
+    {
+      "provider": "modrinth",
+      "projectId": "VfHc5JEX",
+      "sourceUrl": "https://modrinth.com/mod/chunky-offline",
+      "name": "Chunky Offline"
+    }
+  ],
+  "stagingOrigin": "remote-search",
+  "stagingResolution": "confirmed",
+  "stagingSources": {
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "VfHc5JEX",
+      "sourceUrl": "https://modrinth.com/mod/chunky-offline",
+      "name": "Chunky Offline"
+    }
+  },
+  "stagingMessage": "Importado pela busca remota. Metadados básicos prontos; carregue dados completos quando precisar.",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist.",
+  "stagedAt": "2026-09-10T20:38:57.020Z",
+  "stagedFiles": [],
+  "id": "d01ddd8b-9714-44b0-aa76-bf3a0cf00fc2",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:24.946Z",
+  "updatedAt": "2026-09-16T21:53:24.946Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Otimização, diagnóstico ou estabilidade técnica; não cria conteúdo nem autoridade de progressão.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "testNeeds": "Medir no perfil representativo antes de combinar: inicialização, TPS/MSPT, heap, geração de chunks, salvamento e desligamento."
+}

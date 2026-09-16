@@ -1,0 +1,83 @@
+{
+  "kind": "mod",
+  "name": "Upgrader items",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [
+    "Comerciantes"
+  ],
+  "supportedVersions": [
+    "1.21.1"
+  ],
+  "loaders": [
+    "NeoForge"
+  ],
+  "tags": [
+    "laboratório",
+    "conversão probabilística",
+    "risco crítico",
+    "autoridade de servidor"
+  ],
+  "notApplicableFields": [],
+  "officialSummary": "",
+  "officialAuthors": [
+    "execheinz"
+  ],
+  "officialProjectId": "1630840",
+  "officialCategories": [],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialDownloads": "",
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/1951/220/256/256/639209468303658239.PNG",
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/upgrader-items",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/upgrader-items",
+  "metadataFetchedAt": "",
+  "metadataState": "preview",
+  "officialSources": [
+    {
+      "provider": "curseforge",
+      "projectId": "1630840",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/upgrader-items",
+      "name": "Upgrader items"
+    }
+  ],
+  "stagingOrigin": "local-instance-sync",
+  "stagingResolution": "confirmed",
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "1630840",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/upgrader-items",
+      "name": "Upgrader items"
+    }
+  },
+  "stagingMessage": "Registro criado pela sincronização da pasta local do modpack. Carregue os metadados oficiais no programa quando necessário.",
+  "notesMarkdown": "Arquivo encontrado na instância de teste: `upgrader-neoforge-1.2.0+1.21.1.jar`. Estado local durante a sincronização: **habilitado**.\n\nPreenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist.",
+  "stagedAt": "2026-09-16T21:17:59.473Z",
+  "stagedFiles": [],
+  "localFileName": "upgrader-neoforge-1.2.0+1.21.1.jar",
+  "localEnabled": true,
+  "id": "2a9c1363-1e14-41d2-a328-695036f42638",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:29.095Z",
+  "updatedAt": "2026-09-16T21:53:29.095Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Conversão probabilística de valores; candidato experimental para uma mecânica comercial, inadequado como integração controlada no estado inspecionado.",
+  "uniqueSystems": "Interface de conversão probabilística com valores, house edge e limites de tentativa configuráveis.",
+  "overlaps": "Qualquer mercado, roleta, conversão de itens ou recompensa controlada pelos Comerciantes.",
+  "dangerousCombinations": "O catálogo percorre itens registrados e a blacklist bloqueia entrada e saída ao mesmo tempo; isso expõe itens arbitrários e não permite catálogo positivo seguro.",
+  "scarcityImpact": "Crítico",
+  "integrationEffort": "Muito grande",
+  "scarcityNotes": "Pode converter mercadorias em alvos arbitrários; receita cara ou restrição de crafting não corrige a falta de whitelist e validação por jogador.",
+  "automationImpact": "Não é automação de recursos tradicional, mas pode criar acesso econômico imprevisível a itens de qualquer mod.",
+  "masteryGate": "Exige catálogo positivo, entradas/saídas separadas e validação de divisão/maestria no servidor antes de ser elegível.",
+  "progressionWindow": "Nenhuma janela segura na implementação atual.",
+  "worldgenImpact": "Nenhum",
+  "requiredChanges": "Solicitar whitelist/API ao autor; avaliar addon somente com permissão e ponto estável; caso contrário, implementar mecânica original do Equilibrium.",
+  "testNeeds": "Não balancear blacklist em massa. Testar somente a sensação no laboratório até existir controle positivo de catálogo e autoridade.",
+  "verdict": "Rejeitar",
+  "verdictReason": "Rejeitado como integração direta: a auditoria local confirma que o catálogo é negativo por blacklist e não oferece separação segura de entradas, saídas ou autoridade."
+}

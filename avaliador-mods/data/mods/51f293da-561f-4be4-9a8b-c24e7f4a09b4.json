@@ -1,0 +1,171 @@
+{
+  "kind": "mod",
+  "name": "Sophisticated Core",
+  "status": "Precisa de teste",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "biblioteca"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/sophisticated-core",
+  "projectUrl": "https://github.com/P3pp3rF1y/SophisticatedCore",
+  "supportedVersions": [
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.20.1",
+    "1.20.4",
+    "1.21",
+    "1.21.1",
+    "1.21.4",
+    "1.21.5",
+    "1.21.8",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "loaders": [
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "Library mod for Sophisticated mods",
+  "officialAuthors": [
+    "P3pp3rF1y"
+  ],
+  "officialProjectId": "618298",
+  "officialCategories": [
+    "API and Library"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2022-04-27T08:17:57.207Z",
+  "officialUpdatedAt": "2026-09-09T19:05:56.583Z",
+  "officialDownloads": "204219304",
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/540/438/256/256/637866039314801108.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/sophisticated-core",
+  "metadataFetchedAt": "2026-09-09T19:53:27.532Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "sophisticatedcore",
+        "name": "Sophisticated Core",
+        "version": "1.5.1",
+        "loader": "NeoForge",
+        "authors": [
+          "P3pp3rF1y"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "618298",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/sophisticated-core",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "ambiguous",
+      "projectId": "",
+      "sourceUrl": "",
+      "candidates": [
+        {
+          "provider": "Modrinth",
+          "projectId": "nmoqTijg",
+          "name": "Sophisticated Core",
+          "sourceUrl": "https://modrinth.com/mod/sophisticated-core"
+        },
+        {
+          "provider": "Modrinth",
+          "projectId": "9jxwkYQL",
+          "name": "Sophisticated Core (Unofficial Fabric port)",
+          "sourceUrl": "https://modrinth.com/mod/sophisticated-core-(unofficial-fabric-port)"
+        }
+      ]
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.651Z",
+  "stagedFiles": [
+    {
+      "fileName": "sophisticatedcore-1.21.1-1.5.1.2341.jar",
+      "relativePath": "mods/sophisticatedcore-1.21.1-1.5.1.2341.jar",
+      "size": 1785221,
+      "sha1": "a256b4d3c1218754a3172253e6bda644551be6a5",
+      "curseFingerprint": 3206922583,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "sophisticatedcore",
+            "name": "Sophisticated Core",
+            "version": "1.5.1",
+            "loader": "NeoForge",
+            "authors": [
+              "P3pp3rF1y"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "51f293da-561f-4be4-9a8b-c24e7f4a09b4",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:25.291Z",
+  "updatedAt": "2026-09-16T21:53:25.291Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Biblioteca ou API de suporte; só deve entrar como dependência explícita de um candidato aprovado.",
+  "uniqueSystems": "",
+  "humanEvidence": "",
+  "overlaps": "",
+  "dangerousCombinations": "É a dependência que o mod Sophisticated Backpacks usa, esse é o mod que adiciona o liquido \"Experience\" e o item \"Bucket of experience\"",
+  "scarcityImpact": "Preserva",
+  "integrationEffort": "Desconhecido",
+  "scarcityNotes": "",
+  "automationImpact": "",
+  "masteryGate": "",
+  "progressionWindow": "",
+  "worldgenImpact": "Nenhum",
+  "worldgenNotes": "",
+  "multiplayerNotes": "",
+  "performanceNotes": "",
+  "rupturePotential": "",
+  "requiredChanges": "",
+  "testNeeds": "",
+  "verdict": "Sem parecer",
+  "verdictReason": "",
+  "openQuestions": "",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

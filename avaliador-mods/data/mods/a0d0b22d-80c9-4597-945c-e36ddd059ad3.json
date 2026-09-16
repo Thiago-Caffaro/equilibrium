@@ -1,0 +1,164 @@
+{
+  "kind": "mod",
+  "name": "Chat Heads",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "cliente"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/chat-heads",
+  "projectUrl": "https://github.com/dzwdz/chat_heads",
+  "supportedVersions": [
+    "1.16.1",
+    "1.16.2",
+    "1.16.3",
+    "1.16.4",
+    "1.16.5",
+    "1.17",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "See who are you chatting with!",
+  "officialAuthors": [
+    "dzwdz"
+  ],
+  "officialProjectId": "407206",
+  "officialCategories": [
+    "Cosmetic",
+    "Map and Information"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2020-09-09T20:46:17.38Z",
+  "officialUpdatedAt": "2026-08-13T20:26:28.367Z",
+  "officialDownloads": 113536427,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/299/225/256/256/637352537610256484.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/chat-heads",
+  "metadataFetchedAt": "2026-09-09T19:52:44.861Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "chat_heads",
+        "name": "Chat Heads",
+        "version": "0.15.7",
+        "loader": "NeoForge",
+        "authors": [
+          "dzwdz, Fourmisain"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "407206",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/chat-heads",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "Wb5oqrBJ",
+      "sourceUrl": "https://modrinth.com/mod/Wb5oqrBJ",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.625Z",
+  "stagedFiles": [
+    {
+      "fileName": "chat_heads-0.15.7-neoforge-1.21.jar",
+      "relativePath": "mods/chat_heads-0.15.7-neoforge-1.21.jar",
+      "size": 91948,
+      "sha1": "536b2af675229d2a33eb4cf5afbe7148a62d5f3f",
+      "curseFingerprint": 602608061,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "chat_heads",
+            "name": "Chat Heads",
+            "version": "0.15.7",
+            "loader": "NeoForge",
+            "authors": [
+              "dzwdz, Fourmisain"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "a0d0b22d-80c9-4597-945c-e36ddd059ad3",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:25.509Z",
+  "updatedAt": "2026-09-16T21:53:25.509Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Qualidade de vida, apresentação ou acessibilidade de cliente; não cria um pilar de progressão.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

@@ -1,0 +1,83 @@
+{
+  "kind": "mod",
+  "name": "VulkanMod Reforged",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "supportedVersions": [
+    "1.21.1"
+  ],
+  "loaders": [
+    "NeoForge"
+  ],
+  "tags": [
+    "desempenho"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "officialSummary": "",
+  "officialAuthors": [
+    "rindw"
+  ],
+  "officialProjectId": "1581201",
+  "officialCategories": [],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialDownloads": "",
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/1875/12/256/256/639174962403838058.jpg",
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/vulkanmod-reforged",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/vulkanmod-reforged",
+  "metadataFetchedAt": "",
+  "metadataState": "preview",
+  "officialSources": [
+    {
+      "provider": "curseforge",
+      "projectId": "1581201",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/vulkanmod-reforged",
+      "name": "VulkanMod Reforged"
+    }
+  ],
+  "stagingOrigin": "local-instance-sync",
+  "stagingResolution": "confirmed",
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "1581201",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/vulkanmod-reforged",
+      "name": "VulkanMod Reforged"
+    }
+  },
+  "stagingMessage": "Registro criado pela sincronização da pasta local do modpack. Carregue os metadados oficiais no programa quando necessário.",
+  "notesMarkdown": "Arquivo encontrado na instância de teste: `VulkanMod_1.21.1-0.2.0-ALPHA.jar.disabled`. Estado local durante a sincronização: **desabilitado**.\n\nPreenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist.",
+  "stagedAt": "2026-09-16T21:17:59.473Z",
+  "stagedFiles": [],
+  "localFileName": "VulkanMod_1.21.1-0.2.0-ALPHA.jar.disabled",
+  "localEnabled": false,
+  "id": "40f392f5-d68a-4a04-be68-06b5c490d528",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:29.168Z",
+  "updatedAt": "2026-09-16T21:53:29.168Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Otimização, diagnóstico ou estabilidade técnica; não cria conteúdo nem autoridade de progressão.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "testNeeds": "Medir no perfil representativo antes de combinar: inicialização, TPS/MSPT, heap, geração de chunks, salvamento e desligamento."
+}

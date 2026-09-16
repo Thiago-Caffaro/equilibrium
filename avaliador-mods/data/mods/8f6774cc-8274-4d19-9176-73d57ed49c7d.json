@@ -1,0 +1,126 @@
+{
+  "kind": "mod",
+  "name": "MCG Core [API]",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "biblioteca"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/mcg-core-api",
+  "projectUrl": "",
+  "supportedVersions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "loaders": [
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "API mod for all MCG Mods, which standardizes the guide book, dialogue windows, etc.",
+  "officialAuthors": [
+    "MCG_Modding"
+  ],
+  "officialProjectId": "1673221",
+  "officialCategories": [
+    "API and Library"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2026-08-30T13:51:45.27Z",
+  "officialUpdatedAt": "2026-08-31T13:34:43.58Z",
+  "officialDownloads": 753,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/2014/366/256/256/639236049867536476_animated.gif",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/mcg-core-api",
+  "metadataFetchedAt": "2026-09-09T19:53:09.286Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "mcgcore",
+        "name": "MCG Core",
+        "version": "1.0.0",
+        "loader": "NeoForge",
+        "authors": [
+          "Minecraft-Guides.com"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "1673221",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/mcg-core-api",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "missing",
+      "projectId": "",
+      "sourceUrl": "",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.642Z",
+  "stagedFiles": [
+    {
+      "fileName": "mcg-core-neoforge-1.21.1-1.1.0.jar",
+      "relativePath": "mods/mcg-core-neoforge-1.21.1-1.1.0.jar",
+      "size": 222891,
+      "sha1": "1ac012cf13d28c211f0c0291a9688546e03a4b0a",
+      "curseFingerprint": 3898558142,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "mcgcore",
+            "name": "MCG Core",
+            "version": "1.0.0",
+            "loader": "NeoForge",
+            "authors": [
+              "Minecraft-Guides.com"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "8f6774cc-8274-4d19-9176-73d57ed49c7d",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:26.092Z",
+  "updatedAt": "2026-09-16T21:53:26.092Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Biblioteca ou API de suporte; só deve entrar como dependência explícita de um candidato aprovado.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

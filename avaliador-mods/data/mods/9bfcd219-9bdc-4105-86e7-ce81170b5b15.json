@@ -1,0 +1,84 @@
+{
+  "kind": "mod",
+  "name": "CreativeCore",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "supportedVersions": [
+    "1.21.1"
+  ],
+  "loaders": [
+    "NeoForge"
+  ],
+  "tags": [
+    "biblioteca"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "officialSummary": "",
+  "officialAuthors": [
+    "CreativeMD"
+  ],
+  "officialProjectId": "257814",
+  "officialCategories": [],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialDownloads": "",
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/86/225/256/256/636207446427836220.png",
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/creativecore",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/creativecore",
+  "metadataFetchedAt": "",
+  "metadataState": "preview",
+  "officialSources": [
+    {
+      "provider": "curseforge",
+      "projectId": "257814",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/creativecore",
+      "name": "CreativeCore"
+    }
+  ],
+  "stagingOrigin": "local-instance-sync",
+  "stagingResolution": "confirmed",
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "257814",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/creativecore",
+      "name": "CreativeCore"
+    }
+  },
+  "stagingMessage": "Registro criado pela sincronização da pasta local do modpack. Carregue os metadados oficiais no programa quando necessário.",
+  "notesMarkdown": "Arquivo encontrado na instância de teste: `CreativeCore_NEOFORGE_v2.13.46_mc1.21.1.jar`. Estado local durante a sincronização: **habilitado**.\n\nPreenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist.",
+  "stagedAt": "2026-09-16T21:17:59.473Z",
+  "stagedFiles": [],
+  "localFileName": "CreativeCore_NEOFORGE_v2.13.46_mc1.21.1.jar",
+  "localEnabled": true,
+  "id": "9bfcd219-9bdc-4105-86e7-ce81170b5b15",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:27.745Z",
+  "updatedAt": "2026-09-16T21:53:27.745Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Biblioteca ou API de suporte; só deve entrar como dependência explícita de um candidato aprovado.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum"
+}

@@ -1,0 +1,132 @@
+{
+  "kind": "mod",
+  "name": "MCG's Guidebook: Aquamirae",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "interface"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/mcgs-guidebook-aquamirae",
+  "projectUrl": "",
+  "supportedVersions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "loaders": [
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "Provides in-game documentation, tips, notes, and guides on the Aquamirae mod",
+  "officialAuthors": [
+    "MCG_Modding"
+  ],
+  "officialProjectId": "1674249",
+  "officialCategories": [
+    "Addons"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2026-08-30T09:36:29.187Z",
+  "officialUpdatedAt": "2026-08-31T14:10:46.297Z",
+  "officialDownloads": 762,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/2015/948/256/256/639236595233774260_animated.gif",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/mcgs-guidebook-aquamirae",
+  "metadataFetchedAt": "2026-09-09T19:53:10.296Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "fabric.mod.json",
+    "mods": [
+      {
+        "modId": "mcgguide_aquamirae",
+        "name": "Aquamirae Guidebook",
+        "version": "1.1.0",
+        "loader": "Fabric",
+        "authors": [
+          "Minecraft-Guides.com"
+        ],
+        "dependencies": [
+          "mcgcore",
+          "minecraft"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "1674249",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/mcgs-guidebook-aquamirae",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "missing",
+      "projectId": "",
+      "sourceUrl": "",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.643Z",
+  "stagedFiles": [
+    {
+      "fileName": "mcgguide_aquamirae-1.2.0_neoforge.jar",
+      "relativePath": "mods/mcgguide_aquamirae-1.2.0_neoforge.jar",
+      "size": 81037,
+      "sha1": "86b247559c9b6a19fd94a21320c33d4d113c79f3",
+      "curseFingerprint": 3789892972,
+      "jarMetadata": {
+        "format": "fabric.mod.json",
+        "mods": [
+          {
+            "modId": "mcgguide_aquamirae",
+            "name": "Aquamirae Guidebook",
+            "version": "1.1.0",
+            "loader": "Fabric",
+            "authors": [
+              "Minecraft-Guides.com"
+            ],
+            "dependencies": [
+              "mcgcore",
+              "minecraft"
+            ]
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "a110606a-8b44-41e5-9f1d-8eb48252cf9c",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:26.232Z",
+  "updatedAt": "2026-09-16T21:53:26.232Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Interface de consulta, receitas, loot ou orientação; reduz atrito de informação sem criar conteúdo de progressão.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

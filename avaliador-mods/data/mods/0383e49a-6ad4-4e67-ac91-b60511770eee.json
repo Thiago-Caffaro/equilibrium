@@ -1,0 +1,158 @@
+{
+  "kind": "mod",
+  "name": "Ping Wheel",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "cliente"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/ping-wheel",
+  "projectUrl": "https://github.com/LukenSkyne/Minecraft-Ping-Wheel",
+  "supportedVersions": [
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "Allows players to temporarily mark locations and entities",
+  "officialAuthors": [
+    "LukenSkyne"
+  ],
+  "officialProjectId": "734339",
+  "officialCategories": [
+    "Map and Information",
+    "Miscellaneous",
+    "Utility & QoL"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2022-12-13T09:42:12.17Z",
+  "officialUpdatedAt": "2026-08-19T20:43:52.927Z",
+  "officialDownloads": 47771265,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/673/24/256/256/638064653740334486.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/ping-wheel",
+  "metadataFetchedAt": "2026-09-09T19:53:18.375Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "pingwheel",
+        "name": "Ping Wheel",
+        "version": "1.12.2",
+        "loader": "NeoForge",
+        "authors": [
+          "Luken, RXJpaw"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "734339",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/ping-wheel",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "QQXAdCzh",
+      "sourceUrl": "https://modrinth.com/mod/QQXAdCzh",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.647Z",
+  "stagedFiles": [
+    {
+      "fileName": "Ping-Wheel-1.12.2-neoforge-1.21.1.jar",
+      "relativePath": "mods/Ping-Wheel-1.12.2-neoforge-1.21.1.jar",
+      "size": 153528,
+      "sha1": "bfc416a7bc2edde6ff98672a7df43a3d9930a396",
+      "curseFingerprint": 797996057,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "pingwheel",
+            "name": "Ping Wheel",
+            "version": "1.12.2",
+            "loader": "NeoForge",
+            "authors": [
+              "Luken, RXJpaw"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "0383e49a-6ad4-4e67-ac91-b60511770eee",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:26.525Z",
+  "updatedAt": "2026-09-16T21:53:26.525Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Qualidade de vida, apresentação ou acessibilidade de cliente; não cria um pilar de progressão.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

@@ -1,0 +1,190 @@
+{
+  "kind": "mod",
+  "name": "Sophisticated Backpacks",
+  "status": "Precisa de teste",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "inventário",
+    "armazenamento",
+    "qualidade de vida"
+  ],
+  "notApplicableFields": [
+    "overlaps",
+    "scarcityNotes",
+    "masteryGate",
+    "progressionWindow",
+    "openQuestions",
+    "requiredChanges"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks",
+  "projectUrl": "https://github.com/P3pp3rF1y/SophisticatedBackpacks",
+  "supportedVersions": [
+    "1.16.3",
+    "1.16.4",
+    "1.16.5",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.20.1",
+    "1.20.4",
+    "1.21",
+    "1.21.1",
+    "1.21.4",
+    "1.21.5",
+    "1.21.8",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "loaders": [
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "Yet another backpack mod this time with backpack you can place in world, color in different color combinations, upgrade with more inventory and enhance with many functional upgrades",
+  "officialAuthors": [
+    "P3pp3rF1y"
+  ],
+  "officialProjectId": "422301",
+  "officialCategories": [
+    "Armor",
+    "Tools",
+    "and Weapons",
+    "Storage"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2020-11-24T20:37:12.55Z",
+  "officialUpdatedAt": "2026-09-09T19:18:12.373Z",
+  "officialDownloads": "240378381",
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/375/56/256/256/637549610342642859.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks",
+  "metadataFetchedAt": "2026-09-09T19:53:26.517Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "sophisticatedbackpacks",
+        "name": "Sophisticated Backpacks",
+        "version": "3.26.3",
+        "loader": "NeoForge",
+        "authors": [
+          "P3pp3rF1y, Ridanisaurus"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "422301",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "ambiguous",
+      "projectId": "",
+      "sourceUrl": "",
+      "candidates": [
+        {
+          "provider": "Modrinth",
+          "projectId": "TyCTlI4b",
+          "name": "Sophisticated Backpacks",
+          "sourceUrl": "https://modrinth.com/mod/sophisticated-backpacks"
+        },
+        {
+          "provider": "Modrinth",
+          "projectId": "ouNrBQtq",
+          "name": "Sophisticated Backpacks (Unoffical Fabric port)",
+          "sourceUrl": "https://modrinth.com/mod/sophisticated-backpacks-(unoffical-fabric-port)"
+        },
+        {
+          "provider": "Modrinth",
+          "projectId": "s85zLEDe",
+          "name": "Sophisticated Backpacks Create Integration",
+          "sourceUrl": "https://modrinth.com/mod/sophisticated-backpacks-create-integration"
+        },
+        {
+          "provider": "Modrinth",
+          "projectId": "8RICmZfy",
+          "name": "Sophisticated Backpacks easier upgrade",
+          "sourceUrl": "https://modrinth.com/mod/sophisticated-backpacks-easier-upgrade"
+        },
+        {
+          "provider": "Modrinth",
+          "projectId": "GkohSRPs",
+          "name": "Sophisticated Backpacks Etched Integration",
+          "sourceUrl": "https://modrinth.com/mod/sophisticated-backpacks-etched-integration"
+        }
+      ]
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.650Z",
+  "stagedFiles": [
+    {
+      "fileName": "sophisticatedbackpacks-1.21.1-3.26.3.2158.jar",
+      "relativePath": "mods/sophisticatedbackpacks-1.21.1-3.26.3.2158.jar",
+      "size": 1251706,
+      "sha1": "c9cef1451d73c5afef78a637c593634f55e757fc",
+      "curseFingerprint": 3370735112,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "sophisticatedbackpacks",
+            "name": "Sophisticated Backpacks",
+            "version": "3.26.3",
+            "loader": "NeoForge",
+            "authors": [
+              "P3pp3rF1y, Ridanisaurus"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "337adbd7-fba8-42cc-b05e-33b1c8d2d4af",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:25.270Z",
+  "updatedAt": "2026-09-16T21:53:25.270Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Adiciona uma das melhores backpacks que temos atualmente, muito bem integradas com outros mods e visualmente agradáveis",
+  "uniqueSystems": "O mod tem a própria progressao que é consideravel quando se lembra que este é um mod de mochilas",
+  "humanEvidence": "Mod muito bem aceito por todos geralmente.",
+  "overlaps": "",
+  "dangerousCombinations": "Este mod, junto com sua dependencia adiciona o liquido \"Experience\" e o item \"Bucket of experience\", que tendem a, quando misturado com outros mods como create e mechanism, resultam em bugs relevantes que podem acarretar em bugs visuais nos tanques das mochilas, duplicaçao de xp, ou até mesmo confusao a respeito da mistura entre diferentes tipos de liquidos relacionados a xp, que na verdade nao sao o mesmo liquido, mas que, e jogo, ficam bem indistinguiveis ou confusos.",
+  "scarcityImpact": "Preserva",
+  "integrationEffort": "Médio",
+  "scarcityNotes": "",
+  "automationImpact": "Amplia armazenamento portátil; tanques e upgrades precisam ser comparados com fluidos/XP de outros mods.",
+  "masteryGate": "",
+  "progressionWindow": "",
+  "worldgenImpact": "Nenhum",
+  "worldgenNotes": "",
+  "multiplayerNotes": "",
+  "performanceNotes": "",
+  "rupturePotential": "",
+  "requiredChanges": "",
+  "testNeeds": "Testar o tanque, e o xp, conforme formos colocando mods que tenham esse liquido.",
+  "verdict": "Precisa de teste",
+  "verdictReason": "Precisamos testar a respeito do xp",
+  "openQuestions": "",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

@@ -1,0 +1,92 @@
+{
+  "kind": "mod",
+  "name": "Create: Enchantment Industry",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [
+    "Tecnologia"
+  ],
+  "supportedVersions": [
+    "1.18.2",
+    "1.19.2",
+    "1.20.1",
+    "1.21.1",
+    "1.21.11",
+    "26.1.2"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge"
+  ],
+  "tags": [
+    "addon Create",
+    "experiência",
+    "encantamento",
+    "automação"
+  ],
+  "notApplicableFields": [],
+  "officialSummary": "Automatic Enchanting, with Create",
+  "officialAuthors": [
+    "MarbleGateKeeper"
+  ],
+  "officialProjectId": "JWGBpFUP",
+  "officialCategories": [
+    "fabric",
+    "forge",
+    "neoforge",
+    "storage",
+    "technology"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "Modrinth",
+  "officialDownloads": 5570515,
+  "officialIconUrl": "https://cdn.modrinth.com/data/JWGBpFUP/9571cd419c5eee9f2017f0b6f7cf6e81c665723b_96.webp",
+  "sourceUrl": "https://modrinth.com/mod/create-enchantment-industry",
+  "metadataSourceUrl": "https://modrinth.com/mod/create-enchantment-industry",
+  "metadataFetchedAt": "",
+  "metadataState": "preview",
+  "officialSources": [
+    {
+      "provider": "modrinth",
+      "projectId": "JWGBpFUP",
+      "sourceUrl": "https://modrinth.com/mod/create-enchantment-industry",
+      "name": "Create: Enchantment Industry"
+    }
+  ],
+  "stagingOrigin": "remote-search",
+  "stagingResolution": "confirmed",
+  "stagingSources": {
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "JWGBpFUP",
+      "sourceUrl": "https://modrinth.com/mod/create-enchantment-industry",
+      "name": "Create: Enchantment Industry"
+    }
+  },
+  "stagingMessage": "Importado pela busca remota. Metadados básicos prontos; carregue dados completos quando precisar.",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist.",
+  "stagedAt": "2026-09-16T21:09:36.555Z",
+  "stagedFiles": [],
+  "id": "f19c63a5-a6c4-4037-ab96-e876bfebad32",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:24.894Z",
+  "updatedAt": "2026-09-16T21:53:24.894Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Automação de experiência e encantamentos com Create; candidato de alto impacto, não apenas addon cosmético.",
+  "overlaps": "Sistemas mágicos, farms de mobs, equipamentos e outras formas de armazenar ou processar experiência.",
+  "dangerousCombinations": "Pode industrializar encantamentos, recompensas de exploração e drops de mobs antes de seus marcos de domínio.",
+  "scarcityImpact": "Risco alto",
+  "integrationEffort": "Grande",
+  "scarcityNotes": "Experiência e encantamentos precisam manter relação com combate, exploração e magia antes de qualquer escala industrial.",
+  "automationImpact": "Automatiza obtenção, movimento e processamento de experiência/encantamentos.",
+  "masteryGate": "Gate tardio que preserve as fontes convencionais de experiência e as recompensas de exploração.",
+  "progressionWindow": "Intermediário a avançado, se uma rodada isolada mostrar uma função não redundante.",
+  "worldgenImpact": "Nenhum",
+  "testNeeds": "MER-1C isolado: medir geração, armazenamento, fluídos de XP e concorrência com magia/equipamentos.",
+  "verdict": "Precisa de teste",
+  "verdictReason": "O impacto transversal é alto demais para ser aceito como addon comum."
+}

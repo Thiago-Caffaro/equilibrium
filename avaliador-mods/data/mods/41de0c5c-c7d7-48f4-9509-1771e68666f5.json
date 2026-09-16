@@ -1,0 +1,160 @@
+{
+  "kind": "mod",
+  "name": "Not Enough Animations",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "cliente"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/not-enough-animations",
+  "projectUrl": "https://github.com/tr7zw/NotEnoughAnimations",
+  "supportedVersions": [
+    "1.16.4",
+    "1.16.5",
+    "1.17",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "Bringing first-person animations to the third-person",
+  "officialAuthors": [
+    "tr7zw"
+  ],
+  "officialProjectId": "433760",
+  "officialCategories": [
+    "Cosmetic",
+    "Map and Information"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2021-01-05T11:02:08.053Z",
+  "officialUpdatedAt": "2026-06-18T19:06:11.413Z",
+  "officialDownloads": 161366733,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/329/74/256/256/637454010542845990.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/not-enough-animations",
+  "metadataFetchedAt": "2026-09-09T19:53:15.344Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "notenoughanimations",
+        "name": "NotEnoughAnimations",
+        "version": "1.12.4",
+        "loader": "NeoForge",
+        "authors": [
+          "tr7zw"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "433760",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/not-enough-animations",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "MPCX6s5C",
+      "sourceUrl": "https://modrinth.com/mod/MPCX6s5C",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.645Z",
+  "stagedFiles": [
+    {
+      "fileName": "notenoughanimations-neoforge-1.12.4-mc1.21.1.jar",
+      "relativePath": "mods/notenoughanimations-neoforge-1.12.4-mc1.21.1.jar",
+      "size": 1939625,
+      "sha1": "b509863deaa27890f8db600f612966a07490a6cd",
+      "curseFingerprint": 3025048526,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "notenoughanimations",
+            "name": "NotEnoughAnimations",
+            "version": "1.12.4",
+            "loader": "NeoForge",
+            "authors": [
+              "tr7zw"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "41de0c5c-c7d7-48f4-9509-1771e68666f5",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:26.368Z",
+  "updatedAt": "2026-09-16T21:53:26.368Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Qualidade de vida, apresentação ou acessibilidade de cliente; não cria um pilar de progressão.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

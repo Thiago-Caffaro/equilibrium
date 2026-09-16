@@ -1,0 +1,145 @@
+{
+  "kind": "mod",
+  "name": "Aggro Indicator",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "cliente"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/aggroindicator",
+  "projectUrl": "https://github.com/Raverbury/AggroIndicator",
+  "supportedVersions": [
+    "1.16.5",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.4",
+    "1.21",
+    "1.21.1",
+    "1.21.4",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "Display an alert icon above mobs that are aggroing onto you",
+  "officialAuthors": [
+    "Raverbury"
+  ],
+  "officialProjectId": "882713",
+  "officialCategories": [
+    "Map and Information"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2023-07-02T08:05:36.063Z",
+  "officialUpdatedAt": "2026-08-31T07:09:33.243Z",
+  "officialDownloads": 6552109,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/842/71/256/256/638237174759435587.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/aggroindicator",
+  "metadataFetchedAt": "2026-09-09T19:52:36.762Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "aggroindicator",
+        "name": "Aggro Indicator",
+        "version": "2.0.4",
+        "loader": "NeoForge",
+        "authors": [
+          "Raverbury"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "882713",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/aggroindicator",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "RpUNthCL",
+      "sourceUrl": "https://modrinth.com/mod/RpUNthCL",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.613Z",
+  "stagedFiles": [
+    {
+      "fileName": "aggroindicator-neoforge-1.21.1-2.0.4.jar",
+      "relativePath": "mods/aggroindicator-neoforge-1.21.1-2.0.4.jar",
+      "size": 71105,
+      "sha1": "5293a52073c3817889abe8e28f6810cb5267493b",
+      "curseFingerprint": 1528803759,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "aggroindicator",
+            "name": "Aggro Indicator",
+            "version": "2.0.4",
+            "loader": "NeoForge",
+            "authors": [
+              "Raverbury"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "19fdd60e-87f7-42b5-a11a-b00b69f8feec",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:25.364Z",
+  "updatedAt": "2026-09-16T21:53:25.364Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Qualidade de vida, apresentação ou acessibilidade de cliente; não cria um pilar de progressão.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

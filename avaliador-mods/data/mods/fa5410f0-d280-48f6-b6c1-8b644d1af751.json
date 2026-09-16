@@ -1,0 +1,154 @@
+{
+  "kind": "mod",
+  "name": "EMI Enchanting",
+  "status": "Selecionado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "interface"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/emi-enchanting",
+  "projectUrl": "https://github.com/fzzyhmstrs/EMI_enchanting",
+  "supportedVersions": [
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge",
+    "Quilt"
+  ],
+  "officialSummary": "EMI Plugin that gives basic enchantment information; valid items, exlcusions, etc.",
+  "officialAuthors": [
+    "fzzyhmstrs"
+  ],
+  "officialProjectId": "936713",
+  "officialCategories": [
+    "API and Library",
+    "Map and Information"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2023-11-13T09:52:00.73Z",
+  "officialUpdatedAt": "2024-09-18T02:32:58.703Z",
+  "officialDownloads": "17725560",
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/904/258/256/256/638354239120784536.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/emi-enchanting",
+  "metadataFetchedAt": "2026-09-09T19:52:51.096Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "emi_enchanting",
+        "name": "EMI Enchanting",
+        "version": "0.1.2+1.21+neoforge",
+        "loader": "NeoForge",
+        "authors": [
+          "fzzyhmstrs"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "936713",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/emi-enchanting",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "wbWoo11W",
+      "sourceUrl": "https://modrinth.com/mod/wbWoo11W",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.631Z",
+  "stagedFiles": [
+    {
+      "fileName": "emi_enchanting-0.1.2+1.21+neoforge.jar",
+      "relativePath": "mods/emi_enchanting-0.1.2+1.21+neoforge.jar",
+      "size": 15680,
+      "sha1": "02ad74769ffcec259fd9bb14a1760593f6182b5c",
+      "curseFingerprint": 3503819062,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "emi_enchanting",
+            "name": "EMI Enchanting",
+            "version": "0.1.2+1.21+neoforge",
+            "loader": "NeoForge",
+            "authors": [
+              "fzzyhmstrs"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "fa5410f0-d280-48f6-b6c1-8b644d1af751",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:25.232Z",
+  "updatedAt": "2026-09-16T21:53:25.232Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Interface de consulta, receitas, loot ou orientação; reduz atrito de informação sem criar conteúdo de progressão.",
+  "uniqueSystems": "",
+  "humanEvidence": "",
+  "overlaps": "",
+  "dangerousCombinations": "",
+  "scarcityImpact": "Preserva",
+  "integrationEffort": "Desconhecido",
+  "scarcityNotes": "",
+  "automationImpact": "",
+  "masteryGate": "",
+  "progressionWindow": "",
+  "worldgenImpact": "Nenhum",
+  "worldgenNotes": "",
+  "multiplayerNotes": "",
+  "performanceNotes": "",
+  "rupturePotential": "",
+  "requiredChanges": "",
+  "testNeeds": "",
+  "verdict": "Sem parecer",
+  "verdictReason": "",
+  "openQuestions": "",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

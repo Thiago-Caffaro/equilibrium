@@ -1,0 +1,85 @@
+{
+  "kind": "mod",
+  "name": "Sound Physics Remastered",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "supportedVersions": [
+    "1.21",
+    "1.21.1"
+  ],
+  "loaders": [
+    "NeoForge"
+  ],
+  "tags": [
+    "cliente"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "officialSummary": "",
+  "officialAuthors": [
+    "henkelmax"
+  ],
+  "officialProjectId": "535489",
+  "officialCategories": [],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialDownloads": "",
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/442/531/256/256/637694502660771592.png",
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/sound-physics-remastered",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/sound-physics-remastered",
+  "metadataFetchedAt": "",
+  "metadataState": "preview",
+  "officialSources": [
+    {
+      "provider": "curseforge",
+      "projectId": "535489",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/sound-physics-remastered",
+      "name": "Sound Physics Remastered"
+    }
+  ],
+  "stagingOrigin": "local-instance-sync",
+  "stagingResolution": "confirmed",
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "535489",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/sound-physics-remastered",
+      "name": "Sound Physics Remastered"
+    }
+  },
+  "stagingMessage": "Registro criado pela sincronização da pasta local do modpack. Carregue os metadados oficiais no programa quando necessário.",
+  "notesMarkdown": "Arquivo encontrado na instância de teste: `sound-physics-remastered-neoforge-1.21.1-1.5.1.jar`. Estado local durante a sincronização: **habilitado**.\n\nPreenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist.",
+  "stagedAt": "2026-09-16T21:17:59.473Z",
+  "stagedFiles": [],
+  "localFileName": "sound-physics-remastered-neoforge-1.21.1-1.5.1.jar",
+  "localEnabled": true,
+  "id": "577247bf-ca9d-43ec-a4ea-4baefa4c559b",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:28.863Z",
+  "updatedAt": "2026-09-16T21:53:28.863Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Qualidade de vida, apresentação ou acessibilidade de cliente; não cria um pilar de progressão.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum"
+}

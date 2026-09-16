@@ -1,0 +1,95 @@
+{
+  "kind": "mod",
+  "name": "Create Crafts & Additions",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [
+    "Tecnologia"
+  ],
+  "supportedVersions": [
+    "1.18.2",
+    "1.19.2",
+    "1.20.1",
+    "1.21.1"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge",
+    "Quilt"
+  ],
+  "tags": [
+    "addon Create",
+    "energia",
+    "ponte industrial"
+  ],
+  "notApplicableFields": [],
+  "officialSummary": "Create Crafts & Additions extends Create and acts as a bridge between electricity and kinetic energy",
+  "officialAuthors": [
+    "mrh0"
+  ],
+  "officialProjectId": "kU1G12Nn",
+  "officialCategories": [
+    "decoration",
+    "fabric",
+    "food",
+    "forge",
+    "neoforge",
+    "quilt",
+    "storage",
+    "technology",
+    "transportation",
+    "utility"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "Modrinth",
+  "officialDownloads": 10460987,
+  "officialIconUrl": "https://cdn.modrinth.com/data/kU1G12Nn/d8d1ec226747a800ba175f70ad00a80f37047cb6_96.webp",
+  "sourceUrl": "https://modrinth.com/mod/createaddition",
+  "metadataSourceUrl": "https://modrinth.com/mod/createaddition",
+  "metadataFetchedAt": "",
+  "metadataState": "preview",
+  "officialSources": [
+    {
+      "provider": "modrinth",
+      "projectId": "kU1G12Nn",
+      "sourceUrl": "https://modrinth.com/mod/createaddition",
+      "name": "Create Crafts & Additions"
+    }
+  ],
+  "stagingOrigin": "remote-search",
+  "stagingResolution": "confirmed",
+  "stagingSources": {
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "kU1G12Nn",
+      "sourceUrl": "https://modrinth.com/mod/createaddition",
+      "name": "Create Crafts & Additions"
+    }
+  },
+  "stagingMessage": "Importado pela busca remota. Metadados básicos prontos; carregue dados completos quando precisar.",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist.",
+  "stagedAt": "2026-09-16T21:08:34.437Z",
+  "stagedFiles": [],
+  "id": "47de25d5-0714-4a22-9fd4-fab3ca340913",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:24.859Z",
+  "updatedAt": "2026-09-16T21:53:24.859Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Ponte entre energia elétrica e cinética do Create; candidato de infraestrutura, não um pilar autônomo.",
+  "overlaps": "Immersive Engineering e outras soluções elétricas; pode diluir a separação entre produção mecânica e Tecnologia avançada.",
+  "dangerousCombinations": "A ponte elétrica pode liberar máquinas ou energia de outra janela tecnológica cedo demais.",
+  "scarcityImpact": "Risco alto",
+  "integrationEffort": "Médio",
+  "scarcityNotes": "A fronteira entre produção comercial rudimentar e energia tecnológica precisa de gate explícito.",
+  "automationImpact": "Amplia as rotas de energia e automação já oferecidas por Create.",
+  "masteryGate": "Prova técnica que venha depois do domínio mecânico de base.",
+  "progressionWindow": "Intermediário, caso uma comparação funcional prove que não é redundante.",
+  "worldgenImpact": "Nenhum",
+  "testNeeds": "Rodada MER-1B: comparar transporte, infraestrutura e custo contra as alternativas elétricas.",
+  "verdict": "Precisa de teste",
+  "verdictReason": "O papel de ponte é claro, mas a divisão entre Create e Tecnologia avançada ainda não foi comprovada."
+}

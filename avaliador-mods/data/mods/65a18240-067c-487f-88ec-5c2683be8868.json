@@ -1,0 +1,92 @@
+{
+  "kind": "mod",
+  "name": "Create: Hypertubes",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [
+    "Tecnologia"
+  ],
+  "supportedVersions": [
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21.1"
+  ],
+  "loaders": [
+    "Forge",
+    "NeoForge"
+  ],
+  "tags": [
+    "addon Create",
+    "transporte",
+    "mobilidade"
+  ],
+  "notApplicableFields": [],
+  "officialSummary": "Travel arround the world with tubes!",
+  "officialAuthors": [
+    "Rok"
+  ],
+  "officialProjectId": "ATDdrG1y",
+  "officialCategories": [
+    "forge",
+    "game-mechanics",
+    "neoforge",
+    "technology",
+    "transportation",
+    "utility"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "Modrinth",
+  "officialDownloads": 1075316,
+  "officialIconUrl": "https://cdn.modrinth.com/data/ATDdrG1y/622fba3a3de39a3e9cfc09fdb0c3c94132ae0fd8_96.webp",
+  "sourceUrl": "https://modrinth.com/mod/hypertube",
+  "metadataSourceUrl": "https://modrinth.com/mod/hypertube",
+  "metadataFetchedAt": "",
+  "metadataState": "preview",
+  "officialSources": [
+    {
+      "provider": "modrinth",
+      "projectId": "ATDdrG1y",
+      "sourceUrl": "https://modrinth.com/mod/hypertube",
+      "name": "Create: Hypertubes"
+    }
+  ],
+  "stagingOrigin": "remote-search",
+  "stagingResolution": "confirmed",
+  "stagingSources": {
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "ATDdrG1y",
+      "sourceUrl": "https://modrinth.com/mod/hypertube",
+      "name": "Create: Hypertubes"
+    }
+  },
+  "stagingMessage": "Importado pela busca remota. Metadados básicos prontos; carregue dados completos quando precisar.",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist.",
+  "stagedAt": "2026-09-16T21:08:51.677Z",
+  "stagedFiles": [],
+  "id": "65a18240-067c-487f-88ec-5c2683be8868",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:24.878Z",
+  "updatedAt": "2026-09-16T21:53:24.878Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Transporte rápido por tubos como infraestrutura física ligada ao Create.",
+  "overlaps": "Waystones, outras rotas de teleporte e transporte por trilhos/contraptions.",
+  "dangerousCombinations": "Mobilidade precoce pode reduzir custo de exploração e tornar rotas de viagem redundantes.",
+  "scarcityImpact": "Controlável",
+  "integrationEffort": "Médio",
+  "scarcityNotes": "O custo e a infraestrutura devem manter a viagem como conquista, não como teleporte inicial.",
+  "automationImpact": "Não gera recursos; reduz atrito de deslocamento entre infraestrutura construída.",
+  "masteryGate": "Infraestrutura mecânica estabelecida e decisão sobre mobilidade versus exploração.",
+  "progressionWindow": "Intermediário, depois de o grupo ter experimentado deslocamento e exploração convencionais.",
+  "worldgenImpact": "Nenhum",
+  "testNeeds": "MER-1B: medir custo, alcance, contraptions e redundância com outras soluções de viagem.",
+  "verdict": "Precisa de teste",
+  "verdictReason": "Tem função legível, mas sua janela depende da política de mobilidade e exploração."
+}

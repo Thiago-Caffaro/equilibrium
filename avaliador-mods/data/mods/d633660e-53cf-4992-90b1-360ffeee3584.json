@@ -1,0 +1,81 @@
+{
+  "kind": "mod",
+  "name": "Create: Dragons Plus",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [
+    "Tecnologia"
+  ],
+  "supportedVersions": [
+    "1.21.1"
+  ],
+  "loaders": [
+    "NeoForge"
+  ],
+  "tags": [
+    "addon Create",
+    "processamento",
+    "integração"
+  ],
+  "notApplicableFields": [],
+  "officialSummary": "",
+  "officialAuthors": [
+    "DragonsPlus",
+    "RaymondBlaze"
+  ],
+  "officialProjectId": "1216624",
+  "officialCategories": [],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialDownloads": "",
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/1195/420/256/256/638771027943462603.png",
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/create-dragons-plus",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/create-dragons-plus",
+  "metadataFetchedAt": "",
+  "metadataState": "preview",
+  "officialSources": [
+    {
+      "provider": "curseforge",
+      "projectId": "1216624",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/create-dragons-plus",
+      "name": "Create: Dragons Plus"
+    }
+  ],
+  "stagingOrigin": "local-instance-sync",
+  "stagingResolution": "confirmed",
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "1216624",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/create-dragons-plus",
+      "name": "Create: Dragons Plus"
+    }
+  },
+  "stagingMessage": "Registro criado pela sincronização da pasta local do modpack. Carregue os metadados oficiais no programa quando necessário.",
+  "notesMarkdown": "Arquivo encontrado na instância de teste: `CreateDragonsPlus-1.11.8b.jar`. Estado local durante a sincronização: **habilitado**.\n\nPreenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist.",
+  "stagedAt": "2026-09-16T21:17:59.473Z",
+  "stagedFiles": [],
+  "localFileName": "CreateDragonsPlus-1.11.8b.jar",
+  "localEnabled": true,
+  "id": "d633660e-53cf-4992-90b1-360ffeee3584",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:27.679Z",
+  "updatedAt": "2026-09-16T21:53:27.679Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Extensões de processamento e utilitários para Create; deve ser avaliado por cada ponte que adiciona, não como pacote obrigatório.",
+  "overlaps": "Outros addons de Create e receitas de processamento de mods integrados.",
+  "dangerousCombinations": "Integrações de processamento podem criar atalhos entre Create, magia, dimensões ou recursos de Aventura.",
+  "scarcityImpact": "Controlável",
+  "integrationEffort": "Médio",
+  "scarcityNotes": "Cada integração precisa respeitar a janela do recurso ou sistema que ela processa.",
+  "automationImpact": "Acrescenta opções de processamento a cadeias do Create.",
+  "masteryGate": "O gate do conteúdo externo processado, além do domínio mecânico de Create.",
+  "progressionWindow": "Sem janela própria; dependente da integração específica aprovada.",
+  "worldgenImpact": "Nenhum",
+  "testNeeds": "MER-1B: inventariar somente recursos habilitados e identificar qualquer atalho de progressão.",
+  "verdict": "Precisa de teste",
+  "verdictReason": "É compatível com o alvo técnico, mas sua amplitude exige avaliação por integração."
+}

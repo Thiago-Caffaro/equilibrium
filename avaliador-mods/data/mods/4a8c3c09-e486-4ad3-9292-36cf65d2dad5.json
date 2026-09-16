@@ -1,0 +1,168 @@
+{
+  "kind": "mod",
+  "name": "Silent Lib (silentlib)",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "biblioteca"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/silent-lib",
+  "projectUrl": "https://github.com/SilentChaos512/SilentLib",
+  "supportedVersions": [
+    "1.9",
+    "1.9.4",
+    "1.10",
+    "1.10.1",
+    "1.10.2",
+    "1.11",
+    "1.11.2",
+    "1.12",
+    "1.12.1",
+    "1.12.2",
+    "1.13.2",
+    "1.14.2",
+    "1.14.3",
+    "1.14.4",
+    "1.15.1",
+    "1.15.2",
+    "1.16.1",
+    "1.16.2",
+    "1.16.3",
+    "1.16.4",
+    "1.16.5",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20.1",
+    "1.20.4",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.5",
+    "1.21.7",
+    "1.21.8",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "loaders": [
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "Library to make writing and maintaining mods easier.",
+  "officialAuthors": [
+    "SilentChaos512"
+  ],
+  "officialProjectId": "242998",
+  "officialCategories": [
+    "API and Library",
+    "Map and Information"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2016-03-18T21:46:41.043Z",
+  "officialUpdatedAt": "2026-04-16T17:05:54.25Z",
+  "officialDownloads": 104492447,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/36/456/256/256/635939146862612249.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/silent-lib",
+  "metadataFetchedAt": "2026-09-09T19:53:22.407Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "silentlib",
+        "name": "Silent Lib",
+        "version": "10.6.0",
+        "loader": "NeoForge",
+        "authors": [
+          "SilentChaos512"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "242998",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/silent-lib",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "BQhuHQo4",
+      "sourceUrl": "https://modrinth.com/mod/BQhuHQo4",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.649Z",
+  "stagedFiles": [
+    {
+      "fileName": "silent-lib-1.21.1-neoforge-10.6.0.jar",
+      "relativePath": "mods/silent-lib-1.21.1-neoforge-10.6.0.jar",
+      "size": 268791,
+      "sha1": "991055113a165bef7d0b620c091165d55f7dbb24",
+      "curseFingerprint": 2158872702,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "silentlib",
+            "name": "Silent Lib",
+            "version": "10.6.0",
+            "loader": "NeoForge",
+            "authors": [
+              "SilentChaos512"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "4a8c3c09-e486-4ad3-9292-36cf65d2dad5",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:26.653Z",
+  "updatedAt": "2026-09-16T21:53:26.653Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Biblioteca ou API de suporte; só deve entrar como dependência explícita de um candidato aprovado.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

@@ -1,0 +1,91 @@
+{
+  "kind": "mod",
+  "name": "Create Slice & Dice",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [
+    "Comerciantes",
+    "Tecnologia"
+  ],
+  "supportedVersions": [
+    "1.18.2",
+    "1.19.2",
+    "1.20.1",
+    "1.21.1"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge"
+  ],
+  "tags": [
+    "addon Create",
+    "Farmer's Delight",
+    "alimentação",
+    "automação"
+  ],
+  "notApplicableFields": [],
+  "officialSummary": "Making automation for Farmers Delight more sensible",
+  "officialAuthors": [
+    "possible_triangle"
+  ],
+  "officialProjectId": "GmjmRQ0A",
+  "officialCategories": [
+    "fabric",
+    "food",
+    "forge",
+    "neoforge",
+    "technology"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "Modrinth",
+  "officialDownloads": 7216077,
+  "officialIconUrl": "https://cdn.modrinth.com/data/GmjmRQ0A/d2d4a1a5cfc7f1ececf50dc977021c62654ccdc8_96.webp",
+  "sourceUrl": "https://modrinth.com/mod/slice-and-dice",
+  "metadataSourceUrl": "https://modrinth.com/mod/slice-and-dice",
+  "metadataFetchedAt": "",
+  "metadataState": "preview",
+  "officialSources": [
+    {
+      "provider": "modrinth",
+      "projectId": "GmjmRQ0A",
+      "sourceUrl": "https://modrinth.com/mod/slice-and-dice",
+      "name": "Create Slice & Dice"
+    }
+  ],
+  "stagingOrigin": "remote-search",
+  "stagingResolution": "confirmed",
+  "stagingSources": {
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "GmjmRQ0A",
+      "sourceUrl": "https://modrinth.com/mod/slice-and-dice",
+      "name": "Create Slice & Dice"
+    }
+  },
+  "stagingMessage": "Importado pela busca remota. Metadados básicos prontos; carregue dados completos quando precisar.",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist.",
+  "stagedAt": "2026-09-16T21:09:20.813Z",
+  "stagedFiles": [],
+  "id": "88a43f1c-2fda-4386-994c-25a499e677a4",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:24.886Z",
+  "updatedAt": "2026-09-16T21:53:24.886Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Ponte de automação entre receitas de Farmer's Delight e máquinas do Create; apoio à fronteira Comerciantes ↔ Tecnologia.",
+  "overlaps": "Automação alimentar direta do Create e outros mods de cozinha/processamento.",
+  "dangerousCombinations": "Pode liberar corte e cozinha automáticos antes que o loop comercial/manual tenha valor próprio.",
+  "scarcityImpact": "Controlável",
+  "integrationEffort": "Médio",
+  "scarcityNotes": "A comida pode ganhar escala somente depois da demonstração do loop alimentar original.",
+  "automationImpact": "Converte parte de corte e cozinha de Farmer's Delight para aparelhos do Create.",
+  "masteryGate": "Domínio comercial de alimentação e o primeiro gate tecnológico que autorize escala mecânica.",
+  "progressionWindow": "Intermediário; dependente da janela definida para automação alimentar.",
+  "worldgenImpact": "Nenhum",
+  "testNeeds": "MER-2A: comparar cozinha manual, corte automático, bacia aquecida e itens intermediários.",
+  "verdict": "Precisa de teste",
+  "verdictReason": "Integração factual já observada, mas o valor comercial antes da automação ainda não foi isolado."
+}

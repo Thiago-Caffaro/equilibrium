@@ -1,0 +1,126 @@
+{
+  "kind": "mod",
+  "name": "FDLib",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "biblioteca"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/fdlib",
+  "projectUrl": "https://github.com/FINDERFEED/FDLib",
+  "supportedVersions": [
+    "1.20.1",
+    "1.21.1"
+  ],
+  "loaders": [
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "Collection of utilities for my mods",
+  "officialAuthors": [
+    "FINDERFEED"
+  ],
+  "officialProjectId": "1271749",
+  "officialCategories": [
+    "API and Library"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2025-05-24T08:19:55.647Z",
+  "officialUpdatedAt": "2026-03-30T09:20:25.777Z",
+  "officialDownloads": 8382637,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/1285/404/256/256/638836003238860886.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/fdlib",
+  "metadataFetchedAt": "2026-09-09T19:52:56.119Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "fdlib",
+        "name": "FDLib",
+        "version": "1.0.9",
+        "loader": "NeoForge",
+        "authors": [
+          "FINDERFEED"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "1271749",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/fdlib",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "LcmGQfK2",
+      "sourceUrl": "https://modrinth.com/mod/LcmGQfK2",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.634Z",
+  "stagedFiles": [
+    {
+      "fileName": "fdlib-1.0.9-1.21.1.jar",
+      "relativePath": "mods/fdlib-1.0.9-1.21.1.jar",
+      "size": 973335,
+      "sha1": "03a171d170b22a04e67d2cc7894ddddd8489a295",
+      "curseFingerprint": 1884079549,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "fdlib",
+            "name": "FDLib",
+            "version": "1.0.9",
+            "loader": "NeoForge",
+            "authors": [
+              "FINDERFEED"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "8e6709cd-5a1d-41f8-90f7-a91f07a8a99c",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:25.678Z",
+  "updatedAt": "2026-09-16T21:53:25.678Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Biblioteca ou API de suporte; só deve entrar como dependência explícita de um candidato aprovado.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

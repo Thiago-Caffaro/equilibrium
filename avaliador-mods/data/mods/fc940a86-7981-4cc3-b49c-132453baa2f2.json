@@ -1,0 +1,73 @@
+{
+  "kind": "mod",
+  "name": "Engineer's Decor: Community NeoForge Port",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "supportedVersions": [
+    "1.21.1"
+  ],
+  "loaders": [
+    "NeoForge"
+  ],
+  "tags": [
+    "decoração",
+    "infraestrutura industrial",
+    "suporte"
+  ],
+  "notApplicableFields": [],
+  "officialSummary": "",
+  "officialAuthors": [
+    "syntaxHighlight"
+  ],
+  "officialProjectId": "1656377",
+  "officialCategories": [],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialDownloads": "",
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/1989/516/256/256/639225535127179381.png",
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/engineers-decor-community-neoforge-port",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/engineers-decor-community-neoforge-port",
+  "metadataFetchedAt": "",
+  "metadataState": "preview",
+  "officialSources": [
+    {
+      "provider": "curseforge",
+      "projectId": "1656377",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/engineers-decor-community-neoforge-port",
+      "name": "Engineer's Decor: Community NeoForge Port"
+    }
+  ],
+  "stagingOrigin": "local-instance-sync",
+  "stagingResolution": "confirmed",
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "1656377",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/engineers-decor-community-neoforge-port",
+      "name": "Engineer's Decor: Community NeoForge Port"
+    }
+  },
+  "stagingMessage": "Registro criado pela sincronização da pasta local do modpack. Carregue os metadados oficiais no programa quando necessário.",
+  "notesMarkdown": "Arquivo encontrado na instância de teste: `engineersdecor-1.4.0-beta.2+mc1.21.1.jar.disabled`. Estado local durante a sincronização: **desabilitado**.\n\nPreenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist.",
+  "stagedAt": "2026-09-16T21:17:59.473Z",
+  "stagedFiles": [],
+  "localFileName": "engineersdecor-1.4.0-beta.2+mc1.21.1.jar.disabled",
+  "localEnabled": false,
+  "id": "fc940a86-7981-4cc3-b49c-132453baa2f2",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:27.876Z",
+  "updatedAt": "2026-09-16T21:53:27.876Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Blocos industriais decorativos e possivelmente funcionais; apoio visual a Create/Immersive Engineering, não pilar autônomo.",
+  "overlaps": "Create, Immersive Engineering e outros mods de construção/decoração.",
+  "scarcityImpact": "Preserva",
+  "integrationEffort": "Pequeno",
+  "worldgenImpact": "Nenhum",
+  "testNeeds": "BLD-1A: verificar função além da decoração, receitas, redundância e uso real na base.",
+  "verdict": "Precisa de teste",
+  "verdictReason": "O artefato local estava desabilitado; a função precisa ser medida em construção deliberada."
+}

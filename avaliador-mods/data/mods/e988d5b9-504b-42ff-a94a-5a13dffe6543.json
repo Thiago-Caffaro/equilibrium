@@ -1,0 +1,118 @@
+{
+  "kind": "mod",
+  "name": "ModernFix",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "supportedVersions": [
+    "1.16.4",
+    "1.16.5",
+    "1.18.2",
+    "1.19.2",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "23w31a",
+    "23w32a",
+    "23w33a",
+    "1.20.2-pre3",
+    "1.20.2-pre4",
+    "1.20.2-rc1",
+    "1.20.2-rc2",
+    "1.20.2",
+    "23w42a",
+    "23w43a",
+    "23w45a",
+    "1.20.3",
+    "1.20.4",
+    "24w04a",
+    "24w09a",
+    "24w14a",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.4",
+    "26.1",
+    "26.1.2"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge"
+  ],
+  "tags": [
+    "desempenho"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "officialSummary": "All-in-one mod that improves performance, reduces memory usage, and fixes many bugs. Compatible with all your favorite performance mods!",
+  "officialAuthors": [
+    "embeddedt"
+  ],
+  "officialProjectId": "nmDcB62a",
+  "officialCategories": [
+    "fabric",
+    "forge",
+    "neoforge",
+    "optimization",
+    "utility"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "Modrinth",
+  "officialDownloads": 76546926,
+  "officialIconUrl": "https://cdn.modrinth.com/data/nmDcB62a/2af94de5e08ae54567ee86b968fc7ce076d9fee5_96.webp",
+  "sourceUrl": "https://modrinth.com/mod/modernfix",
+  "metadataSourceUrl": "https://modrinth.com/mod/modernfix",
+  "metadataFetchedAt": "",
+  "metadataState": "preview",
+  "officialSources": [
+    {
+      "provider": "modrinth",
+      "projectId": "nmDcB62a",
+      "sourceUrl": "https://modrinth.com/mod/modernfix",
+      "name": "ModernFix"
+    }
+  ],
+  "stagingOrigin": "remote-search",
+  "stagingResolution": "confirmed",
+  "stagingSources": {
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "nmDcB62a",
+      "sourceUrl": "https://modrinth.com/mod/modernfix",
+      "name": "ModernFix"
+    }
+  },
+  "stagingMessage": "Importado pela busca remota. Metadados básicos prontos; carregue dados completos quando precisar.",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist.",
+  "stagedAt": "2026-09-10T20:37:29.734Z",
+  "stagedFiles": [],
+  "id": "e988d5b9-504b-42ff-a94a-5a13dffe6543",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:24.960Z",
+  "updatedAt": "2026-09-16T21:53:24.960Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Otimização, diagnóstico ou estabilidade técnica; não cria conteúdo nem autoridade de progressão.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "testNeeds": "Medir no perfil representativo antes de combinar: inicialização, TPS/MSPT, heap, geração de chunks, salvamento e desligamento."
+}

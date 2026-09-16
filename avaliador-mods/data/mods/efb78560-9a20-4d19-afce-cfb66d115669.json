@@ -1,0 +1,132 @@
+{
+  "kind": "mod",
+  "name": "BadOptimizations",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "supportedVersions": [
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge"
+  ],
+  "tags": [
+    "desempenho"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "officialSummary": "Optimization mod that focuses on things other than rendering",
+  "officialAuthors": [
+    "thosea"
+  ],
+  "officialProjectId": "g96Z4WVZ",
+  "officialCategories": [
+    "optimization"
+  ],
+  "officialEnvironment": [
+    "client_only"
+  ],
+  "officialLicense": "MIT License",
+  "officialProvider": "Modrinth",
+  "officialDownloads": "41722341",
+  "officialIconUrl": "",
+  "sourceUrl": "https://modrinth.com/mod/badoptimizations",
+  "metadataSourceUrl": "https://modrinth.com/mod/badoptimizations",
+  "metadataFetchedAt": "2026-09-10T20:54:00.363Z",
+  "metadataState": "preview",
+  "officialSources": [
+    {
+      "provider": "modrinth",
+      "projectId": "g96Z4WVZ",
+      "sourceUrl": "https://modrinth.com/mod/badoptimizations",
+      "name": "BadOptimizations"
+    }
+  ],
+  "stagingOrigin": "remote-search",
+  "stagingResolution": "confirmed",
+  "stagingSources": {
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "g96Z4WVZ",
+      "sourceUrl": "https://modrinth.com/mod/badoptimizations",
+      "name": "BadOptimizations"
+    }
+  },
+  "stagingMessage": "Dados factuais carregados do Modrinth.",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist.",
+  "projectUrl": "https://github.com/ItsThosea/BadOpitmizations",
+  "officialPublishedAt": "2023-12-03T23:38:30.615171Z",
+  "officialUpdatedAt": "2026-06-16T19:06:36.516381Z",
+  "primaryFunction": "Otimização, diagnóstico ou estabilidade técnica; não cria conteúdo nem autoridade de progressão.",
+  "uniqueSystems": "",
+  "humanEvidence": "",
+  "overlaps": "",
+  "dangerousCombinations": "",
+  "scarcityImpact": "Preserva",
+  "integrationEffort": "Desconhecido",
+  "scarcityNotes": "",
+  "automationImpact": "",
+  "masteryGate": "",
+  "progressionWindow": "",
+  "worldgenImpact": "Nenhum",
+  "worldgenNotes": "",
+  "multiplayerNotes": "",
+  "performanceNotes": "",
+  "rupturePotential": "",
+  "requiredChanges": "",
+  "testNeeds": "Medir no perfil representativo antes de combinar: inicialização, TPS/MSPT, heap, geração de chunks, salvamento e desligamento.",
+  "verdict": "Sem parecer",
+  "verdictReason": "",
+  "openQuestions": "",
+  "stagedAt": "2026-09-10T20:29:34.836Z",
+  "stagedFiles": [],
+  "id": "efb78560-9a20-4d19-afce-cfb66d115669",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:25.072Z",
+  "updatedAt": "2026-09-16T21:53:25.072Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16"
+}

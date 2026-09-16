@@ -1,0 +1,154 @@
+{
+  "kind": "mod",
+  "name": "Better Compatibility Checker",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "desempenho"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/better-compatibility-checker",
+  "projectUrl": "https://github.com/nanite/BetterCompatibilityChecker/issues",
+  "supportedVersions": [
+    "1.16.5",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.4",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "Changes the default server compatability check to compare modpack versions",
+  "officialAuthors": [
+    "Gaz_"
+  ],
+  "officialProjectId": "551894",
+  "officialCategories": [
+    "Map and Information",
+    "Server Utility",
+    "Utility & QoL"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2021-12-05T09:31:15.133Z",
+  "officialUpdatedAt": "2026-06-17T19:15:03.623Z",
+  "officialDownloads": 118746567,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/461/341/256/256/637741010594154538.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/better-compatibility-checker",
+  "metadataFetchedAt": "2026-09-09T19:52:42.823Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "bcc",
+        "name": "Better Compatibility Checker",
+        "version": "21.1.8",
+        "loader": "NeoForge",
+        "authors": [
+          "Gaz(Gaz492)"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "551894",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/better-compatibility-checker",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "KJhXPbHQ",
+      "sourceUrl": "https://modrinth.com/mod/KJhXPbHQ",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.623Z",
+  "stagedFiles": [
+    {
+      "fileName": "better-compatability-checker-neoforge-21.1.8.jar",
+      "relativePath": "mods/better-compatability-checker-neoforge-21.1.8.jar",
+      "size": 25085,
+      "sha1": "186ba3fbacacb0ce93b9c5a5ddca28799c1577cb",
+      "curseFingerprint": 4242549374,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "bcc",
+            "name": "Better Compatibility Checker",
+            "version": "21.1.8",
+            "loader": "NeoForge",
+            "authors": [
+              "Gaz(Gaz492)"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "70c67e9b-ed73-4a7d-bc07-7b4340aee6af",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:25.460Z",
+  "updatedAt": "2026-09-16T21:53:25.460Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Otimização, diagnóstico ou estabilidade técnica; não cria conteúdo nem autoridade de progressão.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "testNeeds": "Medir no perfil representativo antes de combinar: inicialização, TPS/MSPT, heap, geração de chunks, salvamento e desligamento.",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

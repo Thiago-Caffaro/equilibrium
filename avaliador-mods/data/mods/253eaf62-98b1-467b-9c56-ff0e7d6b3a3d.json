@@ -1,0 +1,164 @@
+{
+  "kind": "mod",
+  "name": "Architectury API",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "biblioteca"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/architectury-api",
+  "projectUrl": "https://github.com/architectury/architectury-api",
+  "supportedVersions": [
+    "1.16.4",
+    "1.16.5",
+    "1.17",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.5-Snapshot",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge",
+    "Quilt"
+  ],
+  "officialSummary": "An intermediary api aimed to ease developing multiplatform mods.",
+  "officialAuthors": [
+    "Juicebus",
+    "MaxNeedsSnacks",
+    "shedaniel",
+    "st0x0ef"
+  ],
+  "officialProjectId": "419699",
+  "officialCategories": [
+    "API and Library"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2020-11-16T19:39:56.16Z",
+  "officialUpdatedAt": "2026-09-09T12:28:50.203Z",
+  "officialDownloads": 342584801,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/313/420/256/256/637408811378175814.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/architectury-api",
+  "metadataFetchedAt": "2026-09-09T19:52:39.909Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "architectury",
+        "name": "Architectury",
+        "version": "13.0.11",
+        "loader": "NeoForge",
+        "authors": [
+          "shedaniel"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "419699",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/architectury-api",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "lhGA9TYQ",
+      "sourceUrl": "https://modrinth.com/mod/lhGA9TYQ",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.619Z",
+  "stagedFiles": [
+    {
+      "fileName": "architectury-13.0.11-neoforge.jar",
+      "relativePath": "mods/architectury-13.0.11-neoforge.jar",
+      "size": 584734,
+      "sha1": "008656a0702801174b8ec245ed7aad1921d6e9f1",
+      "curseFingerprint": 3623028036,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "architectury",
+            "name": "Architectury",
+            "version": "13.0.11",
+            "loader": "NeoForge",
+            "authors": [
+              "shedaniel"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "253eaf62-98b1-467b-9c56-ff0e7d6b3a3d",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:25.387Z",
+  "updatedAt": "2026-09-16T21:53:25.387Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Biblioteca ou API de suporte; só deve entrar como dependência explícita de um candidato aprovado.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

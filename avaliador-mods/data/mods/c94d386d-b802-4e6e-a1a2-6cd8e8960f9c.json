@@ -1,0 +1,128 @@
+{
+  "kind": "mod",
+  "name": "Fragmentum [NeoForge Edition]",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "biblioteca"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/fragmentum-neoforge",
+  "projectUrl": "https://github.com/ObscuriaLithium/Fragmentum",
+  "supportedVersions": [
+    "1.21.1",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "loaders": [
+    "NeoForge"
+  ],
+  "officialSummary": "The lightweight framework for the Obscuria Collection multi-loader mods",
+  "officialAuthors": [
+    "Obscuria"
+  ],
+  "officialProjectId": "1123977",
+  "officialCategories": [
+    "API and Library"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2024-10-20T11:48:48.827Z",
+  "officialUpdatedAt": "2026-08-22T15:40:17.05Z",
+  "officialDownloads": 1303527,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/1742/100/639109114911588915.webp",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/fragmentum-neoforge",
+  "metadataFetchedAt": "2026-09-09T19:52:57.122Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "fragmentum",
+        "name": "Fragmentum",
+        "version": "2.4.4",
+        "loader": "NeoForge",
+        "authors": [
+          "Obscuria"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "1123977",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/fragmentum-neoforge",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "49C5QgTK",
+      "sourceUrl": "https://modrinth.com/mod/49C5QgTK",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.635Z",
+  "stagedFiles": [
+    {
+      "fileName": "fragmentum-neoforge-1.21.1-2.4.4.jar",
+      "relativePath": "mods/fragmentum-neoforge-1.21.1-2.4.4.jar",
+      "size": 1939369,
+      "sha1": "09995d8f0da787acdf5df590defc8dd38cf69884",
+      "curseFingerprint": 2590973327,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "fragmentum",
+            "name": "Fragmentum",
+            "version": "2.4.4",
+            "loader": "NeoForge",
+            "authors": [
+              "Obscuria"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "c94d386d-b802-4e6e-a1a2-6cd8e8960f9c",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:25.745Z",
+  "updatedAt": "2026-09-16T21:53:25.745Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Biblioteca ou API de suporte; só deve entrar como dependência explícita de um candidato aprovado.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

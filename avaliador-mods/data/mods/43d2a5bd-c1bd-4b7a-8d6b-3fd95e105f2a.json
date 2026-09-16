@@ -1,0 +1,147 @@
+{
+  "kind": "mod",
+  "name": "Crash Utilities",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "desempenho"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/crash-utilities",
+  "projectUrl": "https://github.com/Darkere/CrashUtilities",
+  "supportedVersions": [
+    "1.15.2",
+    "1.16.1",
+    "1.16.2",
+    "1.16.3",
+    "1.16.4",
+    "1.16.5",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.20.1",
+    "1.20.4",
+    "1.21.1",
+    "26.1.2"
+  ],
+  "loaders": [
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "Utilities for Server Admins",
+  "officialAuthors": [
+    "Darkere"
+  ],
+  "officialProjectId": "371813",
+  "officialCategories": [
+    "Map and Information",
+    "Server Utility"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2020-03-30T18:21:18.613Z",
+  "officialUpdatedAt": "2026-04-13T22:01:55.593Z",
+  "officialDownloads": 65301506,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/259/289/256/256/637210956449815321.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/crash-utilities",
+  "metadataFetchedAt": "2026-09-09T19:52:47.886Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "crashutilities",
+        "name": "Crash Utilities",
+        "version": "9.0.4",
+        "loader": "NeoForge",
+        "authors": [
+          "Darkere"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "371813",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/crash-utilities",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "candidate",
+      "projectId": "",
+      "sourceUrl": "",
+      "candidates": [
+        {
+          "provider": "Modrinth",
+          "projectId": "nbg22QFg",
+          "name": "Crash Utilities",
+          "sourceUrl": "https://modrinth.com/mod/crash-utilities"
+        }
+      ]
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.628Z",
+  "stagedFiles": [
+    {
+      "fileName": "crashutilities-9.0.4.jar",
+      "relativePath": "mods/crashutilities-9.0.4.jar",
+      "size": 225310,
+      "sha1": "5117a448b0611f60fbe743a4a631e431dd31740e",
+      "curseFingerprint": 1154470864,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "crashutilities",
+            "name": "Crash Utilities",
+            "version": "9.0.4",
+            "loader": "NeoForge",
+            "authors": [
+              "Darkere"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "43d2a5bd-c1bd-4b7a-8d6b-3fd95e105f2a",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:25.561Z",
+  "updatedAt": "2026-09-16T21:53:25.561Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Otimização, diagnóstico ou estabilidade técnica; não cria conteúdo nem autoridade de progressão.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "testNeeds": "Medir no perfil representativo antes de combinar: inicialização, TPS/MSPT, heap, geração de chunks, salvamento e desligamento.",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

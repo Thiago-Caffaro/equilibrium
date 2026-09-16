@@ -1,0 +1,165 @@
+{
+  "kind": "mod",
+  "name": "Towers of the Wild Modded",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [
+    "Aventura"
+  ],
+  "tags": [
+    "estruturas",
+    "worldgen",
+    "exploração"
+  ],
+  "notApplicableFields": [],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/towers-of-the-wild-modded",
+  "projectUrl": "https://github.com/celsiusqc/totw_modded_mod",
+  "supportedVersions": [
+    "1.19.2",
+    "1.19.3",
+    "1.19.3-Snapshot",
+    "1.19.4",
+    "1.19.4-Snapshot",
+    "1.20",
+    "1.20-Snapshot",
+    "1.20.1",
+    "1.20.2",
+    "1.20.2-Snapshot",
+    "1.20.3",
+    "1.20.3-Snapshot",
+    "1.20.4",
+    "1.20.5",
+    "1.20.5-Snapshot",
+    "1.20.6",
+    "1.21",
+    "1.21-Snapshot",
+    "1.21.1",
+    "1.21.1-Snapshot",
+    "1.21.2",
+    "1.21.2-Snapshot",
+    "1.21.3",
+    "1.21.4",
+    "1.21.4-Snapshot",
+    "1.21.5",
+    "1.21.5-Snapshot",
+    "1.21.6",
+    "1.21.6-snapshot",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.9-snapshot",
+    "1.21.10",
+    "1.21.11",
+    "1.21.11-snapshot",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "Towers of the Wild - added to multiple dimensions and planets + waystone & paragliders",
+  "officialAuthors": [
+    "celsiusqc"
+  ],
+  "officialProjectId": "859365",
+  "officialCategories": [
+    "Adventure and RPG",
+    "Dimensions",
+    "Map and Information",
+    "Structures",
+    "World Gen"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2023-05-11T08:26:15.137Z",
+  "officialUpdatedAt": "2026-08-15T03:49:55.21Z",
+  "officialDownloads": 23761187,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/815/136/256/256/638190944779362008.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/towers-of-the-wild-modded",
+  "metadataFetchedAt": "2026-09-09T19:53:29.671Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "totw_modded",
+        "name": "Towers of The Wild: Modded",
+        "version": "1.0.9",
+        "loader": "NeoForge",
+        "authors": [
+          "celsiusqc"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "859365",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/towers-of-the-wild-modded",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "54eqfZSC",
+      "sourceUrl": "https://modrinth.com/mod/54eqfZSC",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.651Z",
+  "stagedFiles": [
+    {
+      "fileName": "totw_modded-neoforge-1.21-1.0.9.jar",
+      "relativePath": "mods/totw_modded-neoforge-1.21-1.0.9.jar",
+      "size": 281334,
+      "sha1": "c7b03934cce6eb7a8253ee0a8c416f137710f6ee",
+      "curseFingerprint": 895781194,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "totw_modded",
+            "name": "Towers of The Wild: Modded",
+            "version": "1.0.9",
+            "loader": "NeoForge",
+            "authors": [
+              "celsiusqc"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "bca23e56-f30c-4646-bc79-e87915bdf567",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:26.868Z",
+  "updatedAt": "2026-09-16T21:53:26.868Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Torres distribuídas por dimensões como pontos de exploração e possível suporte a mobilidade.",
+  "overlaps": "Outros mods de estruturas, Waystones e objetivos de exploração do Overworld.",
+  "dangerousCombinations": "Excesso de estruturas, loot e pontos de mobilidade pode reduzir a distância e a descoberta orgânica.",
+  "scarcityImpact": "A avaliar",
+  "integrationEffort": "Médio",
+  "masteryGate": "Descoberta e exploração convencional; não transformar estruturas em teleporte ou loot automático.",
+  "progressionWindow": "Início a intermediário, somente após comparar densidade e recompensas com outros candidatos de estrutura.",
+  "worldgenImpact": "Moderado",
+  "worldgenNotes": "Adiciona torres a várias dimensões; densidade, compatibilidade e loot precisam de perfil próprio.",
+  "rupturePotential": "Estruturas podem servir como locais de eventos somente depois de revisar loot e permissões.",
+  "testNeeds": "ADV-7: medir densidade, poluição visual, loot, distância de viagem e compatibilidade.",
+  "verdict": "Precisa de teste",
+  "verdictReason": "O papel de exploração é plausível, mas o custo de worldgen e a sobreposição ainda são desconhecidos.",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

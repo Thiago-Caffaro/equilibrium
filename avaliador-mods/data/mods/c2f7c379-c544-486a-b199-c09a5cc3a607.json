@@ -1,0 +1,82 @@
+{
+  "kind": "mod",
+  "name": "Legendary Shrines",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [
+    "Aventura"
+  ],
+  "supportedVersions": [
+    "1.21.1"
+  ],
+  "loaders": [
+    "NeoForge"
+  ],
+  "tags": [
+    "estrutura",
+    "respawn",
+    "exploração",
+    "mobilidade"
+  ],
+  "notApplicableFields": [],
+  "officialSummary": "",
+  "officialAuthors": [
+    "legendary_workshop"
+  ],
+  "officialProjectId": "1682081",
+  "officialCategories": [],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialDownloads": "",
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/2027/506/256/256/639241567646825430.png",
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/legendary-shrines",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/legendary-shrines",
+  "metadataFetchedAt": "",
+  "metadataState": "preview",
+  "officialSources": [
+    {
+      "provider": "curseforge",
+      "projectId": "1682081",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/legendary-shrines",
+      "name": "Legendary Shrines"
+    }
+  ],
+  "stagingOrigin": "local-instance-sync",
+  "stagingResolution": "confirmed",
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "1682081",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/legendary-shrines",
+      "name": "Legendary Shrines"
+    }
+  },
+  "stagingMessage": "Registro criado pela sincronização da pasta local do modpack. Carregue os metadados oficiais no programa quando necessário.",
+  "notesMarkdown": "Arquivo encontrado na instância de teste: `legendaryshrines-neo-1.21.1-1.0.2.jar`. Estado local durante a sincronização: **habilitado**.\n\nPreenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist.",
+  "stagedAt": "2026-09-16T21:17:59.473Z",
+  "stagedFiles": [],
+  "localFileName": "legendaryshrines-neo-1.21.1-1.0.2.jar",
+  "localEnabled": true,
+  "id": "c2f7c379-c544-486a-b199-c09a5cc3a607",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:28.366Z",
+  "updatedAt": "2026-09-16T21:53:28.366Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Santuários de Overworld para escolher o ponto de renascimento; apoio à recuperação em expedições.",
+  "overlaps": "Waystones, camas e outras soluções de recuperação/mobilidade.",
+  "dangerousCombinations": "Pode retirar custo de morte e deslocamento em exploração se aparecer cedo ou com densidade alta.",
+  "scarcityImpact": "Controlável",
+  "integrationEffort": "Médio",
+  "scarcityNotes": "O ponto de respawn deve respeitar a descoberta e não substituir toda a logística de aventura.",
+  "automationImpact": "Não gera recursos; altera recuperação e risco de morte.",
+  "masteryGate": "Decisão sobre segurança de expedições e o momento aceitável para respawn alternativo.",
+  "progressionWindow": "Indefinida até verificar compatibilidade de plataforma e densidade de estruturas.",
+  "worldgenImpact": "Leve",
+  "worldgenNotes": "Santuários gerados no Overworld; a página atual não demonstra suporte alvo 1.21.1 NeoForge, apesar do JAR local informado.",
+  "testNeeds": "Resolver discrepância entre o JAR local e a página oficial; depois medir densidade, respawn e efeito na exploração.",
+  "verdict": "Precisa de teste",
+  "verdictReason": "A função é clara, mas a evidência oficial consultada aponta outra linha de versão/loader e não pode ser tratada como compatibilidade do perfil."
+}

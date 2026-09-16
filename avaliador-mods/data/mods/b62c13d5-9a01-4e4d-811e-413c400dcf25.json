@@ -1,0 +1,97 @@
+{
+  "kind": "mod",
+  "name": "Longer Chat History [Forge/NeoForge/Fabric]",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "supportedVersions": [
+    "1.21",
+    "1.21.8",
+    "1.20.5",
+    "1.21.5",
+    "1.21.4",
+    "1.20.6",
+    "1.21.1",
+    "1.21.6",
+    "1.21.3",
+    "1.21.7",
+    "1.21.2",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11"
+  ],
+  "loaders": [
+    "NeoForge"
+  ],
+  "tags": [
+    "cliente"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "officialSummary": "",
+  "officialAuthors": [
+    "TheOriginalGolem"
+  ],
+  "officialProjectId": "913234",
+  "officialCategories": [],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialDownloads": "",
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/877/714/256/256/638303367394777553.png",
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/longer-chat-history",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/longer-chat-history",
+  "metadataFetchedAt": "",
+  "metadataState": "preview",
+  "officialSources": [
+    {
+      "provider": "curseforge",
+      "projectId": "913234",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/longer-chat-history",
+      "name": "Longer Chat History [Forge/NeoForge/Fabric]"
+    }
+  ],
+  "stagingOrigin": "local-instance-sync",
+  "stagingResolution": "confirmed",
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "913234",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/longer-chat-history",
+      "name": "Longer Chat History [Forge/NeoForge/Fabric]"
+    }
+  },
+  "stagingMessage": "Registro criado pela sincronização da pasta local do modpack. Carregue os metadados oficiais no programa quando necessário.",
+  "notesMarkdown": "Arquivo encontrado na instância de teste: `LongerChatHistory-neoforge-1.7.jar`. Estado local durante a sincronização: **habilitado**.\n\nPreenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist.",
+  "stagedAt": "2026-09-16T21:17:59.473Z",
+  "stagedFiles": [],
+  "localFileName": "LongerChatHistory-neoforge-1.7.jar",
+  "localEnabled": true,
+  "id": "b62c13d5-9a01-4e4d-811e-413c400dcf25",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:28.430Z",
+  "updatedAt": "2026-09-16T21:53:28.430Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Qualidade de vida, apresentação ou acessibilidade de cliente; não cria um pilar de progressão.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum"
+}

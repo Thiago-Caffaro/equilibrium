@@ -1,0 +1,136 @@
+{
+  "kind": "mod",
+  "name": "Jade Addons (Neo/Forge)",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "interface"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/jade-addons",
+  "projectUrl": "https://github.com/Snownee/JadeAddons",
+  "supportedVersions": [
+    "1.18.1",
+    "1.18.2",
+    "1.19.1",
+    "1.19.2",
+    "1.20",
+    "1.20.1",
+    "1.21.1",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "loaders": [
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "Jade 🔍's additional mod supports for Neo/Forge",
+  "officialAuthors": [
+    "Snownee"
+  ],
+  "officialProjectId": "583345",
+  "officialCategories": [
+    "Addons",
+    "Map and Information",
+    "Utility & QoL"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2022-02-27T09:32:53.403Z",
+  "officialUpdatedAt": "2026-08-31T14:09:55.18Z",
+  "officialDownloads": 67928436,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/497/744/256/256/637814611670008374.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/jade-addons",
+  "metadataFetchedAt": "2026-09-09T19:53:02.218Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "jadeaddons",
+        "name": "Jade Addons",
+        "version": "${file.jarVersion}",
+        "loader": "NeoForge",
+        "authors": [
+          "Snownee"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "583345",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/jade-addons",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "xuDOzCLy",
+      "sourceUrl": "https://modrinth.com/mod/xuDOzCLy",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.638Z",
+  "stagedFiles": [
+    {
+      "fileName": "JadeAddons-1.21.1-NeoForge-6.1.1.jar",
+      "relativePath": "mods/JadeAddons-1.21.1-NeoForge-6.1.1.jar",
+      "size": 75431,
+      "sha1": "6c50a845ac3d336fa88e6466c36aa8b3815ca5c5",
+      "curseFingerprint": 2970833281,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "jadeaddons",
+            "name": "Jade Addons",
+            "version": "${file.jarVersion}",
+            "loader": "NeoForge",
+            "authors": [
+              "Snownee"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "88b8abab-8d76-4ede-a131-c7ce94697528",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:25.929Z",
+  "updatedAt": "2026-09-16T21:53:25.929Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Interface de consulta, receitas, loot ou orientação; reduz atrito de informação sem criar conteúdo de progressão.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

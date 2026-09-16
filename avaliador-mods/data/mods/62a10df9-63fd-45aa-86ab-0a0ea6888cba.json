@@ -1,0 +1,58 @@
+{
+  "kind": "mod",
+  "name": "Equilibrium Core",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "supportedVersions": [
+    "1.21.1"
+  ],
+  "loaders": [
+    "NeoForge"
+  ],
+  "tags": [
+    "mod próprio",
+    "autoridade de servidor",
+    "infraestrutura"
+  ],
+  "notApplicableFields": [],
+  "officialSummary": "Infraestrutura experimental original do Equilibrium para ofertas da divisão dos Comerciantes.",
+  "officialAuthors": [
+    "Equilibrium contributors"
+  ],
+  "officialProjectId": "",
+  "officialCategories": [],
+  "officialEnvironment": [],
+  "officialLicense": "MIT",
+  "officialProvider": "Local",
+  "officialDownloads": "",
+  "officialIconUrl": "",
+  "sourceUrl": "",
+  "metadataSourceUrl": "",
+  "metadataFetchedAt": "",
+  "metadataState": "local",
+  "officialSources": [],
+  "stagingOrigin": "local-instance-sync",
+  "stagingResolution": "confirmed",
+  "stagingSources": {},
+  "stagingMessage": "Projeto próprio local; não há metadados remotos do CurseForge ou Modrinth para carregar.",
+  "notesMarkdown": "Arquivo encontrado na instância de teste: `equilibrium-0.1.0-experimental.jar`. Estado local durante a sincronização: **habilitado**.\n\nVersão detectada no metadata do JAR: `0.1.0-experimental`. Projeto próprio do modpack.\n\nPreenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist.",
+  "stagedAt": "2026-09-16T21:17:59.473Z",
+  "stagedFiles": [],
+  "localFileName": "equilibrium-0.1.0-experimental.jar",
+  "localEnabled": true,
+  "id": "62a10df9-63fd-45aa-86ab-0a0ea6888cba",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:27.940Z",
+  "updatedAt": "2026-09-16T21:53:27.940Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Infraestrutura original do Equilibrium para dados de ofertas, validação de servidor, auditoria e transações experimentais de Comerciantes.",
+  "scarcityImpact": "Preserva",
+  "integrationEffort": "Grande",
+  "worldgenImpact": "Nenhum",
+  "requiredChanges": "Não absorver receitas, custos, chances ou configs de mods; essas decisões pertencem a KubeJS/dados locais.",
+  "testNeeds": "Manter GameTests e smoke de servidor para qualquer mudança de contrato ou transação.",
+  "verdict": "Manter na mesa",
+  "verdictReason": "É infraestrutura própria ativa; sistemas finais de maestria, economia e estações continuam fora de escopo."
+}

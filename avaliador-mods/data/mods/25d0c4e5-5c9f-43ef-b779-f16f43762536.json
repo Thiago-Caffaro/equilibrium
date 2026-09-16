@@ -1,6 +1,6 @@
 {
   "kind": "mod",
-  "name": "Aquamirae",
+  "name": "Aquamirae [Neo/Forge Edition]",
   "status": "Selecionado",
   "evaluator": "Tago",
   "divisions": [
@@ -22,7 +22,10 @@
     "1.16.3",
     "1.16.2",
     "1.16.1",
-    "1.16"
+    "1.16",
+    "1.16-Snapshot",
+    "1.19-Snapshot",
+    "1.19.4-Snapshot"
   ],
   "loaders": [
     "NeoForge",
@@ -59,8 +62,33 @@
   "openQuestions": "",
   "id": "25d0c4e5-5c9f-43ef-b779-f16f43762536",
   "revision": 0,
-  "storageVersion": 85,
+  "storageVersion": 86,
   "createdAt": "2026-09-02T18:08:57.624Z",
-  "updatedAt": "2026-09-02T19:03:46.928Z",
-  "updatedBy": "Tago"
+  "updatedAt": "2026-09-16T21:53:25.318Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "officialSummary": "Ship graveyard with terrible deep sea creatures!",
+  "officialAuthors": [
+    "Obscuria"
+  ],
+  "officialProjectId": "536254",
+  "officialCategories": [
+    "Adventure and RPG",
+    "Armor",
+    "Tools",
+    "and Weapons",
+    "Biomes",
+    "Magic",
+    "Mobs",
+    "Structures",
+    "World Gen"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2021-10-13T09:03:01.97Z",
+  "officialUpdatedAt": "2026-09-08T21:30:24.343Z",
+  "officialDownloads": "46856521",
+  "officialIconUrl": "https://media.forgecdn.net/avatars/1742/123/639109128611445583.webp",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/aquamirae",
+  "metadataFetchedAt": "2026-09-09T20:26:11.903Z"
 }

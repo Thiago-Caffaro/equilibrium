@@ -1,0 +1,133 @@
+{
+  "kind": "mod",
+  "name": "Structure Essentials",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "estruturas",
+    "utilitário",
+    "exploração"
+  ],
+  "notApplicableFields": [],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/structure-essentials-forge-fabric",
+  "projectUrl": "https://github.com/someaddons/structureessentials",
+  "supportedVersions": [
+    "1.18.2",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.21",
+    "1.21.1",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "Essential features for structures: Faster locating, distance adjustments, nearby structure command, automatic structure biome compat,  structure overlap prevention, random source crash prevention, debug logging and more",
+  "officialAuthors": [
+    "someaddon"
+  ],
+  "officialProjectId": "832882",
+  "officialCategories": [
+    "Map and Information",
+    "Server Utility",
+    "Structures"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2023-03-02T10:28:40.1Z",
+  "officialUpdatedAt": "2026-07-05T21:58:03.257Z",
+  "officialDownloads": 98401587,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/784/172/256/256/638132898813460745.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/structure-essentials-forge-fabric",
+  "metadataFetchedAt": "2026-09-09T19:53:28.535Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "structureessentials",
+        "name": "Structure Essentials mod",
+        "version": "5.0",
+        "loader": "NeoForge",
+        "authors": [
+          "Someaddon"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "832882",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/structure-essentials-forge-fabric",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "missing",
+      "projectId": "",
+      "sourceUrl": "",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.651Z",
+  "stagedFiles": [
+    {
+      "fileName": "structureessentials-1.21.1-5.0.jar",
+      "relativePath": "mods/structureessentials-1.21.1-5.0.jar",
+      "size": 60833,
+      "sha1": "5c059c2cb2ad8c43e1384b0939bf258801aadfea",
+      "curseFingerprint": 608980435,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "structureessentials",
+            "name": "Structure Essentials mod",
+            "version": "5.0",
+            "loader": "NeoForge",
+            "authors": [
+              "Someaddon"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "e21e3818-2f2a-4382-81a9-2e9123c13700",
+  "revision": 0,
+  "storageVersion": 2,
+  "createdAt": "2026-09-16T21:53:26.921Z",
+  "updatedAt": "2026-09-16T21:56:44.283Z",
+  "updatedBy": "Codex ? preenchimento documental 2026-09-16",
+  "primaryFunction": "Ferramentas para localizar estruturas, ajustar distância e consultar estruturas próximas; apoio de administração/exploração, não conteúdo próprio de divisão.",
+  "overlaps": "Comandos, mapas, guias de exploração e outros utilitários de localização.",
+  "dangerousCombinations": "Localização e distância alteradas podem remover descoberta, viagem e busca convencional por estruturas.",
+  "scarcityImpact": "Risco alto",
+  "integrationEffort": "Pequeno",
+  "scarcityNotes": "Localização deve respeitar o valor de estruturas como prova de Aventura e não substituir sua descoberta.",
+  "automationImpact": "Não gera recursos; reduz o atrito para encontrar conteúdo de exploração.",
+  "masteryGate": "Definir se localizar estruturas é conforto de grupo ou uma recompensa posterior de Aventura.",
+  "progressionWindow": "Indefinida até a política de exploração e mobilidade estar fechada.",
+  "worldgenImpact": "Nenhum",
+  "testNeeds": "Verificar alcance, comandos e como a localização interage com objetivos/estruturas de Aventura.",
+  "verdict": "Precisa de teste",
+  "verdictReason": "A função utilitária é clara, mas o impacto sobre descoberta e viagem precisa de uma decisão de exploração.",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

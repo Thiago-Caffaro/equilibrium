@@ -1,0 +1,141 @@
+{
+  "kind": "mod",
+  "name": "Fast Async World Save[Forge/Neo/Fabric]",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "desempenho"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/fast-async-world-save-forge-fabric",
+  "projectUrl": "https://github.com/someaddons/FastAsyncWorldSave",
+  "supportedVersions": [
+    "1.16.5",
+    "1.18.2",
+    "1.19.2",
+    "1.20.1",
+    "1.21",
+    "1.21.1",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "Prevent lag-spikes and data loss during intermittent world saves",
+  "officialAuthors": [
+    "someaddon"
+  ],
+  "officialProjectId": "951499",
+  "officialCategories": [
+    "Map and Information",
+    "Server Utility",
+    "Utility & QoL"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2023-12-18T14:33:41.753Z",
+  "officialUpdatedAt": "2026-07-10T13:18:53.56Z",
+  "officialDownloads": 63807233,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/920/973/256/256/638384996050010285.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/fast-async-world-save-forge-fabric",
+  "metadataFetchedAt": "2026-09-09T19:52:55.120Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "fastasyncworldsave",
+        "name": "fastasyncworldsave mod",
+        "version": "2.6",
+        "loader": "NeoForge",
+        "authors": [
+          "Someaddon"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "951499",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/fast-async-world-save-forge-fabric",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "missing",
+      "projectId": "",
+      "sourceUrl": "",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.634Z",
+  "stagedFiles": [
+    {
+      "fileName": "fastasyncworldsave-1.21-2.6.jar",
+      "relativePath": "mods/fastasyncworldsave-1.21-2.6.jar",
+      "size": 11050,
+      "sha1": "87e019715314631f2c8288cf7c73a52a61b2d61b",
+      "curseFingerprint": 1703092068,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "fastasyncworldsave",
+            "name": "fastasyncworldsave mod",
+            "version": "2.6",
+            "loader": "NeoForge",
+            "authors": [
+              "Someaddon"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "d3ddaf69-a076-4223-b324-8bc888c8efab",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:25.712Z",
+  "updatedAt": "2026-09-16T21:53:25.712Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Otimização, diagnóstico ou estabilidade técnica; não cria conteúdo nem autoridade de progressão.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "testNeeds": "Medir no perfil representativo antes de combinar: inicialização, TPS/MSPT, heap, geração de chunks, salvamento e desligamento.",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

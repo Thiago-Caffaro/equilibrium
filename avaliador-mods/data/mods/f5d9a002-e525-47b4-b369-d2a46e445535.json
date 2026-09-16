@@ -1,0 +1,98 @@
+{
+  "kind": "mod",
+  "name": "Create: Some Assembly Required",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [
+    "Comerciantes"
+  ],
+  "supportedVersions": [
+    "1.18.2",
+    "1.19.2",
+    "1.20.1",
+    "1.21.1"
+  ],
+  "loaders": [
+    "Forge",
+    "NeoForge"
+  ],
+  "tags": [
+    "alimentação",
+    "montagem",
+    "sanduíches"
+  ],
+  "notApplicableFields": [],
+  "officialSummary": "Design your own sandwiches",
+  "officialAuthors": [
+    "ochotonida"
+  ],
+  "officialProjectId": "jZi8ogTA",
+  "officialCategories": [
+    "decoration",
+    "food"
+  ],
+  "officialEnvironment": [
+    "client_and_server"
+  ],
+  "officialLicense": "MIT License",
+  "officialProvider": "Modrinth",
+  "officialDownloads": "490951",
+  "officialIconUrl": "https://cdn.modrinth.com/data/jZi8ogTA/330de7decad26b4c0d6b0dc65eb976854ace527e_96.webp",
+  "sourceUrl": "https://modrinth.com/mod/some-assembly-required",
+  "metadataSourceUrl": "https://modrinth.com/mod/some-assembly-required",
+  "metadataFetchedAt": "2026-09-16T21:11:14.939Z",
+  "metadataState": "preview",
+  "officialSources": [
+    {
+      "provider": "modrinth",
+      "projectId": "jZi8ogTA",
+      "sourceUrl": "https://modrinth.com/mod/some-assembly-required",
+      "name": "Create: Some Assembly Required"
+    }
+  ],
+  "stagingOrigin": "remote-search",
+  "stagingResolution": "confirmed",
+  "stagingSources": {
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "jZi8ogTA",
+      "sourceUrl": "https://modrinth.com/mod/some-assembly-required",
+      "name": "Create: Some Assembly Required"
+    }
+  },
+  "stagingMessage": "Dados factuais carregados do Modrinth.",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist.",
+  "projectUrl": "https://github.com/ochotonida/some-assembly-required",
+  "officialPublishedAt": "2022-08-16T21:48:19.307223Z",
+  "officialUpdatedAt": "2026-03-02T17:40:48.244006Z",
+  "primaryFunction": "Montagem de sanduíches e consumo de ingredientes; extensão potencial da cadeia alimentar comercial.",
+  "uniqueSystems": "Estação de montagem e componentes de sanduíche, distintos de apenas adicionar refeições prontas.",
+  "humanEvidence": "",
+  "overlaps": "Farmer's Delight e outros sistemas de culinária; não substitui por si só cidade, pesca ou comércio.",
+  "dangerousCombinations": "",
+  "scarcityImpact": "Controlável",
+  "integrationEffort": "Pequeno",
+  "scarcityNotes": "Deve sustentar demanda recorrente de ingredientes antes de receber automação ampla.",
+  "automationImpact": "Pode receber apoio de prensas e logística do Create, mas não deve definir a janela de automação sozinho.",
+  "masteryGate": "Domínio do ciclo comercial/alimentar que consome seus ingredientes.",
+  "progressionWindow": "Início a intermediário, como complemento opcional da cadeia de alimentos.",
+  "worldgenImpact": "Nenhum",
+  "worldgenNotes": "",
+  "multiplayerNotes": "",
+  "performanceNotes": "",
+  "rupturePotential": "",
+  "requiredChanges": "",
+  "testNeeds": "MER-2A: verificar se a montagem cria decisões de grupo ou apenas poluição de receitas.",
+  "verdict": "Manter na mesa",
+  "verdictReason": "Há uma função alimentar delimitada, mas ainda não há evidência de output comercial exclusivo.",
+  "openQuestions": "",
+  "stagedAt": "2026-09-16T21:09:03.937Z",
+  "stagedFiles": [],
+  "id": "f5d9a002-e525-47b4-b369-d2a46e445535",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:24.923Z",
+  "updatedAt": "2026-09-16T21:53:24.923Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16"
+}

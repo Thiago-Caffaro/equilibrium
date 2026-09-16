@@ -1,0 +1,115 @@
+{
+  "kind": "mod",
+  "name": "Silent Gear",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [
+    "Aventura"
+  ],
+  "supportedVersions": [
+    "1.12.2",
+    "1.13.2",
+    "1.14.4",
+    "1.15.2",
+    "1.16.3",
+    "1.16.4",
+    "1.16.5",
+    "1.17.1",
+    "1.18.2",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.4",
+    "1.21",
+    "1.21.1",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "loaders": [
+    "Forge",
+    "NeoForge"
+  ],
+  "tags": [
+    "equipamentos",
+    "ferramentas",
+    "armas",
+    "datapack"
+  ],
+  "notApplicableFields": [],
+  "officialSummary": "Upgradeable tools, weapons, and armor. Completely customizable with data packs!",
+  "officialAuthors": [
+    "SilentChaos512"
+  ],
+  "officialProjectId": "73mSSnCf",
+  "officialCategories": [
+    "equipment"
+  ],
+  "officialEnvironment": [
+    "client_and_server"
+  ],
+  "officialLicense": "MIT License",
+  "officialProvider": "Modrinth",
+  "officialDownloads": "460402",
+  "officialIconUrl": "https://cdn.modrinth.com/data/73mSSnCf/206ca5fd84455ca3a12987599425c8ede2b842a9.png",
+  "sourceUrl": "https://modrinth.com/mod/silent-gear",
+  "metadataSourceUrl": "https://modrinth.com/mod/silent-gear",
+  "metadataFetchedAt": "2026-09-10T20:53:22.951Z",
+  "metadataState": "preview",
+  "officialSources": [
+    {
+      "provider": "modrinth",
+      "projectId": "73mSSnCf",
+      "sourceUrl": "https://modrinth.com/mod/silent-gear",
+      "name": "Silent Gear"
+    }
+  ],
+  "stagingOrigin": "remote-search",
+  "stagingResolution": "confirmed",
+  "stagingSources": {
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "73mSSnCf",
+      "sourceUrl": "https://modrinth.com/mod/silent-gear",
+      "name": "Silent Gear"
+    }
+  },
+  "stagingMessage": "Dados factuais carregados do Modrinth.",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist.",
+  "projectUrl": "https://github.com/SilentChaos512/Silent-Gear",
+  "officialPublishedAt": "2023-06-09T13:15:07.390398Z",
+  "officialUpdatedAt": "2026-08-26T01:46:36.120066Z",
+  "primaryFunction": "Ferramentas, armas e armaduras modulares configuráveis por datapack; candidato de equipamento, não prova automática de progressão.",
+  "uniqueSystems": "",
+  "humanEvidence": "",
+  "overlaps": "Outros sistemas de armas, atributos, relíquias, encantamentos e melhoria de equipamento.",
+  "dangerousCombinations": "Materiais, upgrades e receitas podem trivializar bosses, magia ou recompensas de exploração.",
+  "scarcityImpact": "Risco alto",
+  "integrationEffort": "Grande",
+  "scarcityNotes": "A progressão de materiais e upgrades deve conservar a relevância de exploração e de troféus.",
+  "automationImpact": "Não gera recursos diretamente, mas pode converter materiais renováveis em poder de combate.",
+  "masteryGate": "Provas de Aventura e limites de materiais conforme a cadeia de equipamento.",
+  "progressionWindow": "Indefinido até a rodada PWR isolada.",
+  "worldgenImpact": "Nenhum",
+  "worldgenNotes": "",
+  "multiplayerNotes": "",
+  "performanceNotes": "",
+  "rupturePotential": "",
+  "requiredChanges": "",
+  "testNeeds": "PWR: testar isoladamente contra outros sistemas de equipamento e medir dano, defesa, raridade e reparo.",
+  "verdict": "Precisa de teste",
+  "verdictReason": "A configuração por datapack cria flexibilidade e risco; não há motivo para decidir antes do comparativo.",
+  "openQuestions": "",
+  "stagedAt": "2026-09-10T20:50:45.669Z",
+  "stagedFiles": [],
+  "id": "3ef20b2d-f936-4b9e-a00a-14148e722ac3",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:25.005Z",
+  "updatedAt": "2026-09-16T21:53:25.005Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16"
+}

@@ -1,0 +1,137 @@
+{
+  "kind": "mod",
+  "name": "Boss Checklist",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "interface"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/boss-checklist",
+  "projectUrl": "https://github.com/yori3o/BossChecklist",
+  "supportedVersions": [
+    "1.20.1",
+    "1.20.4",
+    "1.21.1",
+    "1.21.4",
+    "1.21.5",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "Adds a convenient list of bosses with brief information about them.",
+  "officialAuthors": [
+    "Yori3o"
+  ],
+  "officialProjectId": "1355708",
+  "officialCategories": [
+    "Adventure and RPG",
+    "Map and Information",
+    "Utility & QoL"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2025-09-29T14:03:07.28Z",
+  "officialUpdatedAt": "2026-08-26T13:04:29.09Z",
+  "officialDownloads": 1241629,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/1521/99/256/256/638987969009645814.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/boss-checklist",
+  "metadataFetchedAt": "2026-09-09T19:52:43.841Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "boss_checklist",
+        "name": "Boss Checklist",
+        "version": "5.2.0",
+        "loader": "NeoForge",
+        "authors": [
+          "Yori3o"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "1355708",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/boss-checklist",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "z1Dv56jq",
+      "sourceUrl": "https://modrinth.com/mod/z1Dv56jq",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.624Z",
+  "stagedFiles": [
+    {
+      "fileName": "boss_checklist-neoforge-5.2.0.jar",
+      "relativePath": "mods/boss_checklist-neoforge-5.2.0.jar",
+      "size": 823110,
+      "sha1": "3fef47008638767de5eeefe4700116981084d468",
+      "curseFingerprint": 3182054560,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "boss_checklist",
+            "name": "Boss Checklist",
+            "version": "5.2.0",
+            "loader": "NeoForge",
+            "authors": [
+              "Yori3o"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "24650bab-2a34-49c2-8332-5f668ddf5424",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:25.484Z",
+  "updatedAt": "2026-09-16T21:53:25.484Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Interface de consulta, receitas, loot ou orientação; reduz atrito de informação sem criar conteúdo de progressão.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

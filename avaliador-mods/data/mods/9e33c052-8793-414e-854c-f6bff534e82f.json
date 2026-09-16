@@ -1,0 +1,153 @@
+{
+  "kind": "mod",
+  "name": "FerriteCore",
+  "status": "Selecionado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "supportedVersions": [
+    "1.16.5",
+    "1.17",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge",
+    "Quilt"
+  ],
+  "tags": [
+    "desempenho"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "officialSummary": "Memory usage optimizations",
+  "officialAuthors": [
+    "malte0811"
+  ],
+  "officialProjectId": "uXXizFIs",
+  "officialCategories": [
+    "optimization",
+    "utility"
+  ],
+  "officialEnvironment": [
+    "client_or_server"
+  ],
+  "officialLicense": "MIT License",
+  "officialProvider": "Modrinth",
+  "officialDownloads": "148887958",
+  "officialIconUrl": "https://cdn.modrinth.com/data/uXXizFIs/222a126f26f8f9ae1eb339f3b767677f18bff31f_96.webp",
+  "sourceUrl": "https://modrinth.com/mod/ferrite-core",
+  "metadataSourceUrl": "https://modrinth.com/mod/ferrite-core",
+  "metadataFetchedAt": "2026-09-10T20:53:41.612Z",
+  "metadataState": "preview",
+  "officialSources": [
+    {
+      "provider": "curseforge",
+      "projectId": "429235",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/ferritecore",
+      "name": "FerriteCore ((Neo)Forge)"
+    },
+    {
+      "provider": "modrinth",
+      "projectId": "uXXizFIs",
+      "sourceUrl": "https://modrinth.com/mod/ferrite-core",
+      "name": "FerriteCore"
+    }
+  ],
+  "stagingOrigin": "remote-search",
+  "stagingResolution": "confirmed",
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "429235",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/ferritecore",
+      "name": "FerriteCore ((Neo)Forge)"
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "uXXizFIs",
+      "sourceUrl": "https://modrinth.com/mod/ferrite-core",
+      "name": "FerriteCore"
+    }
+  },
+  "stagingMessage": "Dados factuais carregados do Modrinth.",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist.",
+  "projectUrl": "https://github.com/malte0811/FerriteCore",
+  "officialPublishedAt": "2021-04-03T07:04:43.971189Z",
+  "officialUpdatedAt": "2026-03-24T18:31:50.491773Z",
+  "primaryFunction": "Otimização, diagnóstico ou estabilidade técnica; não cria conteúdo nem autoridade de progressão.",
+  "uniqueSystems": "",
+  "humanEvidence": "",
+  "overlaps": "",
+  "dangerousCombinations": "",
+  "scarcityImpact": "Preserva",
+  "integrationEffort": "Desconhecido",
+  "scarcityNotes": "",
+  "automationImpact": "",
+  "masteryGate": "",
+  "progressionWindow": "",
+  "worldgenImpact": "Nenhum",
+  "worldgenNotes": "",
+  "multiplayerNotes": "",
+  "performanceNotes": "",
+  "rupturePotential": "",
+  "requiredChanges": "",
+  "testNeeds": "Medir no perfil representativo antes de combinar: inicialização, TPS/MSPT, heap, geração de chunks, salvamento e desligamento.",
+  "verdict": "Sem parecer",
+  "verdictReason": "",
+  "openQuestions": "",
+  "stagedAt": "2026-09-10T20:37:51.839Z",
+  "stagedFiles": [],
+  "id": "9e33c052-8793-414e-854c-f6bff534e82f",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:25.021Z",
+  "updatedAt": "2026-09-16T21:53:25.021Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16"
+}

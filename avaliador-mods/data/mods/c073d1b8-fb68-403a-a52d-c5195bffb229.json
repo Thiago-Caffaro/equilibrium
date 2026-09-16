@@ -1,0 +1,169 @@
+{
+  "kind": "mod",
+  "name": "Waystones",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "teleporte",
+    "mobilidade",
+    "qualidade de vida"
+  ],
+  "notApplicableFields": [],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/waystones",
+  "projectUrl": "https://github.com/TwelveIterations/Waystones",
+  "supportedVersions": [
+    "1.7.10",
+    "1.10",
+    "1.10.1",
+    "1.10.2",
+    "1.11",
+    "1.11.2",
+    "1.12",
+    "1.12.1",
+    "1.12.2",
+    "1.14.4",
+    "1.15.2",
+    "1.16.1",
+    "1.16.2",
+    "1.16.3",
+    "1.16.4",
+    "1.16.5",
+    "1.17",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.4",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "Teleport from waystone to waystone or craft magical scrolls to warp.",
+  "officialAuthors": [
+    "BlayTheNinth"
+  ],
+  "officialProjectId": "245755",
+  "officialCategories": [
+    "Adventure and RPG",
+    "Magic",
+    "Player Transport",
+    "Server Utility"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2016-06-07T04:26:55.543Z",
+  "officialUpdatedAt": "2026-09-08T14:31:33.9Z",
+  "officialDownloads": 315171325,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/1107/108/256/256/638657104456838765.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/waystones",
+  "metadataFetchedAt": "2026-09-09T19:53:30.562Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "waystones",
+        "name": "Waystones",
+        "version": "21.1.44",
+        "loader": "NeoForge",
+        "authors": [
+          "BlayTheNinth"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "245755",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/waystones",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "LOpKHB2A",
+      "sourceUrl": "https://modrinth.com/mod/LOpKHB2A",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.652Z",
+  "stagedFiles": [
+    {
+      "fileName": "waystones-neoforge-1.21.1-21.1.44.jar",
+      "relativePath": "mods/waystones-neoforge-1.21.1-21.1.44.jar",
+      "size": 1219792,
+      "sha1": "e36886b2725d9959dd9262c9b5bf30b24e7443e8",
+      "curseFingerprint": 746659009,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "waystones",
+            "name": "Waystones",
+            "version": "21.1.44",
+            "loader": "NeoForge",
+            "authors": [
+              "BlayTheNinth"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "c073d1b8-fb68-403a-a52d-c5195bffb229",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:26.977Z",
+  "updatedAt": "2026-09-16T21:53:26.977Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Rede de marcos e pergaminhos de teleporte; suporte de mobilidade, sem divisão proprietária definida.",
+  "overlaps": "Create: Hypertubes e outras rotas de viagem/teleporte.",
+  "dangerousCombinations": "Teleporte cedo pode reduzir exploração, custo de viagem e risco de recuperação após morte.",
+  "scarcityImpact": "Risco alto",
+  "integrationEffort": "Médio",
+  "scarcityNotes": "Acesso, custo e disponibilidade precisam respeitar a descoberta do mundo e os gates de mobilidade.",
+  "automationImpact": "Não gera recursos; altera a distância e o custo logístico entre atividades.",
+  "masteryGate": "Decidir a política de viagem e autoridade entre Comerciantes/Tecnologia/Aventura antes de liberar rede ampla.",
+  "progressionWindow": "Indefinida até BLD-2; não assumir divisão final.",
+  "worldgenImpact": "Nenhum",
+  "testNeeds": "BLD-2: comparar custo, teleporte, recuperação de morte e redundância com transporte físico.",
+  "verdict": "Precisa de teste",
+  "verdictReason": "A funcionalidade é clara, porém tem impacto direto no valor da exploração.",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

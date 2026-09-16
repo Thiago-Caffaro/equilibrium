@@ -1,0 +1,146 @@
+{
+  "kind": "mod",
+  "name": "Melody",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "biblioteca"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/melody",
+  "projectUrl": "https://github.com/Keksuccino/Melody",
+  "supportedVersions": [
+    "1.18.2",
+    "1.19.2",
+    "1.19.4",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.10",
+    "1.21.11",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "OpenAL-based library mod for playing background music.",
+  "officialAuthors": [
+    "Keksuccino"
+  ],
+  "officialProjectId": "938643",
+  "officialCategories": [
+    "API and Library"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2023-11-15T10:19:55.147Z",
+  "officialUpdatedAt": "2026-06-25T04:37:20.96Z",
+  "officialDownloads": 147504051,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/1479/762/256/256/638961722002206873.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/melody",
+  "metadataFetchedAt": "2026-09-09T19:53:11.306Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "melody",
+        "name": "Melody",
+        "version": "1.0.10",
+        "loader": "NeoForge",
+        "authors": [
+          "Keksuccino"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "938643",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/melody",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "CVT4pFB2",
+      "sourceUrl": "https://modrinth.com/mod/CVT4pFB2",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.643Z",
+  "stagedFiles": [
+    {
+      "fileName": "melody_neoforge_1.0.10_MC_1.21.jar",
+      "relativePath": "mods/melody_neoforge_1.0.10_MC_1.21.jar",
+      "size": 36096,
+      "sha1": "e83052a92c4ca0016bcfe7f0207273983dc84698",
+      "curseFingerprint": 2029427820,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "melody",
+            "name": "Melody",
+            "version": "1.0.10",
+            "loader": "NeoForge",
+            "authors": [
+              "Keksuccino"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "542e2ba7-2236-47f7-9ff5-9ebb7e753d36",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:26.185Z",
+  "updatedAt": "2026-09-16T21:53:26.185Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Biblioteca ou API de suporte; só deve entrar como dependência explícita de um candidato aprovado.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

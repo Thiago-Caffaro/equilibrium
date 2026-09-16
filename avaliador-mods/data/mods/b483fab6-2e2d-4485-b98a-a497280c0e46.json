@@ -1,0 +1,189 @@
+{
+  "kind": "mod",
+  "name": "Mouse Tweaks",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "cliente"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/mouse-tweaks",
+  "projectUrl": "https://github.com/YaLTeR/MouseTweaks",
+  "supportedVersions": [
+    "1.0.0",
+    "1.2.5",
+    "1.4.2",
+    "1.4.6",
+    "1.4.7",
+    "1.5.0",
+    "1.5.1",
+    "1.5.2",
+    "1.6.1",
+    "1.6.2",
+    "1.6.4",
+    "1.7.2",
+    "1.7.10",
+    "1.8",
+    "1.8.8",
+    "1.8.9",
+    "1.9",
+    "1.9.4",
+    "1.10.2",
+    "1.11",
+    "1.11.2",
+    "1.12",
+    "1.12.1",
+    "1.12.2",
+    "1.14.4",
+    "1.15.1",
+    "1.15.2",
+    "1.16.1",
+    "1.16.2",
+    "1.16.3",
+    "1.16.4",
+    "1.16.5",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "Enhances inventory management by adding various functions to the mouse buttons.",
+  "officialAuthors": [
+    "YaLTeR"
+  ],
+  "officialProjectId": "60089",
+  "officialCategories": [
+    "Miscellaneous",
+    "Storage",
+    "Utility & QoL"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2013-06-25T13:13:55.087Z",
+  "officialUpdatedAt": "2026-06-18T09:19:07.207Z",
+  "officialDownloads": 474225308,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/467/691/256/256/637749969243449870.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/mouse-tweaks",
+  "metadataFetchedAt": "2026-09-09T19:53:14.339Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "mousetweaks",
+        "name": "Mouse Tweaks",
+        "version": "2.26.1",
+        "loader": "NeoForge",
+        "authors": [
+          "Ivan Molodetskikh (YaLTeR)"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "60089",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/mouse-tweaks",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "aC3cM3Vq",
+      "sourceUrl": "https://modrinth.com/mod/aC3cM3Vq",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.645Z",
+  "stagedFiles": [
+    {
+      "fileName": "MouseTweaks-neoforge-mc1.21-2.26.1.jar",
+      "relativePath": "mods/MouseTweaks-neoforge-mc1.21-2.26.1.jar",
+      "size": 73938,
+      "sha1": "6dae57f4f50f7808d2ed9a18f6cd1c0d4640c6bc",
+      "curseFingerprint": 845432825,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "mousetweaks",
+            "name": "Mouse Tweaks",
+            "version": "2.26.1",
+            "loader": "NeoForge",
+            "authors": [
+              "Ivan Molodetskikh (YaLTeR)"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "b483fab6-2e2d-4485-b98a-a497280c0e46",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:26.408Z",
+  "updatedAt": "2026-09-16T21:53:26.408Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Qualidade de vida, apresentação ou acessibilidade de cliente; não cria um pilar de progressão.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

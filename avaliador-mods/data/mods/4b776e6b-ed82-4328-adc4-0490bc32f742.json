@@ -1,0 +1,141 @@
+{
+  "kind": "mod",
+  "name": "Server Performance - Smooth Chunk Save",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "desempenho"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/smooth-chunk-save",
+  "projectUrl": "https://github.com/someaddons/smoothchunksave",
+  "supportedVersions": [
+    "1.16.5",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.21",
+    "1.21.1",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "Enables lag-free continuous chunk saving, increasing server TPS",
+  "officialAuthors": [
+    "someaddon"
+  ],
+  "officialProjectId": "582327",
+  "officialCategories": [
+    "Map and Information",
+    "Server Utility"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2022-02-23T09:05:15.403Z",
+  "officialUpdatedAt": "2026-07-05T20:33:37.643Z",
+  "officialDownloads": 120363538,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/536/807/256/256/637859186206116434.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/smooth-chunk-save",
+  "metadataFetchedAt": "2026-09-09T19:53:24.436Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "smoothchunk",
+        "name": "Smoothchunk mod",
+        "version": "4.1",
+        "loader": "NeoForge",
+        "authors": [
+          "Someaddon"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "582327",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/smooth-chunk-save",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "missing",
+      "projectId": "",
+      "sourceUrl": "",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.649Z",
+  "stagedFiles": [
+    {
+      "fileName": "smoothchunk-1.21-4.1.jar",
+      "relativePath": "mods/smoothchunk-1.21-4.1.jar",
+      "size": 12852,
+      "sha1": "f54d5d352e15560240f151a7d054096a33a58f4a",
+      "curseFingerprint": 2270201149,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "smoothchunk",
+            "name": "Smoothchunk mod",
+            "version": "4.1",
+            "loader": "NeoForge",
+            "authors": [
+              "Someaddon"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "4b776e6b-ed82-4328-adc4-0490bc32f742",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:26.759Z",
+  "updatedAt": "2026-09-16T21:53:26.759Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Otimização, diagnóstico ou estabilidade técnica; não cria conteúdo nem autoridade de progressão.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "testNeeds": "Medir no perfil representativo antes de combinar: inicialização, TPS/MSPT, heap, geração de chunks, salvamento e desligamento.",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

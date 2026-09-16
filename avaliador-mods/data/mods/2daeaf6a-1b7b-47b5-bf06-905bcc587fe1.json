@@ -1,0 +1,133 @@
+{
+  "kind": "mod",
+  "name": "Observable",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "desempenho"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/observable",
+  "projectUrl": "https://github.com/tasgon/observable",
+  "supportedVersions": [
+    "1.16.5",
+    "1.17.1",
+    "1.18.1",
+    "1.18.2",
+    "1.19-Snapshot",
+    "1.19.2",
+    "1.19.3",
+    "1.20.1",
+    "1.21",
+    "1.21.1",
+    "1.21.4"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge",
+    "Quilt"
+  ],
+  "officialSummary": "See what's lagging your server.",
+  "officialAuthors": [
+    "tasgon"
+  ],
+  "officialProjectId": "509575",
+  "officialCategories": [
+    "Map and Information",
+    "Server Utility"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2021-08-01T10:15:13.073Z",
+  "officialUpdatedAt": "2025-06-26T08:16:48.59Z",
+  "officialDownloads": 48892923,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/412/569/256/256/637632275050101334.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/observable",
+  "metadataFetchedAt": "2026-09-09T19:53:16.457Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "observable",
+        "name": "Observable",
+        "version": "5.4.4",
+        "loader": "NeoForge",
+        "authors": [],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "509575",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/observable",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "VYRu7qmG",
+      "sourceUrl": "https://modrinth.com/mod/VYRu7qmG",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.646Z",
+  "stagedFiles": [
+    {
+      "fileName": "observable-5.4.4.jar",
+      "relativePath": "mods/observable-5.4.4.jar",
+      "size": 388133,
+      "sha1": "e17417eee213aac8291ff8bad1c6a5f710636b72",
+      "curseFingerprint": 1811166438,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "observable",
+            "name": "Observable",
+            "version": "5.4.4",
+            "loader": "NeoForge",
+            "authors": [],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "2daeaf6a-1b7b-47b5-bf06-905bcc587fe1",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:26.447Z",
+  "updatedAt": "2026-09-16T21:53:26.447Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Otimização, diagnóstico ou estabilidade técnica; não cria conteúdo nem autoridade de progressão.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "testNeeds": "Medir no perfil representativo antes de combinar: inicialização, TPS/MSPT, heap, geração de chunks, salvamento e desligamento.",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

@@ -1,0 +1,148 @@
+{
+  "kind": "mod",
+  "name": "Fzzy Config",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "biblioteca"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/fzzy-config",
+  "projectUrl": "https://github.com/fzzyhmstrs/fconfig",
+  "supportedVersions": [
+    "1.20.1",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.2-Snapshot",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge",
+    "Quilt"
+  ],
+  "officialSummary": "Config API with automatic GUIs, powerful validation options, server-client sync, and more!",
+  "officialAuthors": [
+    "fzzyhmstrs"
+  ],
+  "officialProjectId": "1005914",
+  "officialCategories": [
+    "API and Library",
+    "Utility & QoL"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2024-04-21T07:49:20.597Z",
+  "officialUpdatedAt": "2026-09-07T14:04:28.64Z",
+  "officialDownloads": 87275350,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/983/198/256/256/638491432276475239.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/fzzy-config",
+  "metadataFetchedAt": "2026-09-09T19:52:58.125Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "fzzy_config",
+        "name": "Fzzy Config",
+        "version": "0.7.6+1.21+neoforge",
+        "loader": "NeoForge",
+        "authors": [
+          "fzzyhmstrs"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "1005914",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/fzzy-config",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "hYykXjDp",
+      "sourceUrl": "https://modrinth.com/mod/hYykXjDp",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.636Z",
+  "stagedFiles": [
+    {
+      "fileName": "fzzy_config-0.7.6+1.21+neoforge.jar",
+      "relativePath": "mods/fzzy_config-0.7.6+1.21+neoforge.jar",
+      "size": 2369895,
+      "sha1": "c0910f9b975aaab8545ce950539748fb33d704d1",
+      "curseFingerprint": 3178451079,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "fzzy_config",
+            "name": "Fzzy Config",
+            "version": "0.7.6+1.21+neoforge",
+            "loader": "NeoForge",
+            "authors": [
+              "fzzyhmstrs"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "7c0b508c-8b38-4e3a-8f51-804689f00fed",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:25.818Z",
+  "updatedAt": "2026-09-16T21:53:25.818Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Biblioteca ou API de suporte; só deve entrar como dependência explícita de um candidato aprovado.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

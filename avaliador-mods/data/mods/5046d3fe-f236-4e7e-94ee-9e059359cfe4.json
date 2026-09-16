@@ -1,0 +1,176 @@
+{
+  "kind": "mod",
+  "name": "Just Enough Items (JEI)",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "interface"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/jei",
+  "projectUrl": "https://github.com/mezz/JustEnoughItems",
+  "supportedVersions": [
+    "1.8",
+    "1.8.8",
+    "1.8.9",
+    "1.9",
+    "1.9.4",
+    "1.10",
+    "1.10.2",
+    "1.11",
+    "1.11.2",
+    "1.12",
+    "1.12.1",
+    "1.12.2",
+    "1.13.2",
+    "1.14.2",
+    "1.14.3",
+    "1.14.4",
+    "1.15.1",
+    "1.15.2",
+    "1.16.1",
+    "1.16.2",
+    "1.16.3",
+    "1.16.4",
+    "1.16.5",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.4",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.4",
+    "1.21.5",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "View Items and Recipes",
+  "officialAuthors": [
+    "mezz"
+  ],
+  "officialProjectId": "238222",
+  "officialCategories": [
+    "API and Library",
+    "Map and Information"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2015-11-23T23:00:41.923Z",
+  "officialUpdatedAt": "2026-09-09T12:43:49.39Z",
+  "officialDownloads": 620999010,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/29/69/256/256/635838945588716414.jpeg",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/jei",
+  "metadataFetchedAt": "2026-09-09T19:53:03.227Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "jei",
+        "name": "Just Enough Items",
+        "version": "19.51.0.418",
+        "loader": "NeoForge",
+        "authors": [
+          "mezz"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "238222",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/jei",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "u6dRKJwZ",
+      "sourceUrl": "https://modrinth.com/mod/u6dRKJwZ",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.639Z",
+  "stagedFiles": [
+    {
+      "fileName": "jei-1.21.1-neoforge-19.51.0.418.jar",
+      "relativePath": "mods/jei-1.21.1-neoforge-19.51.0.418.jar",
+      "size": 1804792,
+      "sha1": "d19552586f686eae4ef5e7199f31604d1d3cfca7",
+      "curseFingerprint": 4070465052,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "jei",
+            "name": "Just Enough Items",
+            "version": "19.51.0.418",
+            "loader": "NeoForge",
+            "authors": [
+              "mezz"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "5046d3fe-f236-4e7e-94ee-9e059359cfe4",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:25.968Z",
+  "updatedAt": "2026-09-16T21:53:25.968Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Interface de consulta, receitas, loot ou orientação; reduz atrito de informação sem criar conteúdo de progressão.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

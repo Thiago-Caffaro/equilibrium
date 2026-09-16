@@ -1,0 +1,84 @@
+{
+  "kind": "mod",
+  "name": "Archaion: Echoes of the Fallen",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [
+    "Aventura"
+  ],
+  "supportedVersions": [
+    "1.21.1"
+  ],
+  "loaders": [
+    "NeoForge"
+  ],
+  "tags": [
+    "estrutura",
+    "trial spawner",
+    "boss",
+    "exploração"
+  ],
+  "notApplicableFields": [],
+  "officialSummary": "",
+  "officialAuthors": [
+    "RatRod",
+    "aquextheseal"
+  ],
+  "officialProjectId": "1620396",
+  "officialCategories": [],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialDownloads": "",
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/2020/811/256/256/639238559972520810.png",
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/archaion",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/archaion",
+  "metadataFetchedAt": "",
+  "metadataState": "preview",
+  "officialSources": [
+    {
+      "provider": "curseforge",
+      "projectId": "1620396",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/archaion",
+      "name": "Archaion: Echoes of the Fallen"
+    }
+  ],
+  "stagingOrigin": "local-instance-sync",
+  "stagingResolution": "confirmed",
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "1620396",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/archaion",
+      "name": "Archaion: Echoes of the Fallen"
+    }
+  },
+  "stagingMessage": "Registro criado pela sincronização da pasta local do modpack. Carregue os metadados oficiais no programa quando necessário.",
+  "notesMarkdown": "Arquivo encontrado na instância de teste: `archaion-1.21.1-1.4.3.jar`. Estado local durante a sincronização: **habilitado**.\n\nPreenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist.",
+  "stagedAt": "2026-09-16T21:17:59.473Z",
+  "stagedFiles": [],
+  "localFileName": "archaion-1.21.1-1.4.3.jar",
+  "localEnabled": true,
+  "id": "3cba9c58-ef62-4967-86d9-95b944eb7064",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:27.505Z",
+  "updatedAt": "2026-09-16T21:53:27.505Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Expedição à Ancient Keep com Trial Spawners e encontro final; candidato de estrutura/boss para Aventura.",
+  "uniqueSystems": "Estrutura de desafio com Trial Spawners e uma conclusão de combate, conforme a página oficial.",
+  "overlaps": "Outros mods de estruturas, bosses e conteúdo de Aventura.",
+  "dangerousCombinations": "Loot ou repetição do encontro podem tornar materiais de Aventura renováveis sem regra de crédito/recompensa.",
+  "scarcityImpact": "A avaliar",
+  "integrationEffort": "Médio",
+  "automationImpact": "Não presumir automação; primeiro mapear loot, repetibilidade e autoridade de conclusão.",
+  "masteryGate": "Descoberta e vitória convencional da estrutura antes de qualquer rota de volume ligada a seus drops.",
+  "progressionWindow": "Intermediário, se sua estrutura, boss e loot tiverem papel distinto.",
+  "worldgenImpact": "Leve",
+  "worldgenNotes": "Adiciona a estrutura Ancient Keep; densidade e loot ainda precisam de leitura do artefato alvo.",
+  "rupturePotential": "Trial Spawners, estrutura e encontro final podem ser matéria-prima para eventos, se a licença/compatibilidade permitir.",
+  "testNeeds": "Auditar estrutura, loot, repetibilidade e comportamento em grupo antes de promoção.",
+  "verdict": "Manter na mesa",
+  "verdictReason": "Há artefato NeoForge 1.21.1 local e função de Aventura legível, mas não há matriz comparativa de loot/bosses."
+}

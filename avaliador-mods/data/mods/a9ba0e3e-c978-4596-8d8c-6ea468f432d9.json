@@ -1,0 +1,120 @@
+{
+  "kind": "mod",
+  "name": "MoreJS",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "addon KubeJS",
+    "scripting",
+    "infraestrutura"
+  ],
+  "notApplicableFields": [],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/morejs",
+  "projectUrl": "https://github.com/AlmostReliable/morejs",
+  "supportedVersions": [
+    "1.18.2",
+    "1.19.2",
+    "1.20.1",
+    "1.21",
+    "1.21.1"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "A Minecraft mod to extend KubeJS with additional events.",
+  "officialAuthors": [
+    "Lytho"
+  ],
+  "officialProjectId": "666198",
+  "officialCategories": [
+    "KubeJS",
+    "Map and Information",
+    "Server Utility",
+    "Structures",
+    "Utility & QoL"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2022-08-31T10:21:02.41Z",
+  "officialUpdatedAt": "2025-10-13T16:43:14.403Z",
+  "officialDownloads": 23014537,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/597/757/256/256/637974981331527336.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/morejs",
+  "metadataFetchedAt": "2026-09-09T19:53:13.325Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "morejs",
+        "name": "MoreJS",
+        "version": "1.21.1-0.16.0",
+        "loader": "NeoForge",
+        "authors": [
+          "AlmostReliable"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "666198",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/morejs",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "mo64mR1W",
+      "sourceUrl": "https://modrinth.com/mod/mo64mR1W",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.644Z",
+  "stagedFiles": [
+    {
+      "fileName": "morejs-neoforge-1.21.1-0.16.0.jar",
+      "relativePath": "mods/morejs-neoforge-1.21.1-0.16.0.jar",
+      "size": 157690,
+      "sha1": "7e8aea4f03b18076cab5555f6d30e35ff919b342",
+      "curseFingerprint": 3732970515,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "morejs",
+            "name": "MoreJS",
+            "version": "1.21.1-0.16.0",
+            "loader": "NeoForge",
+            "authors": [
+              "AlmostReliable"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "a9ba0e3e-c978-4596-8d8c-6ea468f432d9",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:26.279Z",
+  "updatedAt": "2026-09-16T21:53:26.279Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Extensão de eventos e dados para KubeJS; só deve entrar se uma integração concreta exigir sua API.",
+  "scarcityImpact": "Preserva",
+  "integrationEffort": "Médio",
+  "worldgenImpact": "Nenhum",
+  "testNeeds": "Confirmar API e versão somente quando uma hipótese de balanceamento não for atendida pelo KubeJS base.",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

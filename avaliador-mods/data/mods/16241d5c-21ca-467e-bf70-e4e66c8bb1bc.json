@@ -1,0 +1,133 @@
+{
+  "kind": "mod",
+  "name": "GuideME",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "interface"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/guideme",
+  "projectUrl": "https://github.com/AppliedEnergistics/GuideME",
+  "supportedVersions": [
+    "1.20.1",
+    "1.20.4",
+    "1.21.1",
+    "1.21.5",
+    "1.21.8",
+    "1.21.10",
+    "1.21.11",
+    "26.1-snapshot",
+    "26.1.1",
+    "26.1.2"
+  ],
+  "loaders": [
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "A guidebook toolkit for mods and modpack makers alike with comfortable markdown formatting, and live 3d scenes!",
+  "officialAuthors": [
+    "shartte"
+  ],
+  "officialProjectId": "1173950",
+  "officialCategories": [
+    "API and Library",
+    "Applied Energistics 2",
+    "Map and Information",
+    "Utility & QoL"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2025-01-19T14:27:26.523Z",
+  "officialUpdatedAt": "2026-07-12T19:59:22.49Z",
+  "officialDownloads": 36239866,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/1151/155/256/256/638718882756139313.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/guideme",
+  "metadataFetchedAt": "2026-09-09T19:53:00.196Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "guideme",
+        "name": "GuideME",
+        "version": "21.1.17",
+        "loader": "NeoForge",
+        "authors": [],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "1173950",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/guideme",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "Ck4E7v7R",
+      "sourceUrl": "https://modrinth.com/mod/Ck4E7v7R",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.637Z",
+  "stagedFiles": [
+    {
+      "fileName": "guideme-21.1.17.jar",
+      "relativePath": "mods/guideme-21.1.17.jar",
+      "size": 9309396,
+      "sha1": "060e374f578db694a0b8f3ad409bd424cae86359",
+      "curseFingerprint": 1791437247,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "guideme",
+            "name": "GuideME",
+            "version": "21.1.17",
+            "loader": "NeoForge",
+            "authors": [],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "16241d5c-21ca-467e-bf70-e4e66c8bb1bc",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:25.891Z",
+  "updatedAt": "2026-09-16T21:53:25.891Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Interface de consulta, receitas, loot ou orientação; reduz atrito de informação sem criar conteúdo de progressão.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

@@ -1,0 +1,82 @@
+{
+  "kind": "mod",
+  "name": "Farmer's Delight",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [
+    "Comerciantes"
+  ],
+  "supportedVersions": [
+    "1.21.1"
+  ],
+  "loaders": [
+    "NeoForge"
+  ],
+  "tags": [
+    "agricultura",
+    "culinária",
+    "alimentação",
+    "candidato Gate A"
+  ],
+  "notApplicableFields": [],
+  "officialSummary": "",
+  "officialAuthors": [
+    "vectorwing"
+  ],
+  "officialProjectId": "398521",
+  "officialCategories": [],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialDownloads": "",
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/396/11/256/256/637595005615179370.png",
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/farmers-delight",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/farmers-delight",
+  "metadataFetchedAt": "",
+  "metadataState": "preview",
+  "officialSources": [
+    {
+      "provider": "curseforge",
+      "projectId": "398521",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/farmers-delight",
+      "name": "Farmer's Delight"
+    }
+  ],
+  "stagingOrigin": "local-instance-sync",
+  "stagingResolution": "confirmed",
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "398521",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/farmers-delight",
+      "name": "Farmer's Delight"
+    }
+  },
+  "stagingMessage": "Registro criado pela sincronização da pasta local do modpack. Carregue os metadados oficiais no programa quando necessário.",
+  "notesMarkdown": "Arquivo encontrado na instância de teste: `FarmersDelight-1.21.1-1.3.4.jar`. Estado local durante a sincronização: **habilitado**.\n\nPreenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist.",
+  "stagedAt": "2026-09-16T21:17:59.473Z",
+  "stagedFiles": [],
+  "localFileName": "FarmersDelight-1.21.1-1.3.4.jar",
+  "localEnabled": true,
+  "id": "6f25541c-2ba0-4340-a011-96b8bad41150",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:28.003Z",
+  "updatedAt": "2026-09-16T21:53:28.003Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Agricultura e culinária com cadeia de transformação; base alimentar possível para Comerciantes, não economia completa.",
+  "uniqueSystems": "Ingredientes, preparo e refeições que permitem uma cadeia de produção mais rica que comida instantânea.",
+  "overlaps": "Outros mods de comida, pesca, criação e automação do Create.",
+  "dangerousCombinations": "Automação tecnológica pode trivializar cultivo e preparo antes de a cadeia comercial ganhar valor.",
+  "scarcityImpact": "Controlável",
+  "integrationEffort": "Médio",
+  "scarcityNotes": "Alimento processado é commodity; a escala deve seguir o domínio do loop manual e não substituir toda a divisão.",
+  "automationImpact": "O mod não autoriza automação por si; integrações como Slice & Dice definem a fronteira posterior.",
+  "masteryGate": "Domínio da produção alimentar/agrícola e ponto de controle antes da automação mecânica.",
+  "progressionWindow": "Início a intermediário, com automação adiada.",
+  "worldgenImpact": "Leve",
+  "testNeeds": "Manter a cadeia de arroz como evidência e comparar primeiro output comercial com rotas de outras divisões.",
+  "verdict": "Manter na mesa",
+  "verdictReason": "Há evidência manual e de bancada, mas não define sozinho pesca, cidades, comércio ou outputs exclusivos."
+}

@@ -1,0 +1,166 @@
+{
+  "kind": "mod",
+  "name": "Simple Discord Rich Presence (Forge /  Fabric)",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "cliente"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/simple-discord-rich-presence",
+  "projectUrl": "https://github.com/Sunekaer/Simple-Discord-Rich-Presence/issues",
+  "supportedVersions": [
+    "1.14.4",
+    "1.15",
+    "1.15.1",
+    "1.15.2",
+    "1.16.1",
+    "1.16.2",
+    "1.16.3",
+    "1.16.4",
+    "1.16.5",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "Simple Discord Rich Presence ",
+  "officialAuthors": [
+    "Sunekaer"
+  ],
+  "officialProjectId": "334853",
+  "officialCategories": [
+    "Cosmetic",
+    "Map and Information",
+    "Miscellaneous"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2019-08-12T18:17:08.243Z",
+  "officialUpdatedAt": "2026-06-22T16:34:10.377Z",
+  "officialDownloads": 64141166,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/218/240/256/256/637010626881189622.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/simple-discord-rich-presence",
+  "metadataFetchedAt": "2026-09-09T19:53:23.549Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "sdrp",
+        "name": "Simple Discord Rich Presence",
+        "version": "88.0.1-build.54+mc1.21.1",
+        "loader": "NeoForge",
+        "authors": [
+          "Sunekaer"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "334853",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/simple-discord-rich-presence",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "SCAopByd",
+      "sourceUrl": "https://modrinth.com/mod/SCAopByd",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.649Z",
+  "stagedFiles": [
+    {
+      "fileName": "SimpleDiscordRichPresence-neoforge-88.0.1-build.54+mc1.21.1.jar",
+      "relativePath": "mods/SimpleDiscordRichPresence-neoforge-88.0.1-build.54+mc1.21.1.jar",
+      "size": 79869,
+      "sha1": "3bcccf27fb2f954a81a3984bcb1ee8ea636d7247",
+      "curseFingerprint": 3694730245,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "sdrp",
+            "name": "Simple Discord Rich Presence",
+            "version": "88.0.1-build.54+mc1.21.1",
+            "loader": "NeoForge",
+            "authors": [
+              "Sunekaer"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "fb70d941-d67f-42d6-8a61-72bfe6069509",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:26.707Z",
+  "updatedAt": "2026-09-16T21:53:26.707Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Qualidade de vida, apresentação ou acessibilidade de cliente; não cria um pilar de progressão.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

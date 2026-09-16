@@ -1,0 +1,149 @@
+{
+  "kind": "mod",
+  "name": "Memory Settings",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "desempenho"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/memory-settings",
+  "projectUrl": "https://github.com/someaddons/MemorySettings",
+  "supportedVersions": [
+    "1.14.4",
+    "1.15.2",
+    "1.16.5",
+    "1.17",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.21",
+    "1.21.1",
+    "1.21.2",
+    "1.21.3",
+    "1.21.4",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "Startup warning to configure the proper amount of ram/memory for java, prevents micro stuttering/freezing problems.",
+  "officialAuthors": [
+    "someaddon"
+  ],
+  "officialProjectId": "526901",
+  "officialCategories": [
+    "Map and Information",
+    "Server Utility"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2021-09-14T07:28:23.22Z",
+  "officialUpdatedAt": "2026-08-27T19:05:19.093Z",
+  "officialDownloads": 60531442,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/2010/898/256/256/639234543191971050.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/memory-settings",
+  "metadataFetchedAt": "2026-09-09T19:53:12.314Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "memorysettings",
+        "name": "memorysettings mod",
+        "version": "6.0",
+        "loader": "NeoForge",
+        "authors": [
+          "Someaddon"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "526901",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/memory-settings",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "missing",
+      "projectId": "",
+      "sourceUrl": "",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.644Z",
+  "stagedFiles": [
+    {
+      "fileName": "memorysettings-1.21-6.0.jar",
+      "relativePath": "mods/memorysettings-1.21-6.0.jar",
+      "size": 22329,
+      "sha1": "cf94148dab1e03ee5c737657efe0371f1132a145",
+      "curseFingerprint": 2540896523,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "memorysettings",
+            "name": "memorysettings mod",
+            "version": "6.0",
+            "loader": "NeoForge",
+            "authors": [
+              "Someaddon"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "f860a3bf-b9ce-4fda-a22d-17374ae168aa",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:26.324Z",
+  "updatedAt": "2026-09-16T21:53:26.324Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Otimização, diagnóstico ou estabilidade técnica; não cria conteúdo nem autoridade de progressão.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "testNeeds": "Medir no perfil representativo antes de combinar: inicialização, TPS/MSPT, heap, geração de chunks, salvamento e desligamento.",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

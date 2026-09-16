@@ -1,0 +1,177 @@
+{
+  "kind": "mod",
+  "name": "Xaero's World Map",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "cliente"
+  ],
+  "notApplicableFields": [
+    "divisions",
+    "uniqueSystems",
+    "humanEvidence",
+    "overlaps",
+    "dangerousCombinations",
+    "scarcityNotes",
+    "automationImpact",
+    "masteryGate",
+    "progressionWindow",
+    "worldgenNotes",
+    "multiplayerNotes",
+    "performanceNotes",
+    "rupturePotential",
+    "requiredChanges",
+    "testNeeds",
+    "verdictReason",
+    "openQuestions"
+  ],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/xaeros-world-map",
+  "projectUrl": "https://legacy.curseforge.com/minecraft/mc-mods/xaeros-world-map/issues",
+  "supportedVersions": [
+    "1.7.10",
+    "1.8.9",
+    "1.10.2",
+    "1.11",
+    "1.11.2",
+    "1.12",
+    "1.12.1",
+    "1.12.2",
+    "1.13.2",
+    "1.14.3",
+    "1.14.4",
+    "1.15.1",
+    "1.15.2",
+    "1.16.1",
+    "1.16.2",
+    "1.16.3",
+    "1.16.4",
+    "1.16.5",
+    "1.17",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.2",
+    "1.20.3",
+    "1.20.4",
+    "1.20.5",
+    "1.20.6",
+    "1.21",
+    "1.21.1",
+    "1.21.3",
+    "1.21.4",
+    "1.21.5",
+    "1.21.6",
+    "1.21.7",
+    "1.21.8",
+    "1.21.9",
+    "1.21.10",
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge",
+    "Quilt"
+  ],
+  "officialSummary": "Adds a fullscreen worldmap which shows you what you have explored in the world. Can work together with Xaero's Minimap.",
+  "officialAuthors": [
+    "xaero96"
+  ],
+  "officialProjectId": "317780",
+  "officialCategories": [
+    "Map and Information",
+    "Player Transport"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2019-03-20T16:49:50.547Z",
+  "officialUpdatedAt": "2026-08-22T11:08:56.25Z",
+  "officialDownloads": 214702270,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/196/654/256/256/636886857118683130.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/xaeros-world-map",
+  "metadataFetchedAt": "2026-09-09T19:53:33.605Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "xaeroworldmap",
+        "name": "Xaero",
+        "version": "1.45.0",
+        "loader": "NeoForge",
+        "authors": [
+          "xaero96"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "317780",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/xaeros-world-map",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "NcUtCpym",
+      "sourceUrl": "https://modrinth.com/mod/NcUtCpym",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.653Z",
+  "stagedFiles": [
+    {
+      "fileName": "xaeroworldmap-neoforge-1.21.1-1.45.0.jar",
+      "relativePath": "mods/xaeroworldmap-neoforge-1.21.1-1.45.0.jar",
+      "size": 1422531,
+      "sha1": "f243d6877ab32333f27bf27ad1e9eb600361e6aa",
+      "curseFingerprint": 2926975372,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "xaeroworldmap",
+            "name": "Xaero",
+            "version": "1.45.0",
+            "loader": "NeoForge",
+            "authors": [
+              "xaero96"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "9c09fb23-7c50-458a-bc32-b4f3da32582a",
+  "revision": 0,
+  "storageVersion": 2,
+  "createdAt": "2026-09-16T21:53:27.109Z",
+  "updatedAt": "2026-09-16T21:56:44.296Z",
+  "updatedBy": "Codex ? preenchimento documental 2026-09-16",
+  "primaryFunction": "Qualidade de vida, apresentação ou acessibilidade de cliente; não cria um pilar de progressão.",
+  "scarcityImpact": "Preserva",
+  "worldgenImpact": "Nenhum",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}

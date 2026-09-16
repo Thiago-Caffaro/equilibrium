@@ -1,0 +1,131 @@
+{
+  "kind": "mod",
+  "name": "Mahou Tsukai",
+  "status": "Selecionado",
+  "evaluator": "Anônimo",
+  "divisions": [
+    "Magia"
+  ],
+  "supportedVersions": [
+    "1.12",
+    "1.12.2",
+    "1.15.2",
+    "1.16.1",
+    "1.16.2",
+    "1.16.3",
+    "1.16.4",
+    "1.16.5",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.21",
+    "1.21.1",
+    "26.1.2"
+  ],
+  "loaders": [
+    "Forge",
+    "NeoForge"
+  ],
+  "tags": [
+    "magia",
+    "feitiços",
+    "candidato modular"
+  ],
+  "notApplicableFields": [],
+  "officialSummary": "A magic mod focused on special effects and spell uniqueness",
+  "officialAuthors": [
+    "stepcros"
+  ],
+  "officialProjectId": "342543",
+  "officialCategories": [
+    "Adventure and RPG",
+    "Armor",
+    "Tools",
+    "and Weapons",
+    "Cosmetic",
+    "Magic"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialDownloads": "43470692",
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/226/708/256/256/637046797172980934.png",
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/mahou-tsukai",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/mahou-tsukai",
+  "metadataFetchedAt": "2026-09-10T21:01:55.856Z",
+  "metadataState": "preview",
+  "officialSources": [
+    {
+      "provider": "curseforge",
+      "projectId": "342543",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/mahou-tsukai",
+      "name": "Mahou Tsukai"
+    },
+    {
+      "provider": "modrinth",
+      "projectId": "7jOxn6qJ",
+      "sourceUrl": "https://modrinth.com/mod/mahou-tsukai",
+      "name": "Mahou Tsukai"
+    }
+  ],
+  "stagingOrigin": "remote-search",
+  "stagingResolution": "confirmed",
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "342543",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/mahou-tsukai",
+      "name": "Mahou Tsukai"
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "7jOxn6qJ",
+      "sourceUrl": "https://modrinth.com/mod/mahou-tsukai",
+      "name": "Mahou Tsukai"
+    }
+  },
+  "stagingMessage": "Dados factuais carregados do CurseForge.",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist.",
+  "projectUrl": "",
+  "officialPublishedAt": "2019-09-23T10:50:32.947Z",
+  "officialUpdatedAt": "2026-09-09T23:22:52.097Z",
+  "primaryFunction": "Sistema de magia focado em feitiços e efeitos; candidato a papel mágico que precisa ser comparado isoladamente.",
+  "uniqueSystems": "",
+  "humanEvidence": "",
+  "overlaps": "Ars Nouveau, Occultism e outros sistemas de magia, rituais, recursos e combate.",
+  "dangerousCombinations": "Magia, rituais ou automação podem sobrepor recursos, dano extremo e equipamentos de outras divisões.",
+  "scarcityImpact": "A avaliar",
+  "integrationEffort": "Grande",
+  "scarcityNotes": "",
+  "automationImpact": "A confirmar em rodada isolada; não presumir geração de recursos ou automação segura.",
+  "masteryGate": "Domínio mágico convencional e limites contra substituição de autoridade de outras divisões.",
+  "progressionWindow": "Indefinido até a comparação MAG-2.",
+  "worldgenImpact": "Nenhum",
+  "worldgenNotes": "",
+  "multiplayerNotes": "",
+  "performanceNotes": "",
+  "rupturePotential": "",
+  "requiredChanges": "",
+  "testNeeds": "MAG-2: testar individualmente antes de combinar com outros sistemas mágicos.",
+  "verdict": "Precisa de teste",
+  "verdictReason": "A divisão é compatível, mas ainda não há função exclusiva ou limite de sobreposição documentado.",
+  "openQuestions": "",
+  "stagedAt": "2026-09-10T21:00:25.570Z",
+  "stagedFiles": [],
+  "id": "fd9fc69e-4e2d-4c29-b659-9e59d70ea201",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:25.150Z",
+  "updatedAt": "2026-09-16T21:53:25.150Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16"
+}

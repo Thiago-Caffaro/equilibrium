@@ -1,0 +1,83 @@
+{
+  "kind": "mod",
+  "name": "Immersive Engineering",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [
+    "Tecnologia"
+  ],
+  "supportedVersions": [
+    "1.21.1"
+  ],
+  "loaders": [
+    "NeoForge"
+  ],
+  "tags": [
+    "indústria",
+    "energia",
+    "multibloco",
+    "candidato Gate A"
+  ],
+  "notApplicableFields": [],
+  "officialSummary": "",
+  "officialAuthors": [
+    "BluSunrize",
+    "Sky_Som",
+    "malte0811"
+  ],
+  "officialProjectId": "231951",
+  "officialCategories": [],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialDownloads": "",
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/20/135/256/256/635707329671959611.png",
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/immersive-engineering",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/immersive-engineering",
+  "metadataFetchedAt": "",
+  "metadataState": "preview",
+  "officialSources": [
+    {
+      "provider": "curseforge",
+      "projectId": "231951",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/immersive-engineering",
+      "name": "Immersive Engineering"
+    }
+  ],
+  "stagingOrigin": "local-instance-sync",
+  "stagingResolution": "confirmed",
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "231951",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/immersive-engineering",
+      "name": "Immersive Engineering"
+    }
+  },
+  "stagingMessage": "Registro criado pela sincronização da pasta local do modpack. Carregue os metadados oficiais no programa quando necessário.",
+  "notesMarkdown": "Arquivo encontrado na instância de teste: `ImmersiveEngineering-1.21.1-12.4.2-194.jar.disabled`. Estado local durante a sincronização: **desabilitado**.\n\nPreenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist.",
+  "stagedAt": "2026-09-16T21:17:59.473Z",
+  "stagedFiles": [],
+  "localFileName": "ImmersiveEngineering-1.21.1-12.4.2-194.jar.disabled",
+  "localEnabled": false,
+  "id": "9f9de2c9-7445-4ca5-968f-974359ddfa4f",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:28.126Z",
+  "updatedAt": "2026-09-16T21:53:28.126Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Indústria visual/física, energia e máquinas multibloco; candidato de camada intermediária a avançada de Tecnologia.",
+  "overlaps": "Create, Create Crafts & Additions, Mekanism e outras rotas industriais/energéticas.",
+  "dangerousCombinations": "Pode duplicar processamento e energia ou abrir infraestrutura avançada sem uma identidade própria.",
+  "scarcityImpact": "Risco alto",
+  "integrationEffort": "Grande",
+  "scarcityNotes": "A primeira cadeia industrial precisa demonstrar por que não é apenas uma cópia mais pesada de Create.",
+  "automationImpact": "Escala processamento, energia, transporte e máquinas industriais.",
+  "masteryGate": "Domínio mecânico de base e componentes cruzados das demais divisões nos estágios altos.",
+  "progressionWindow": "Intermediário a avançado, apenas se a comparação por slot de Tecnologia justificar sua presença.",
+  "worldgenImpact": "Desconhecido",
+  "testNeeds": "TEC-0A isolado: energia, multiblocos, recursos, custo e sobreposição com Create/alternativas.",
+  "verdict": "Precisa de teste",
+  "verdictReason": "Candidato recorrente em referências, mas com sobreposição alta e função final ainda não demonstrada."
+}

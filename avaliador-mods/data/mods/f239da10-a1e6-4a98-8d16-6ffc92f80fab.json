@@ -1,0 +1,91 @@
+{
+  "kind": "mod",
+  "name": "Create",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [
+    "Tecnologia"
+  ],
+  "supportedVersions": [
+    "1.18.2",
+    "1.19.2",
+    "1.20.1",
+    "1.21.1"
+  ],
+  "loaders": [
+    "Forge",
+    "NeoForge"
+  ],
+  "tags": [
+    "candidato Gate A",
+    "processamento",
+    "logística",
+    "automação"
+  ],
+  "notApplicableFields": [],
+  "officialSummary": "Aesthetic Technology that empowers the Player",
+  "officialAuthors": [
+    "simibubi"
+  ],
+  "officialProjectId": "LNytGWDc",
+  "officialCategories": [
+    "decoration",
+    "forge",
+    "neoforge",
+    "technology",
+    "utility"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "Modrinth",
+  "officialDownloads": 25978930,
+  "officialIconUrl": "https://cdn.modrinth.com/data/LNytGWDc/61d716699bcf1ec42ed4926a9e1c7311be6087e2_96.webp",
+  "sourceUrl": "https://modrinth.com/mod/create",
+  "metadataSourceUrl": "https://modrinth.com/mod/create",
+  "metadataFetchedAt": "",
+  "metadataState": "preview",
+  "officialSources": [
+    {
+      "provider": "modrinth",
+      "projectId": "LNytGWDc",
+      "sourceUrl": "https://modrinth.com/mod/create",
+      "name": "Create"
+    }
+  ],
+  "stagingOrigin": "remote-search",
+  "stagingResolution": "confirmed",
+  "stagingSources": {
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "LNytGWDc",
+      "sourceUrl": "https://modrinth.com/mod/create",
+      "name": "Create"
+    }
+  },
+  "stagingMessage": "Importado pela busca remota. Metadados básicos prontos; carregue dados completos quando precisar.",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist.",
+  "stagedAt": "2026-09-16T21:09:50.394Z",
+  "stagedFiles": [],
+  "id": "f239da10-a1e6-4a98-8d16-6ffc92f80fab",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:24.903Z",
+  "updatedAt": "2026-09-16T21:53:24.903Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Processamento mecânico, logística física e automação inicial; pode processar insumos de Comerciantes sem assumir a autoridade da divisão.",
+  "uniqueSystems": "Contraptions e cadeias cinéticas físicas que dão escala material depois do domínio manual.",
+  "overlaps": "Immersive Engineering, Mekanism e outras rotas de processamento, energia e transporte.",
+  "dangerousCombinations": "Pode antecipar automação de colheita e alimento, ou repetir processamento de sistemas tecnológicos mais avançados.",
+  "scarcityImpact": "Controlável",
+  "integrationEffort": "Grande",
+  "scarcityNotes": "A escala deve vir depois da atividade manual que substitui e de um ponto de controle da divisão responsável.",
+  "automationImpact": "Automatiza processamento, transporte e partes de cadeias produtivas físicas.",
+  "masteryGate": "Domínio de processamento manual e gate que separe escala mecânica de autoridade dos Comerciantes.",
+  "progressionWindow": "Início a intermediário, sem antecipar automação completa de recursos ou alimentos.",
+  "worldgenImpact": "Desconhecido",
+  "requiredChanges": "Nenhuma receita deve ser aprovada nesta ficha; futuras alterações de balanceamento permanecem em KubeJS/dados locais.",
+  "testNeeds": "Comparar uma primeira máquina de escala com a rota manual e medir o que ela torna trivial.",
+  "verdict": "Manter na mesa",
+  "verdictReason": "Candidato central do Gate A, com função material clara, mas precisa de fronteira contra sobreposição tecnológica."
+}

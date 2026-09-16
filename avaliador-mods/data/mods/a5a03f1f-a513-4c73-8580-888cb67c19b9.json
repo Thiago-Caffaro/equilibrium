@@ -1,0 +1,123 @@
+{
+  "kind": "mod",
+  "name": "LootJS: KubeJS Addon",
+  "status": "Não avaliado",
+  "evaluator": "Anônimo",
+  "divisions": [],
+  "tags": [
+    "addon KubeJS",
+    "loot",
+    "infraestrutura"
+  ],
+  "notApplicableFields": [],
+  "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/lootjs",
+  "projectUrl": "https://github.com/AlmostReliable/lootjs",
+  "supportedVersions": [
+    "1.16.5",
+    "1.18.1",
+    "1.18.2",
+    "1.19.2",
+    "1.20.1",
+    "1.20.4",
+    "1.21",
+    "1.21.1",
+    "26.1.2"
+  ],
+  "loaders": [
+    "Fabric",
+    "Forge",
+    "NeoForge"
+  ],
+  "officialSummary": "Add functionality for packdevs to modify global loot modifications through KubeJS",
+  "officialAuthors": [
+    "Lytho"
+  ],
+  "officialProjectId": "570630",
+  "officialCategories": [
+    "KubeJS",
+    "Map and Information",
+    "Server Utility"
+  ],
+  "officialEnvironment": [],
+  "officialLicense": "",
+  "officialProvider": "CurseForge",
+  "officialPublishedAt": "2022-01-26T08:16:33.48Z",
+  "officialUpdatedAt": "2026-08-03T13:48:27.777Z",
+  "officialDownloads": 43297419,
+  "officialIconUrl": "https://media.forgecdn.net/avatars/thumbnails/510/924/256/256/637828637727949352.png",
+  "metadataSourceUrl": "https://www.curseforge.com/minecraft/mc-mods/lootjs",
+  "metadataFetchedAt": "2026-09-09T19:53:08.276Z",
+  "stagingResolution": "confirmed",
+  "jarMetadata": {
+    "format": "META-INF/neoforge.mods.toml",
+    "mods": [
+      {
+        "modId": "lootjs",
+        "name": "LootJS",
+        "version": "1.21.1-3.7.0",
+        "loader": "NeoForge",
+        "authors": [
+          "AlmostReliable"
+        ],
+        "dependencies": []
+      }
+    ],
+    "warnings": []
+  },
+  "stagingSources": {
+    "curseforge": {
+      "provider": "CurseForge",
+      "state": "exact",
+      "projectId": "570630",
+      "sourceUrl": "https://www.curseforge.com/minecraft/mc-mods/lootjs",
+      "candidates": []
+    },
+    "modrinth": {
+      "provider": "Modrinth",
+      "state": "exact",
+      "projectId": "fJFETWDN",
+      "sourceUrl": "https://modrinth.com/mod/fJFETWDN",
+      "candidates": []
+    }
+  },
+  "stagingMessage": "Confirmado pelo arquivo instalado.",
+  "stagedAt": "2026-09-09T19:53:33.642Z",
+  "stagedFiles": [
+    {
+      "fileName": "lootjs-neoforge-1.21.1-3.7.0.jar",
+      "relativePath": "mods/lootjs-neoforge-1.21.1-3.7.0.jar",
+      "size": 247689,
+      "sha1": "54ffddd1763ae4af84e9bbcb22e4081a1e7f3556",
+      "curseFingerprint": 905075820,
+      "jarMetadata": {
+        "format": "META-INF/neoforge.mods.toml",
+        "mods": [
+          {
+            "modId": "lootjs",
+            "name": "LootJS",
+            "version": "1.21.1-3.7.0",
+            "loader": "NeoForge",
+            "authors": [
+              "AlmostReliable"
+            ],
+            "dependencies": []
+          }
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "id": "a5a03f1f-a513-4c73-8580-888cb67c19b9",
+  "revision": 0,
+  "storageVersion": 1,
+  "createdAt": "2026-09-16T21:53:26.137Z",
+  "updatedAt": "2026-09-16T21:53:26.137Z",
+  "updatedBy": "Codex — preenchimento documental 2026-09-16",
+  "primaryFunction": "Extensão de KubeJS para alterações de loot; não deve substituir autoridade de eventos ou recompensas do Core.",
+  "scarcityImpact": "Risco alto",
+  "integrationEffort": "Médio",
+  "worldgenImpact": "Nenhum",
+  "requiredChanges": "Usar somente para dados de loot deliberados e auditáveis; nunca para transformar recompensas de autoridade em farm passiva.",
+  "testNeeds": "Avaliar apenas quando uma tabela de loot concreta estiver aprovada.",
+  "notesMarkdown": "Preenchimento documental de 2026-09-16: campos preenchidos a partir da Baseline, da matriz Gate A, dos planos locais e de metadados oficiais. Não substitui evidência humana, testes ou decisão de modlist."
+}
