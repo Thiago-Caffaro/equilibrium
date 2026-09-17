@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - codex/merchant-core-foundation
   workflow_dispatch:
 
 permissions:
@@ -12,6 +13,7 @@ permissions:
 
 env:
   IMAGE_NAME: ghcr.io/thiago-caffaro/equilibrium-mod-rater
+  IMAGE_TAG: ${{ github.ref == 'refs/heads/main' && 'latest' || 'merchant-core-foundation' }}
 
 jobs:
   publish:
@@ -38,7 +40,7 @@ jobs:
           file: Dockerfile
           push: true
           tags: |
-            ${{ env.IMAGE_NAME }}:latest
+            ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
             ${{ env.IMAGE_NAME }}:${{ github.sha }}
           labels: |
             org.opencontainers.image.source=https://github.com/${{ github.repository }}
