@@ -1,6 +1,8 @@
 services:
   avaliador-mods:
-    image: ghcr.io/thiago-caffaro/equilibrium-mod-rater:latest
+    # This branch publishes its delivery candidate under its own immutable channel.
+    # `latest` remains reserved for the main branch / production release.
+    image: ghcr.io/thiago-caffaro/equilibrium-mod-rater:merchant-core-foundation
     pull_policy: always
     restart: unless-stopped
     ports:
