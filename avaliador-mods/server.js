@@ -7,6 +7,7 @@ import { MOD_CSV_FIELDS, REFERENCE_CSV_FIELDS, parseCsv, stringifyCsv } from "./
 import { MetadataLookupError, resolveProjectMetadata } from "./lib/project-metadata.js";
 import { resolveJarDescriptors } from "./lib/staging-resolution.js";
 import { createRemoteModSearch } from "./lib/mod-search.js";
+import { createCredentialVault } from "./lib/credential-vault.js";
 import { ConflictError, ValidationError, createStore } from "./lib/store.js";
 
 const APP_ROOT = fileURLToPath(new URL(".", import.meta.url));
@@ -236,8 +237,12 @@ async function serveAnalysisStatic(name, method, response) {
   }
 }
 
-export function createAppServer({ dataRoot = DEFAULT_DATA_ROOT, metadataResolver = resolveProjectMetadata, jarResolver = resolveJarDescriptors, remoteSearch = createRemoteModSearch() } = {}) {
+export function createAppServer({ dataRoot = DEFAULT_DATA_ROOT, metadataResolver, jarResolver, remoteSearch, credentialVault } = {}) {
   const store = createStore({ dataRoot });
+  const vault = credentialVault || createCredentialVault({ dataRoot });
+  const resolveMetadata = metadataResolver || ((value) => resolveProjectMetadata(value, { curseForgeApiKey: vault.apiKey() }));
+  const resolveJars = jarResolver || ((descriptors, options = {}) => resolveJarDescriptors(descriptors, { ...options, curseForgeApiKey: vault.apiKey() }));
+  const search = remoteSearch || createRemoteModSearch({ curseForgeApiKeyProvider: vault.apiKey });
   void store.initialise();
 
   return createServer(async (request, response) => {
@@ -250,16 +255,44 @@ export function createAppServer({ dataRoot = DEFAULT_DATA_ROOT, metadataResolver
           ok: true,
           app: "Equilibrium — Avaliador de Mods",
           storage: "json-files",
+          curseForge: await vault.status(),
           now: new Date().toISOString()
         });
         return;
+      }
+
+      if (segments[0] === "api" && segments[1] === "integrations" && segments[2] === "curseforge") {
+        if (request.method === "GET" && !segments[3]) {
+          sendJson(response, 200, { curseForge: await vault.status() });
+          return;
+        }
+        if (request.method === "PUT" && !segments[3]) {
+          const body = await readJsonBody(request);
+          const curseForge = await vault.configure(body);
+          search.clearCache?.();
+          sendJson(response, 200, { curseForge });
+          return;
+        }
+        if (request.method === "POST" && segments[3] === "unlock" && !segments[4]) {
+          const body = await readJsonBody(request);
+          const curseForge = await vault.unlock(body.vaultPassphrase);
+          search.clearCache?.();
+          sendJson(response, 200, { curseForge });
+          return;
+        }
+        if (request.method === "POST" && segments[3] === "lock" && !segments[4]) {
+          const curseForge = await vault.lock();
+          search.clearCache?.();
+          sendJson(response, 200, { curseForge });
+          return;
+        }
       }
 
       if (request.method === "GET" && url.pathname === "/api/search/mods") {
         if (String(url.searchParams.get("query") || "").trim().length < 3) {
           throw new ValidationError("Digite ao menos três caracteres para buscar mods.");
         }
-        const result = await remoteSearch.search({
+        const result = await search.search({
           query: url.searchParams.get("query"),
           source: url.searchParams.get("source") || "both",
           version: url.searchParams.get("version") || "",
@@ -368,7 +401,7 @@ export function createAppServer({ dataRoot = DEFAULT_DATA_ROOT, metadataResolver
         }
         if (request.method === "POST" && !id && segments[2] === undefined) {
           const body = await readJsonBody(request);
-          const records = await jarResolver(body.descriptors, { author: body.author });
+          const records = await resolveJars(body.descriptors, { author: body.author });
           const created = [];
           for (const record of records) created.push(await store.create("staging", record, body.author));
           sendJson(response, 201, { records: created });
@@ -381,7 +414,7 @@ export function createAppServer({ dataRoot = DEFAULT_DATA_ROOT, metadataResolver
             sendJson(response, 404, { error: "Item de staging não encontrado." });
             return;
           }
-          const records = await jarResolver(stage.stagingFiles || [], { author: body.author });
+          const records = await resolveJars(stage.stagingFiles || [], { author: body.author });
           if (records.length !== 1) throw new ValidationError("Não foi possível reavaliar este item de staging.");
           const record = await store.save("staging", id, applyStagingResolution(stage, records[0]), {
             expectedStorageVersion: body.expectedStorageVersion,
@@ -425,7 +458,7 @@ export function createAppServer({ dataRoot = DEFAULT_DATA_ROOT, metadataResolver
 
       if (segments[0] === "api" && segments[1] === "metadata" && request.method === "POST") {
         const body = await readJsonBody(request);
-        const metadata = await metadataResolver(body.url || { provider: body.provider, projectId: body.projectId });
+        const metadata = await resolveMetadata(body.url || { provider: body.provider, projectId: body.projectId });
         sendJson(response, 200, { metadata });
         return;
       }

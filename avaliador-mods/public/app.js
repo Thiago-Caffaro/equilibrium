@@ -1,3 +1,5 @@
+import { initialRecordId, normalizeCatalogView } from "./catalog-view.js";
+
 const DIVISIONS = ["Tecnologia", "Magia", "Aventura", "Comerciantes"];
 const STATUS = {
   mods: ["Não avaliado", "Em análise", "Precisa de teste", "Shortlist", "Selecionado", "Rejeitado", "Arquivado"],
@@ -142,6 +144,7 @@ const REFERENCE_SECTIONS = [
 const state = {
   collection: "mods",
   records: [],
+  catalogView: normalizeCatalogView(localStorage.getItem("equilibrium.catalogView")),
   current: null,
   dirty: false,
   saving: false,
@@ -170,12 +173,13 @@ const state = {
     sources: {},
     selectedIds: new Set(),
     activeIndex: 0
-  }
+  },
+  curseForgeVault: { configured: false, unlocked: false, storage: "encrypted-vault" }
 };
 
 const elements = Object.fromEntries([
-  "connectionStatus", "editorName", "transferButton", "transferMenu", "newRecordButton", "remoteSearchButton",
-  "welcomeNewButton", "searchInput", "statusFilter", "divisionFilter", "refreshButton",
+  "connectionStatus", "editorName", "transferButton", "transferMenu", "curseForgeVaultButton", "newRecordButton", "remoteSearchButton",
+  "welcomeNewButton", "searchInput", "statusFilter", "divisionFilter", "refreshButton", "catalogViewCards", "catalogViewTable",
   "recordCount", "recordList", "welcomeState", "editorState", "recordKindLabel", "recordTitle",
   "recordMeta", "saveIndicator", "reviewButton", "saveButton", "deleteButton", "promoteButton", "recordForm", "conflictBanner", "noteSource",
   "notePreview", "noteEditor", "noteTextarea", "noteHint", "saveDocumentButton", "jsonEditor",
@@ -183,7 +187,8 @@ const elements = Object.fromEntries([
   "importFileSummary", "confirmImportButton", "shortcutsButton", "shortcutsDialog", "toastRegion", "analysesButton",
   "analysisState", "analysisSearch", "analysisCategory", "analysisPresence", "copyAnalysisButton", "analysisStats", "analysisHead", "analysisRows", "analysisDocumentLinks", "analysisDocumentPreview",
   "scanFolderButton", "jarDirectoryInput", "jarFilesInput", "selectVisibleButton", "bulkPromoteButton", "bulkDeleteButton",
-  "remoteSearchDialog", "remoteSearchClose", "remoteSearchInput", "remoteSearchSource", "remoteSearchVersion", "remoteSearchLoader", "remoteSearchRefresh", "remoteSearchSourceState", "remoteSearchHint", "remoteSearchResults", "remoteSearchSelection", "remoteSearchAdd"
+  "remoteSearchDialog", "remoteSearchClose", "remoteSearchInput", "remoteSearchSource", "remoteSearchVersion", "remoteSearchLoader", "remoteSearchRefresh", "remoteSearchSourceState", "remoteSearchHint", "remoteSearchResults", "remoteSearchSelection", "remoteSearchAdd",
+  "curseForgeVaultDialog", "curseForgeVaultForm", "curseForgeVaultState", "curseForgeVaultUnlockSection", "curseForgeUnlockPassphrase", "curseForgeVaultUnlockButton", "curseForgeApiKeyInput", "curseForgeVaultPassphrase", "curseForgeVaultPassphraseConfirm", "curseForgeCurrentPassphraseWrap", "curseForgeCurrentPassphrase", "curseForgeVaultLockButton", "curseForgeVaultCloseButton", "curseForgeVaultSaveButton"
 ].map((id) => [id, document.getElementById(id)]));
 
 function escapeHtml(value) {
@@ -373,6 +378,122 @@ function openRemoteSearch() {
   if (!elements.remoteSearchDialog.open) elements.remoteSearchDialog.showModal();
   requestAnimationFrame(() => elements.remoteSearchInput.focus());
   renderRemoteSearch();
+}
+
+function vaultStateLabel(status) {
+  if (!status.configured) return "Nenhuma chave está salva. O CurseForge permanece desativado.";
+  if (status.unlocked) return "Cofre desbloqueado nesta sessão. O CurseForge está disponível.";
+  return "Há uma chave cifrada, mas o cofre está bloqueado após o último reinício.";
+}
+
+function renderCurseForgeVault() {
+  const status = state.curseForgeVault;
+  elements.curseForgeVaultState.textContent = vaultStateLabel(status);
+  elements.curseForgeVaultUnlockSection.hidden = !status.configured || status.unlocked;
+  elements.curseForgeCurrentPassphraseWrap.hidden = !status.configured;
+  elements.curseForgeVaultLockButton.hidden = !status.unlocked;
+  elements.curseForgeVaultSaveButton.textContent = status.configured ? "Substituir chave cifrada" : "Salvar chave cifrada";
+}
+
+async function loadCurseForgeVaultStatus({ showError = false } = {}) {
+  try {
+    const { curseForge } = await api("/api/integrations/curseforge");
+    state.curseForgeVault = curseForge;
+    renderCurseForgeVault();
+    return curseForge;
+  } catch (error) {
+    if (showError) toast(error.message, "error");
+    return null;
+  }
+}
+
+async function openCurseForgeVault() {
+  elements.transferMenu.hidden = true;
+  elements.transferButton.setAttribute("aria-expanded", "false");
+  if (!elements.curseForgeVaultDialog.open) elements.curseForgeVaultDialog.showModal();
+  const status = await loadCurseForgeVaultStatus({ showError: true });
+  if (!status) return;
+  requestAnimationFrame(() => (status.configured && !status.unlocked
+    ? elements.curseForgeUnlockPassphrase
+    : elements.curseForgeApiKeyInput).focus());
+}
+
+function setCurseForgeVaultBusy(busy) {
+  for (const element of [
+    elements.curseForgeVaultUnlockButton,
+    elements.curseForgeVaultSaveButton,
+    elements.curseForgeVaultLockButton,
+    elements.curseForgeVaultCloseButton
+  ]) element.disabled = busy;
+}
+
+async function unlockCurseForgeVault() {
+  const vaultPassphrase = elements.curseForgeUnlockPassphrase.value;
+  if (!vaultPassphrase) {
+    toast("Informe a senha do cofre para desbloquear.", "warning");
+    elements.curseForgeUnlockPassphrase.focus();
+    return;
+  }
+  setCurseForgeVaultBusy(true);
+  try {
+    const { curseForge } = await api("/api/integrations/curseforge/unlock", {
+      method: "POST",
+      body: JSON.stringify({ vaultPassphrase })
+    });
+    elements.curseForgeUnlockPassphrase.value = "";
+    state.curseForgeVault = curseForge;
+    renderCurseForgeVault();
+    toast("Cofre do CurseForge desbloqueado nesta sessão.", "success");
+  } catch (error) {
+    toast(error.message, "error");
+  } finally {
+    setCurseForgeVaultBusy(false);
+  }
+}
+
+async function saveCurseForgeVault(event) {
+  event.preventDefault();
+  const apiKey = elements.curseForgeApiKeyInput.value;
+  const vaultPassphrase = elements.curseForgeVaultPassphrase.value;
+  const confirmation = elements.curseForgeVaultPassphraseConfirm.value;
+  if (vaultPassphrase !== confirmation) {
+    toast("A confirmação da nova senha não confere.", "warning");
+    elements.curseForgeVaultPassphraseConfirm.focus();
+    return;
+  }
+  setCurseForgeVaultBusy(true);
+  try {
+    const { curseForge } = await api("/api/integrations/curseforge", {
+      method: "PUT",
+      body: JSON.stringify({
+        apiKey,
+        vaultPassphrase,
+        currentVaultPassphrase: elements.curseForgeCurrentPassphrase.value
+      })
+    });
+    elements.curseForgeVaultForm.reset();
+    state.curseForgeVault = curseForge;
+    renderCurseForgeVault();
+    toast("Chave salva cifrada e desbloqueada nesta sessão.", "success");
+  } catch (error) {
+    toast(error.message, "error");
+  } finally {
+    setCurseForgeVaultBusy(false);
+  }
+}
+
+async function lockCurseForgeVault() {
+  setCurseForgeVaultBusy(true);
+  try {
+    const { curseForge } = await api("/api/integrations/curseforge/lock", { method: "POST" });
+    state.curseForgeVault = curseForge;
+    renderCurseForgeVault();
+    toast("Cofre do CurseForge bloqueado.", "success");
+  } catch (error) {
+    toast(error.message, "error");
+  } finally {
+    setCurseForgeVaultBusy(false);
+  }
 }
 
 async function openExistingRemoteResult(id) {
@@ -809,7 +930,7 @@ function startNewRecord() {
 }
 
 async function openRecord(id) {
-  if (state.dirty && !confirm("Há alterações pendentes. Deseja descartá-las e abrir outra ficha?")) return;
+  if (state.dirty && !confirm("Há alterações pendentes. Deseja descartá-las e abrir outra ficha?")) return false;
   clearTimeout(state.autosaveTimer);
   try {
     const { record } = await api(`/api/records/${state.collection}/${encodeURIComponent(id)}`);
@@ -823,8 +944,10 @@ async function openRecord(id) {
     elements.editorState.hidden = false;
     renderForm();
     renderList();
+    return true;
   } catch (error) {
     toast(error.message, "error");
+    return false;
   }
 }
 
@@ -1284,6 +1407,54 @@ function statusClass(status) {
   return "neutral";
 }
 
+function renderCatalogViewControls() {
+  document.body.classList.toggle("is-catalog-table", state.catalogView === "table");
+  for (const [view, button] of [["cards", elements.catalogViewCards], ["table", elements.catalogViewTable]]) {
+    const active = state.catalogView === view;
+    button.setAttribute("aria-pressed", String(active));
+    button.classList.toggle("is-active", active);
+  }
+}
+
+function setCatalogView(view) {
+  state.catalogView = normalizeCatalogView(view);
+  localStorage.setItem("equilibrium.catalogView", state.catalogView);
+  renderCatalogViewControls();
+  renderList();
+}
+
+function renderRecordCards(records) {
+  return records.map((record) => `
+    <article class="record-list-item ${state.current?.id === record.id ? "is-active" : ""}">
+      <label class="record-list-item__select" title="Selecionar ${escapeHtml(record.name)} para exclusão em lote"><input type="checkbox" data-record-select="${escapeHtml(record.id)}" ${state.selectedRecordIds.has(record.id) ? "checked" : ""}><span class="sr-only">Selecionar ${escapeHtml(record.name)}</span></label>
+      <button class="record-list-item__open" type="button" data-record-id="${escapeHtml(record.id)}">
+        <span class="record-list-item__icon${record.officialIconUrl ? "" : " is-fallback"}" data-record-icon><img src="${escapeHtml(record.officialIconUrl || "")}" alt="" loading="lazy" data-record-icon-image><span aria-hidden="true">◇</span></span>
+        <span class="record-list-item__content"><span class="record-list-item__top"><strong>${escapeHtml(record.name)}</strong><span class="status-dot status-dot--${statusClass(record.status)}"></span></span>
+        <span class="record-list-item__meta">${escapeHtml(record.status || "Sem estado")}${record.divisions?.length ? ` · ${escapeHtml(record.divisions.join(" / "))}` : ""}</span>
+        <span class="record-list-item__date">${escapeHtml(formatDate(record.updatedAt))}</span></span>
+      </button>
+    </article>
+  `).join("");
+}
+
+function renderRecordTable(records) {
+  return `<div class="catalog-table-wrap" tabindex="0" aria-label="Tabela de fichas do catálogo">
+    <table class="catalog-table">
+      <caption class="sr-only">Fichas visíveis do catálogo</caption>
+      <thead><tr><th scope="col"><span class="sr-only">Selecionar</span></th><th scope="col">Ficha</th><th scope="col">Estado</th><th scope="col">Divisões</th><th scope="col">Atualizada</th></tr></thead>
+      <tbody>${records.map((record) => `
+        <tr class="${state.current?.id === record.id ? "is-active" : ""}">
+          <td><input type="checkbox" data-record-select="${escapeHtml(record.id)}" aria-label="Selecionar ${escapeHtml(record.name)} para exclusão em lote" ${state.selectedRecordIds.has(record.id) ? "checked" : ""}></td>
+          <td><button class="catalog-table__open" type="button" data-record-id="${escapeHtml(record.id)}"><span class="catalog-table__icon${record.officialIconUrl ? "" : " is-fallback"}" data-record-icon><img src="${escapeHtml(record.officialIconUrl || "")}" alt="" loading="lazy" data-record-icon-image><span aria-hidden="true">◇</span></span><span><strong>${escapeHtml(record.name)}</strong><small>${escapeHtml(record.officialProvider || "Sem fonte oficial")}</small></span></button></td>
+          <td><span class="catalog-table__status"><span class="status-dot status-dot--${statusClass(record.status)}"></span>${escapeHtml(record.status || "Sem estado")}</span></td>
+          <td>${escapeHtml(record.divisions?.join(" / ") || "—")}</td>
+          <td>${escapeHtml(formatDate(record.updatedAt) || "—")}</td>
+        </tr>
+      `).join("")}</tbody>
+    </table>
+  </div>`;
+}
+
 function renderList() {
   const records = filteredRecords();
   const availableIds = new Set(state.records.map((record) => record.id));
@@ -1303,21 +1474,12 @@ function renderList() {
     ? "Resolver ambíguas para promover"
     : `Promover ${state.selectedRecordIds.size} selecionada${state.selectedRecordIds.size === 1 ? "" : "s"}`;
   elements.bulkPromoteButton.disabled = state.saving || hasAmbiguousSelection;
+  renderCatalogViewControls();
   if (records.length === 0) {
     elements.recordList.innerHTML = `<div class="empty-list"><span class="empty-list__icon">◇</span><strong>Nenhuma ficha encontrada</strong><p>Altere os filtros ou crie um novo registro.</p></div>`;
     return;
   }
-  elements.recordList.innerHTML = records.map((record) => `
-    <article class="record-list-item ${state.current?.id === record.id ? "is-active" : ""}">
-      <label class="record-list-item__select" title="Selecionar ${escapeHtml(record.name)} para exclusão em lote"><input type="checkbox" data-record-select="${escapeHtml(record.id)}" ${state.selectedRecordIds.has(record.id) ? "checked" : ""}><span class="sr-only">Selecionar ${escapeHtml(record.name)}</span></label>
-      <button class="record-list-item__open" type="button" data-record-id="${escapeHtml(record.id)}">
-        <span class="record-list-item__icon${record.officialIconUrl ? "" : " is-fallback"}" data-record-icon><img src="${escapeHtml(record.officialIconUrl || "")}" alt="" loading="lazy" data-record-icon-image><span aria-hidden="true">◇</span></span>
-        <span class="record-list-item__content"><span class="record-list-item__top"><strong>${escapeHtml(record.name)}</strong><span class="status-dot status-dot--${statusClass(record.status)}"></span></span>
-        <span class="record-list-item__meta">${escapeHtml(record.status || "Sem estado")}${record.divisions?.length ? ` · ${escapeHtml(record.divisions.join(" / "))}` : ""}</span>
-        <span class="record-list-item__date">${escapeHtml(formatDate(record.updatedAt))}</span></span>
-      </button>
-    </article>
-  `).join("");
+  elements.recordList.innerHTML = state.catalogView === "table" ? renderRecordTable(records) : renderRecordCards(records);
 }
 
 function refreshFilters() {
@@ -1332,10 +1494,21 @@ async function loadCollection({ preserveCurrent = false } = {}) {
   try {
     const { records } = await api(`/api/records/${state.collection}`);
     state.records = records;
+    const currentId = state.current?.id;
+    const currentStillExists = currentId && records.some((record) => record.id === currentId);
+    if (!preserveCurrent || (currentId && !currentStillExists)) {
+      state.current = null;
+      state.dirty = false;
+    }
     refreshFilters();
-    renderList();
     setConnection(true);
-    if (!preserveCurrent && !state.current) {
+    const nextRecordId = initialRecordId(records, preserveCurrent ? state.current?.id : null);
+    if (!state.current && nextRecordId) {
+      const opened = await openRecord(nextRecordId);
+      if (opened) return;
+    }
+    renderList();
+    if (!state.current) {
       elements.welcomeState.hidden = false;
       elements.editorState.hidden = true;
     }
@@ -1752,6 +1925,8 @@ elements.recordList.addEventListener("error", (event) => {
   image.closest("[data-record-icon]")?.classList.add("is-fallback");
   image.remove();
 }, true);
+elements.catalogViewCards.addEventListener("click", () => setCatalogView("cards"));
+elements.catalogViewTable.addEventListener("click", () => setCatalogView("table"));
 document.querySelectorAll("[data-collection]").forEach((button) => button.addEventListener("click", () => void switchCollection(button.dataset.collection)));
 elements.analysesButton.addEventListener("click", () => void showAnalyses());
 elements.analysisSearch.addEventListener("input", renderAnalyses);
@@ -1774,6 +1949,7 @@ elements.analysisDocumentLinks.addEventListener("click", (event) => {
 elements.newRecordButton.addEventListener("click", startNewRecord);
 elements.welcomeNewButton.addEventListener("click", startNewRecord);
 elements.remoteSearchButton.addEventListener("click", openRemoteSearch);
+elements.curseForgeVaultButton.addEventListener("click", () => void openCurseForgeVault());
 elements.remoteSearchClose.addEventListener("click", () => elements.remoteSearchDialog.close());
 elements.remoteSearchInput.addEventListener("input", () => scheduleRemoteSearch());
 elements.remoteSearchSource.addEventListener("change", () => scheduleRemoteSearch({ immediate: true }));
@@ -1802,6 +1978,11 @@ elements.remoteSearchDialog.addEventListener("close", () => {
   state.remoteSearch.controller?.abort();
   state.remoteSearch.loading = false;
 });
+elements.curseForgeVaultUnlockButton.addEventListener("click", () => void unlockCurseForgeVault());
+elements.curseForgeVaultLockButton.addEventListener("click", () => void lockCurseForgeVault());
+elements.curseForgeVaultCloseButton.addEventListener("click", () => elements.curseForgeVaultDialog.close());
+elements.curseForgeVaultForm.addEventListener("submit", (event) => void saveCurseForgeVault(event));
+elements.curseForgeVaultDialog.addEventListener("close", () => elements.curseForgeVaultForm.reset());
 elements.remoteSearchDialog.addEventListener("keydown", (event) => {
   const remote = state.remoteSearch;
   if (event.key === "Escape") return;
@@ -1948,7 +2129,7 @@ window.addEventListener("beforeunload", (event) => {
 async function initialise() {
   elements.editorName.value = localStorage.getItem("equilibrium.editorName") || "";
   refreshFilters();
-  await Promise.all([loadCollection(), loadLibrary()]);
+  await Promise.all([loadCollection(), loadLibrary(), loadCurseForgeVaultStatus()]);
   activateNoteTab("preview");
   if (state.documents.some((document) => document.name === "criterios.md")) {
     elements.noteSource.value = "library:criterios.md";

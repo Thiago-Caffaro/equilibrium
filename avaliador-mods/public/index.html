@@ -27,6 +27,7 @@
           <button id="transferButton" class="button button--ghost" type="button" aria-expanded="false">Dados</button>
           <div id="transferMenu" class="popover-menu" hidden>
             <button type="button" data-action="import">Importar CSV ou JSON…</button>
+            <button id="curseForgeVaultButton" type="button">Cofre do CurseForge…</button>
             <hr>
             <button type="button" data-action="export-json">Exportar coleção em JSON</button>
             <button type="button" data-action="export-csv">Exportar coleção em CSV</button>
@@ -68,6 +69,10 @@
         <div class="catalog-summary">
           <span id="recordCount">0 registros</span>
           <span class="catalog-summary__actions"><button id="selectVisibleButton" class="link-button" type="button" hidden>Selecionar visíveis</button><button id="bulkPromoteButton" class="link-button" type="button" hidden>Promover selecionadas</button><button id="bulkDeleteButton" class="link-button link-button--danger" type="button" hidden>Excluir selecionadas</button><button id="scanFolderButton" class="link-button" type="button" hidden>Ler JARs</button><button id="refreshButton" class="link-button" type="button">Atualizar</button></span>
+        </div>
+        <div class="catalog-view-switch" aria-label="Visualização do catálogo">
+          <button id="catalogViewTable" class="catalog-view-switch__item" type="button" aria-pressed="true">Tabela</button>
+          <button id="catalogViewCards" class="catalog-view-switch__item" type="button" aria-pressed="false">Cartões</button>
         </div>
         <div id="recordList" class="record-list" aria-live="polite"></div>
       </aside>
@@ -245,6 +250,38 @@
         <span id="remoteSearchSelection" class="muted-copy">Nenhum resultado selecionado</span>
         <span class="remote-search-footer__actions"><span class="muted-copy"><kbd>↑</kbd><kbd>↓</kbd> navegar · <kbd>Espaço</kbd> selecionar · <kbd>Alt Enter</kbd> adicionar</span><button id="remoteSearchAdd" class="button button--primary" type="button" disabled>Adicionar ao Staging</button></span>
       </footer>
+    </dialog>
+
+    <dialog id="curseForgeVaultDialog" class="dialog vault-dialog">
+      <form id="curseForgeVaultForm">
+        <header>
+          <p class="eyebrow">Integração privada</p>
+          <h2>Cofre do CurseForge</h2>
+        </header>
+        <p id="curseForgeVaultState" class="vault-state" role="status">Verificando o cofre…</p>
+        <p class="muted-copy">A chave é cifrada no volume do servidor. A senha não é salva: após um reinício, desbloqueie o cofre novamente.</p>
+
+        <section id="curseForgeVaultUnlockSection" class="vault-section" hidden>
+          <h3>Desbloquear nesta sessão</h3>
+          <label>Senha do cofre<input id="curseForgeUnlockPassphrase" type="password" autocomplete="current-password" spellcheck="false"></label>
+          <button id="curseForgeVaultUnlockButton" class="button button--primary" type="button">Desbloquear</button>
+        </section>
+
+        <section class="vault-section">
+          <h3>Configurar ou substituir</h3>
+          <label>Chave de API do CurseForge<input id="curseForgeApiKeyInput" type="password" autocomplete="off" spellcheck="false"></label>
+          <label>Nova senha do cofre<input id="curseForgeVaultPassphrase" type="password" autocomplete="new-password" spellcheck="false"></label>
+          <label>Confirmar nova senha<input id="curseForgeVaultPassphraseConfirm" type="password" autocomplete="new-password" spellcheck="false"></label>
+          <label id="curseForgeCurrentPassphraseWrap" hidden>Senha atual do cofre<input id="curseForgeCurrentPassphrase" type="password" autocomplete="current-password" spellcheck="false"></label>
+          <p class="muted-copy">Use ao menos 12 caracteres. Sem a senha atual, uma chave já configurada não pode ser substituída.</p>
+        </section>
+
+        <footer>
+          <button id="curseForgeVaultLockButton" class="button button--ghost" type="button" hidden>Bloquear agora</button>
+          <button id="curseForgeVaultCloseButton" class="button button--ghost" type="button">Fechar</button>
+          <button id="curseForgeVaultSaveButton" class="button button--primary" type="submit">Salvar chave cifrada</button>
+        </footer>
+      </form>
     </dialog>
 
     <div id="toastRegion" class="toast-region" aria-live="polite"></div>

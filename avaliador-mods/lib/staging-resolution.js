@@ -1,5 +1,4 @@
 import { MetadataLookupError, resolveProjectMetadataById } from "./project-metadata.js";
-import { curseForgeApiKeyFromEnvironment } from "./curseforge-config.js";
 import { queueCurseForgeRequest } from "./curseforge-queue.js";
 
 const MODRINTH_API = "https://api.modrinth.com/v2";
@@ -368,7 +367,7 @@ function keyFor(descriptor, curseForge, modrinth) {
 
 export async function resolveJarDescriptors(inputs, {
   fetchImpl = globalThis.fetch,
-  curseForgeApiKey = curseForgeApiKeyFromEnvironment(),
+  curseForgeApiKey = "",
   author = "Anônimo"
 } = {}) {
   if (!Array.isArray(inputs) || inputs.length === 0 || inputs.length > 1500) {

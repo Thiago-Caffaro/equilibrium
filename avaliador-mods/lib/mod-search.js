@@ -1,4 +1,3 @@
-import { curseForgeApiKeyFromEnvironment } from "./curseforge-config.js";
 import { queueCurseForgeRequest } from "./curseforge-queue.js";
 
 const MODRINTH_API = "https://api.modrinth.com/v2";
@@ -157,12 +156,16 @@ function groupResults(results) {
 
 export function createRemoteModSearch({
   fetchImpl = globalThis.fetch,
-  curseForgeApiKey = curseForgeApiKeyFromEnvironment(),
+  curseForgeApiKey,
+  curseForgeApiKeyProvider,
   cacheTtlMs = CACHE_TTL_MS,
   now = () => Date.now()
 } = {}) {
   const cache = new Map();
   const inFlight = new Map();
+  const currentCurseForgeApiKey = typeof curseForgeApiKeyProvider === "function"
+    ? curseForgeApiKeyProvider
+    : () => curseForgeApiKey || "";
 
   async function searchModrinth(options) {
     const facets = [["project_type:mod"]];
@@ -179,8 +182,9 @@ export function createRemoteModSearch({
   }
 
   async function searchCurseForge(options) {
-    if (!curseForgeApiKey) {
-      const error = new Error("A chave do CurseForge não está configurada no servidor.");
+    const apiKey = String(currentCurseForgeApiKey() || "").trim();
+    if (!apiKey) {
+      const error = new Error("O cofre do CurseForge está bloqueado ou não foi configurado.");
       error.upstreamStatus = null;
       throw error;
     }
@@ -194,7 +198,7 @@ export function createRemoteModSearch({
     if (options.loader) query.set("modLoaderType", String(CURSEFORGE_LOADERS.get(options.loader)));
     const payload = await queueCurseForgeRequest(() => requestJson(`${CURSEFORGE_API}/mods/search?${query}`, {
       fetchImpl,
-      headers: { "x-api-key": curseForgeApiKey }
+      headers: { "x-api-key": apiKey }
     }));
     return (payload?.data || [])
       .filter((mod) => !Number.isFinite(Number(mod?.classId)) || Number(mod.classId) === MOD_CLASS_ID)
@@ -235,7 +239,7 @@ export function createRemoteModSearch({
     }
   }
 
-  return { search };
+  return { search, clearCache: () => cache.clear() };
 }
 
 export { groupResults, normaliseQuery };

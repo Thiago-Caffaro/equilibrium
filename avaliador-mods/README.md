@@ -130,16 +130,13 @@ O nome do avaliador fica apenas como preferência local do navegador; os dados o
 
 Ao informar o link de um mod no Modrinth ou CurseForge, a ficha tenta importar somente dados factuais: nome, resumo oficial, autores, versões, loaders, categorias, ambiente declarado, licença, links e datas. Campos de julgamento — divisões, função no Equilibrium, riscos, gates, desempenho e parecer — nunca são preenchidos automaticamente.
 
-O Modrinth permite leitura pública sem credencial. A API oficial do CurseForge exige uma chave. No terminal local, configure-a somente no ambiente que inicia o servidor:
+O Modrinth permite leitura pública sem credencial. A API oficial do CurseForge exige uma chave, mas o avaliador não a recebe pelo `docker-compose.yml`, pelo Portainer nem por um arquivo `.env`.
 
-```powershell
-$env:CURSEFORGE_API_KEY = "SUA_CHAVE"
-npm start
-```
+Depois de abrir a aplicação, use **Dados → Cofre do CurseForge**. Na primeira configuração, informe a chave e uma senha de cofre com pelo menos 12 caracteres. A aplicação cifra a chave com AES-256-GCM, usando uma chave derivada da senha por scrypt, e grava somente o conteúdo cifrado em `data/settings/curseforge-vault.json`. A senha não é registrada, nem o valor da chave é devolvido pela API ou mantido no navegador após o envio.
 
-No Portainer, adicione `CURSEFORGE_API_KEY` como variável de ambiente da stack. Não grave a chave no repositório, no `docker-compose.yml` ou em uma ficha. Sem ela, o sistema informa que a consulta ao CurseForge não está configurada; as fichas continuam funcionando normalmente e o Modrinth permanece disponível.
+Depois de um reinício do container, a chave permanece cifrada no volume, porém o cofre volta bloqueado. Um de vocês deve abri-lo pela mesma tela com a senha do cofre; a chave fica somente na memória do processo até ele ser bloqueado ou reiniciado. Para trocar a chave, a tela exige a senha atual do cofre. Se a senha for perdida, não existe recuperação: será necessário remover o arquivo de cofre do volume e configurar uma nova chave.
 
-Algumas chaves do CurseForge contêm `$`, caractere que ferramentas de deploy podem interpretar como interpolação. Se a assinatura/quantidade de caracteres da chave dentro do container não corresponder à original, use `CURSEFORGE_API_KEY_BASE64` no Portainer e deixe `CURSEFORGE_API_KEY` vazia. O avaliador decodifica essa variável apenas em memória. No PowerShell, gere o valor em um terminal seguro com `[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("SUA_CHAVE"))`.
+O acesso deve continuar limitado à tailnet de vocês. A cifra protege a chave em repouso e evita a perda em redeploy, mas não substitui controle de acesso ao servidor. Depois do deploy, `/api/health` informa somente se o cofre está configurado e desbloqueado; nunca revela chave, tamanho ou hash.
 
 ## Estrutura dos dados
 

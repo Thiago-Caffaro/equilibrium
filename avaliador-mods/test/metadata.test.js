@@ -4,7 +4,6 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
 import { MetadataLookupError, parseProjectUrl, resolveProjectMetadata } from "../lib/project-metadata.js";
-import { curseForgeApiKeyFromEnvironment } from "../lib/curseforge-config.js";
 import { createAppServer } from "../server.js";
 
 function jsonResponse(payload, status = 200) {
@@ -13,13 +12,6 @@ function jsonResponse(payload, status = 200) {
     headers: { "content-type": "application/json" }
   });
 }
-
-test("aceita chave CurseForge em Base64 e prioriza-a sobre a forma direta", () => {
-  const key = "chave$com$caracteres-especiais";
-  const encoded = Buffer.from(key, "utf8").toString("base64");
-  assert.equal(curseForgeApiKeyFromEnvironment({ CURSEFORGE_API_KEY: "alterada", CURSEFORGE_API_KEY_BASE64: encoded }), key);
-  assert.equal(curseForgeApiKeyFromEnvironment({ CURSEFORGE_API_KEY_BASE64: "não-é-base64" }), "");
-});
 
 test("reconhece links de projeto e remove sintaxe Markdown acidental", () => {
   assert.deepEqual(parseProjectUrl("https://modrinth.com/mod/exemplo"), {
@@ -75,7 +67,7 @@ test("CurseForge exige chave e normaliza dados da API oficial", async () => {
       fetchImpl: async () => jsonResponse({}),
       curseForgeApiKey: ""
     }),
-    (error) => error.code === "CURSEFORGE_API_KEY_REQUIRED" && error.statusCode === 424
+    (error) => error.code === "CURSEFORGE_VAULT_LOCKED" && error.statusCode === 424
   );
 
   const fetchImpl = async (url, options) => {

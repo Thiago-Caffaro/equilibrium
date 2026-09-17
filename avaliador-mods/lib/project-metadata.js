@@ -1,4 +1,3 @@
-import { curseForgeApiKeyFromEnvironment } from "./curseforge-config.js";
 
 const MODRINTH_API = "https://api.modrinth.com/v2";
 const CURSEFORGE_API = "https://api.curseforge.com/v1";
@@ -176,8 +175,8 @@ function isGameVersion(value) {
 async function lookupCurseForgeProject(projectId, fetchImpl, apiKey) {
   if (!apiKey) {
     throw new MetadataLookupError(
-      "O Modrinth funciona sem credencial. Para consultar o CurseForge, configure CURSEFORGE_API_KEY no servidor.",
-      { code: "CURSEFORGE_API_KEY_REQUIRED", statusCode: 424 }
+      "O Modrinth funciona sem credencial. Para consultar o CurseForge, configure e desbloqueie o cofre pela interface.",
+      { code: "CURSEFORGE_VAULT_LOCKED", statusCode: 424 }
     );
   }
 
@@ -223,8 +222,8 @@ async function lookupCurseForgeProject(projectId, fetchImpl, apiKey) {
 async function lookupCurseForge(parsed, fetchImpl, apiKey) {
   if (!apiKey) {
     throw new MetadataLookupError(
-      "O Modrinth funciona sem credencial. Para consultar o CurseForge, configure CURSEFORGE_API_KEY no servidor.",
-      { code: "CURSEFORGE_API_KEY_REQUIRED", statusCode: 424 }
+      "O Modrinth funciona sem credencial. Para consultar o CurseForge, configure e desbloqueie o cofre pela interface.",
+      { code: "CURSEFORGE_VAULT_LOCKED", statusCode: 424 }
     );
   }
   const headers = { "x-api-key": apiKey };
@@ -242,7 +241,7 @@ async function lookupCurseForge(parsed, fetchImpl, apiKey) {
 
 export async function resolveProjectMetadataById({ provider, projectId }, {
   fetchImpl = globalThis.fetch,
-  curseForgeApiKey = curseForgeApiKeyFromEnvironment()
+  curseForgeApiKey = ""
 } = {}) {
   const normalizedProvider = String(provider || "").trim().toLowerCase();
   const normalizedId = String(projectId || "").trim();
@@ -259,7 +258,7 @@ export async function resolveProjectMetadataById({ provider, projectId }, {
 
 export async function resolveProjectMetadata(value, {
   fetchImpl = globalThis.fetch,
-  curseForgeApiKey = curseForgeApiKeyFromEnvironment()
+  curseForgeApiKey = ""
 } = {}) {
   if (typeof fetchImpl !== "function") {
     throw new MetadataLookupError("Este servidor não possui suporte a consultas HTTP.");

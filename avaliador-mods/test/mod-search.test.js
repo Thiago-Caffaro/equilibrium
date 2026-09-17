@@ -81,6 +81,28 @@ test("cacheia consultas, atualiza sob demanda e tolera falha parcial", async () 
   assert.equal(curseForgeCalls, 2);
 });
 
+test("lê a credencial do provedor no momento da consulta", async () => {
+  let currentKey = "";
+  const headers = [];
+  const search = createRemoteModSearch({
+    curseForgeApiKeyProvider: () => currentKey,
+    fetchImpl: async (_url, options) => {
+      headers.push(options.headers["x-api-key"]);
+      return new Response(JSON.stringify({ data: [] }), { status: 200 });
+    }
+  });
+
+  const locked = await search.search({ query: "Apotheosis", source: "curseforge" });
+  assert.equal(locked.sources.curseforge.state, "error");
+  assert.equal(headers.length, 0);
+
+  currentKey = "chave-do-cofre";
+  search.clearCache();
+  const unlocked = await search.search({ query: "Apotheosis", source: "curseforge" });
+  assert.equal(unlocked.sources.curseforge.state, "ready");
+  assert.deepEqual(headers, ["chave-do-cofre"]);
+});
+
 test("API de busca sinaliza existentes e staging remoto bloqueia duplicatas", async (t) => {
   const remoteSearch = {
     async search() {

@@ -9,10 +9,6 @@ services:
       HOST: 0.0.0.0
       PORT: 8787
       NODE_ENV: production
-      CURSEFORGE_API_KEY: ${CURSEFORGE_API_KEY:-}
-      # Prefer this in Portainer when the API key contains `$`: Base64 does not
-      # pass through Compose variable interpolation. Leave the raw key blank.
-      CURSEFORGE_API_KEY_BASE64: ${CURSEFORGE_API_KEY_BASE64:-}
     volumes:
       - equilibrium-data:/app/data
 
